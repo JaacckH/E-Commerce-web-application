@@ -1,0 +1,26 @@
+﻿<tr>
+    <td>{ID}</td>
+    <td>{USERNAME}</td>
+    <td>
+        <input class="form-check-input" type="checkbox" value="mute" onclick="communityPromoteUser({COMMUNITYID}, '{USERNAME}')" id="promote-check-{ID}" {MODERATOR}>
+        <label class="form-check-label" for="promote-check-{ID}">
+            <i class="fas optional fa-angle-double-up"></i>
+            <i class="fas optional fa-angle-up"></i>
+        </label>
+    </td>
+    <td>
+        <input class="form-check-input" type="checkbox" value="mute" onclick="communityMuteUser({COMMUNITYID}, '{USERNAME}')" id="mute-check-{ID}" {MUTED}>
+        <label class="form-check-label" for="mute-check-{ID}">
+            <i class="fas optional fa-volume-up"></i>
+            <i class="fas optional fa-volume-mute"></i>
+        </label>
+    </td>
+    <td>
+        <input class="form-check-input" type="checkbox" value="mute" onclick="communityBanUser({COMMUNITYID}, '{USERNAME}')" id="ban-check-{ID}" {BANNED}>
+        <label class="form-check-label" for="ban-check-{ID}">
+            <i class="fas optional fa-user"></i>
+            <i class="fas optional fa-user-slash"></i>
+        </label>
+
+    </td>
+</tr>

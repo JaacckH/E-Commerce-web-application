@@ -1,0 +1,16 @@
+﻿@page
+@model Group_Project.Models.IndexModel
+@{
+
+}
+<div id="main">
+    <div class="row">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 arc-main-feed" id="activity-feed-container">
+
+            @Html.Raw(Pages.Classes.Communities.
+                 getPosts(null, Pages.Classes.UserInteractions.getUsernameFromSessionID(HttpContext.Request.Cookies["SessionID"]), 0, 1))
+        </div>
+        <button class="arc-btn" style="margin-bottom:55px;" onclick="requestPosts(0);">LOAD MORE</button>
+    </div>
+</div>
+

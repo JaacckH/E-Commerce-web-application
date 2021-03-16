@@ -1,0 +1,161 @@
+﻿@page
+@model Group_Project.Models.CommunitySettings
+@{
+    Model.onLoad();
+}
+
+
+<!-- Modal -->
+<div class="modal fade" id="confirm-delete-modal-1" tabindex="-1" aria-labelledby="delete-community-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="delete-community-1">Delete Community</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to delete your community, this can't be undone?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="arc-btn" data-dismiss="modal">Cancel</button>
+                <button type="button" class="arc-btn" onclick="deleteCommunity(@Model.communityID);">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="main">
+
+    <div class="row arc-settings-page arc-com-settings-page">
+
+        <div class="row col-12 no-box-styling main-settings">
+            <div class="col-lg-12 col-xl-8 mr-xl-2 main-container order-xl-1 order-2">
+                <!-- Settings Line Start-->
+                <div class="row container-row">
+                    <div class="col-12 col-sm-3">
+                        <p class="input-header setting-text">COMMUNITY NAME: </p>
+                    </div>
+                    <div class="col-12 col-sm-9 input-area">
+                        <div class="row">
+                            <div class="col-10">
+                                <p id="settings-text-1" class="settings-text ">@Model.communityName</p>
+
+                            </div>
+                            <div class="col-2 edit-btn-cont">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Settings Line End-->
+                <div class="row container-row">
+
+                    <div class="col-12 settings-bio-cont">
+                        <div class="row settings-bio">
+                            <div class="col-12 col-sm-3">
+                                <p class="input-header setting-text">BIOGRAPHY: </p>
+                            </div>
+                            <div class="col-12 col-sm-9 input-area">
+                                <div class="row">
+                                    <div class="col-10 text-container">
+                                        <p id="settings-text-10" class="settings-text">@Pages.Classes.Communities.getCommunityBio(@Model.communityID)</p>
+                                        <textarea type="text" id="community-settings-bio" class="settings-input display-n">@Pages.Classes.Communities.getCommunityBio(@Model.communityID)</textarea>
+                                    </div>
+                                    <div class="col-2 edit-btn-cont">
+                                        <i class="fas fa-pen toggle-edit-mode" onclick="toggleEditSetting(10)"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Settings Line 0 End-->
+                    </div>
+                </div>
+                <div class="row container-row">
+                    <div class="col-12">
+                        <h3 style="margin:10px;">USERS</h3>
+                        <div class="table-container">
+                            <table class="admin-table">
+
+                                <tr>
+                                    <th>ID</th>
+                                    <th>DISPLAY NAME</th>
+                                    <th>PROMOTE</th>
+                                    <th>MUTED<span class="reference"> ( <i class="fas fa-volume-up"></i> / <i class="fas fa-volume-mute "></i> )</span></th>
+                                    <th>BANNED<span class="reference"> ( <i class="fas fa-user"></i> / <i class="fas fa-user-slash"></i> )</span></th>
+                                </tr>
+
+                                @Html.Raw(Classes.CommunitySettings.getCommunityUsersTable(HttpContext.Request.Cookies["SessionID"], Model.communityID))
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="col-lg-12 col-xl-4 no-box-styling additional-container order-xl-2 order-1">
+                <div class="additional-settings">
+                    <div class="settings-row">
+                        <div class="col-12 profile-picture-cont">
+                            <img class="profile-picture" id="compp" src="@Classes.DBFunctions.getCommunityInfo(Model.communityID, "AvatarUrl")" />
+                        </div>
+                        <label class="arc-btn" for="communitypp">CHOOSE PICTURE</label>
+                        <input onchange="uploadtest(@Model.communityID)" type="file"
+                               id="communitypp" name="communitypp"
+                               accept="image/png, image/jpeg" hidden />
+                        <form asp-action="@Model.uploadImage()">
+                            <input style="position:absolute; z-index:0; visibility:hidden;" id="cpp" name="cpp" type="text" readonly />
+                            <input style="position:absolute; z-index:0; visibility:hidden;" id="comid" name="comid" type="text" value="@Model.communityID" readonly />
+                            <button class="arc-btn" type="submit">UPLOAD</button>
+                        </form>
+                    </div>
+                    <div class="settings-row">
+                    </div>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    @if (Classes.Communities.communityPrivate(Model.communityID) == true)
+                    {
+                    <div class="settings-row">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="inputGroupSelect01">COMMUNITY VISIBILITY</label>
+                            </div>
+                            <select class="custom-select" id="community-settings-visibility">
+                                <option selected value="0">VISIBLE</option>
+                                <option value="1">HIDDEN</option>
+                            </select>
+                        </div>
+                    </div>
+                    }
+
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col-12 col-sm-6 col-lg-6 col-xl-8 order-lg-4 order-5">
+            <div id="save-settings" class="settings-row">
+                <button class="arc-btn" type="button" onclick="updateCommunity(@Model.communityID);">
+                    SAVE CHANGES
+                </button>
+            </div>
+        </div>
+        <div class="col-12 col-sm-6 col-lg-6 col-xl-4 settings-final-row delete-btn order-xl-5 order-4 no-box-styling">
+            <div class="settings-row">
+                <button class="arc-btn" type="button" data-toggle="modal" data-target="#confirm-delete-modal-1">
+                    DELETE COMMUNITY <i class="fas fa-exclamation-circle"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+</div>
+

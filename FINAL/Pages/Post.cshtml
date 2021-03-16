@@ -1,0 +1,19 @@
+﻿@page
+@model Group_Project.Models.Post
+@{
+
+}
+<div id="main">
+    <div class="row">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 arc-main-feed">
+            <h1 style="color:#c2c2c2; margin:30px 10px; margin-bottom:50px; float:left; cursor:pointer;" onclick="window.history.back();">
+            <i class="fas fa-arrow-circle-left"></i> GO BACK</h1>
+            @Html.Raw(Model.getPost())
+        </div>
+
+
+
+        
+    </div>
+</div>
+

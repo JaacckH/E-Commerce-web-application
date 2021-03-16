@@ -1,0 +1,52 @@
+﻿<div class="arc-post">
+    <div class="main-post post-id-{ID}" id="post-container-{ID}">
+        <div class="post-titles col-12 no-gutters">
+            <h2 style="cursor:pointer;" onclick="window.location.href = '/Post?id={ID}'">{TITLE}</h2>
+            <a href="/Community?id={COMMUNITY}"><p>{COMMUNITYNAME}</p></a>
+            <div class="flair">
+                <button type="button" class="arc-btn"><i class="fab fa-gg"></i> {CARD}</button>
+                <a href="/Profile?id={USERNAME}"><p style="color:{USERCOLOR}">{USERNAME} {VERIFIED}</p></a>
+            </div>
+        </div>
+        <div class="row no-gutters">
+            <div class="col-12 post-content img embed-responsive embed-responsive-16by9">
+                <i class="delete-post far fa-trash-alt fa-2x"></i>
+                <iframe width="100%" height="auto" src="https://www.youtube.com/embed/{LINK}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+            </div>
+            <div class="col-12">
+                <div class="row no-gutters arc-post-action">
+                    <div class="col-10 post-actions-l">
+                        <i class="fas fa-fire-alt fa-2x {LIKECLASS}" style="margin-left:5px;" id="like-btn-{ID}" onclick="likePost({ID});"></i>
+                        <b><p style="float:left; font-size:12pt; margin:0px; margin-top:2px; color:#c2c2c2;" id="post-likes-{ID}">{LIKES}</p></b>
+                        <i class="far fa-comments fa-2x" onclick="toggleComments('.post-id-{ID} .comments')"></i>
+                        <i class="fas fa-share-alt fa-shard" onclick="sharePost({ID})"></i>
+                        <i class="fas fa-expand fa-2x" onclick="window.open('{VIDEOURL}');"></i>
+
+                    </div>
+                    <div class="col post-actions-r">
+                        <i class="fas fa-ellipsis-v fa-shard" onclick="postAdminToggle('.post-id-{ID}')"></i>
+                    </div>
+                    <div class=" col-12 comments">
+                        <div id="comment-list-{ID}" style="margin-top:10px;">
+                            {COMMENTS}
+                        </div>
+                        <div id="input-area">
+                            <input type="text" placeholder="ADD A COMMENT..." id="comment-input-{ID}" /><i class="fas fa-location-arrow" onclick="addComment({ID});"></i>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="admin-post-settings">
+        <div class="option-container">
+            <div>
+                {OPTIONS}
+                <p onclick="postAdminToggle('.post-id-{ID}')">CANCEL</p>
+            </div>
+        </div>
+    </div>
+    <!-- end of only on mod or admin -->
+</div>

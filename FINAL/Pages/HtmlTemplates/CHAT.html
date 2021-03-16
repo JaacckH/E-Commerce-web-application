@@ -1,0 +1,26 @@
+﻿<div id="mychatMenu" class="chatMenu">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeChat()">&times;</a>
+    <center>
+        <div style="width:80%;">
+            <div id="recentDiv" class="shadow-dark">
+                <div id="messageButton" class="shadow-dark" style="width:90%;">
+                    <input type="text" placeholder="SEARCH PEOPLE..." style="width: 100%; background-color:transparent; padding:0px 20px; border:none; height:40px; font-size:13pt; color: #66FCF1; font-family: 'Bahnschrift Light'; " id="userSearch" onchange="getUsers()" autocomplete="off" />
+                </div>
+                <div id="RECENT">@Html.Raw(Model.getRecents())</div>
+            </div>
+
+            <div class="biggerDiv shadow-dark">
+                <div id="messagesList" style="height:720px; width:95%; overflow:hidden scroll;">
+                    <img src="~/images/selectContact.png" style="width:90%; margin-top:120px;" />
+                </div>
+                <div id="messageButton" class="shadow-dark">
+                    <input type="text" id="messageInput" autocomplete="off" />
+                    <input type="button" id="sendButton" class="shadow-dark" value="➤" onclick="sendClick();" />
+                </div>
+            </div>
+
+            <div class="biggerDiv feed" id="chatFeed">
+            </div>
+        </div>
+    </center>
+</div>

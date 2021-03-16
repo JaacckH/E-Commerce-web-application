@@ -1,0 +1,314 @@
+﻿@page
+@model Group_Project.Models.Activity
+@{
+    Layout = null;
+}
+<link rel="stylesheet" href="@Url.Content("~/css/site.css")" />
+<style>
+    #post {
+        text-align: center;
+        justify-content: center;
+        height: 100%;
+        border-radius: 15px;
+        background-color: #161c24;
+        width: 95%;
+        overflow: hidden;
+        margin-bottom: 20px;
+    }
+
+    .image {
+        max-height: 425px;
+    }
+
+    .text {
+        max-height: 200px;
+    }
+
+    .HeadingText {
+        color: #66FCF1;
+        font-size: 25pt;
+        margin: 0;
+        margin-top: 40px;
+        margin-bottom: 10px;
+    }
+
+    body {
+        background-color: #0b0c10;
+        border-radius: 20px;
+    }
+
+    #rightPost {
+        width: 10%;
+        float: right;
+        background-color: #0b0c10;
+        height: 425px;
+        border: solid 1px #0b0c10;
+    }
+
+    #leftPost {
+        width: 88%;
+        float: left;
+        text-align: left;
+    }
+
+    .shadow-inner {
+        box-shadow: inset 0px -11px 13px -10px #0b0c10;
+    }
+
+    div.sticky {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 20px;
+    }
+
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<body>
+    <center>
+        <br>
+        <div style="width:95%;height:40px; position: sticky; font-family: 'Bahnschrift Light'; border-radius:30px; background-color: transparent;" class="sticky">
+            <input type="text" style="height:40px; width:180px; padding:0px 20px; float:left; font-family: 'Bahnschrift Light'; font-size:12pt; border:none; text-align:center; border-radius:30px; background-color:#66FCF1; cursor:pointer; color: #0b0c10;" value="COMMUNITIES 🠗" class="shadow-dark" readonly />
+            <button style="border: none; font-family: 'Bahnschrift Light'; font-size:18pt; width:40px; height:40px;border-radius: 50px; background-color: #66FCF1; color: #0b0c10; cursor: pointer; float:right;" class="shadow-dark">🠕</button>
+            <button style="border: none; font-family: 'Bahnschrift Light'; font-size:24pt; width:40px; height:40px;border-radius: 50px; margin-right:10px; background-color: #66FCF1; color: #0b0c10; cursor: pointer; float:right;" class="shadow-dark">+</button>
+        </div>
+        <br>
+        <div id="post" class="text shadow-dark">
+            <div id="leftPost">
+                <h2 style="margin:0; color: #66FCF1; margin-left:15px; margin-top:10px;">Post Title</h2>
+                <p style="margin:0px; margin-left:15px; float:left; font-size:11pt; color:#08090b;">Username</p>
+                <div style="height:140px; overflow: hidden scroll; box-shadow: -10px 0px -10px 0px #aaaaaa; width: 98%; margin: 0; margin: 10px 0px; float: right;" class="shadow-inner">
+                    <p style="margin:0;margin-left:15px; color:#c2c2c2;">
+                        My Grandfather smoked his whole life. I was about 10 years old when my mother said to him,
+                        'If you ever want to see your grandchildren graduate, you have to stop immediately.'. Tears
+                        welled up in his eyes when he realized what exactly was at stake. He gave it up immediately.
+                        Three years later he died of lung cancer. It was really sad and destroyed me. My mother said
+                        to me- 'Don't ever smoke. Please don't put your family through what your Grandfather put us
+                    </p>
+                </div>
+            </div>
+            <div id="rightPost" class="shadow-dark">
+                <center><img src="~/images/heart.png" style="width:60%; margin-top: 20px; border-radius: 50%; background-color:#161c24; cursor:pointer;" class="shadow-dark"></center>
+                <center><img src="~/images/comment.png" style="width:60%; margin-top: 10px; border-radius: 50%; background-color:#161c24; cursor:pointer;" class="shadow-dark"></center>
+                <center><img src="~/images/report.png" style="width:60%; margin-top: 10px; border-radius: 50%; background-color:#161c24; cursor:pointer;" class="shadow-dark"></center>
+            </div>
+        </div>
+
+        <div id="post" class="image shadow-dark">
+            <div id="leftPost">
+                <h2 style="margin:0; color: #66FCF1; margin-left:15px; margin-top:10px;">Post Title</h2>
+                <p style="margin:0px; margin-left:15px; float:left; font-size:11pt; color:#08090b;">Username</p>
+                <div style="box-shadow: -10px 0px -10px 0px #aaaaaa; width: 96%; margin: 0; margin: 10px 20px; float: right;">
+                    <iframe style="width:100%; border-radius:10px; height:340px; margin-left:15px;" src="https://www.youtube.com/embed/YWVvuzJONl8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+            <div id="rightPost" class="shadow-dark">
+                <center><img src="~/images/heart.png" style="width:60%; margin-top: 20px; border-radius: 50%; background-color:#161c24; cursor:pointer;" class="shadow-dark"></center>
+                <center><img src="~/images/comment.png" style="width:60%; margin-top: 10px; border-radius: 50%; background-color:#161c24; cursor:pointer;" class="shadow-dark"></center>
+                <center><img src="~/images/report.png" style="width:60%; margin-top: 10px; border-radius: 50%; background-color:#161c24; cursor:pointer;" class="shadow-dark"></center>
+            </div>
+        </div>
+
+        <div id="post" class="image shadow-dark">
+            <div id="leftPost">
+                <h2 style="margin:0; color: #66FCF1; margin-left:15px; margin-top:10px;">Post Title</h2>
+                <p style="margin:0px; margin-left:15px; float:left; font-size:11pt; color:#08090b;">Username</p>
+                <div style="box-shadow: -10px 0px -10px 0px #aaaaaa; width: 96%; margin: 0; margin: 10px 20px; float: right;">
+                    <iframe style="width:100%; border-radius:10px; height:340px; margin-left:15px;" src="https://www.youtube.com/embed/C-icyHEb7W4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+            <div id="rightPost" class="shadow-dark">
+                <center><img src="~/images/heart.png" style="width:60%; margin-top: 20px; border-radius: 50%; background-color:#161c24; cursor:pointer;" class="shadow-dark"></center>
+                <center><img src="~/images/comment.png" style="width:60%; margin-top: 10px; border-radius: 50%; background-color:#161c24; cursor:pointer;" class="shadow-dark"></center>
+                <center><img src="~/images/report.png" style="width:60%; margin-top: 10px; border-radius: 50%; background-color:#161c24; cursor:pointer;" class="shadow-dark"></center>
+            </div>
+        </div>
+
+
+
+        <div id="post" class="image shadow-dark">
+            <div id="leftPost">
+                <h2 style="margin:0; color: #66FCF1; margin-left:15px; margin-top:10px;">Post Title</h2>
+                <p style="margin:0px; margin-left:15px; float:left; font-size:11pt; color:#08090b;">Username</p>
+                <div style="box-shadow: -10px 0px -10px 0px #aaaaaa; width: 96%; margin: 0; margin: 10px 20px; float: right;">
+                    <iframe style="width:100%; border-radius:10px; height:340px; margin-left:15px;" src="https://www.youtube.com/embed/sMV-Y1_w5zw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+            <div id="rightPost" class="shadow-dark">
+                <center><img src="~/images/heart.png" style="width:60%; margin-top: 20px; border-radius: 50%; background-color:#161c24; cursor:pointer;" class="shadow-dark"></center>
+                <center><img src="~/images/comment.png" style="width:60%; margin-top: 10px; border-radius: 50%; background-color:#161c24; cursor:pointer;" class="shadow-dark"></center>
+                <center><img src="~/images/report.png" style="width:60%; margin-top: 10px; border-radius: 50%; background-color:#161c24; cursor:pointer;" class="shadow-dark"></center>
+            </div>
+        </div>
+
+
+        <div id="post" class="image shadow-dark">
+            <div id="leftPost">
+                <h2 style="margin:0; color: #66FCF1; margin-left:15px; margin-top:10px;">Post Title</h2>
+                <p style="margin:0px; margin-left:15px; float:left; font-size:11pt; color:#08090b;">Username</p>
+                <div style="box-shadow: -10px 0px -10px 0px #aaaaaa; width: 96%; margin: 0; margin: 10px 20px; float: right;">
+                    <iframe style="width:100%; border-radius:10px; height:340px; margin-left:15px;" src="https://www.youtube.com/embed/WeUNeMq1XzA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+            <div id="rightPost" class="shadow-dark">
+                <center><img src="~/images/heart.png" style="width:60%; margin-top: 20px; border-radius: 50%; background-color:#161c24; cursor:pointer;" class="shadow-dark"></center>
+                <center><img src="~/images/comment.png" style="width:60%; margin-top: 10px; border-radius: 50%; background-color:#161c24; cursor:pointer;" class="shadow-dark"></center>
+                <center><img src="~/images/report.png" style="width:60%; margin-top: 10px; border-radius: 50%; background-color:#161c24; cursor:pointer;" class="shadow-dark"></center>
+            </div>
+        </div>
+
+        <div id="post" class="image shadow-dark">
+            <div id="leftPost">
+                <h2 style="margin:0; color: #66FCF1; margin-left:15px; margin-top:10px;">Post Title</h2>
+                <p style="margin:0px; margin-left:15px; float:left; font-size:11pt; color:#08090b;">Username</p>
+                <div style="box-shadow: -10px 0px -10px 0px #aaaaaa; width: 96%; margin: 0; margin: 10px 20px; float: right;">
+                    <iframe style="width:100%; border-radius:10px; height:340px; margin-left:15px;" src="https://www.youtube.com/embed/ouhmPg4PTmk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+            <div id="rightPost" class="shadow-dark">
+                <center><img src="~/images/heart.png" style="width:60%; margin-top: 20px; border-radius: 50%; background-color:#161c24; cursor:pointer;" class="shadow-dark"></center>
+                <center><img src="~/images/comment.png" style="width:60%; margin-top: 10px; border-radius: 50%; background-color:#161c24; cursor:pointer;" class="shadow-dark"></center>
+                <center><img src="~/images/report.png" style="width:60%; margin-top: 10px; border-radius: 50%; background-color:#161c24; cursor:pointer;" class="shadow-dark"></center>
+            </div>
+        </div>
+
+        <div id="post" class="image shadow-dark">
+            <div id="leftPost">
+                <h2 style="margin:0; color: #66FCF1; margin-left:15px; margin-top:10px;">Post Title</h2>
+                <p style="margin:0px; margin-left:15px; float:left; font-size:11pt; color:#08090b;">Username</p>
+                <div style="box-shadow: -10px 0px -10px 0px #aaaaaa; width: 96%; margin: 0; margin: 10px 20px; float: right;">
+                    <iframe style="width:100%; border-radius:10px; height:340px; margin-left:15px;" src="https://www.youtube.com/embed/hgzy8Q6_Ls8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+            <div id="rightPost" class="shadow-dark">
+                <center><img src="~/images/heart.png" style="width:60%; margin-top: 20px; border-radius: 50%; background-color:#161c24; cursor:pointer;" class="shadow-dark"></center>
+                <center><img src="~/images/comment.png" style="width:60%; margin-top: 10px; border-radius: 50%; background-color:#161c24; cursor:pointer;" class="shadow-dark"></center>
+                <center><img src="~/images/report.png" style="width:60%; margin-top: 10px; border-radius: 50%; background-color:#161c24; cursor:pointer;" class="shadow-dark"></center>
+            </div>
+        </div>
+
+        <div id="post" class="image shadow-dark">
+            <div id="leftPost">
+                <h2 style="margin:0; color: #66FCF1; margin-left:15px; margin-top:10px;">Post Title</h2>
+                <p style="margin:0px; margin-left:15px; float:left; font-size:11pt; color:#08090b;">Username</p>
+                <div style="box-shadow: -10px 0px -10px 0px #aaaaaa; width: 96%; margin: 0; margin: 10px 20px; float: right;">
+                    <iframe style="width:100%; border-radius:10px; height:340px; margin-left:15px;" src="https://www.youtube.com/embed/KC0DlJza3dk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+            <div id="rightPost" class="shadow-dark">
+                <center><img src="~/images/heart.png" style="width:60%; margin-top: 20px; border-radius: 50%; background-color:#161c24; cursor:pointer;" class="shadow-dark"></center>
+                <center><img src="~/images/comment.png" style="width:60%; margin-top: 10px; border-radius: 50%; background-color:#161c24; cursor:pointer;" class="shadow-dark"></center>
+                <center><img src="~/images/report.png" style="width:60%; margin-top: 10px; border-radius: 50%; background-color:#161c24; cursor:pointer;" class="shadow-dark"></center>
+            </div>
+        </div>
+
+
+        <div id="post" class="image shadow-dark">
+            <div id="leftPost">
+                <h2 style="margin:0; color: #66FCF1; margin-left:15px; margin-top:10px;">Post Title</h2>
+                <p style="margin:0px; margin-left:15px; float:left; font-size:11pt; color:#08090b;">Username</p>
+                <div style="box-shadow: -10px 0px -10px 0px #aaaaaa; width: 96%; margin: 0; margin: 10px 20px; float: right;">
+                    <iframe style="width:100%; border-radius:10px; height:340px; margin-left:15px;" src="https://www.youtube.com/embed/YWVvuzJONl8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+            <div id="rightPost" class="shadow-dark">
+                <center><img src="~/images/heart.png" style="width:60%; margin-top: 20px; border-radius: 50%; background-color:#161c24; cursor:pointer;" class="shadow-dark"></center>
+                <center><img src="~/images/comment.png" style="width:60%; margin-top: 10px; border-radius: 50%; background-color:#161c24; cursor:pointer;" class="shadow-dark"></center>
+                <center><img src="~/images/report.png" style="width:60%; margin-top: 10px; border-radius: 50%; background-color:#161c24; cursor:pointer;" class="shadow-dark"></center>
+            </div>
+        </div>
+
+        <div id="post" class="image shadow-dark">
+            <div id="leftPost">
+                <h2 style="margin:0; color: #66FCF1; margin-left:15px; margin-top:10px;">Post Title</h2>
+                <p style="margin:0px; margin-left:15px; float:left; font-size:11pt; color:#08090b;">Username</p>
+                <div style="box-shadow: -10px 0px -10px 0px #aaaaaa; width: 96%; margin: 0; margin: 10px 20px; float: right;">
+                    <iframe style="width:100%; border-radius:10px; height:340px; margin-left:15px;" src="https://www.youtube.com/embed/C-icyHEb7W4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+            <div id="rightPost" class="shadow-dark">
+                <center><img src="~/images/heart.png" style="width:60%; margin-top: 20px; border-radius: 50%; background-color:#161c24; cursor:pointer;" class="shadow-dark"></center>
+                <center><img src="~/images/comment.png" style="width:60%; margin-top: 10px; border-radius: 50%; background-color:#161c24; cursor:pointer;" class="shadow-dark"></center>
+                <center><img src="~/images/report.png" style="width:60%; margin-top: 10px; border-radius: 50%; background-color:#161c24; cursor:pointer;" class="shadow-dark"></center>
+            </div>
+        </div>
+
+
+
+        <div id="post" class="image shadow-dark">
+            <div id="leftPost">
+                <h2 style="margin:0; color: #66FCF1; margin-left:15px; margin-top:10px;">Post Title</h2>
+                <p style="margin:0px; margin-left:15px; float:left; font-size:11pt; color:#08090b;">Username</p>
+                <div style="box-shadow: -10px 0px -10px 0px #aaaaaa; width: 96%; margin: 0; margin: 10px 20px; float: right;">
+                    <iframe style="width:100%; border-radius:10px; height:340px; margin-left:15px;" src="https://www.youtube.com/embed/sMV-Y1_w5zw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+            <div id="rightPost" class="shadow-dark">
+                <center><img src="~/images/heart.png" style="width:60%; margin-top: 20px; border-radius: 50%; background-color:#161c24; cursor:pointer;" class="shadow-dark"></center>
+                <center><img src="~/images/comment.png" style="width:60%; margin-top: 10px; border-radius: 50%; background-color:#161c24; cursor:pointer;" class="shadow-dark"></center>
+                <center><img src="~/images/report.png" style="width:60%; margin-top: 10px; border-radius: 50%; background-color:#161c24; cursor:pointer;" class="shadow-dark"></center>
+            </div>
+        </div>
+
+
+        <div id="post" class="image shadow-dark">
+            <div id="leftPost">
+                <h2 style="margin:0; color: #66FCF1; margin-left:15px; margin-top:10px;">Post Title</h2>
+                <p style="margin:0px; margin-left:15px; float:left; font-size:11pt; color:#08090b;">Username</p>
+                <div style="box-shadow: -10px 0px -10px 0px #aaaaaa; width: 96%; margin: 0; margin: 10px 20px; float: right;">
+                    <iframe style="width:100%; border-radius:10px; height:340px; margin-left:15px;" src="https://www.youtube.com/embed/WeUNeMq1XzA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+            <div id="rightPost" class="shadow-dark">
+                <center><img src="~/images/heart.png" style="width:60%; margin-top: 20px; border-radius: 50%; background-color:#161c24; cursor:pointer;" class="shadow-dark"></center>
+                <center><img src="~/images/comment.png" style="width:60%; margin-top: 10px; border-radius: 50%; background-color:#161c24; cursor:pointer;" class="shadow-dark"></center>
+                <center><img src="~/images/report.png" style="width:60%; margin-top: 10px; border-radius: 50%; background-color:#161c24; cursor:pointer;" class="shadow-dark"></center>
+            </div>
+        </div>
+
+        <div id="post" class="image shadow-dark">
+            <div id="leftPost">
+                <h2 style="margin:0; color: #66FCF1; margin-left:15px; margin-top:10px;">Post Title</h2>
+                <p style="margin:0px; margin-left:15px; float:left; font-size:11pt; color:#08090b;">Username</p>
+                <div style="box-shadow: -10px 0px -10px 0px #aaaaaa; width: 96%; margin: 0; margin: 10px 20px; float: right;">
+                    <iframe style="width:100%; border-radius:10px; height:340px; margin-left:15px;" src="https://www.youtube.com/embed/ouhmPg4PTmk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+            <div id="rightPost" class="shadow-dark">
+                <center><img src="~/images/heart.png" style="width:60%; margin-top: 20px; border-radius: 50%; background-color:#161c24; cursor:pointer;" class="shadow-dark"></center>
+                <center><img src="~/images/comment.png" style="width:60%; margin-top: 10px; border-radius: 50%; background-color:#161c24; cursor:pointer;" class="shadow-dark"></center>
+                <center><img src="~/images/report.png" style="width:60%; margin-top: 10px; border-radius: 50%; background-color:#161c24; cursor:pointer;" class="shadow-dark"></center>
+            </div>
+        </div>
+
+        <div id="post" class="image shadow-dark">
+            <div id="leftPost">
+                <h2 style="margin:0; color: #66FCF1; margin-left:15px; margin-top:10px;">Post Title</h2>
+                <p style="margin:0px; margin-left:15px; float:left; font-size:11pt; color:#08090b;">Username</p>
+                <div style="box-shadow: -10px 0px -10px 0px #aaaaaa; width: 96%; margin: 0; margin: 10px 20px; float: right;">
+                    <iframe style="width:100%; border-radius:10px; height:340px; margin-left:15px;" src="https://www.youtube.com/embed/hgzy8Q6_Ls8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+            <div id="rightPost" class="shadow-dark">
+                <center><img src="~/images/heart.png" style="width:60%; margin-top: 20px; border-radius: 50%; background-color:#161c24; cursor:pointer;" class="shadow-dark"></center>
+                <center><img src="~/images/comment.png" style="width:60%; margin-top: 10px; border-radius: 50%; background-color:#161c24; cursor:pointer;" class="shadow-dark"></center>
+                <center><img src="~/images/report.png" style="width:60%; margin-top: 10px; border-radius: 50%; background-color:#161c24; cursor:pointer;" class="shadow-dark"></center>
+            </div>
+        </div>
+
+        <div id="post" class="image shadow-dark">
+            <div id="leftPost">
+                <h2 style="margin:0; color: #66FCF1; margin-left:15px; margin-top:10px;">Post Title</h2>
+                <p style="margin:0px; margin-left:15px; float:left; font-size:11pt; color:#08090b;">Username</p>
+                <div style="box-shadow: -10px 0px -10px 0px #aaaaaa; width: 96%; margin: 0; margin: 10px 20px; float: right;">
+                    <iframe style="width:100%; border-radius:10px; height:340px; margin-left:15px;" src="https://www.youtube.com/embed/KC0DlJza3dk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+            <div id="rightPost" class="shadow-dark">
+                <center><img src="~/images/heart.png" style="width:60%; margin-top: 20px; border-radius: 50%; background-color:#161c24; cursor:pointer;" class="shadow-dark"></center>
+                <center><img src="~/images/comment.png" style="width:60%; margin-top: 10px; border-radius: 50%; background-color:#161c24; cursor:pointer;" class="shadow-dark"></center>
+                <center><img src="~/images/report.png" style="width:60%; margin-top: 10px; border-radius: 50%; background-color:#161c24; cursor:pointer;" class="shadow-dark"></center>
+            </div>
+        </div>
+    </center>
+</body>
+

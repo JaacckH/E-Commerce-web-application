@@ -1,0 +1,103 @@
+﻿@page
+@model Group_Project.Models.Profile
+@{
+    Model.onLoad();
+}
+
+<style>
+    .container {
+        padding: 0 16% 0% 16%;
+    }
+
+    .maincontainer {
+        width: 100%;
+        height: 100%;
+    }
+
+    .profileheader {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .Picturecontainer {
+        float: left;
+        height: 300px;
+        background-color: #1f2833;
+        width: 24%;
+        border-radius: 50%;
+    }
+
+    .picturebio {
+        color: #c5c6c7;
+        float: left;
+        width: 74%;
+        height: 300px;
+        background-color: #1f2833;
+        border-radius: 30px;
+    }
+
+    .picture {
+        width: 100%;
+        border-radius: 50%;
+    }
+</style>
+
+<div id="main">
+    <div class="row">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 arc-main-feed">
+
+            <div class="arc-community-header" style="background-color: @Classes.Banners.getBannerColor(Model.Username);">
+                <div class="row">
+                    <div class="col-md-12 col-lg-5 picture-container">
+                        <div class="community-picture" style="background-image: url('@Model.ProfilePic');"></div>
+                    </div>
+                    <div class="col-md-12 col-lg text-container">
+                        <div class="text-position">
+                            <h1 style="color:@Model.nameColor">@Html.Raw(Model.DisplayName)</h1>
+                            <p style="color:#fff;">@Model.BIO</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="fav-community-row">
+                    @{ 
+                        string[] split = Model.favComms.Split('|', ',');
+
+                        foreach (string item in split)
+                        {
+                                        <span class="tag badge badge-light">@item</span>
+                        }
+
+                    }
+
+
+                    
+                    
+
+
+                </div>
+            </div>
+            <div class="arc-community-btns">
+                <div class="row">
+                    <div class="col-6 col-lg-3">
+                        <button id="followButton" type="button" class=" arc-btn @Model.btnClass" onclick="@Model.followAction">@Model.followButton</button>
+                    </div>
+                    <div class="col-6 col-lg-3 ">
+                        <button type="button" class="shadow-green arc-btn" onclick="@Model.messageAction">@Model.messageText</button>
+                    </div>
+                    <div class="col-6 col-lg-3">
+                        <button type="button" class="shadow-green arc-btn" onclick="@Model.ignoreAction">@Model.ignoreButton</button>
+                    </div>
+                    <div class="col-6 col-lg-3">
+                        <button type="button" class="shadow-green arc-btn" onclick="@Model.ReportAction">@Model.ReportText</button>
+                    </div>
+                </div>
+            </div>
+
+            @Html.Raw(Model.getPosts())
+        </div>
+        
+    </div>
+</div>
+
+

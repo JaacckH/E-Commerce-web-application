@@ -7,9 +7,13 @@
 
   <ItemGroup>
     <Compile Remove="Migrations\**" />
+    <Compile Remove="wwwroot\ProfileImages\**" />
     <Content Remove="Migrations\**" />
+    <Content Remove="wwwroot\ProfileImages\**" />
     <EmbeddedResource Remove="Migrations\**" />
+    <EmbeddedResource Remove="wwwroot\ProfileImages\**" />
     <None Remove="Migrations\**" />
+    <None Remove="wwwroot\ProfileImages\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -50,7 +54,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\ProfileImages\" />
+    <Folder Include="Classes\" />
+    <Folder Include="HtmlTemplates\" />
   </ItemGroup>
 
 </Project>

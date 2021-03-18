@@ -9,8 +9,8 @@ using System;
 using System.Threading.Tasks;
 using Microsoft.AspNet.SignalR.Hubs;
 using Microsoft.AspNet.SignalR;
-using FINAL.Pages.Classes;
 using Microsoft.AspNetCore.Http;
+using FINAL.Classes;
 
 
 namespace tgsdfth

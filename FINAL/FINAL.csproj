@@ -53,9 +53,4 @@
     </EmbeddedResource>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Classes\" />
-    <Folder Include="HtmlTemplates\" />
-  </ItemGroup>
-
 </Project>

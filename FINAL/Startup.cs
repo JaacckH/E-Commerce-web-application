@@ -61,7 +61,7 @@ namespace tgsdfth
             application.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();
-                endpoints.MapHub<SignalrHub>("/chathub");
+                endpoints.MapHub<SignalrHub>("/chatHub");
             });
 
         }

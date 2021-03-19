@@ -8,6 +8,9 @@ namespace FINAL.Classes
 {
     public class SignalrHub : Hub
     {
-
+        public void test(String text)
+        {
+            Console.WriteLine(text);
+        }
     }
 }

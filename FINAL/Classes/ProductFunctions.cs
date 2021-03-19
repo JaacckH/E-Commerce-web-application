@@ -1,6 +1,7 @@
 ﻿using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -33,13 +34,15 @@ namespace FINAL.Classes
         }
         public static String getProductHtml(int productID)
         {
-            String baseString = "";
-            String price = "", quantity = "", imagePath = "";
+            String baseString = File.ReadAllText(Environment.CurrentDirectory + "/HTML/PRODUCT.html");
+            String price = "", quantity = "", imagePath = "", description = "", name = "";
+            int id = 0;
+
             SqlConnection conn = new SqlConnection();
             conn.ConnectionString = DBFunctions.connectionString;
             conn.Open();
             SqlCommand query = conn.CreateCommand();
-            query.CommandText = "Select * FROM Products";
+            query.CommandText = "SELECT * FROM Products";
             SqlDataReader reader = query.ExecuteReader();
 
             while (reader.Read())
@@ -48,12 +51,18 @@ namespace FINAL.Classes
                 {
                     price = reader["Price"].ToString();
                     quantity = reader["Quantity"].ToString();
+                    description = reader["Description"].ToString();
+                    name = reader["Name"].ToString();
+                    imagePath = reader["ImagePath"].ToString();
+                    id = int.Parse(reader["ProductID"].ToString());
                 }
             }
 
             conn.Close();
             baseString = baseString.Replace("{PRICE}", price)
-                .Replace("{QUANTITY}", quantity).Replace("{IMAGE}", imagePath);
+                .Replace("{NAME}", name).Replace("{DESCRIPTION}", description)
+                .Replace("{QUANTITY}", quantity).Replace("{IMAGE}", imagePath)
+                .Replace("{ID}", id.ToString());
 
             return baseString;
         }
@@ -61,6 +70,36 @@ namespace FINAL.Classes
         public static int getProductQuantity(int productID)
         {
             return int.Parse(getProductDetails(productID, "Quantity"));
+        }
+
+        public static Boolean productArchived(int productID)
+        {
+            if (getProductStatus(productID) == 2)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        public static Boolean productActive(int productID)
+        {
+            if (getProductStatus(productID) == 1)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        public static Boolean productInactive(int productID)
+        {
+            if (getProductStatus(productID) == 0)
+            {
+                return true;
+            }
+
+            return false;
         }
 
         public static int getProductStatus(int productID)

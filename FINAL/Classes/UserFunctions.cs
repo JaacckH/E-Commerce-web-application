@@ -2,12 +2,15 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace FINAL.Classes
 {
     public class UserFunctions
     {
+        // Function to return one record from the database using users ID
         public static String getUserDetails(int userID, String detail)
         {
             SqlConnection conn = new SqlConnection();
@@ -31,5 +34,20 @@ namespace FINAL.Classes
             return null;
 
         }
+        // Hash a single passed value, mostly used for passwords
+        public static String hashSingleValue(String RawVal)
+        {
+            String HashedResult;
+            using (var md5Hash = MD5.Create())
+            {
+                var RawBytes = Encoding.UTF8.GetBytes(RawVal);
+                var hashBytes = md5Hash.ComputeHash(RawBytes);
+                HashedResult = BitConverter.ToString(hashBytes).Replace("-", string.Empty);
+            }
+
+            return HashedResult.ToString();
+        }
+
+
     }
 }

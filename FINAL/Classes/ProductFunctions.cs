@@ -8,6 +8,7 @@ namespace FINAL.Classes
 {
     public static class ProductFunctions
     {
+        // return single product record
         public static String getProductDetails(int productID, String detail)
         {
             SqlConnection conn = new SqlConnection();
@@ -31,6 +32,8 @@ namespace FINAL.Classes
             return null;
 
         }
+
+        // return raw html template of a single product
         public static String getProductHtml(int productID)
         {
             String baseString = "";
@@ -57,6 +60,7 @@ namespace FINAL.Classes
 
             return baseString;
         }
+
 
         public static int getProductQuantity(int productID)
         {

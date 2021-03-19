@@ -34,6 +34,30 @@ namespace FINAL.Classes
             return null;
 
         }
+
+        public static String findExistingRecord(String column, String Record)
+        {
+            SqlConnection conn = new SqlConnection();
+            conn.ConnectionString = DBFunctions.connectionString;
+            conn.Open();
+            SqlCommand query = conn.CreateCommand();
+            query.CommandText = "Select * FROM Users";
+            SqlDataReader reader = query.ExecuteReader();
+
+            while (reader.Read())
+            {
+                if (reader[column].ToString() == Record)
+                {
+                    conn.Close();
+                    return "True";
+                }
+            }
+
+            conn.Close();
+            return "Fanse";
+
+        }
+
         // Hash a single passed value, mostly used for passwords
         public static String hashSingleValue(String RawVal)
         {

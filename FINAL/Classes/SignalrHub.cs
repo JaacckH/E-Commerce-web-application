@@ -12,5 +12,25 @@ namespace FINAL.Classes
         {
             Console.WriteLine(text);
         }
+
+        public async Task createUserAccount(String forename, String surname, String email, String password, String confirmpassword, String addressline1, String addressline2, String postcode, String phonenumber)
+        {
+            try
+            {
+                string response = LoginCreateAccount.createSuccessful(forename, surname, email, password, confirmpassword, addressline1, addressline2, postcode, Int32.Parse(phonenumber));
+                if (response.Contains("Successfuly"))
+                {
+                    Console.WriteLine("Account Created");
+                    // login the user
+                    // create success alert here
+                }
+                else
+                {
+                    Console.WriteLine(response);
+                    // create error alert here
+                }
+            }
+            catch { }// create error message
+        }
     }
 }

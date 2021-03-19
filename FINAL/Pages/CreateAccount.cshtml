@@ -1,0 +1,32 @@
+﻿@page
+@model FINAL.Pages.CreateAccountModel
+@{
+}
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/bootstrap-tagsinput.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js"></script>
+<script src="~/js/signalr/dist/browser/signalr.js"></script>
+<script src="~/js/chat.js"></script>
+
+<h2>CREATE ACCOUNT</h2>
+<input type="text" class="form-control" id="forename" placeholder="Forename" required autocomplete="off" />
+<br />
+<input type="text" class="form-control" id="surname" placeholder="Surname" required autocomplete="off" />
+<br />
+<input type="text" class="form-control" id="email" placeholder="Email" required autocomplete="off" />
+<br />
+<input type="text" class="form-control" id="password" placeholder="Password" required autocomplete="off" />
+<br />
+<input type="text" class="form-control" id="confirmpassword" placeholder="Confirm password" required autocomplete="off" />
+<br />
+<input type="text" class="form-control" id="addressline1" placeholder="Address line 1" required autocomplete="off" />
+<br />
+<input type="text" class="form-control" id="addressline2" placeholder="Address line 2" required autocomplete="off" />
+<br />
+<input type="text" class="form-control" id="postcode" placeholder="Post code" required autocomplete="off" />
+<br />
+<input type="text" class="form-control" id="phonenumber" placeholder="Phone number" required autocomplete="off" />
+<br />
+<button type="button" class="arc-btn sign-in-btn col-12" onclick="createAccount();">CONTINUE</button>

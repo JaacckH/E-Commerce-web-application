@@ -8,7 +8,7 @@ namespace FINAL.Classes
 {
     public static class DBFunctions
     {
-        public static String connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=OuiOui;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+        public static String connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=\"" + Environment.CurrentDirectory + "\\DATA\\OUIOUI.MDF\";Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
         public static void sendQuery(String input)
         {
             SqlConnection conn = new SqlConnection();
@@ -20,5 +20,6 @@ namespace FINAL.Classes
             conn.Close();
         }
 
+        
     }
 }

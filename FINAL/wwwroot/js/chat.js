@@ -21,3 +21,8 @@ function createAccount() {
 
     connection.invoke("createUserAccount", forename, surname, email, password, confirmpassword, addressline1, addressline2, postcode, phonenumber);
 }
+
+function emailPasswordReset() {
+    var email = document.getElementById('resetemail').value;
+    connection.invoke("sendEmail", email)
+}

@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Net;
+using System.Net.Mail;
+using System.Web;
 
 namespace FINAL.Classes
 {
@@ -51,6 +54,34 @@ namespace FINAL.Classes
 
         public static String loginSuccessful(String email, String password)
         {
+            return "";
+        }
+
+        public static String resetemail(String email)
+        {
+            if (UserFunctions.findExistingRecord("Email", email) == "True")
+            {
+                String newpassword = "";
+                string Char = "PSKENDJFCMVHGUQAZKXIERTaksmxnvitebvkub1234569781012asdfgs";
+                Random rand = new Random();
+                for (int i = 0; i < 8; i++)
+                {
+                    int r = rand.Next(Char.Length);
+                    newpassword += Char.ToCharArray()[r];
+                }
+
+                try
+                {
+                    DBFunctions.SendEmail(email, "Password Reset", "Hi, your new password is:" + newpassword);
+                    DBFunctions.sendQuery("UPDATE Users SET Password ='" + UserFunctions.hashSingleValue(newpassword) + "' WHERE Email ='" + email + "';");
+                }
+                catch { }
+            }
+            else
+            {
+
+            }
+
             return "";
         }
     }

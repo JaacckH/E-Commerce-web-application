@@ -1,0 +1,26 @@
+﻿@page
+@model FINAL.Pages.LoginModel
+@{
+}
+
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/bootstrap-tagsinput.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js"></script>
+<script src="~/js/signalr/dist/browser/signalr.js"></script>
+<script src="~/js/chat.js"></script>
+
+<h2>LOGIN</h2>
+<input type="text" class="form-control" id="email" placeholder="Email" required autocomplete="off" />
+<br />
+<input type="text" class="form-control" id="password" placeholder="Password" required autocomplete="off" />
+<br />
+<button type="button" class="arc-btn sign-in-btn col-12" onclick="login();">Login</button>
+
+<br />
+<br />
+<h2> Reset Password</h2>
+<input type="text" class="form-control" id="resetemail" placeholder="Email Address" required autocomplete="off" />
+<br />
+<button type="button" class="arc-btn sign-in-btn col-12" onclick="emailPasswordReset();">Send</button>

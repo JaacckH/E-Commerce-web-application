@@ -32,5 +32,11 @@ namespace FINAL.Classes
             }
             catch { }// create error message
         }
+        
+        public async Task sendEmail(String email)
+        {
+            String response = LoginCreateAccount.resetemail(email);
+           
+        }
     }
 }

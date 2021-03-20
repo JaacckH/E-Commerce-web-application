@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Net;
 using System.Net.Mail;
 using System.Web;
+using Microsoft.Data.SqlClient;
 
 namespace FINAL.Classes
 {
@@ -54,7 +55,39 @@ namespace FINAL.Classes
 
         public static String loginSuccessful(String email, String password)
         {
-            return "";
+            if (String.IsNullOrEmpty(email) || String.IsNullOrEmpty(password))
+            {
+                return "You left an empty field";
+            }
+            if (!email.Contains("@") || !email.Contains("."))
+            {
+                return "Please check you email. It is missing a \"@\" or \".\"";
+            }
+            if (password.Length > 20 || password.Length < 8)
+            {
+                return "Your password must be between 8 and 20 characters long";
+            }
+
+            String hashedpassword = UserFunctions.hashSingleValue(password);
+
+            SqlConnection conn = new SqlConnection();
+            conn.ConnectionString = DBFunctions.connectionString;
+            conn.Open();
+            SqlCommand query = conn.CreateCommand();
+            query.CommandText = "Select * FROM Users";
+            SqlDataReader reader = query.ExecuteReader();
+
+            while (reader.Read())
+            {
+                if (reader["Email"].ToString() == email && reader["Password"].ToString() == hashedpassword)
+                {
+                    // validate session
+                    conn.Close();
+                    return "Successful login";
+                }
+            }
+            conn.Close();
+            return "Error while trying to login, plase try again or shop as guest";
         }
 
         public static String resetemail(String email)

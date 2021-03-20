@@ -35,6 +35,7 @@ namespace FINAL.Classes
 
         }
 
+        // mainly for checking existing emails
         public static String findExistingRecord(String column, String Record)
         {
             SqlConnection conn = new SqlConnection();
@@ -54,7 +55,7 @@ namespace FINAL.Classes
             }
 
             conn.Close();
-            return "Fanse";
+            return "False";
 
         }
 

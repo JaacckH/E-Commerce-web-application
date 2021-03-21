@@ -2,6 +2,18 @@
 var connection = new signalR.HubConnectionBuilder().withUrl("/chathub").build();
 connection.start();
 
+connection.on("setSessionID", function (sessionID) {
+    document.cookie = "SessionID=" + sessionID;
+});
+
+connection.on("Redirect", function (path) {
+    window.location.href = path;
+});
+
+connection.on("sendAlert", function (message) {
+    alert(message);
+});
+
 function createAccount() {
     var forename = document.getElementById('forename').value;
     var surname = document.getElementById('surname').value;

@@ -2,7 +2,15 @@
 @{
     GC.Collect();
     String SessionID = HttpContextAccessor.HttpContext.Request.Cookies["SessionID"];
+
+    if (string.IsNullOrEmpty(SessionID))
+    {
+        String sid = Classes.UserFunctions.generateSessionID();
+        Classes.DBFunctions.sendQuery("INSERT INTO Guests (UserID, SessionID) VALUES('" + Classes.UserFunctions.generateSessionID() + "', '" + sid + "');");
+        HttpContextAccessor.HttpContext.Response.Cookies.Append("SessionID", sid);
+    }
 }
+
 <body>
     <script src="~/lib/bootstrap/bootstrap-tagsinput.js">
     </script>

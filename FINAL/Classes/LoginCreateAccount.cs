@@ -17,7 +17,7 @@ namespace FINAL.Classes
             {
                 return "You left an empty field";
             }
-            if (UserFunctions.findExistingRecord("Email", email) == "True")
+            if (UserFunctions.emailIsRegistered(email))
             {
                 return "This email already exists";
             }
@@ -43,17 +43,51 @@ namespace FINAL.Classes
             }
 
             String hashedpassword = UserFunctions.hashSingleValue(password);
+            String characters = "ABCDEFGHIJKLMONPQRSTUVWQYZ0123456789abcdefghijklmnopqrstuvwxyz";
+            String sessionUserID = "";
+            Random rand = new Random();
+
+            for (int i = 0; i < 12; i++)
+            {
+                sessionUserID += characters[rand.Next(characters.Length)];
+            }
 
             try
             {
-                DBFunctions.sendQuery("INSERT INTO Users (Forename, Surname, Email, Password, AddressLine1, AddressLine2, Postcode, PhoneNumber) VALUES ('" + forename + "', '" + surname + "', '" + email + "', '" + hashedpassword + "', '" + addressline1 + "', '" + addressline2 + "', '" + postcode + "', '" + phonenumber + "')");
-                return "Successfuly create account";
+                DBFunctions.sendQuery("INSERT INTO Users (UserID, Forename, Surname, Email, Password, AddressLine1, AddressLine2, Postcode, PhoneNumber) VALUES ('" + sessionUserID + "', '" + forename + "', '" + surname + "', '" + email + "', '" + hashedpassword + "', '" + addressline1 + "', '" + addressline2 + "', '" + postcode + "', '" + phonenumber + "')");
+                return sessionUserID;
             }
-            catch(Exception e) { return e.Message; }
+            catch (Exception e) { return e.Message; }
 
         }
 
-        public static String loginSuccessful(String email, String password)
+        public static Boolean loginSuccessful(String email, String password)
+        {
+            try
+            {
+                String hashedpassword = UserFunctions.hashSingleValue(password);
+                SqlConnection conn = new SqlConnection();
+                conn.ConnectionString = DBFunctions.connectionString;
+                conn.Open();
+                SqlCommand query = conn.CreateCommand();
+                query.CommandText = "Select * FROM Users";
+                SqlDataReader reader = query.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    if (reader["Email"].ToString() == email && reader["Password"].ToString() == hashedpassword)
+                    {
+                        conn.Close();
+                        return true;
+                    }
+                }
+                conn.Close();
+            }
+            catch { }
+            return false;
+        }
+
+        public static String getLoginError(String email, String password)
         {
             if (String.IsNullOrEmpty(email) || String.IsNullOrEmpty(password))
             {
@@ -67,55 +101,7 @@ namespace FINAL.Classes
             {
                 return "Your password must be between 8 and 20 characters long";
             }
-
-            String hashedpassword = UserFunctions.hashSingleValue(password);
-
-            SqlConnection conn = new SqlConnection();
-            conn.ConnectionString = DBFunctions.connectionString;
-            conn.Open();
-            SqlCommand query = conn.CreateCommand();
-            query.CommandText = "Select * FROM Users";
-            SqlDataReader reader = query.ExecuteReader();
-
-            while (reader.Read())
-            {
-                if (reader["Email"].ToString() == email && reader["Password"].ToString() == hashedpassword)
-                {
-                    // validate session
-                    conn.Close();
-                    return "Successful login";
-                }
-            }
-            conn.Close();
-            return "Error while trying to login, plase try again or shop as guest";
-        }
-
-        public static String resetemail(String email)
-        {
-            if (UserFunctions.findExistingRecord("Email", email) == "True")
-            {
-                String newpassword = "";
-                string Char = "PSKENDJFCMVHGUQAZKXIERTaksmxnvitebvkub1234569781012asdfgs";
-                Random rand = new Random();
-                for (int i = 0; i < 8; i++)
-                {
-                    int r = rand.Next(Char.Length);
-                    newpassword += Char.ToCharArray()[r];
-                }
-
-                try
-                {
-                    DBFunctions.SendEmail(email, "Password Reset", "Hi, your new password is:" + newpassword);
-                    DBFunctions.sendQuery("UPDATE Users SET Password ='" + UserFunctions.hashSingleValue(newpassword) + "' WHERE Email ='" + email + "';");
-                }
-                catch { }
-            }
-            else
-            {
-
-            }
-
-            return "";
+            return "Invalid Username or Password";
         }
     }
 }

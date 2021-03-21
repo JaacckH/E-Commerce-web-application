@@ -21,25 +21,5 @@ namespace FINAL.Classes
             query.ExecuteReader();
             conn.Close();
         }
-
-        public static String SendEmail(String receiver, String subject, String Message)
-        {
-            try
-            {
-                SmtpClient client = new SmtpClient("smtp.gmail.com", 587);
-                client.EnableSsl = true;
-                client.DeliveryMethod = SmtpDeliveryMethod.Network;
-                client.UseDefaultCredentials = false;
-                client.Credentials = new NetworkCredential("ouiouiservices@gmail.com", "OuiOui741");
-                MailMessage msgobj = new MailMessage();
-                msgobj.To.Add(receiver);
-                msgobj.From = new MailAddress("ouiouiservices@gmail.com");
-                msgobj.Subject = subject;
-                msgobj.Body = Message;
-                client.Send(msgobj);
-            }
-            catch { }
-            return "";
-        }
     }
 }

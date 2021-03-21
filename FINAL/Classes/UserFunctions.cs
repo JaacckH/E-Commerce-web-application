@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace FINAL.Classes
 {
-    public class UserFunctions
+    public static class UserFunctions
     {
-        // Function to return one record from the database using users ID
+        // Function to return an item of user's data
         public static String getUserDetails(int userID, String detail)
         {
             SqlConnection conn = new SqlConnection();
@@ -35,8 +35,23 @@ namespace FINAL.Classes
 
         }
 
-        // mainly for checking existing emails
-        public static String findExistingRecord(String column, String Record)
+        //function to generate a random sessionID so it can be assigned to a user
+        public static String generateSessionID()
+        {
+            String characters = "ABCDEFGHIJKLMONPQRSTUVWQYZ0123456789abcdefghijklmnopqrstuvwxyz";
+            String sid = "";
+            Random rand = new Random();
+
+            for (int i = 0; i < 12; i++)
+            {
+                sid += characters[rand.Next(characters.Length)];
+            }
+
+            return sid;
+        }
+
+        //checks for existing users
+        public static Boolean emailIsRegistered(String email)
         {
             SqlConnection conn = new SqlConnection();
             conn.ConnectionString = DBFunctions.connectionString;
@@ -47,15 +62,15 @@ namespace FINAL.Classes
 
             while (reader.Read())
             {
-                if (reader[column].ToString() == Record)
+                if (reader["Email"].ToString() == email)
                 {
                     conn.Close();
-                    return "True";
+                    return true;
                 }
             }
 
             conn.Close();
-            return "False";
+            return false;
 
         }
 
@@ -71,6 +86,28 @@ namespace FINAL.Classes
             }
 
             return HashedResult.ToString();
+        }
+
+        public static Boolean userLoggedIn(String SessionID)
+        {
+            SqlConnection conn = new SqlConnection();
+            conn.ConnectionString = DBFunctions.connectionString;
+            conn.Open();
+            SqlCommand query = conn.CreateCommand();
+            query.CommandText = "Select * FROM Users";
+            SqlDataReader reader = query.ExecuteReader();
+
+            while (reader.Read())
+            {
+                if (reader["SessionID"].ToString() == SessionID)
+                {
+                    conn.Close();
+                    return true;
+                }
+            }
+
+            conn.Close();
+            return false;
         }
 
 

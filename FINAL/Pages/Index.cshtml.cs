@@ -23,7 +23,7 @@ namespace Group_Project.Models
             String html = "";
             while (reader.Read())
             {
-                html += ProductFunctions.getProductHtml(int.Parse(reader["ProductID"].ToString()));
+                html += ProductFunctions.getSubProductHtml(int.Parse(reader["ProductID"].ToString()));
             }
 
             conn.Close();

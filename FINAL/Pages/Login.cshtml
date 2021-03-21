@@ -1,6 +1,7 @@
 ﻿@page
 @model FINAL.Pages.LoginModel
 @{
+    Model.onLoad();
 }
 
 
@@ -12,9 +13,9 @@
 <script src="~/js/chat.js"></script>
 
 <h2>LOGIN</h2>
-<input type="text" class="form-control" id="useremail" placeholder="Email" required autocomplete="off" />
+<input type="text" class="form-control" id="useremail" placeholder="Email" required autocomplete="off" value="Jack@Jack.com"/>
 <br />
-<input type="text" class="form-control" id="userpassword" placeholder="Password" required autocomplete="off" />
+<input type="text" class="form-control" id="userpassword" placeholder="Password" required autocomplete="off" value="JackPass"/>
 <br />
 <button type="button" class="arc-btn sign-in-btn col-12" onclick="login();">Login</button>
 

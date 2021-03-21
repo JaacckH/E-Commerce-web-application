@@ -34,10 +34,45 @@ namespace FINAL.Classes
 
         }
 
-        // return raw html template of a single product
-        public static String getProductHtml(int productID)
+        public static String getMainProductHtml(int productID)
         {
-            String baseString = File.ReadAllText(Environment.CurrentDirectory + "/HTML/PRODUCT.html");
+            String baseString = File.ReadAllText(Environment.CurrentDirectory + "/HTML/PRODUCTMAIN.html");
+            String price = "", quantity = "", imagePath = "", description = "", name = "";
+            int id = 0;
+
+            SqlConnection conn = new SqlConnection();
+            conn.ConnectionString = DBFunctions.connectionString;
+            conn.Open();
+            SqlCommand query = conn.CreateCommand();
+            query.CommandText = "SELECT * FROM Products";
+            SqlDataReader reader = query.ExecuteReader();
+
+            while (reader.Read())
+            {
+                if (reader["ProductID"].ToString() == productID.ToString())
+                {
+                    price = reader["Price"].ToString();
+                    quantity = reader["Quantity"].ToString();
+                    description = reader["Description"].ToString();
+                    name = reader["Name"].ToString();
+                    imagePath = reader["ImagePath"].ToString();
+                    id = int.Parse(reader["ProductID"].ToString());
+                }
+            }
+
+            conn.Close();
+            baseString = baseString.Replace("{PRICE}", price)
+                .Replace("{NAME}", name).Replace("{DESCRIPTION}", description)
+                .Replace("{QUANTITY}", quantity).Replace("{IMAGE}", imagePath)
+                .Replace("{ID}", id.ToString());
+
+            return baseString;
+        }
+
+        // return raw html template of a single product
+        public static String getSubProductHtml(int productID)
+        {
+            String baseString = File.ReadAllText(Environment.CurrentDirectory + "/HTML/PRODUCTSUB.html");
             String price = "", quantity = "", imagePath = "", description = "", name = "";
             int id = 0;
 

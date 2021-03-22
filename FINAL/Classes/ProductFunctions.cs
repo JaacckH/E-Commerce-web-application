@@ -16,7 +16,7 @@ namespace FINAL.Classes
             conn.ConnectionString = DBFunctions.connectionString;
             conn.Open();
             SqlCommand query = conn.CreateCommand();
-            query.CommandText = "Select * FROM Products";
+            query.CommandText = "SELECT * FROM Products";
             SqlDataReader reader = query.ExecuteReader();
 
             while (reader.Read())

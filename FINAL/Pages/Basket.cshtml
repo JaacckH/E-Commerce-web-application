@@ -1,0 +1,11 @@
+﻿@page
+@model Group_Project.Models.BasketModel
+@{
+}
+
+
+<div id="productShowcase">
+    @Html.Raw(Classes.Basket.getBasketHtml(HttpContext.Request.Cookies["SessionID"]))
+</div>
+
+

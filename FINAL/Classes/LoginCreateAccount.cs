@@ -70,7 +70,7 @@ namespace FINAL.Classes
                 conn.ConnectionString = DBFunctions.connectionString;
                 conn.Open();
                 SqlCommand query = conn.CreateCommand();
-                query.CommandText = "Select * FROM Users";
+                query.CommandText = "SELECT * FROM Users";
                 SqlDataReader reader = query.ExecuteReader();
 
                 while (reader.Read())

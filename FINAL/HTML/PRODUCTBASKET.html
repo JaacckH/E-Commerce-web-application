@@ -1,0 +1,19 @@
+﻿<style>
+    #info{
+        float:right;
+    }
+</style>
+
+<div style="width:600px; height:200px;" id="basket-product-{ID}">
+    <img src="{IMAGE}" style="height:200px;" />
+    <div id="info">
+        <h3 style="float:left;">{NAME}</h3>
+        <p style="float:right;">{PRICE}</p>
+        <button onclick="removeFromBasket({ID});" style="width:150px;">remove from basket</button>
+        <select id="product-quantity-select-{ID}">
+            <option value="1" selected>1</option>
+            <option value="2">2</option>
+        </select>
+    </div>
+    <hr>
+</div>

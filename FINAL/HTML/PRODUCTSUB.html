@@ -1,7 +1,7 @@
 ﻿<style>
     #product {
         width: 200px;
-        height: 350px;
+        height: 400px;
         border-radius: 8px;
         background-color: #333;
         color: white;
@@ -10,11 +10,18 @@
     }
 </style>
 
-<div id="product" onclick="window.location.href = '/Product?id={ID}';">
-    <img src="{IMAGE}" style="width:100%;">
-    <h3 style="float:left;">{NAME}</h3>
-    <p style="float:right;">{PRICE}</p>
+<div id="product">
+    <div onclick="window.location.href = '/Product?id={ID}';">
+        <img src="{IMAGE}" style="width:100%;">
+        <h3 style="float:left;">{NAME}</h3>
+        <p style="float:right;">{PRICE}</p>
+    </div>
     <div style="width:200px; display:inline-block;">
         <p>{DESCRIPTION}</p>
     </div>
+    <select id="product-quantity-select-{ID}">
+        <option value="1" selected>1</option>
+        <option value="2">2</option>
+    </select>
+    <button onclick="addToBasket({ID});" style="width:150px;">add to basket</button>
 </div>

@@ -11,13 +11,13 @@ namespace FINAL.Classes
     public static class UserFunctions
     {
         // Function to return an item of user's data
-        public static String getUserDetails(int userID, String detail)
+        public static String getUserDetails(String userID, String detail)
         {
             SqlConnection conn = new SqlConnection();
             conn.ConnectionString = DBFunctions.connectionString;
             conn.Open();
             SqlCommand query = conn.CreateCommand();
-            query.CommandText = "Select * FROM Users";
+            query.CommandText = "SELECT * FROM Users";
             SqlDataReader reader = query.ExecuteReader();
 
             while (reader.Read())
@@ -57,7 +57,7 @@ namespace FINAL.Classes
             conn.ConnectionString = DBFunctions.connectionString;
             conn.Open();
             SqlCommand query = conn.CreateCommand();
-            query.CommandText = "Select * FROM Users";
+            query.CommandText = "SELECT * FROM Users";
             SqlDataReader reader = query.ExecuteReader();
 
             while (reader.Read())
@@ -94,7 +94,7 @@ namespace FINAL.Classes
             conn.ConnectionString = DBFunctions.connectionString;
             conn.Open();
             SqlCommand query = conn.CreateCommand();
-            query.CommandText = "Select * FROM Users";
+            query.CommandText = "SELECT * FROM Users";
             SqlDataReader reader = query.ExecuteReader();
 
             while (reader.Read())
@@ -108,6 +108,28 @@ namespace FINAL.Classes
 
             conn.Close();
             return false;
+        }
+
+        public static String getUserID(String SessionID)
+        {
+            SqlConnection conn = new SqlConnection();
+            conn.ConnectionString = DBFunctions.connectionString;
+            conn.Open();
+            SqlCommand query = conn.CreateCommand();
+            query.CommandText = "SELECT UserID,SessionID FROM Users UNION SELECT UserID,SessionID FROM Guests";
+            SqlDataReader reader = query.ExecuteReader();
+
+            while (reader.Read())
+            {
+                if (reader["SessionID"].ToString() == SessionID)
+                {
+                    String result = reader["UserID"].ToString();
+                    conn.Close();
+                    return result;
+                }
+            }
+
+            return null;
         }
 
 

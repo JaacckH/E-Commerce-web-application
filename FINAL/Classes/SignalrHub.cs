@@ -36,11 +36,9 @@ namespace FINAL.Classes
             catch (Exception e) { Console.WriteLine(e.Message); }// create error message
         }
 
-        public void sendEmail(String email) //will need await when we sent confirmation or erro
+        public void sendEmail(String email) //will need await when we sent confirmation or error to user
         {
             EmailManagement.sendPasswordReset(email);
-
-            //error message
         }
 
         public void loginUser(String email, String password)
@@ -60,9 +58,44 @@ namespace FINAL.Classes
 
         }
 
+        public async Task addToBasket(String arg)
+        {
+            String[] perams = arg.Split(',');
+            Console.WriteLine(arg + "!");
+            String sessionID = perams[0].ToString();
+            int productID = int.Parse(perams[1].ToString());
+            int quantity = int.Parse(perams[2].ToString());
+
+            String userID = UserFunctions.getUserID(sessionID);
+            if (Basket.containsItem(userID, productID))
+            {
+                int newQuantity = Basket.getItemQuantity(userID, productID) + 1;
+                DBFunctions.sendQuery("UPDATE Basket SET Quantity='" + newQuantity + "' WHERE UserID='" + userID + "' AND ProductID='" + productID + "';");
+            }
+            else
+            {
+                DBFunctions.sendQuery("INSERT INTO Basket (UserID, ProductID, Quantity) VALUES('" + userID + "', '" + productID + "', '" + quantity + "');");
+            }
+
+            await sendContent(Context.ConnectionId, Basket.getNumOfItems(sessionID).ToString(), "basket-counter");
+        }
+
+        public async Task removeFromBasket(String sessionID, int productID)
+        {
+            String userID = UserFunctions.getUserID(sessionID);
+            DBFunctions.sendQuery("DELETE FROM Basket WHERE UserID='" + userID + "' AND ProductID='" + productID + "';");
+            await Clients.Client(Context.ConnectionId).SendAsync("removeProduct", productID);
+        }
+
         public void sendAlert(String connectionID, String message)
         {
             Clients.Client(connectionID).SendAsync("sendAlert", message);
         }
+
+        public async Task sendContent(String connectionID, String content, String container)
+        {
+            await Clients.Client(connectionID).SendAsync("ContentDelivery", content, container);
+        }
+
     }
 }

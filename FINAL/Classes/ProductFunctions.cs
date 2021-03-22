@@ -31,7 +31,25 @@ namespace FINAL.Classes
 
             conn.Close();
             return null;
+        }
 
+        public static int getNewestID()
+        {
+            SqlConnection conn = new SqlConnection();
+            conn.ConnectionString = DBFunctions.connectionString;
+            conn.Open();
+            SqlCommand query = conn.CreateCommand();
+            query.CommandText = "SELECT * FROM Products";
+            SqlDataReader reader = query.ExecuteReader();
+
+            int i = 0;
+            while (reader.Read())
+            {
+                i = int.Parse(reader["ProductID"].ToString());
+            }
+
+            conn.Close();
+            return i;
         }
 
         public static String getMainProductHtml(int productID)

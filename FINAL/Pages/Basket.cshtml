@@ -7,6 +7,7 @@
 
 <div id="productShowcase">
     @Html.Raw(Classes.Basket.getBasketHtml(HttpContext.Request.Cookies["SessionID"]))
+    <h1>TOTAL PRICE: @Classes.Basket.getTotalPrice(Classes.UserFunctions.getUserID(HttpContext.Request.Cookies["SessionID"]))</h1>
 </div>
 
 

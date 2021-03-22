@@ -33,7 +33,9 @@ namespace Group_Project.Models
                         addressline1 = reader["AddressLine1"].ToString();
                         postcode = reader["Postcode"].ToString();
                         phonenumber = reader["PhoneNumber"].ToString();
-
+                        cardnum = reader["CardNumber"].ToString();
+                        expiry = reader["Expiry"].ToString();
+                        cv2 = reader["CV2"].ToString();
                     }
                 }
             }
@@ -43,17 +45,14 @@ namespace Group_Project.Models
         {
             try
             {
-                if (string.IsNullOrEmpty(name))
-                {
-                    name = HttpContext.Request.Form["name"];
-                    addressline1 = HttpContext.Request.Form["addressline1"];
-                    postcode = HttpContext.Request.Form["postcode"];
-                    phonenumber = HttpContext.Request.Form["phonenumber"];
-                    promocode = HttpContext.Request.Form["promocode"];
-                    cardnum = HttpContext.Request.Form["cardnumber"];
-                    expiry = HttpContext.Request.Form["expiry"];
-                    cv2 = HttpContext.Request.Form["cv2"];
-                }
+                name = HttpContext.Request.Form["name"];
+                addressline1 = HttpContext.Request.Form["addressline1"];
+                postcode = HttpContext.Request.Form["postcode"];
+                phonenumber = HttpContext.Request.Form["phonenumber"];
+                promocode = HttpContext.Request.Form["promocode"];
+                cardnum = HttpContext.Request.Form["cardnumber"];
+                expiry = HttpContext.Request.Form["expiry"];
+                cv2 = HttpContext.Request.Form["cv2"];
 
                 String userID = UserFunctions.getUserID(HttpContext.Request.Cookies["SessionID"]);
                 int price = Basket.getTotalPrice(userID);

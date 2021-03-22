@@ -18,8 +18,8 @@ connection.on("ContentDelivery", function (content, div) {
     document.getElementById(div).innerHTML = content;
 });
 
-connection.on("removeProduct", function (id) {
-    document.getElementById('basket-product-' + id).innerHTML = "";
+connection.on("removeContainer", function (id) {
+    document.getElementById('basket-product-' + id).outerHTML = "";
 });
 
 function addToBasket(id) {

@@ -52,13 +52,8 @@ namespace FINAL.Classes
                 sessionUserID += characters[rand.Next(characters.Length)];
             }
 
-            try
-            {
-                DBFunctions.sendQuery("INSERT INTO Users (UserID, Forename, Surname, Email, Password, AddressLine1, AddressLine2, Postcode, PhoneNumber) VALUES ('" + sessionUserID + "', '" + forename + "', '" + surname + "', '" + email + "', '" + hashedpassword + "', '" + addressline1 + "', '" + addressline2 + "', '" + postcode + "', '" + phonenumber + "')");
-                return sessionUserID;
-            }
-            catch (Exception e) { return e.Message; }
-
+            DBFunctions.sendQuery("INSERT INTO Users (UserID, Forename, Surname, Email, Password, AddressLine1, AddressLine2, Postcode, PhoneNumber) VALUES ('" + sessionUserID + "', '" + forename + "', '" + surname + "', '" + email + "', '" + hashedpassword + "', '" + addressline1 + "', '" + addressline2 + "', '" + postcode + "', '" + phonenumber + "')");
+            return "DONE";
         }
 
         public static Boolean loginSuccessful(String email, String password)

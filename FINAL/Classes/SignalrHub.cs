@@ -10,30 +10,16 @@ namespace FINAL.Classes
     {
         public async Task createUserAccount(String forename, String surname, String email, String password, String confirmpassword, String addressline1, String addressline2, String postcode, String phonenumber)
         {
-            try
+            String response = LoginCreateAccount.createSuccessful(forename, surname, email, password, confirmpassword, addressline1, addressline2, postcode, int.Parse(phonenumber));
+            if (response == "DONE")
             {
-                if (!String.IsNullOrEmpty(phonenumber))
-                {
-                    String response = LoginCreateAccount.createSuccessful(forename, surname, email, password, confirmpassword, addressline1, addressline2, postcode, Int32.Parse(phonenumber));
-                    if (response.Contains("Successfuly"))
-                    {
-                        Console.WriteLine("Account Created");
-                        // login the user
-                        // create success alert here
-                    }
-                    else
-                    {
-                        Console.WriteLine(response);
-                        // create error alert here
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("Phone number is empty");
-                    // create error alert here
-                }
+                loginUser(email, password);
             }
-            catch (Exception e) { Console.WriteLine(e.Message); }// create error message
+            else
+            {
+                Console.WriteLine(response);
+                //send error to user instead of writing to console
+            }
         }
 
         public void sendEmail(String email) //will need await when we sent confirmation or error to user
@@ -55,7 +41,6 @@ namespace FINAL.Classes
                 sendAlert(Context.ConnectionId, LoginCreateAccount.getLoginError(email, password));
                 Console.WriteLine("No login");
             }
-
         }
 
         public async Task addToBasket(String arg)
@@ -84,7 +69,8 @@ namespace FINAL.Classes
         {
             String userID = UserFunctions.getUserID(sessionID);
             DBFunctions.sendQuery("DELETE FROM Basket WHERE UserID='" + userID + "' AND ProductID='" + productID + "';");
-            await Clients.Client(Context.ConnectionId).SendAsync("removeProduct", productID);
+            await Clients.Client(Context.ConnectionId).SendAsync("removeContainer", productID);
+            await sendContent(Context.ConnectionId, Basket.getNumOfItems(sessionID).ToString(), "basket-counter");
         }
 
         public void sendAlert(String connectionID, String message)

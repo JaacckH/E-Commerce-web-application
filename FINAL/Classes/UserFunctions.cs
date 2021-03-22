@@ -132,6 +132,28 @@ namespace FINAL.Classes
             return null;
         }
 
+        public static String getSessionID(String userID)
+        {
+            SqlConnection conn = new SqlConnection();
+            conn.ConnectionString = DBFunctions.connectionString;
+            conn.Open();
+            SqlCommand query = conn.CreateCommand();
+            query.CommandText = "SELECT UserID,SessionID FROM Users UNION SELECT UserID,SessionID FROM Guests";
+            SqlDataReader reader = query.ExecuteReader();
+
+            while (reader.Read())
+            {
+                if (reader["UserID"].ToString() == userID)
+                {
+                    String result = reader["SessionID"].ToString();
+                    conn.Close();
+                    return result;
+                }
+            }
+
+            return null;
+        }
+
 
     }
 }

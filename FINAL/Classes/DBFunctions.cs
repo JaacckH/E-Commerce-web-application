@@ -20,6 +20,7 @@ namespace FINAL.Classes
             query.CommandText = input;
             query.ExecuteReader();
             conn.Close();
+            Console.WriteLine(input);
         }
     }
 }

@@ -1,0 +1,22 @@
+﻿@page
+@model Group_Project.Models.CheckoutModel
+
+<div id="personal-details">
+    <form asp-action="@Model.checkout()">
+        <h2>Your Details</h2>
+        <input name="name" type="text" placeholder="name">
+        <input name="addressline1" type="text" placeholder="address line 1">
+        <input name="postcode" type="text" placeholder="postcode">
+        <input name="phonenumber" type="text" placeholder="phone number">
+        <h2>Payment Details</h2>
+        <input name="cardnumber" type="text" placeholder="card number">
+        <input name="expiry" type="text" placeholder="expiry date">
+        <input name="cv2" type="text" placeholder="cv2">
+        <input name="promocode" type="text" placeholder="promo code">
+        <button type="submit">Purchase</button>
+    </form>
+    <p style="color:red;">@TempData["checkoutError"];</p>
+</div>
+
+@Html.Raw(Model.getCheckoutItemsHtml(HttpContext.Request.Cookies["SessionID"]))
+

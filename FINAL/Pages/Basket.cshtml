@@ -3,6 +3,7 @@
 @{
 }
 
+<button onclick="window.location.href = '/Checkout';">Checkout</button>
 
 <div id="productShowcase">
     @Html.Raw(Classes.Basket.getBasketHtml(HttpContext.Request.Cookies["SessionID"]))

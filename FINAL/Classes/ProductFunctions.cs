@@ -146,5 +146,10 @@ namespace FINAL.Classes
             return int.Parse(getProductDetails(productID, "Status"));
         }
 
+        public static int getProductPrice(int productID)
+        {
+            return int.Parse(getProductDetails(productID, "Price"));
+        }
+
     }
 }

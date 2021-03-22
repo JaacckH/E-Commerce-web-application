@@ -11,23 +11,5 @@ namespace Group_Project.Models
 {
     public class BasketModel : PageModel
     {
-        public String getProductShowcase()
-        {
-            SqlConnection conn = new SqlConnection();
-            conn.ConnectionString = DBFunctions.connectionString;
-            conn.Open();
-            SqlCommand query = conn.CreateCommand();
-            query.CommandText = "SELECT TOP 8 * FROM Products";
-            SqlDataReader reader = query.ExecuteReader();
-
-            String html = "";
-            while (reader.Read())
-            {
-                html += ProductFunctions.getSubProductHtml(int.Parse(reader["ProductID"].ToString()));
-            }
-
-            conn.Close();
-            return html;
-        }
     }
 }

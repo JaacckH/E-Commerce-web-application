@@ -33,21 +33,9 @@ namespace FINAL.Classes
         {
             if (UserFunctions.emailIsRegistered(email))
             {
-                String newpassword = "";
-                String characters = "ABCDEFGHIJKLMONPQRSTUVWQYZ0123456789abcdefghijklmnopqrstuvwxyz";
-                Random rand = new Random();
-                for (int i = 0; i < 8; i++)
-                {
-                    int r = rand.Next(characters.Length);
-                    newpassword += characters.ToCharArray()[r];
-                }
-
-                try
-                {
-                    EmailManagement.SendEmail(email, "Oui Oui Fashion - Password Reset", "Hi, your new password is:" + newpassword);
-                    DBFunctions.sendQuery("UPDATE Users SET Password ='" + UserFunctions.hashSingleValue(newpassword) + "' WHERE Email ='" + email + "';");
-                }
-                catch { }
+                String newpassword = UserFunctions.generateSessionID();
+                EmailManagement.SendEmail(email, "Oui Oui Fashion - Password Reset", "Hi, your new password is:" + newpassword);
+                DBFunctions.sendQuery("UPDATE Users SET Password ='" + UserFunctions.hashSingleValue(newpassword) + "' WHERE Email ='" + email + "';");
             }
         }
     }

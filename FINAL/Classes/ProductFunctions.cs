@@ -10,7 +10,7 @@ namespace FINAL.Classes
     public static class ProductFunctions
     {
         // return single product record
-        public static String getProductDetails(int productID, String detail)
+        public static String getProductDetails(String productID, String detail)
         {
             SqlConnection conn = new SqlConnection();
             conn.ConnectionString = DBFunctions.connectionString;
@@ -21,7 +21,7 @@ namespace FINAL.Classes
 
             while (reader.Read())
             {
-                if (reader["ProductID"].ToString() == productID.ToString())
+                if (reader["ProductID"].ToString() == productID)
                 {
                     String result = reader[detail].ToString();
                     conn.Close();
@@ -52,11 +52,10 @@ namespace FINAL.Classes
             return i;
         }
 
-        public static String getMainProductHtml(int productID)
+        public static String getMainProductHtml(String productID)
         {
             String baseString = File.ReadAllText(Environment.CurrentDirectory + "/HTML/PRODUCTMAIN.html");
-            String price = "", quantity = "", imagePath = "", description = "", name = "";
-            int id = 0;
+            String price = "", quantity = "", imagePath = "", description = "", name = "", id = "";
 
             SqlConnection conn = new SqlConnection();
             conn.ConnectionString = DBFunctions.connectionString;
@@ -67,14 +66,14 @@ namespace FINAL.Classes
 
             while (reader.Read())
             {
-                if (reader["ProductID"].ToString() == productID.ToString())
+                if (reader["ProductID"].ToString() == productID)
                 {
                     price = reader["Price"].ToString();
                     quantity = reader["Quantity"].ToString();
                     description = reader["Description"].ToString();
                     name = reader["Name"].ToString();
                     imagePath = reader["ImagePath"].ToString();
-                    id = int.Parse(reader["ProductID"].ToString());
+                    id = reader["ProductID"].ToString();
                 }
             }
 
@@ -88,11 +87,10 @@ namespace FINAL.Classes
         }
 
         // return raw html template of a single product
-        public static String getSubProductHtml(int productID)
+        public static String getSubProductHtml(String productID)
         {
             String baseString = File.ReadAllText(Environment.CurrentDirectory + "/HTML/PRODUCTSUB.html");
-            String price = "", quantity = "", imagePath = "", description = "", name = "";
-            int id = 0;
+            String price = "", quantity = "", imagePath = "", description = "", name = "", id = "";
 
             SqlConnection conn = new SqlConnection();
             conn.ConnectionString = DBFunctions.connectionString;
@@ -110,7 +108,7 @@ namespace FINAL.Classes
                     description = reader["Description"].ToString();
                     name = reader["Name"].ToString();
                     imagePath = reader["ImagePath"].ToString();
-                    id = int.Parse(reader["ProductID"].ToString());
+                    id = reader["ProductID"].ToString();
                 }
             }
 
@@ -124,12 +122,12 @@ namespace FINAL.Classes
         }
 
 
-        public static int getProductQuantity(int productID)
+        public static int getProductQuantity(String productID)
         {
             return int.Parse(getProductDetails(productID, "Quantity"));
         }
 
-        public static Boolean productArchived(int productID)
+        public static Boolean productArchived(String productID)
         {
             if (getProductStatus(productID) == 2)
             {
@@ -139,7 +137,7 @@ namespace FINAL.Classes
             return false;
         }
 
-        public static Boolean productActive(int productID)
+        public static Boolean productActive(String productID)
         {
             if (getProductStatus(productID) == 1)
             {
@@ -149,7 +147,7 @@ namespace FINAL.Classes
             return false;
         }
 
-        public static Boolean productInactive(int productID)
+        public static Boolean productInactive(String productID)
         {
             if (getProductStatus(productID) == 0)
             {
@@ -159,12 +157,12 @@ namespace FINAL.Classes
             return false;
         }
 
-        public static int getProductStatus(int productID)
+        public static int getProductStatus(String productID)
         {
             return int.Parse(getProductDetails(productID, "Status"));
         }
 
-        public static int getProductPrice(int productID)
+        public static int getProductPrice(String productID)
         {
             return int.Parse(getProductDetails(productID, "Price"));
         }

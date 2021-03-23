@@ -22,7 +22,7 @@ namespace Group_Project.Models
                 return null;
             }
 
-            return ProductFunctions.getMainProductHtml(int.Parse(id));
+            return ProductFunctions.getMainProductHtml(id);
         }
     }
 }

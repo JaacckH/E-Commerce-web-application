@@ -47,10 +47,11 @@ namespace Group_Project.Models
                 return null;
             }
 
-            String path = (ProductFunctions.getNewestID() + 1) + ".png";
+            String id = UserFunctions.generateSessionID();
+            String path = id + ".png";
 
-            DBFunctions.sendQuery("INSERT INTO Products (Name, Description, Price, Quantity, ImagePath) " +
-                "VALUES('" + name + "', '" + description + "', '" + price + "', '" + quantity + "', '../ProductImages/" + path + "')");
+            DBFunctions.sendQuery("INSERT INTO Products (ProductID, Name, Description, Price, Quantity, ImagePath) " +
+                "VALUES('" + id + "', '" + name + "', '" + description + "', '" + price + "', '" + quantity + "', '../ProductImages/" + path + "')");
 
             var FileToUpload = Path.Combine(_env.WebRootPath, Path2, path);
             using (var Fstream = new FileStream(FileToUpload, FileMode.Create))

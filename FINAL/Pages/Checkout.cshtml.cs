@@ -91,15 +91,15 @@ namespace Group_Project.Models
             {
                 if (reader["UserID"].ToString() == UserFunctions.getUserID(SessionID))
                 {
-                    html += getProductHtml(int.Parse(reader["ProductID"].ToString()),
-                        Basket.getItemQuantity(reader["UserID"].ToString(), int.Parse(reader["ProductID"].ToString())));
+                    html += getProductHtml(reader["ProductID"].ToString(),
+                        Basket.getItemQuantity(reader["UserID"].ToString(), reader["ProductID"].ToString()));
                 }
             }
 
             return html;
         }
 
-        public static String getProductHtml(int productID, int quantity)
+        public static String getProductHtml(String productID, int quantity)
         {
             String baseString = System.IO.File.ReadAllText(Environment.CurrentDirectory + "/HTML/PRODUCTCHECKOUT.html");
             String price = "", imagePath = "", name = "";
@@ -113,7 +113,7 @@ namespace Group_Project.Models
 
             while (reader.Read())
             {
-                if (reader["ProductID"].ToString() == productID.ToString())
+                if (reader["ProductID"].ToString() == productID)
                 {
                     price = reader["Price"].ToString();
                     name = reader["Name"].ToString();

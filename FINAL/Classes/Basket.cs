@@ -31,7 +31,7 @@ namespace FINAL.Classes
             return i;
         }
 
-        public static int getItemQuantity(String userID, int productID)
+        public static int getItemQuantity(String userID, String productID)
         {
             SqlConnection conn = new SqlConnection();
             conn.ConnectionString = DBFunctions.connectionString;
@@ -54,7 +54,7 @@ namespace FINAL.Classes
             return 0;
         }
 
-        public static String getProductHtml(int productID, int quantity)
+        public static String getProductHtml(String productID, int quantity)
         {
             String baseString = File.ReadAllText(Environment.CurrentDirectory + "/HTML/PRODUCTBASKET.html");
             String price = "", imagePath = "", name = "";
@@ -84,9 +84,9 @@ namespace FINAL.Classes
             return baseString;
         }
 
-        public static Boolean containsItem(String userID, int itemID)
+        public static Boolean containsItem(String userID, String productID)
         {
-            if (getItemQuantity(userID, itemID) == 0)
+            if (getItemQuantity(userID, productID) == 0)
             {
                 return false;
             }
@@ -107,8 +107,8 @@ namespace FINAL.Classes
             {
                 if (reader["UserID"].ToString() == UserFunctions.getUserID(SessionID))
                 {
-                    html += getProductHtml(int.Parse(reader["ProductID"].ToString()),
-                        getItemQuantity(reader["UserID"].ToString(), int.Parse(reader["ProductID"].ToString())));
+                    html += getProductHtml(reader["ProductID"].ToString(),
+                        getItemQuantity(reader["UserID"].ToString(), reader["ProductID"].ToString()));
                 }
             }
 
@@ -130,7 +130,7 @@ namespace FINAL.Classes
                 if(reader["UserID"].ToString() == userID)
                 {
                     int quantity = int.Parse(reader["Quantity"].ToString());
-                    price += quantity * ProductFunctions.getProductPrice(int.Parse(reader["ProductID"].ToString()));
+                    price += quantity * ProductFunctions.getProductPrice(reader["ProductID"].ToString());
                 }
             }
 
@@ -138,7 +138,7 @@ namespace FINAL.Classes
             return price;
         }
 
-        public static List<int> getProductIDs(String userID)
+        public static List<String> getProductIDs(String userID)
         {
             SqlConnection conn = new SqlConnection();
             conn.ConnectionString = DBFunctions.connectionString;
@@ -147,7 +147,7 @@ namespace FINAL.Classes
             query.CommandText = "SELECT * FROM Basket";
             SqlDataReader reader = query.ExecuteReader();
 
-            List<int> products = new List<int>();
+            List<String> products = new List<String>();
             while (reader.Read())
             {
                 if (reader["UserID"].ToString() == userID)
@@ -156,7 +156,7 @@ namespace FINAL.Classes
 
                     for (int i = 0; i < quantity; i++)
                     {
-                        products.Add(int.Parse(reader["ProductID"].ToString()));
+                        products.Add(reader["ProductID"].ToString());
                     }
                 }
             }

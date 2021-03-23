@@ -48,7 +48,7 @@ namespace FINAL.Classes
             String[] perams = arg.Split(',');
             Console.WriteLine(arg + "!");
             String sessionID = perams[0].ToString();
-            int productID = int.Parse(perams[1].ToString());
+            String productID = perams[1].ToString();
             int quantity = int.Parse(perams[2].ToString());
 
             String userID = UserFunctions.getUserID(sessionID);
@@ -65,7 +65,7 @@ namespace FINAL.Classes
             await sendContent(Context.ConnectionId, Basket.getNumOfItems(sessionID).ToString(), "basket-counter");
         }
 
-        public async Task removeFromBasket(String sessionID, int productID)
+        public async Task removeFromBasket(String sessionID, String productID)
         {
             String userID = UserFunctions.getUserID(sessionID);
             DBFunctions.sendQuery("DELETE FROM Basket WHERE UserID='" + userID + "' AND ProductID='" + productID + "';");

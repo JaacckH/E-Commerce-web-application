@@ -1,0 +1,194 @@
+﻿@page
+@model FINAL.Pages.Admin.CreateOrderModel
+@{
+}
+
+
+
+
+<div id="admin-page-layout" class="row">
+    <div id="admin-menu" class="d-none d-md-block col-12 col-md-3 col-xl-2">
+        <div class="row no-style">
+            <div class="col-12 d-md-none menu-close" onclick="ToggleMenu()"><i class="fas fa-times fa-1-5x"></i></div>
+            <div class="col-12 menu-stats verticle-align">
+                <div class="row verticle-align">
+                    <div class="col-4">
+                        <p>Orders<br />106</p>
+                    </div>
+                    <div class="col-4">
+                        <p>New<br />80</p>
+                    </div>
+                    <div class="col-4">
+                        <p>Active<br />32</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="row admin-menu-item">
+            <div class="col-2 menu-icons"><i class="fas fa-chart-line fa-2x"></i></div>
+            <div class="col-10 menu-header "><h6>Dashboard</h6></div>
+        </div>
+        <div class="row admin-menu-item">
+            <div class="col-2 menu-icons"><i class="fas fa-clipboard-list fa-2x"></i></div>
+            <div class="col-10 menu-header"><h6>Orders</h6></div>
+        </div>
+        <div class="row admin-menu-item">
+            <div class="col-2 menu-icons"><i class="fas fa-archive fa-2x"></i></div>
+            <div class="col-10 menu-header"><h6>Products</h6></div>
+        </div>
+        <div class="row admin-menu-item">
+            <div class="col-2 menu-icons"><i class="fas fa-tag fa-2x"></i></div>
+            <div class="col-10 menu-header"><h6>Pomotions</h6></div>
+        </div>
+        <div class="row admin-menu-item">
+            <div class="col-2 menu-icons"><i class="fas fa-file-alt fa-2x"></i></div>
+            <div class="col-10 menu-header"><h6>Pages</h6></div>
+        </div>
+        <div class="row admin-menu-item">
+            <div class="col-2 menu-icons"><i class="fas fa-envelope fa-2x"></i></div>
+            <div class="col-10 menu-header"><h6>Messages</h6></div>
+        </div>
+        <div class="row admin-menu-item">
+            <div class="col-2 menu-icons"><i class="fas fa-cog fa-2x"></i></div>
+            <div class="col-10 menu-header"><h6>Settings</h6></div>
+        </div>
+        <div class="row admin-menu-item">
+            <div class="col-2 menu-icons"><i class="fas fa-power-off fa-2x"></i></div>
+            <div class="col-10 menu-header"><h6>Log Out</h6></div>
+        </div>
+
+    </div>
+    <div id="admin-page" class="col-12 d-md-block col-md-9 col-xl-10">
+
+        <!-- start of main -->
+        <div class="admin-pages">
+            <div class="menu-toggle d-md-none d-block" onclick="ToggleMenu()"><i class="fas fa-bars fa-1-5x"></i></div>
+            <div class="row">
+                <div class="col-12">
+                    <h6 class="title">Admin Panel</h6>
+                    <h1>Create Orders</h1>
+                    <hr />
+                </div>
+                <div class="col-12 col-md-12">
+                    <button type="button" class="btn btn-secondary add-product-btn" data-toggle="modal" data-target="#search-products-modal">Add Product <i class="fas fa-plus"></i></button>
+                    <form>
+                        <table class="row">
+                            <tbody class="col-12">
+                                <tr class="row">
+                                    <th class="col">Product</th>
+                                    <th class="col">Qty</th>
+                                    <th class="col">Size</th>
+                                    <th class="col">Colour</th>
+                                    <th class="col">Amount</th>
+                                </tr>
+                                <tr class="row">
+                                    <td class="col">Long Sleeve Dress</td>
+                                    <td class="col">1</td>
+                                    <td class="col">16</td>
+                                    <td class="col">white</td>
+                                    <td class="col">Rs 1000</td>
+                                </tr>
+                                <tr class="row">
+                                    <td class="col" colspan="5"><hr /></td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="inputName">Customer Name</label>
+                                <input type="text" class="form-control" id="inputName">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="inputEmail4">Email</label>
+                                <input type="email" class="form-control" id="inputEmail4">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputAddress">Address</label>
+                            <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputAddress2">Address 2</label>
+                            <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="inputCity">City</label>
+                                <input type="text" class="form-control" id="inputCity">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="inputState">Country</label>
+                                <select id="inputState" class="form-control">
+                                    <option selected>Choose...</option>
+                                    <option>Mauritius</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-2">
+                                <label for="inputZip">Zip</label>
+                                <input type="text" class="form-control" id="inputZip">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="gridCheck">
+                                <label class="form-check-label" for="gridCheck">
+                                    Already Paid
+                                </label>
+                            </div>
+                        </div>
+                        <div><h5>Order Total: Rs 6000</h5></div>
+                        <button type="submit" class="btn btn-secondary">Create</button>
+                    </form>
+                </div>
+            </div>
+
+
+        </div>
+        <!-- end of main -->
+    </div>
+
+</div>
+
+
+<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Send Message</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <textarea></textarea>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary">Send</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="search-products-modal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Search Products</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <textarea></textarea>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary">Send</button>
+            </div>
+        </div>
+    </div>
+</div>

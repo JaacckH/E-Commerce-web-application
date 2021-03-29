@@ -83,5 +83,15 @@ namespace FINAL.Classes
             await Clients.Client(connectionID).SendAsync("ContentDelivery", content, container);
         }
 
+        public async Task sendMessage(String sessionID, String message)
+        {
+            if (!String.IsNullOrEmpty(message))
+            {
+                message = message.Replace("'", "''");
+                DBFunctions.sendQuery("INSERT INTO ContactMessages ('UserID', 'Message') VALUES('"
+                    + UserFunctions.getUserID(sessionID) + "', '" + message + "')");
+            }
+        }
+
     }
 }

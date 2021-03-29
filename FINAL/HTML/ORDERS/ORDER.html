@@ -1,0 +1,169 @@
+﻿<ul class="list-group" id="data-list">
+    <!-- order starts -->
+    <li id="data-row-{ID}" class="admin-list">
+        <div id="summary-panel-{ID}" class="row" onclick="OpenDetails('{ID}');">
+            <div class="col-2 col-md-2 col-xl-2">
+                <b>#{ID}</b>
+            </div>
+            <div class="col-5 col-md-4 col-xl-3">
+                {DATE}
+            </div>
+            <div class="col-5 col-md-3 col-xl-3">
+                {PRICE}
+            </div>
+            <div class="col-2 d-md-none"></div>
+            <div class="col-5 col-md-3 col-xl-3">
+                {STATUS}
+            </div>
+            <div class="col-5 col-md-1 col-xl-1">
+                {ACTION}
+            </div>
+
+        </div>
+        <!-- expanded start -->
+        <div id="expanded-panel-{ID}" class="row d-none">
+            <div class="col-6">
+                <h4>#{ID}</h4>
+            </div>
+            <div class="col-6 admin-close-view">
+                <span onclick="closeDetails('{ID}')"><i class="fas fa-times fa-1-5x"></i></span>
+            </div>
+            <div class="col-12 order-date">
+                <h6><b>Date:</b></h6> {DATE}
+            </div>
+            <div class="col-12 order-date">
+                <h6><b>Name:</b></h6> {NAME}
+            </div>
+            <div class="col-12 order-date">
+                <h6><b>Shipping Address:</b></h6>
+                <!--<p>1 Oak Road,<br />Port Louis, <br />Mauritius,<br />S90 2LG</p>-->
+                <p>{ADDRESS}</p>
+            </div>
+            <div class="row col-12">
+                <div class="col-12 col-md-8 col-xl-5">
+
+                    <div id="status-input-{ID}" class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroupFileAddon01">Status</span>
+                        </div>
+
+                        <select class="custom-select" id="inputGroupSelect04" aria-label="Example select with button addon">
+                            <option value="1" selected>Processing</option>
+                            <option value="2">Shipped</option>
+                            <option value="3">Delivered</option>
+                            <option value="3">Cancelled</option>
+                            <option value="3">Refunded</option>
+                        </select>
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" type="button">Update</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12">
+                <div class="panel panel-tabs">
+                    <div class="panel-item" role="presentation">
+                        <a id="panel-tab-1-{ID}" class="panel-link active" onclick="ToggleTabs(1, 2,'{ID}')">Order Details</a>
+                    </div>
+                    <div class="panel-item" role="presentation">
+                        <a id="panel-tab-2-{ID}" class="panel-link" onclick="ToggleTabs(2, 1,'{ID}')">Correspondence</a>
+                    </div>
+                </div>
+                <div class="tab-content">
+                    <div id="tab-pane-1-{ID}" class="tab-pane fade show active">
+                        <table class="row">
+                            <tbody class="col-12">
+                                <tr class="row">
+                                    <th class="col">Product</th>
+                                    <th class="col">Qty</th>
+                                    <th class="col">Size</th>
+                                    <th class="col">Colour</th>
+                                    <th class="col">Amount</th>
+                                </tr>
+                                {PRODUCTS}
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id="tab-pane-2-{ID}" class="tab-pane fade">
+                        <div id="send-message-btn" class="row col-12">
+                            <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#staticBackdrop">
+                                Send Message
+                            </button>
+                        </div>
+                        <table class="row">
+                            <tbody class="col-12">
+                                <tr class="row">
+                                    <th class="col">Date</th>
+                                    <th class="col">From</th>
+                                    <th class="col">To</th>
+                                </tr>
+                                <tr class="row">
+                                    <td class="col">02/04/2021</td>
+                                    <td class="col">Automated</td>
+                                    <td class="col">Customer</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3"><h6>Message</h6>Your Product has now been shipped thanks for shopping with us.</td>
+                                </tr>
+                                <tr class="row">
+                                    <td class="col" colspan="5"><hr /></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table class="row">
+                            <tbody class="col-12">
+                                <tr class="row">
+                                    <th class="col">Date</th>
+                                    <th class="col">From</th>
+                                    <th class="col">To</th>
+                                </tr>
+                                <tr class="row">
+                                    <td class="col">02/04/2021</td>
+                                    <td class="col">Darren</td>
+                                    <td class="col">Customer</td>
+
+                                </tr>
+                                <tr>
+                                    <td colspan="3"><h6>Message</h6>We haven't got all your order in stock, would you like us to refund the items we haven't got instock and send the rest.</td>
+                                </tr>
+                                <tr class="row">
+                                    <td class="col" colspan="5"><hr /></td>
+                                </tr>
+                                <table class="row">
+                                    <tbody class="col-12">
+                                        <tr class="row">
+                                            <th class="col">Date</th>
+                                            <th class="col">From</th>
+                                            <th class="col">To</th>
+                                        </tr>
+                                        <tr class="row">
+                                            <td class="col">02/04/2021</td>
+                                            <td class="col">Customer</td>
+                                            <td class="col">Sales</td>
+
+                                        </tr>
+                                        <tr>
+                                            <td colspan="3"><h6>Message</h6>Yes that would be great thanks.</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+
+        <!-- expanded end -->
+    </li>
+
+
+    <div class="row full-order-info">
+
+    </div>
+    <!-- order ends -->
+
+
+</ul>

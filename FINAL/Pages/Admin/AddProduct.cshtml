@@ -3,13 +3,13 @@
 @{
 }
 
+<!--
 <h1>Add Products</h1>
 
 <div>
     <form method="post" enctype="multipart/form-data">
         <div class="form-group">
-            <!-- <label asp-for="ImgRecord.ImgURL" class="custom-control-label"></label>
-            <input type="text" asp-for="ImgRecord.ImgURL" class="form-control" /> -->
+            
             <label>Select a Image to upload</label>
             <input type="file" asp-for="ImgFile" onchange="readURL(this)" accept="image/*" />
         </div>
@@ -21,7 +21,7 @@
 
         <input type="submit" value="Upload" class="btn btn-secondary" />
     </form>
-    <p>@TempData["add-product-error"]</p>
+    <p>TempData["add-product-error"]</p>
     <br />
     <div>
         <img id="Img" class="img-upload-preview" src="" alt="User Image Upload" />
@@ -29,5 +29,168 @@
 
 
 </div>
+-->
+
+
+
+    <!-- start of main -->
+    <div class="admin-pages">
+        <div class="menu-toggle d-md-none d-block" onclick="ToggleMenu()"><i class="fas fa-bars fa-1-5x"></i></div>
+        <div class="row">
+            <div class="col-12">
+                <h6 class="title">Admin Panel</h6>
+                <h1>Add Product</h1>
+                <hr />
+            </div>
+
+            <div id="card-lrg-detail-123" class="col-md-8">
+
+                <div class="card-body">
+
+                    <div class="row">
+                        <div class="col-12">
+                            <p class="margin-5-px">Product Name:</p>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="brief-product-name">Name</span>
+                                </div>
+                                <input type="text" class="form-control" placeholder="Brief Product Name" aria-label="price" aria-describedby="brief-product-name" value="">
+                            </div>
+                        </div>
+                        <div class="form-group col-12">
+                            <label for="material-info">Description:</label>
+                            <textarea id="product-description" class="form-control" rows="3"></textarea>
+                        </div>
+                        <div class="col-6">
+                            <p class="margin-5-px">Price:</p>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="original-price">RS</span>
+                                </div>
+                                <input type="text" class="form-control" placeholder="Original" aria-label="price" aria-describedby="original-price" value="">
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <p class="card-text margin-5-px">Sale Price:</p>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="sale-price">RS</span>
+                                </div>
+                                <input type="text" class="form-control" placeholder="Sale" aria-label="sale-price" aria-describedby="sale-price" value="">
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <p class="card-text margin-5-px"><b>Stock:</b></p>
+                    <div class="size-table-cont margin-5-px ">
+
+                        <div class="col-12 size-table margin-5-px row">
+
+                            <div class="row col-12">
+                                <div class="size-column">
+                                    <select class="form-control" id="exampleFormControlSelect1">
+                                        <option>6</option>
+                                        <option>8</option>
+                                        <option>10</option>
+                                        <option>12</option>
+                                        <option>14</option>
+                                        <option>16</option>
+                                        <option>18</option>
+                                        <option>20</option>
+                                        <option>22</option>
+                                        <option disabled><b>MENS SIZE</b></option>
+                                        <option>XS</option>
+                                        <option>S</option>
+                                        <option>M</option>
+                                        <option>L</option>
+                                        <option>XL</option>
+                                        <option>XXL</option>
+                                        <option disabled><b>EU SIZE</b></option>
+                                        <option>35</option>
+                                        <option>36</option>
+                                        <option>37</option>
+                                        <option>38</option>
+                                        <option>39</option>
+                                        <option>40</option>
+                                        <option>41</option>
+                                        <option>42</option>
+                                    </select>
+                                    <input class="size-input" type="text" value="1" />
+                                </div>
+
+                                <div class="size-column add-size-type">
+                                    <button class="btn add-size-btn" onclick="AddSizeCol(123)">
+                                        <i class="fas fa-plus"></i>
+                                    </button>
+                                </div>
+
+
+                            </div>
+
+
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="row">
+                        <div class="form-group col-12 col-lg-6">
+                            <label for="category-select">Categories:</label>
+                            <select multiple class="form-control" id="category-select">
+                                <option selected>Womens</option>
+                                <option>Mens</option>
+                                <option>Unisex</option>
+                                <option>Dresses</option>
+                                <option>Tops</option>
+                                <option>Trousers</option>
+                                <option selected>Jumpers</option>
+                                <option>Shoes</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-12 col-lg-6">
+                            <label for="product-tags">Product Tags:</label>
+                            <input id="product-tags" class="tags-selection-cont" type="text" value="" data-role="tagsinput" placeholder="Tags" />
+                        </div>
+
+                        <div class="form-group col-12">
+                            <label for="material-info">Material:</label>
+                            <textarea id="material-info" class="form-control" rows="3"></textarea>
+                        </div>
+                        <div class="form-group col-12">
+                            <label for="additional-images">Additional Images:</label>
+                            <div class="imges-row row col-12">
+
+                                <div id="existing-image-12" class="img-column contains" onclick="RemoveUpload(12,0)">
+                                    <img class="img-object" src="https://images.unsplash.com/photo-1602944769505-229e6599d950?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1275&q=80" alt="...">
+                                    <div class="delete-img-btn"><i class="fas fa-times"></i></div>
+                                </div>
+
+                                <div class="img-column img-upload-btn">
+
+                                    <i class="fas fa-plus"></i>
+                                    <label for="image-upload" class="image-upload btn add-img-btn"></label>
+                                    <input hidden type="file" id="image-upload" onchange="AddImageUpload(this)" name="filename" accept="image/*">
+                                </div>
+
+
+                            </div>
+                            <button class="btn btn-secondary update-btn">Add</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+            </ul>
+
+        </div>
+    </div>
+
+
+
 
 

@@ -1,4 +1,162 @@
-﻿function readURL(input) {
+﻿
+$('#category-select option').mousedown(function (e) {
+    e.preventDefault();
+    $(this).prop('selected', !$(this).prop('selected'));
+    return false;
+});
+
+var productTags = ['Teal', 'Blue', 'White', 'Long', 'Summer', 'Autumn', 'Winter', 'Warm', 'V-neck', 'Relaxed-Fit', 'long-Sleeve'
+];
+
+var productTags = new Bloodhound({
+    datumTokenizer: Bloodhound.tokenizers.whitespace,
+    queryTokenizer: Bloodhound.tokenizers.whitespace,
+    local: productTags
+});
+
+$('#product-tags').tagsinput({
+    typeaheadjs: [{
+        hint: true,
+        highlight: true,
+        minLength: 1
+    },
+    {
+        name: 'productTags',
+        source: productTags
+    }],
+    freeInput: true,
+    tagClass: 'badge',
+    capitalize: function (item) {
+        return item ? item.charAt(0).toUpperCase() + item.slice(1).toLowerCase() : item;
+    }
+});
+
+
+$('#product-tags').on("beforeItemAdd", function (e) {
+    var name = e.item;
+    var allow = true;
+    $(this).prev().find(".tag").each(function (i, valor) {
+        if ($(this).text().toLowerCase() == name.toString().toLowerCase()) {
+            allow = false;
+            return false;
+        }
+    })
+
+    if (!allow) {
+        console.log("repeat");
+        e.cancel = true;
+    }
+});
+
+
+
+
+var imageUploadCount = 0;
+window.AddImageUpload = AddImageUpload;
+function AddImageUpload(input) {
+    var reader = new FileReader();
+    reader.onload = function (e) {
+
+
+        var $image_upload = '               <div id="uploaded-image-' + imageUploadCount + '" class="img-column contains" onclick="RemoveUpload(' + imageUploadCount + ',1)">';
+        $image_upload += '                 <img class="img-object" src="' + e.target.result + '" alt="...">';
+        $image_upload += '                 <div class="delete-img-btn"><i class="fas fa-times"></i></div>';
+        $image_upload += '                 <input id="new-image' + imageUploadCount + '" type="text" value="' + e.target.result + '" hidden>';
+        $image_upload += '              </div>';
+
+        $($image_upload).insertBefore($('.img-upload-btn'));
+
+    };
+    reader.readAsDataURL(input.files[0]);
+    imageUploadCount++;
+}
+
+
+function RemoveUpload(imageID, n) {
+    //existing image
+    if (n == 0) {
+        $("#existing-image-" + imageID).remove();
+        var $remove_image = '<input hidden type="text" id="removed-image-' + imageID + '" value="' + imageID + '"/>';
+        //$("#image-upload").append($remove_image);
+        $($remove_image).insertAfter($('#image-upload'));
+    }
+    // new upload
+    if (n == 1) {
+        $("#uploaded-image-" + imageID).remove();
+    }
+
+}
+
+function OpenProductDetails(rowID) {
+    if ($("#card-lrg-detail-" + rowID).hasClass("d-none")) {
+        $("#search-rows").val(rowID)
+        $("#refine-search").val('')
+        $("#search-rows").keyup();
+        $('#search-area').addClass('d-none');
+
+        $("#data-row-" + rowID).toggleClass("col-xl-6");
+        $("#card-sml-detail-" + rowID).addClass("d-none");
+        $("#card-lrg-detail-" + rowID).removeClass("d-none");
+
+    }
+}
+
+window.closeProductDetails = closeProductDetails;
+function closeProductDetails(rowID) {
+
+    $('#summary-panel-' + rowID).removeClass('d-none');
+    $('#search-area').removeClass('d-none');
+    $('#expanded-panel-' + rowID).addClass('d-none');
+    $('#data-header').removeClass('d-none');
+    $("#data-row-" + rowID).toggleClass("col-xl-6");
+    $("#search-rows").val('');
+    $("#search-rows").keyup();
+    $("#card-sml-detail-" + rowID).removeClass("d-none");
+    $("#card-lrg-detail-" + rowID).addClass("d-none");
+}
+
+
+function AddSizeCol(n) {
+    var $size_type = '                            <div class="size-column">';
+    $size_type += '                              <select class="form-control" id="exampleFormControlSelect1">';
+    $size_type += '                                <option>6</option>';
+    $size_type += '                                <option>8</option>';
+    $size_type += '                                <option>10</option>';
+    $size_type += '                                <option>12</option>';
+    $size_type += '                                <option>14</option>';
+    $size_type += '                                <option>16</option>';
+    $size_type += '                                <option>18</option>';
+    $size_type += '                                <option>20</option>';
+    $size_type += '                                <option>22</option>';
+    $size_type += '                                <option disabled><b>MENS SIZE</b></option>';
+    $size_type += '                                <option>XS</option>';
+    $size_type += '                                <option>S</option>';
+    $size_type += '                                <option>M</option>';
+    $size_type += '                                <option>L</option>';
+    $size_type += '                                <option>XL</option>';
+    $size_type += '                                <option>XXL</option>';
+    $size_type += '                                <option disabled><b>EU SIZE</b></option>';
+    $size_type += '                                <option>35</option>';
+    $size_type += '                                <option>36</option>';
+    $size_type += '                                <option>37</option>';
+    $size_type += '                                <option>38</option>';
+    $size_type += '                                <option>39</option>';
+    $size_type += '                                <option>40</option>';
+    $size_type += '                                <option>41</option>';
+    $size_type += '                                <option>42</option>';
+    $size_type += '                              </select>';
+    $size_type += '                              <input class="size-input" type="text" value="1"/>';
+    $size_type += '                            </div>';
+
+
+    $($size_type).insertBefore($('.add-size-type'));
+
+}
+
+
+
+
+function readURL(input) {
     var reader = new FileReader();
     reader.onload = function (e) {
         document.getElementById("Img").setAttribute("src", e.target.result);

@@ -9,7 +9,7 @@ namespace FINAL.Classes
 {
     public static class EmailManagement
     {
-        public static String SendEmail(String receiver, String subject, String Message)
+        public static void SendEmail(String receiver, String subject, String Message)
         {
             try
             {
@@ -26,7 +26,6 @@ namespace FINAL.Classes
                 client.Send(msgobj);
             }
             catch { }
-            return "";
         }
 
         public static void sendPasswordReset(String email)

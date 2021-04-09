@@ -12,6 +12,75 @@
         HttpContextAccessor.HttpContext.Response.Cookies.Append("SessionID", sid);
     }
 }
+
+<style>
+    #chatbox {
+        width: 350px;
+        height: 450px;
+        background-color: #f1f1f1;
+        border: none;
+        border-radius: 10px;
+        position: absolute;
+        right: 20px;
+        bottom: 20px;
+        overflow: hidden;
+        color: white;
+    }
+
+    #chatbox-header {
+        width: 100%;
+        height: 35px;
+        background-color: black;
+    }
+
+    .message {
+        border-radius: 15px;
+        width: calc(50% + 1px);
+        margin: 10px;
+    }
+
+    .message-sent {
+        background-color: #a3ccc8;
+        float: right;
+        color: white;
+    }
+
+    .message-recieved {
+        background-color: white;
+        color: black;
+        float: left;
+    }
+    
+    .message-input{
+        border-radius:20px;
+        width: calc(100% - 20px);
+        margin:0 10px;
+        position:absolute;
+        bottom:10px;
+        background-color:white;
+        height:30px;
+        overflow:hidden;
+    }
+</style>
+
+<div id="chatbox">
+    <div id="chatbox-header">
+        <p style="float:left; padding:3px; padding-left:10px; font-size:14pt;">Send us a message</p>
+        <p style="float:right; padding:3px; padding-right:10px; font-size:14pt;"><b>X</b></p>
+    </div>
+
+    <div id="messages" style="height:333px; width:100%; overflow:hidden scroll;">
+        @Html.Raw(Classes.Messages.getUserMessages(Classes.UserFunctions.getUserID(SessionID)))
+    </div>
+
+    <div class="message-input">
+        <input id="message-messageinput" type="text" style="border:none; height:28px; width:84%; margin:0% 5%; float:left;"/>
+        <p onclick="sendMessage();" style="border:none; height:28px; width:6%; float:right; font-size:13pt; padding:1px; color:black;"><b>></b></p>
+    </div>
+
+</div>
+
+
 <head>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="~/lib/fontawesome/css/all.css">

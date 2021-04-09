@@ -2,6 +2,8 @@
 var connection = new signalR.HubConnectionBuilder().withUrl("/chathub").build();
 connection.start();
 
+setTimeout(300, setConnectionID);
+
 connection.on("setSessionID", function (sessionID) {
     document.cookie = "SessionID=" + sessionID;
 });
@@ -14,13 +16,30 @@ connection.on("sendAlert", function (message) {
     alert(message);
 });
 
+connection.on("sendSuccessAlert", function (message) {
+    alert(message);
+});
+
 connection.on("ContentDelivery", function (content, div) {
     document.getElementById(div).innerHTML = content;
+});
+
+connection.on("AppendDelivery", function (content, div) {
+    document.getElementById(div).innerHTML += content;
 });
 
 connection.on("removeContainer", function (id) {
     document.getElementById('basket-product-' + id).outerHTML = "";
 });
+
+function sendMessage() {
+    var message = document.getElementById('message-messageinput').value;
+    connection.invoke("sendMessage", getSessionID(), message);
+}
+
+function setConnectionID() {
+    connection.invoke("setConnectionID", getSessionID());
+}
 
 function addToBasket(id) {
     var quantity = document.getElementById('product-quantity-select-' + id).value;
@@ -42,10 +61,10 @@ function getSessionID() {
             c = c.substring(1);
         }
         if (c.indexOf(name) == 0) {
-            return c.substring(name.length, c.length);
+            return c.substring(name.length, c.length).toString();
         }
     }
-    return null;
+    return "";
 }
 
 function createAccount() {
@@ -84,4 +103,12 @@ function updateProfile() {
     var postcode = document.getElementById('postcode').value;
     var phonenumber = document.getElementById('phonenumber').value;
 
+}
+
+function updateSettings() {
+    var email = document.getElementById('inputEmail4').value;
+    var addressLine1 = document.getElementById('inputAddress').value;
+    var addressLine2 = document.getElementById('inputAddress2').value;
+    var zip = document.getElementById('inputZip').value;
+    connection.invoke("UpdateSettings", getSessionID(), email, addressLine1, addressLine2, zip);
 }

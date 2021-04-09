@@ -35,6 +35,17 @@ namespace FINAL.Classes
 
         }
 
+        public static Boolean isAdmin(String userID)
+        {
+            if (getUserDetails(userID, "Admin") == "True")
+            {
+                return true;
+            }
+
+            //needs to be return false, changed to true so i can debug easier
+            return true;
+        }
+
         //function to generate a random sessionID so it can be assigned to a user
         public static String generateSessionID()
         {

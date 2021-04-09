@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.SignalR;
+using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +21,11 @@ namespace FINAL.Classes
                 Console.WriteLine(response);
                 //send error to user instead of writing to console
             }
+        }
+
+        public void setConnectionID(String sessionID)
+        {
+            DBFunctions.sendQuery("UPDATE Users SET ConnectionID='" + Context.ConnectionId + "' WHERE SessionID='" + sessionID + "';");
         }
 
         public void sendEmail(String email) //will need await when we sent confirmation or error to user
@@ -78,20 +84,80 @@ namespace FINAL.Classes
             Clients.Client(connectionID).SendAsync("sendAlert", message);
         }
 
+        public void sendSuccessAlert(String connectionID, String message)
+        {
+            Clients.Client(connectionID).SendAsync("sendSuccessAlert", message);
+        }
+
         public async Task sendContent(String connectionID, String content, String container)
         {
             await Clients.Client(connectionID).SendAsync("ContentDelivery", content, container);
+        }
+
+        public async Task appendContent(String connectionID, String content, String container)
+        {
+            await Clients.Client(connectionID).SendAsync("AppendDelivery", content, container);
         }
 
         public async Task sendMessage(String sessionID, String message)
         {
             if (!String.IsNullOrEmpty(message))
             {
+                String userID = UserFunctions.getUserID(sessionID);
                 message = message.Replace("'", "''");
-                DBFunctions.sendQuery("INSERT INTO ContactMessages ('UserID', 'Message') VALUES('"
-                    + UserFunctions.getUserID(sessionID) + "', '" + message + "')");
+                DBFunctions.sendQuery("INSERT INTO Messages (UserID, Message, Active) VALUES('"
+                    + userID + "', '" + message + "', '1')");
+                await appendContent(Context.ConnectionId, Messages.getMessageHTML(message, true), "messages");
+                await updateAdminMessages(userID, message);
             }
         }
 
+        public async Task adminSendMessage(String sessionID, String recipient, String message)
+        {
+            if (!String.IsNullOrEmpty(message))
+            {
+                String userID = UserFunctions.getUserID(sessionID);
+                message = message.Replace("'", "''");
+                DBFunctions.sendQuery("INSERT INTO Messages (UserID, Message, Recipient, Active) VALUES('"
+                    + userID + "', '" + message + "', '" + recipient + "', '1')");
+                await appendContent(UserFunctions.getUserDetails(recipient, "ConnectionID"), Messages.getMessageHTML(message, true), "messages");
+                await updateAdminMessages(userID, message);
+            }
+        }
+
+        public async Task updateAdminMessages(String sender, String message)
+        {
+            SqlConnection conn = new SqlConnection();
+            conn.ConnectionString = DBFunctions.connectionString;
+            conn.Open();
+            SqlCommand query = conn.CreateCommand();
+            query.CommandText = "SELECT UserID, Admin, ConnectionID FROM Users";
+            SqlDataReader reader = query.ExecuteReader();
+
+            while (reader.Read())
+            {
+                if (reader["Admin"].ToString() == "True")
+                {
+                    await appendContent(reader["ConnectionID"].ToString(), Messages.getMessageHTML(message, false), "messages-" + sender);
+                }
+            }
+
+            conn.Close();
+        }
+
+        public async Task updateSettings(String sessionID, String email, String addressLine1, String addressLine2, String zipCode)
+        {
+            if (!String.IsNullOrEmpty(sessionID) && !String.IsNullOrEmpty(email) &&
+                !String.IsNullOrEmpty(addressLine1) && !String.IsNullOrEmpty(addressLine2) && 
+                !String.IsNullOrEmpty(zipCode) && UserFunctions.isAdmin(UserFunctions.getUserID(sessionID)))
+            {
+                Settings.updateMassSettings(email, addressLine1, addressLine2, zipCode);
+                sendSuccessAlert(Context.ConnectionId, "Successfully Updated Fields");
+            }
+            else
+            {
+                sendAlert(Context.ConnectionId, "Please enter all fields");
+            }
+        }
     }
 }

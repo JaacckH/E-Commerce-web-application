@@ -236,3 +236,79 @@ function closeDetails(rowID) {
     $("#search-rows").keyup();
 
 }
+
+
+/* -------- admin settings page Start --------- */
+
+function loadNewCheckboxes() {
+    var newCategoryCheckboxes = document.querySelectorAll('input[id^=new-cat]');
+
+    // get all settings inputs and watch for keyup event
+    for (var i = 0; i < newCategoryCheckboxes.length; i++) {
+        newCategoryCheckboxes[i].addEventListener("change", function (event) {
+
+
+            var j = this.id.lastIndexOf('-');
+            var n = this.id.substring(j + 1);
+
+            CategoryCheckChange(n, 1);
+        })
+    }
+}
+
+loadNewCheckboxes();
+
+
+var allCategoryCheckboxes = document.querySelectorAll('input[id^=existing-cat]');
+
+// get all settings inputs and watch for keyup event
+for (var i = 0; i < allCategoryCheckboxes.length; i++) {
+    allCategoryCheckboxes[i].addEventListener("change", function (event) {
+
+
+        var j = this.id.lastIndexOf('-');
+        var n = this.id.substring(j + 1);
+
+        CategoryCheckChange(n, 0);
+    })
+}
+
+function CategoryCheckChange(n, i) {
+
+    if (i == 0) {
+        var element = document.getElementById("category-line-" + n);
+        element.classList.toggle("checked");
+    } else {
+        var element = document.getElementById("category-new-line-" + n);
+        element.classList.toggle("checked");
+    }
+}
+
+var categoryNumber = 1;
+
+function AddCategory() {
+    const textArea = document.querySelector("#input-category");
+    var newCategory = textArea.value;
+    var newCategoryCaps = newCategory.substring(0, 1).toUpperCase() +
+        newCategory.substring(1, newCategory.length);
+
+    if (newCategory.length != 0) {
+        var $category_create = '<div id="category-new-line-' + categoryNumber + '" class="category-line">';
+        $category_create += '<label for="new-cat-' + categoryNumber + '"><p>' + newCategoryCaps + '</p><i class="fas fa-times"></i></label>';
+        $category_create += '<input type="checkbox" class="category-check" id="new-cat-' + categoryNumber + '">';
+        $category_create += '</div>';
+        $('#category-select').append($category_create);
+        // $( $category_create ).appendTo( '#category-select');
+        // document.getElementById("category-select").appendChild(category_create);
+        categoryNumber++;
+
+        var element = document.getElementById("category-select");
+        element.scrollTop = element.scrollHeight;
+    }
+}
+
+
+$('#admin-settings-page .twitter-typeahead').addClass('sticky-top');
+
+
+/* ---------- admin settings page end ---------------- */

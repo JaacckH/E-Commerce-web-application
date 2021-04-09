@@ -1,5 +1,5 @@
 ﻿
-/* ----------------- admin Product page -------------------*/
+/* ----------------- admin Product page Start -------------------*/
 
 .update-btn {
     margin-top: 20px;
@@ -193,15 +193,15 @@
 }
 
 
-
-/* ----------------- admin order create -------------------*/
+/* ----------------- admin Product page End -------------------*/
+/* ----------------- admin order create Start -------------------*/
 
 
 .add-product-btn {
     margin-bottom: 10px;
 }
 
-/* ------------------ Order page ----------------*/
+/* ------------------ Admin Order page Start ----------------*/
 .fa-1-5x {
     font-size: 1.5em;
 }
@@ -439,3 +439,108 @@ body {
 /* XL size and above */
 @media (min-width: 1200px) {
 }
+
+/* ----------------- Admin Settings Page Start------------- */
+
+
+*:focus {
+    outline: none;
+}
+
+.form-control:focus {
+    border-color: inherit;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.category-select {
+    display: flex;
+    flex-direction: column;
+    height: 200px;
+    overflow-y: scroll;
+    border-radius: .25rem .25rem 0 0;
+    border-bottom: 0px;
+}
+
+#admin-settings-page .bootstrap-tagsinput {
+    height: calc(1.5em + .75rem + 2px + 200px);
+    /*height:200px;*/
+    position: relative;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    /*padding-bottom:20px;*/
+    border: 1px solid #ced4da;
+    padding: 4px 0px;
+}
+
+    #admin-settings-page .bootstrap-tagsinput .tag {
+        margin-left: 10px;
+        margin-right: 0;
+    }
+
+    #admin-settings-page .bootstrap-tagsinput .twitter-typeahead {
+        position: -webkit-sticky;
+        position: sticky !important;
+        bottom: -4px;
+        left: -6px;
+        right: -6px;
+        background-color: #ffffff;
+        border-top: 1px solid #ced4da;
+        transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+        height: calc(1.5em + .75rem + 2px);
+        width: calc(100% + 12px);
+        padding: 2px 6px;
+    }
+
+
+.category-line, .category-line label {
+    width: 100%;
+}
+
+    .category-line label, button.category-line {
+        display: flex;
+        justify-content: space-between;
+        margin: 0;
+    }
+
+        .category-line label p, button.category-line p {
+            margin: 0;
+            padding: 5px;
+        }
+
+.category-select .category-line i {
+    padding: 5px;
+    line-height: unset;
+    display: none;
+}
+
+.add-category-i {
+    padding: 5px;
+    line-height: unset;
+}
+
+.category-line.checked {
+    background-color: var(--background-3);
+}
+
+    .category-line.checked i {
+        display: flex;
+    }
+
+.category-select input[type="checkbox"] {
+    display: none;
+}
+
+.add-cat-btn {
+    border: 1px solid #ced4da;
+    border-top: 0px;
+    border-radius: 0 0 .25rem .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.input-category {
+    border-radius: 0;
+}
+
+
+/* ----------------- Admin Settings Page END ------------- */

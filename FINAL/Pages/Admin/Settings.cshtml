@@ -3,14 +3,530 @@
 @{
 }
 
-
-<div class="row">
+<div id="admin-settings-page"class="row ">
     <div class="col-12">
         <h6 class="title">Admin Panel</h6>
         <h1>Settings</h1>
         <hr />
+        <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <a class="nav-link active" id="nav-general-tab" data-toggle="tab" href="#nav-general" role="tab" aria-controls="nav-general" aria-selected="true">General</a>
+                <a class="nav-link" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="false">Home Page</a>
+                <a class="nav-link" id="nav-shop-tab" data-toggle="tab" href="#nav-shop" role="tab" aria-controls="nav-shop" aria-selected="false">Shop</a>
+                <a class="nav-link" id="nav-emails-tab" data-toggle="tab" href="#nav-emails" role="tab" aria-controls="nav-emails" aria-selected="false">Emails</a>
+            </div>
+        </nav>
+        <div class="tab-content shadow-sm p-3 mb-5 bg-white rounded" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="nav-general" role="tabpanel" aria-labelledby="nav-general-tab">
+                <h4>General Settings</h4>
+                <hr />
+                <h5>Admin Email Address</h5>
+                <p>This is the email address the site uses to contact you once an order has been placed and in other instances like when a customer sends a query.</p>
+
+                <form>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputEmail4">Admin Email Address</label>
+                            <input type="email" class="form-control" id="inputEmail4">
+                        </div>
+                    </div>
+                    <h5>Shop Address</h5>
+                    <p>This is displayed in the footer on every page of the website.</p>
+                    <div class="form-group">
+                        <label for="inputAddress">Address</label>
+                        <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+                    </div>
+                    <div class="form-group">
+                        <label for="inputAddress2">Address 2</label>
+                        <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputCity">City</label>
+                            <input type="text" class="form-control" id="inputCity">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="inputState">State</label>
+                            <select id="inputState" class="form-control">
+                                <option selected>Choose...</option>
+                                <option>...</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label for="inputZip">Zip</label>
+                            <input type="text" class="form-control" id="inputZip">
+                        </div>
+                    </div>
+
+                    <h5>Social Media Settings</h5>
+                    <p>To be confirmed</p>
+                    <button type="submit" class="btn btn-primary">Update</button>
+                </form>
+            </div>
+            <div class="tab-pane fade" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                <h5>Home Page Settings</h5>
+                <p>Change images, Change text areas, Change icons</p>
+            </div>
+            <div class="tab-pane fade" id="nav-shop" role="tabpanel" aria-labelledby="nav-shop-tab">
+                <h4>Shop Settings</h4>
+                <h5>Shipping</h5>
+                <p>Shipping options which can be applied to products specificly for the product.</p>
+                <div class="accordion mb-3" id="accordionExample">
+                    <div class="card">
+                        <div class="card-header" id="headingOne">
+                            <h2 class="mb-0">
+                                <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                    #1 Small Parcel
+                                </button>
+                            </h2>
+                        </div>
+                        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                            <div class="card-body">
+                                <form>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label for="input-class-2">Class Name</label>
+                                            <input type="text" class="form-control" id="input-class-2" value="Small Parcel">
+                                        </div>
+                                        <div class="form-group col-md-6">
+
+                                            <label for="input-cost-2">Cost Rs</label>
+                                            <input type="text" class="form-control" id="input-cost-2" value="400">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="input-type-2">Calculation Type</label>
+                                            <select class="custom-select" id="input-type-2">
+                                                <option selected>Charge Shipping Per Item</option>
+                                                <option value="1">Charge Shipping Using The Highest Class</option>
+                                                <option value="2">Add shipping Class Once & Apply Higher Class If Applicable</option>
+                                            </select>
+                                        </div>
+
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Update</button>
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="headingTwo">
+                            <h2 class="mb-0">
+                                <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    #2 Large Parcel
+                                </button>
+                            </h2>
+                        </div>
+                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                            <div class="card-body">
+                                <form>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label for="input-class-2">Class Name</label>
+                                            <input type="text" class="form-control" id="input-class-2" value="Large Parcel">
+                                        </div>
+                                        <div class="form-group col-md-6">
+
+                                            <label for="input-cost-2">Cost Rs</label>
+                                            <input type="text" class="form-control" id="input-cost-2" value="1000">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="input-type-2">Calculation Type</label>
+                                            <select class="custom-select" id="input-type-2">
+                                                <option>Charge Shipping Per Item</option>
+                                                <option value="1" selected>Charge Shipping Using The Highest Class</option>
+                                                <option value="2">Add shipping Class Once & Apply Higher Class If Applicable</option>
+                                            </select>
+                                        </div>
+
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Update</button>
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="headingThree">
+                            <h2 class="mb-0">
+                                <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    Add New Shipping Class
+                                </button>
+                            </h2>
+                        </div>
+                        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                            <div class="card-body">
+                                <form>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label for="input-class-2">Class Name</label>
+                                            <input type="text" class="form-control" id="input-class-2" value="" placeholder="e.g. Large Parcel">
+                                        </div>
+                                        <div class="form-group col-md-6">
+
+                                            <label for="input-cost-2">Cost Rs</label>
+                                            <input type="text" class="form-control" id="input-cost-2" value="" placeholder="e.g. 1000">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="input-type-2">Calculation Type</label>
+                                            <select class="custom-select" id="input-type-2">
+                                                <option selected>Charge Shipping Per Item</option>
+                                                <option value="1">Charge Shipping Using The Highest Class</option>
+                                                <option value="2">Add shipping Class Once & Apply Higher Class If Applicable</option>
+                                            </select>
+                                        </div>
+
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Add Shipping Class</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12 col-lg-6">
+                        <h5>Product Categories</h5>
+                        <p>Catagories for products. These define different product areas within the shop. For easy browsing of the website.s</p>
+                        <div id="category-select" class="form-control category-select">
+                            <div id="category-line-1" class="category-line">
+                                <label for="existing-cat-1"><p>Womens</p><i class="fas fa-times"></i></label>
+                                <input type="checkbox" class="category-check" id="existing-cat-1">
+                            </div>
+                            <div id="category-line-2" class="category-line">
+                                <label for="existing-cat-2"><p>Mens</p><i class="fas fa-times"></i></label>
+                                <input type="checkbox" class="category-check" id="existing-cat-2">
+                            </div>
+                            <div id="category-line-3" class="category-line">
+                                <label for="existing-cat-3"><p>Unisex</p><i class="fas fa-times"></i></label>
+                                <input type="checkbox" class="category-check" id="existing-cat-3">
+                            </div>
+                            <div id="category-line-4" class="category-line">
+                                <label for="existing-cat-4"><p>Dresses</p><i class="fas fa-times"></i></label>
+                                <input type="checkbox" class="category-check" id="existing-cat-4">
+                            </div>
+                            <div id="category-line-5" class="category-line">
+                                <label for="existing-cat-5"><p>Tops</p><i class="fas fa-times"></i></label>
+                                <input type="checkbox" class="category-check" id="existing-cat-5">
+                            </div>
+                            <div id="category-line-6" class="category-line">
+                                <label for="existing-cat-6"><p>Trousers</p><i class="fas fa-times"></i></label>
+                                <input type="checkbox" class="category-check" id="existing-cat-6">
+                            </div>
+                            <div id="category-line-7" class="category-line">
+                                <label for="existing-cat-7"><p>Jumpers</p><i class="fas fa-times"></i></label>
+                                <input type="checkbox" class="category-check" id="existing-cat-7">
+                            </div>
+                            <div id="category-line-8" class="category-line">
+                                <label for="existing-cat-8"><p>Shoes</p><i class="fas fa-times"></i></label>
+                                <input type="checkbox" class="category-check" id="existing-cat-8">
+                            </div>
+
+
+
+
+                        </div>
+                        <input type="text" class="form-control input-category" id="input-category" placeholder="New Category">
+                        <button class="add-cat-btn btn category-line" onclick="AddCategory()"><p>Add Category</p> <i class="fas fa-plus add-category-i"></i></button>
+
+
+                        <input type="button" class="btn btn-secondary mb-3 mt-3" value="Delete Selected" />
+                    </div>
+                    <div class="col-12 col-lg-6">
+                        <h5>Product Tags</h5>
+                        <p>Pre-defined tags to make tagging products faster and easier, giving quick snippets of information and allowsing products to be found easier.</p>
+                        <input id="product-tags" class="tags-selection-cont" type="text" value="Teal,Blue, White,Red,Yellow,,Long,Summer,Autumn,Winter,Warm,V-neck,Relaxed-Fit,long-Sleeve,Green,Purple,Brown,Black,Cream,Ivory,Maroon,Turquoise,Sage,Navy,Pink,Peach,Orange,Mustard,Duck Egg,Beige,Stright Fit,Baggy,Boot Cut,Sandal,Wedge,Boot,Stileto,Flat,Trainer,Vest,Cropped,T-shirt,Denim,Lace,Midi,Maxi,Bodycon,Hoodie,Sweatshirt,Blouse,Tunic,Jacket,Parka,Skinny,Shaping,Slim,High Wasted,Flare,Loose,Dungarees,Jumpsuit,Playsuit,Pump,Espandrillos,Loafers,Slip On,Flip Flop,Slippers,Belt,Jewellery,Necklace,Ring,Earing,Bracelet,Hair,Sunglasses,Scarf,Hat,Purse,Poncho,Tote,Hand Bag,Backpack,Short Sleeve,3/4,RoundNeck" data-role="tagsinput" placeholder="Tags" />
+                    </div>
+                </div>
+                <h5>VAT</h5>
+                <p>This can be applied to all item pages or applied when a user goes to the basket.</p>
+                <div class="row">
+                    <div class="input-group mb-3 col-6">
+                        <input type="text" class="form-control" id="inputEmail4">
+                        <select class="custom-select form-control">
+                            <option selected>%</option>
+                            <option value="1">RS</option>
+                        </select>
+                    </div>
+                    <div class="col-6">
+                        <div class="input-group mb-3 col-6">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">VAT Setting</span>
+                            </div>
+                            <select class="custom-select form-control">
+                                <option value="0">OFF</option>
+                                <option value="1" selected>Add To Products</option>
+                                <option value="2">Add At Checkout</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <button id="email-update-1" type="submit" class="btn btn-primary mb-2">Save Changes</button>
+
+
+            </div>
+            <div class="tab-pane fade" id="nav-emails" role="tabpanel" aria-labelledby="nav-emails-tab">
+                <h5>Email Settings</h5>
+                <p>Site Email template edit</p>
+                <div class="accordion" id="email-accordion">
+                    <div class="card">
+                        <div class="card-header" id="email-heading-1">
+                            <h2 class="mb-0">
+                                <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#email-collapse-1" aria-expanded="false" aria-controls="collapseThree">
+                                    Order Recieved
+                                </button>
+                            </h2>
+                        </div>
+                        <div id="email-collapse-1" class="collapse" aria-labelledby="headingThree" data-parent="#email-accordion">
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label for="input-subject-1">Subject</label>
+                                    <input type="text" class="form-control" id="input-subject-1" placeholder="Oui Oui Fashion - Order Recieved" value="Oui Oui Fashion - Order Recieved">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="input-subject-1">Heading</label>
+                                    <input type="text" class="form-control" id="input-heading-1" placeholder="Order Recieved" value="Order Recieved">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="input-body-1">Body</label>
+                                    <textarea type="text" class="form-control" id="input-body-1" placeholder="body">Body</textarea>
+                                </div>
+                                <button id="email-update-1" type="submit" class="btn btn-primary mb-2">Update</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="email-heading-2">
+                            <h2 class="mb-0">
+                                <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#email-collapse-2" aria-expanded="false" aria-controls="collapseThree">
+                                    Processing Order
+                                </button>
+                            </h2>
+                        </div>
+                        <div id="email-collapse-2" class="collapse" aria-labelledby="headingThree" data-parent="#email-accordion">
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label for="input-subject-2">Subject</label>
+                                    <input type="text" class="form-control" id="input-subject-2" placeholder="Oui Oui Fashion - Processing Order" value="Oui Oui Fashion - Processing Order">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="input-subject-2">Heading</label>
+                                    <input type="text" class="form-control" id="input-heading-2" placeholder="Processing Order" value="Processing Order">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="input-body-2">Body</label>
+                                    <textarea type="text" class="form-control" id="input-body-2" placeholder="body">Body</textarea>
+                                </div>
+                                <button id="email-update-2" type="submit" class="btn btn-primary mb-2">Update</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="email-heading-3">
+                            <h2 class="mb-0">
+                                <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#email-collapse-3" aria-expanded="false" aria-controls="collapseThree">
+                                    Order Dispached
+                                </button>
+                            </h2>
+                        </div>
+                        <div id="email-collapse-3" class="collapse" aria-labelledby="headingThree" data-parent="#email-accordion">
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label for="input-subject-3">Subject</label>
+                                    <input type="text" class="form-control" id="input-subject-3" placeholder="Oui Oui Fashion - Order Dispached" value="Oui Oui Fashion - Order Dispached">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="input-subject-3">Heading</label>
+                                    <input type="text" class="form-control" id="input-heading-3" placeholder="Order Dispached" value="Order Dispached">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="input-body-3">Body</label>
+                                    <textarea type="text" class="form-control" id="input-body-3" placeholder="body">Body</textarea>
+                                </div>
+                                <button id="email-update-3" type="submit" class="btn btn-primary mb-2">Update</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="email-heading-4">
+                            <h2 class="mb-0">
+                                <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#email-collapse-4" aria-expanded="false" aria-controls="collapseThree">
+                                    Order Delivered
+                                </button>
+                            </h2>
+                        </div>
+                        <div id="email-collapse-4" class="collapse" aria-labelledby="headingThree" data-parent="#email-accordion">
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label for="input-subject-4">Subject</label>
+                                    <input type="text" class="form-control" id="input-subject-4" placeholder="Oui Oui Fashion - Order Delivered" value="Oui Oui Fashion - Order Delivered">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="input-subject-4">Heading</label>
+                                    <input type="text" class="form-control" id="input-heading-4" placeholder="Order Delivered" value="Order Delivered">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="input-body-4">Body</label>
+                                    <textarea type="text" class="form-control" id="input-body-4" placeholder="body">Body</textarea>
+                                </div>
+                                <button id="email-update-4" type="submit" class="btn btn-primary mb-2">Update</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="email-heading-5">
+                            <h2 class="mb-0">
+                                <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#email-collapse-5" aria-expanded="false" aria-controls="collapseThree">
+                                    Order Cancelled
+                                </button>
+                            </h2>
+                        </div>
+                        <div id="email-collapse-5" class="collapse" aria-labelledby="headingThree" data-parent="#email-accordion">
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label for="input-subject-5">Subject</label>
+                                    <input type="text" class="form-control" id="input-subject-5" placeholder="Oui Oui Fashion - Order Cancelled" value="Oui Oui Fashion - Order Cancelled">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="input-subject-5">Heading</label>
+                                    <input type="text" class="form-control" id="input-heading-5" placeholder="Order Cancelled" value="Order Cancelled">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="input-body-5">Body</label>
+                                    <textarea type="text" class="form-control" id="input-body-5" placeholder="body">Body</textarea>
+                                </div>
+                                <button id="email-update-5" type="submit" class="btn btn-primary mb-2">Update</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="email-heading-6">
+                            <h2 class="mb-0">
+                                <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#email-collapse-6" aria-expanded="false" aria-controls="collapseThree">
+                                    Order Refunded
+                                </button>
+                            </h2>
+                        </div>
+                        <div id="email-collapse-6" class="collapse" aria-labelledby="headingThree" data-parent="#email-accordion">
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label for="input-subject-6">Subject</label>
+                                    <input type="text" class="form-control" id="input-subject-6" placeholder="Oui Oui Fashion - Order Refunded" value="Oui Oui Fashion - Order Refunded">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="input-subject-6">Heading</label>
+                                    <input type="text" class="form-control" id="input-heading-6" placeholder="Order Refunded" value="Order Refunded">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="input-body-6">Body</label>
+                                    <textarea type="text" class="form-control" id="input-body-6" placeholder="body">Body</textarea>
+                                </div>
+                                <button id="email-update-6" type="submit" class="btn btn-primary mb-2">Update</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="email-heading-7">
+                            <h2 class="mb-0">
+                                <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#email-collapse-7" aria-expanded="false" aria-controls="collapseThree">
+                                    Customer Note
+                                </button>
+                            </h2>
+                        </div>
+                        <div id="email-collapse-7" class="collapse" aria-labelledby="headingThree" data-parent="#email-accordion">
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label for="input-subject-7">Subject</label>
+                                    <input type="text" class="form-control" id="input-subject-7" placeholder="Oui Oui Fashion - Customer Note" value="Oui Oui Fashion - Customer Note">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="input-subject-7">Heading</label>
+                                    <input type="text" class="form-control" id="input-heading-7" placeholder="Customer Note" value="Customer Note">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="input-body-7">Body</label>
+                                    <textarea type="text" class="form-control" id="input-body-7" placeholder="body">Body</textarea>
+                                </div>
+                                <button id="email-update-7" type="submit" class="btn btn-primary mb-2">Update</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="email-heading-8">
+                            <h2 class="mb-0">
+                                <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#email-collapse-8" aria-expanded="false" aria-controls="collapseThree">
+                                    Reset Password
+                                </button>
+                            </h2>
+                        </div>
+                        <div id="email-collapse-8" class="collapse" aria-labelledby="headingThree" data-parent="#email-accordion">
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label for="input-subject-8">Subject</label>
+                                    <input type="text" class="form-control" id="input-subject-8" placeholder="Oui Oui Fashion - Reset Password" value="Oui Oui Fashion - Reset Password">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="input-subject-8">Heading</label>
+                                    <input type="text" class="form-control" id="input-heading-8" placeholder="Reset Password" value="Reset Password">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="input-body-8">Body</label>
+                                    <textarea type="text" class="form-control" id="input-body-8" placeholder="body">Body</textarea>
+                                </div>
+                                <button id="email-update-8" type="submit" class="btn btn-primary mb-2">Update</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="email-heading-9">
+                            <h2 class="mb-0">
+                                <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#email-collapse-9" aria-expanded="false" aria-controls="collapseThree">
+                                    New Account Welcome
+                                </button>
+                            </h2>
+                        </div>
+                        <div id="email-collapse-9" class="collapse" aria-labelledby="headingThree" data-parent="#email-accordion">
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label for="input-subject-9">Subject</label>
+                                    <input type="text" class="form-control" id="input-subject-9" placeholder="Oui Oui Fashion - Account Welcome" value="Oui Oui Fashion - Account Welcome">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="input-subject-9">Heading</label>
+                                    <input type="text" class="form-control" id="input-heading-9" placeholder="New Account Welcome" value="New Account Welcome">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="input-body-9">Body</label>
+                                    <textarea type="text" class="form-control" id="input-body-9" placeholder="body">Body</textarea>
+                                </div>
+                                <button id="email-update-9" type="submit" class="btn btn-primary mb-2">Update</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
     </div>
-    <div class="col-12 col-md-12">
-     
-    </div>
-</div>
+
+</div>  

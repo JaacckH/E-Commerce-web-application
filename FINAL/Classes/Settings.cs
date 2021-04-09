@@ -32,32 +32,37 @@ namespace FINAL.Classes
             return null;
         }
 
+        public static void setSetting(String setting, String value)
+        {
+            DBFunctions.sendQuery("UPDATE Settings SET Value='" + value + "' WHERE Setting='" + setting + "';"); ;
+        }
+
         public static String getAdminEmail()
         {
-            return File.ReadAllText(Environment.CurrentDirectory + "/Information/AdminEmail.txt");
+            return getSetting("AdminEmail");
         }
 
         public static String getAddressLine1()
         {
-            return File.ReadAllText(Environment.CurrentDirectory + "/Information/Address/AddressLine1.txt");
+            return getSetting("AddressLine1");
         }
 
         public static String getAddressLine2()
         {
-            return File.ReadAllText(Environment.CurrentDirectory + "/Information/Address/AddressLine2.txt");
+            return getSetting("AddressLine2");
         }
 
         public static String getZipCode()
         {
-            return File.ReadAllText(Environment.CurrentDirectory + "/Information/Address/ZipCode.txt");
+            return getSetting("ZipCode");
         }
 
         public static void updateMassSettings(String email, String addressLine1, String addressLine2, String zipCode)
         {
-            File.WriteAllText(Environment.CurrentDirectory + "/Information/AdminEmail.txt", email);
-            File.WriteAllText(Environment.CurrentDirectory + "/Information/Address/AddressLine1.txt", addressLine1);
-            File.WriteAllText(Environment.CurrentDirectory + "/Information/Address/AddressLine2.txt", addressLine2);
-            File.WriteAllText(Environment.CurrentDirectory + "/Information/Address/ZipCode.txt", zipCode);
+            setSetting("AdminEmail", email);
+            setSetting("AddressLine1", addressLine1);
+            setSetting("AddressLine2", addressLine2);
+            setSetting("ZipCode", zipCode);
         }
     }
 }

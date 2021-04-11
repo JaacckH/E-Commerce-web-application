@@ -44,5 +44,24 @@ namespace FINAL.Classes
             conn.Close();
             return false;
         }
+
+        public static int getNumOfRecords(String table)
+        {
+            SqlConnection conn = new SqlConnection();
+            conn.ConnectionString = DBFunctions.connectionString;
+            conn.Open();
+            SqlCommand query = conn.CreateCommand();
+            query.CommandText = "SELECT * FROM " + table;
+            SqlDataReader reader = query.ExecuteReader();
+
+            int i = 0;
+            while (reader.Read())
+            {
+                i++;
+            }
+
+            conn.Close();
+            return i;
+        }
     }
 }

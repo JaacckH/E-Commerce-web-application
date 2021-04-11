@@ -293,7 +293,7 @@ function CategoryCheckChange(n, i) {
 
 var categoryNumber = 1;
 
-function AddCategory() {
+function AddCategoryOLD() {
     const textArea = document.querySelector("#input-category");
     var newCategory = textArea.value;
     var newCategoryCaps = newCategory.substring(0, 1).toUpperCase() +

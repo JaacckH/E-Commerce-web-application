@@ -9,6 +9,30 @@ namespace FINAL.Classes
 {
     public static class Settings
     {
+
+        public static String getEmailTableData(int id, String column)
+        {
+            SqlConnection conn = new SqlConnection();
+            conn.ConnectionString = DBFunctions.connectionString;
+            conn.Open();
+            SqlCommand query = conn.CreateCommand();
+            query.CommandText = "SELECT * FROM EmailTemplates";
+            SqlDataReader reader = query.ExecuteReader();
+
+            while (reader.Read())
+            {
+                if (reader["ID"].ToString() == id.ToString())
+                {
+                    String result = reader[column].ToString();
+                    conn.Close();
+                    return result;
+                }
+            }
+
+            conn.Close();
+            return null;
+        }
+
         public static String getSetting(String Setting)
         {
             SqlConnection conn = new SqlConnection();
@@ -63,6 +87,90 @@ namespace FINAL.Classes
             setSetting("AddressLine1", addressLine1);
             setSetting("AddressLine2", addressLine2);
             setSetting("ZipCode", zipCode);
+        }
+
+        public static void updateEmailTemplate(int id, String subject, String heading, String body)
+        {
+            DBFunctions.sendQuery("UPDATE EmailTemplates SET Subject='" + subject +
+                "', Heading='" + heading + "', Body='" + body + "' WHERE ID='" + id + "';");
+        }
+
+        public static String getEmailSubject(int id)
+        {
+            return getEmailTableData(id, "Subject");
+        }
+
+        public static String getEmailHeading(int id)
+        {
+            return getEmailTableData(id, "Heading");
+        }
+
+        public static String getEmailBody(int id)
+        {
+            return getEmailTableData(id, "Body");
+        }
+
+        public static String getCategoryHTML(int id)
+        {
+            SqlConnection conn = new SqlConnection();
+            conn.ConnectionString = DBFunctions.connectionString;
+            conn.Open();
+            SqlCommand query = conn.CreateCommand();
+            query.CommandText = "SELECT * FROM Categories";
+            SqlDataReader reader = query.ExecuteReader();
+
+            while (reader.Read())
+            {
+                if (reader["ID"].ToString() == id.ToString())
+                {
+                    String baseString = File.ReadAllText(Environment.CurrentDirectory + "/HTML/SETTINGS/CATEGORY.html");
+                    baseString = baseString.Replace("{ID}", reader["ID"].ToString()).Replace("{CATEGORY}", reader["Category"].ToString());
+                    conn.Close();
+                    return baseString;
+                }
+            }
+
+            conn.Close();
+            return null;
+        }
+
+        public static String getCategories()
+        {
+            SqlConnection conn = new SqlConnection();
+            conn.ConnectionString = DBFunctions.connectionString;
+            conn.Open();
+            SqlCommand query = conn.CreateCommand();
+            query.CommandText = "SELECT * FROM Categories";
+            SqlDataReader reader = query.ExecuteReader();
+
+            String html = "";
+            while (reader.Read())
+            {
+                int id = int.Parse(reader["ID"].ToString());
+                html += getCategoryHTML(id);
+            }
+
+            conn.Close();
+            return html;
+        }
+
+        public static int getNumOfCategories()
+        {
+            SqlConnection conn = new SqlConnection();
+            conn.ConnectionString = DBFunctions.connectionString;
+            conn.Open();
+            SqlCommand query = conn.CreateCommand();
+            query.CommandText = "SELECT ID FROM Categories";
+            SqlDataReader reader = query.ExecuteReader();
+
+            int i = 0;
+            while (reader.Read())
+            {
+                i = int.Parse(reader["ID"].ToString());
+            }
+
+            conn.Close();
+            return i;
         }
     }
 }

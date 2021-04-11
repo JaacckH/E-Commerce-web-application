@@ -176,22 +176,22 @@ namespace FINAL.Classes
             }
         }
 
-        public void addCategory(String sessionID, String category)
+        public async Task addCategory(String sessionID, String category)
         {
             if (UserFunctions.isAdmin(UserFunctions.getUserID(sessionID)) &&
                 !DBFunctions.valueExists("Categories", "Category", category))
             {
-                DBFunctions.sendQuery("INSERT INTO Categories (Category) VALUES('" + category + "')'");
+                DBFunctions.sendQuery("INSERT INTO Categories (Category) VALUES('" + category + "');");
+                await appendContent(Context.ConnectionId, Settings.getCategoryHTML(Settings.getNumOfCategories()), "category-select");
                 sendSuccessAlert(Context.ConnectionId, "Category Added");
             }
         }
 
-        public void deleteCategory(String sessionID, String category)
+        public void deleteCategory(String sessionID, int categoryID)
         {
-            if (UserFunctions.isAdmin(UserFunctions.getUserID(sessionID)) &&
-                !DBFunctions.valueExists("Categories", "Category", category))
+            if (UserFunctions.isAdmin(UserFunctions.getUserID(sessionID)))
             {
-                DBFunctions.sendQuery("DELETE FROM Categories WHERE Category='" + category + "';");
+                DBFunctions.sendQuery("DELETE FROM Categories WHERE ID='" + categoryID + "';");
                 sendSuccessAlert(Context.ConnectionId, "Category Deleted");
             }
         }
@@ -216,6 +216,16 @@ namespace FINAL.Classes
                 {
                     sendAlert(Context.ConnectionId, "Something went wrong, check the info you entered.");
                 }
+            }
+        }
+
+        public void UpdateEmailTemplate(String sessionID, int id, String subject, String heading, String body)
+        {
+            if (UserFunctions.isAdmin(UserFunctions.getUserID(sessionID)) && !String.IsNullOrEmpty(subject)
+                && !String.IsNullOrEmpty(heading) && !String.IsNullOrEmpty(body))
+            {
+                Settings.updateEmailTemplate(id, subject, heading, body);
+                sendSuccessAlert(Context.ConnectionId, "Email Template Updated");
             }
         }
     }

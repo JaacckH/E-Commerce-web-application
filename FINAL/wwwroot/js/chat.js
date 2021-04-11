@@ -130,6 +130,20 @@ function saveShopChanges() {
     updateLargeParcel();
 }
 
-function liveAddCategory(category) {
+function addCategory() {
+    var category = document.getElementById('input-category').value;
     connection.invoke("addCategory", getSessionID(), category);
+}
+
+function updateEmailTemplate(id) {
+    var subject = document.getElementById('input-subject-' + id).value;
+    var heading = document.getElementById('input-heading-' + id).value;
+    var body = document.getElementById('input-body-' + id).value;
+    connection.invoke("UpdateEmailTemplate", getSessionID(), id, subject, heading, body);
+}
+
+function deleteCategory(id) {
+    connection.invoke("deleteCategory", getSessionID(), id);
+    var cat = document.getElementById('category-line-' + id);
+    cat.parentNode.removeChild(cat);
 }

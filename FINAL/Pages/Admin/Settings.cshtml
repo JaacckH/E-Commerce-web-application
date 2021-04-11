@@ -169,48 +169,10 @@
                             Changes to categories will be saved automatically.
                         </p>
                         <div id="category-select" class="form-control category-select">
-                            <div id="category-line-1" class="category-line">
-                                <label for="existing-cat-1"><p>Womens</p><i class="fas fa-times"></i></label>
-                                <input type="checkbox" class="category-check" id="existing-cat-1">
-                            </div>
-                            <div id="category-line-2" class="category-line">
-                                <label for="existing-cat-2"><p>Mens</p><i class="fas fa-times"></i></label>
-                                <input type="checkbox" class="category-check" id="existing-cat-2">
-                            </div>
-                            <div id="category-line-3" class="category-line">
-                                <label for="existing-cat-3"><p>Unisex</p><i class="fas fa-times"></i></label>
-                                <input type="checkbox" class="category-check" id="existing-cat-3">
-                            </div>
-                            <div id="category-line-4" class="category-line">
-                                <label for="existing-cat-4"><p>Dresses</p><i class="fas fa-times"></i></label>
-                                <input type="checkbox" class="category-check" id="existing-cat-4">
-                            </div>
-                            <div id="category-line-5" class="category-line">
-                                <label for="existing-cat-5"><p>Tops</p><i class="fas fa-times"></i></label>
-                                <input type="checkbox" class="category-check" id="existing-cat-5">
-                            </div>
-                            <div id="category-line-6" class="category-line">
-                                <label for="existing-cat-6"><p>Trousers</p><i class="fas fa-times"></i></label>
-                                <input type="checkbox" class="category-check" id="existing-cat-6">
-                            </div>
-                            <div id="category-line-7" class="category-line">
-                                <label for="existing-cat-7"><p>Jumpers</p><i class="fas fa-times"></i></label>
-                                <input type="checkbox" class="category-check" id="existing-cat-7">
-                            </div>
-                            <div id="category-line-8" class="category-line">
-                                <label for="existing-cat-8"><p>Shoes</p><i class="fas fa-times"></i></label>
-                                <input type="checkbox" class="category-check" id="existing-cat-8">
-                            </div>
-
-
-
-
+                            @Html.Raw(Classes.Settings.getCategories())
                         </div>
                         <input type="text" class="form-control input-category" id="input-category" placeholder="New Category">
-                        <button class="add-cat-btn btn category-line" onclick="AddCategory()"><p>Add Category</p> <i class="fas fa-plus add-category-i"></i></button>
-
-
-                        <input type="button" class="btn btn-secondary mb-3 mt-3" value="Delete Selected" />
+                        <button class="add-cat-btn btn category-line" onclick="addCategory()"><p>Add Category</p> <i class="fas fa-plus add-category-i"></i></button>
                     </div>
                     <div class="col-12 col-lg-6 admin-tags">
                         <h5>Product Tags</h5>
@@ -249,19 +211,19 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="input-subject-1">Subject</label>
-                                    <input type="text" class="form-control" id="input-subject-1" placeholder="Oui Oui Fashion - Order Recieved" value="Oui Oui Fashion - Order Recieved">
+                                    <input type="text" class="form-control" id="input-subject-1" value="@Classes.Settings.getEmailSubject(1)">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="input-subject-1">Heading</label>
-                                    <input type="text" class="form-control" id="input-heading-1" placeholder="Order Recieved" value="Order Recieved">
+                                    <input type="text" class="form-control" id="input-heading-1" value="@Classes.Settings.getEmailHeading(1)">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="input-body-1">Body</label>
-                                    <textarea type="text" class="form-control" id="input-body-1" placeholder="body">Body</textarea>
+                                    <textarea type="text" class="form-control" id="input-body-1" value="@Classes.Settings.getEmailBody(1)">Body</textarea>
                                 </div>
-                                <button id="email-update-1" type="submit" class="btn btn-primary mb-2">Update</button>
+                                <button id="email-update-1" type="submit" class="btn btn-primary mb-2" onclick="updateEmailTemplate(1);">Update</button>
                             </div>
                         </div>
                     </div>
@@ -277,19 +239,19 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="input-subject-2">Subject</label>
-                                    <input type="text" class="form-control" id="input-subject-2" placeholder="Oui Oui Fashion - Processing Order" value="Oui Oui Fashion - Processing Order">
+                                    <input type="text" class="form-control" id="input-subject-2" value="@Classes.Settings.getEmailSubject(2)">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="input-subject-2">Heading</label>
-                                    <input type="text" class="form-control" id="input-heading-2" placeholder="Processing Order" value="Processing Order">
+                                    <input type="text" class="form-control" id="input-heading-2" value="@Classes.Settings.getEmailHeading(2)">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="input-body-2">Body</label>
-                                    <textarea type="text" class="form-control" id="input-body-2" placeholder="body">Body</textarea>
+                                    <textarea type="text" class="form-control" id="input-body-2" value="@Classes.Settings.getEmailBody(2)">Body</textarea>
                                 </div>
-                                <button id="email-update-2" type="submit" class="btn btn-primary mb-2">Update</button>
+                                <button id="email-update-2" type="submit" class="btn btn-primary mb-2" onclick="updateEmailTemplate(2);">Update</button>
                             </div>
                         </div>
                     </div>
@@ -305,19 +267,19 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="input-subject-3">Subject</label>
-                                    <input type="text" class="form-control" id="input-subject-3" placeholder="Oui Oui Fashion - Order Dispached" value="Oui Oui Fashion - Order Dispached">
+                                    <input type="text" class="form-control" id="input-subject-3" value="@Classes.Settings.getEmailSubject(3)">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="input-subject-3">Heading</label>
-                                    <input type="text" class="form-control" id="input-heading-3" placeholder="Order Dispached" value="Order Dispached">
+                                    <input type="text" class="form-control" id="input-heading-3" value="@Classes.Settings.getEmailHeading(3)">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="input-body-3">Body</label>
-                                    <textarea type="text" class="form-control" id="input-body-3" placeholder="body">Body</textarea>
+                                    <textarea type="text" class="form-control" id="input-body-3" value="@Classes.Settings.getEmailBody(3)">Body</textarea>
                                 </div>
-                                <button id="email-update-3" type="submit" class="btn btn-primary mb-2">Update</button>
+                                <button id="email-update-3" type="submit" class="btn btn-primary mb-2" onclick="updateEmailTemplate(3);">Update</button>
                             </div>
                         </div>
                     </div>
@@ -333,19 +295,19 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="input-subject-4">Subject</label>
-                                    <input type="text" class="form-control" id="input-subject-4" placeholder="Oui Oui Fashion - Order Delivered" value="Oui Oui Fashion - Order Delivered">
+                                    <input type="text" class="form-control" id="input-subject-4" value="@Classes.Settings.getEmailSubject(4)">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="input-subject-4">Heading</label>
-                                    <input type="text" class="form-control" id="input-heading-4" placeholder="Order Delivered" value="Order Delivered">
+                                    <input type="text" class="form-control" id="input-heading-4" value="@Classes.Settings.getEmailHeading(4)">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="input-body-4">Body</label>
-                                    <textarea type="text" class="form-control" id="input-body-4" placeholder="body">Body</textarea>
+                                    <textarea type="text" class="form-control" id="input-body-4" value="@Classes.Settings.getEmailBody(4)">Body</textarea>
                                 </div>
-                                <button id="email-update-4" type="submit" class="btn btn-primary mb-2">Update</button>
+                                <button id="email-update-4" type="submit" class="btn btn-primary mb-2" onclick="updateEmailTemplate(4);">Update</button>
                             </div>
                         </div>
                     </div>
@@ -361,19 +323,19 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="input-subject-5">Subject</label>
-                                    <input type="text" class="form-control" id="input-subject-5" placeholder="Oui Oui Fashion - Order Cancelled" value="Oui Oui Fashion - Order Cancelled">
+                                    <input type="text" class="form-control" id="input-subject-5" value="@Classes.Settings.getEmailSubject(5)">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="input-subject-5">Heading</label>
-                                    <input type="text" class="form-control" id="input-heading-5" placeholder="Order Cancelled" value="Order Cancelled">
+                                    <input type="text" class="form-control" id="input-heading-5" value="@Classes.Settings.getEmailHeading(5)">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="input-body-5">Body</label>
-                                    <textarea type="text" class="form-control" id="input-body-5" placeholder="body">Body</textarea>
+                                    <textarea type="text" class="form-control" id="input-body-5" value="@Classes.Settings.getEmailBody(5))">Body</textarea>
                                 </div>
-                                <button id="email-update-5" type="submit" class="btn btn-primary mb-2">Update</button>
+                                <button id="email-update-5" type="submit" class="btn btn-primary mb-2" onclick="updateEmailTemplate(5);">Update</button>
                             </div>
                         </div>
                     </div>
@@ -389,19 +351,19 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="input-subject-6">Subject</label>
-                                    <input type="text" class="form-control" id="input-subject-6" placeholder="Oui Oui Fashion - Order Refunded" value="Oui Oui Fashion - Order Refunded">
+                                    <input type="text" class="form-control" id="input-subject-6" value="@Classes.Settings.getEmailSubject(6)">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="input-subject-6">Heading</label>
-                                    <input type="text" class="form-control" id="input-heading-6" placeholder="Order Refunded" value="Order Refunded">
+                                    <input type="text" class="form-control" id="input-heading-6" value="@Classes.Settings.getEmailHeading(6)">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="input-body-6">Body</label>
-                                    <textarea type="text" class="form-control" id="input-body-6" placeholder="body">Body</textarea>
+                                    <textarea type="text" class="form-control" id="input-body-6" value="@Classes.Settings.getEmailBody(6)">Body</textarea>
                                 </div>
-                                <button id="email-update-6" type="submit" class="btn btn-primary mb-2">Update</button>
+                                <button id="email-update-6" type="submit" class="btn btn-primary mb-2" onclick="updateEmailTemplate(6);">Update</button>
                             </div>
                         </div>
                     </div>
@@ -417,19 +379,19 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="input-subject-7">Subject</label>
-                                    <input type="text" class="form-control" id="input-subject-7" placeholder="Oui Oui Fashion - Customer Note" value="Oui Oui Fashion - Customer Note">
+                                    <input type="text" class="form-control" id="input-subject-7" value="@Classes.Settings.getEmailSubject(7)">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="input-subject-7">Heading</label>
-                                    <input type="text" class="form-control" id="input-heading-7" placeholder="Customer Note" value="Customer Note">
+                                    <input type="text" class="form-control" id="input-heading-7" value="@Classes.Settings.getEmailHeading(7)">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="input-body-7">Body</label>
-                                    <textarea type="text" class="form-control" id="input-body-7" placeholder="body">Body</textarea>
+                                    <textarea type="text" class="form-control" id="input-body-7" value="@Classes.Settings.getEmailBody(7)">Body</textarea>
                                 </div>
-                                <button id="email-update-7" type="submit" class="btn btn-primary mb-2">Update</button>
+                                <button id="email-update-7" type="submit" class="btn btn-primary mb-2" onclick="updateEmailTemplate(7);">Update</button>
                             </div>
                         </div>
                     </div>
@@ -445,19 +407,19 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="input-subject-8">Subject</label>
-                                    <input type="text" class="form-control" id="input-subject-8" placeholder="Oui Oui Fashion - Reset Password" value="Oui Oui Fashion - Reset Password">
+                                    <input type="text" class="form-control" id="input-subject-8" value="@Classes.Settings.getEmailSubject(8)">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="input-subject-8">Heading</label>
-                                    <input type="text" class="form-control" id="input-heading-8" placeholder="Reset Password" value="Reset Password">
+                                    <input type="text" class="form-control" id="input-heading-8" value="@Classes.Settings.getEmailHeading(8)">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="input-body-8">Body</label>
-                                    <textarea type="text" class="form-control" id="input-body-8" placeholder="body">Body</textarea>
+                                    <textarea type="text" class="form-control" id="input-body-8" value="@Classes.Settings.getEmailBody(8)">Body</textarea>
                                 </div>
-                                <button id="email-update-8" type="submit" class="btn btn-primary mb-2">Update</button>
+                                <button id="email-update-8" type="submit" class="btn btn-primary mb-2" onclick="updateEmailTemplate(8);">Update</button>
                             </div>
                         </div>
                     </div>
@@ -473,19 +435,19 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="input-subject-9">Subject</label>
-                                    <input type="text" class="form-control" id="input-subject-9" placeholder="Oui Oui Fashion - Account Welcome" value="Oui Oui Fashion - Account Welcome">
+                                    <input type="text" class="form-control" id="input-subject-9" value="@Classes.Settings.getEmailSubject(9)">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="input-subject-9">Heading</label>
-                                    <input type="text" class="form-control" id="input-heading-9" placeholder="New Account Welcome" value="New Account Welcome">
+                                    <input type="text" class="form-control" id="input-heading-9" value="@Classes.Settings.getEmailHeading(9)">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="input-body-9">Body</label>
-                                    <textarea type="text" class="form-control" id="input-body-9" placeholder="body">Body</textarea>
+                                    <textarea type="text" class="form-control" id="input-body-9" value="@Classes.Settings.getEmailBody(9)">Body</textarea>
                                 </div>
-                                <button id="email-update-9" type="submit" class="btn btn-primary mb-2">Update</button>
+                                <button id="email-update-9" type="submit" class="btn btn-primary mb-2" onclick="updateEmailTemplate(9);">Update</button>
                             </div>
                         </div>
                     </div>

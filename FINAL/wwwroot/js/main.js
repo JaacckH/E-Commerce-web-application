@@ -5,6 +5,8 @@ $('#category-select option').mousedown(function (e) {
     return false;
 });
 
+
+$(document).ready(function () {
 var productTags = ['Teal', 'Blue', 'White', 'Long', 'Summer', 'Autumn', 'Winter', 'Warm', 'V-neck', 'Relaxed-Fit', 'long-Sleeve'
 ];
 
@@ -48,6 +50,7 @@ $('#product-tags').on("beforeItemAdd", function (e) {
     }
 });
 
+});
 
 
 
@@ -260,20 +263,22 @@ function loadNewCheckboxes() {
 
 loadNewCheckboxes();
 
+$(document).ready(function () {
+    var allCategoryCheckboxes = document.querySelectorAll('input[id*=existing-cat]');
 
-var allCategoryCheckboxes = document.querySelectorAll('input[id^=existing-cat]');
-
-// get all settings inputs and watch for keyup event
-for (var i = 0; i < allCategoryCheckboxes.length; i++) {
-    allCategoryCheckboxes[i].addEventListener("change", function (event) {
+    // get all settings inputs and watch for keyup event
+    for (var i = 0; i < allCategoryCheckboxes.length; i++) {
+        allCategoryCheckboxes[i].addEventListener("change", function (event) {
 
 
-        var j = this.id.lastIndexOf('-');
-        var n = this.id.substring(j + 1);
+            var j = this.id.lastIndexOf('-');
+            var n = this.id.substring(j + 1);
 
-        CategoryCheckChange(n, 0);
-    })
-}
+            CategoryCheckChange(n, 0);
+        })
+    }
+
+});
 
 function CategoryCheckChange(n, i) {
 

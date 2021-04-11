@@ -93,7 +93,7 @@
 }
 
 
-.bootstrap-tagsinput {
+.admin-product-page .bootstrap-tagsinput {
     background-color: var(--background-1);
     border-color: var(--background-2);
     line-height: 32px;
@@ -102,34 +102,36 @@
 }
 
 
-    .bootstrap-tagsinput .tag {
+    .admin-product-page .bootstrap-tagsinput .tag {
         color: var(--text-1);
         text-transform: capitalize;
         background-color: var(--background-2);
         padding: 5px 5px;
     }
 
-.tags-selection-cont {
+.admin-product-page .tags-selection-cont {
     margin: 10px 0px;
     height: 100px;
     overflow-y: scroll;
 }
 
-    .tags-selection-cont input {
+    .admin-product-page .tags-selection-cont input {
         text-transform: capitalize;
         background-color: var(--background-1);
         padding: 0;
         margin: 0;
     }
 
-.bootstrap-tagsinput .tag [data-role="remove"]:after {
+.admin-product-page .bootstrap-tagsinput .tag [data-role="remove"]:after {
     font-weight: bold;
 }
 
 
 
-.twitter-typeahead, .tt-menu {
+.admin-product-page .twitter-typeahead, .tt-menu {
     width: 100%;
+    background-color: white;
+    padding-left: 5px;
 }
 
 /*
@@ -462,7 +464,7 @@ body {
     border-bottom: 0px;
 }
 
-#admin-settings-page .bootstrap-tagsinput {
+.admin-tags .bootstrap-tagsinput {
     height: calc(1.5em + .75rem + 2px + 200px);
     /*height:200px;*/
     position: relative;
@@ -473,12 +475,12 @@ body {
     padding: 4px 0px;
 }
 
-    #admin-settings-page .bootstrap-tagsinput .tag {
+    .admin-tags .bootstrap-tagsinput .tag {
         margin-left: 10px;
         margin-right: 0;
     }
 
-    #admin-settings-page .bootstrap-tagsinput .twitter-typeahead {
+    .admin-tags .bootstrap-tagsinput .twitter-typeahead {
         position: -webkit-sticky;
         position: sticky !important;
         bottom: -4px;
@@ -492,6 +494,11 @@ body {
         padding: 2px 6px;
     }
 
+.admin-tags .twitter-typeahead pre, .admin-tags .twitter-typeahead .tt-menu, .admin-tags .twitter-typeahead .tt-hint {
+    display: none !important;
+    height: 0px;
+    visibility:hidden;
+}
 
 .category-line, .category-line label {
     width: 100%;

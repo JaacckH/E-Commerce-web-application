@@ -63,36 +63,29 @@
                         <div class="card-header" id="headingOne">
                             <h2 class="mb-0">
                                 <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                                    #1 Small Parcel
+                                    Small Parcel
                                 </button>
                             </h2>
                         </div>
                         <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
                             <div class="card-body">
-                                <form>
-                                    <div class="form-row">
-                                        <div class="form-group col-md-6">
-                                            <label for="input-class-2">Class Name</label>
-                                            <input type="text" class="form-control" id="input-class-2" value="Small Parcel">
-                                        </div>
-                                        <div class="form-group col-md-6">
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
 
-                                            <label for="input-cost-2">Cost Rs</label>
-                                            <input type="text" class="form-control" id="input-cost-2" value="400">
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <label for="input-type-2">Calculation Type</label>
-                                            <select class="custom-select" id="input-type-2">
-                                                <option selected>Charge Shipping Per Item</option>
-                                                <option value="1">Charge Shipping Using The Highest Class</option>
-                                                <option value="2">Add shipping Class Once & Apply Higher Class If Applicable</option>
-                                            </select>
-                                        </div>
-
+                                        <label for="input-cost-2">Cost Rs</label>
+                                        <input type="text" class="form-control" id="input-cost-small" value="@Classes.Settings.getSetting("SmallParcelPrice")">
                                     </div>
-                                    <button type="submit" class="btn btn-primary">Update</button>
-                                    <button type="submit" class="btn btn-danger">Delete</button>
-                                </form>
+                                    <div class="form-group col-md-6">
+                                        <label for="input-type-2">Calculation Type</label>
+                                        <select class="custom-select" id="input-type-2">
+                                            <option selected>Charge Shipping Per Item</option>
+                                            <option value="1">Charge Shipping Using The Highest Class</option>
+                                            <option value="2">Add shipping Class Once & Apply Higher Class If Applicable</option>
+                                        </select>
+                                    </div>
+
+                                </div>
+                                <button onclick="updateSmallParcel()" type="submit" class="btn btn-primary">Update</button>
                             </div>
                         </div>
                     </div>
@@ -100,7 +93,7 @@
                         <div class="card-header" id="headingTwo">
                             <h2 class="mb-0">
                                 <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                    #2 Large Parcel
+                                    Large Parcel
                                 </button>
                             </h2>
                         </div>
@@ -109,13 +102,9 @@
                                 <form>
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
-                                            <label for="input-class-2">Class Name</label>
-                                            <input type="text" class="form-control" id="input-class-2" value="Large Parcel">
-                                        </div>
-                                        <div class="form-group col-md-6">
 
                                             <label for="input-cost-2">Cost Rs</label>
-                                            <input type="text" class="form-control" id="input-cost-2" value="1000">
+                                            <input type="text" class="form-control" id="input-cost-large" value="@Classes.Settings.getSetting("LargeParcelPrice")">
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="input-type-2">Calculation Type</label>
@@ -127,12 +116,12 @@
                                         </div>
 
                                     </div>
-                                    <button type="submit" class="btn btn-primary">Update</button>
-                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                    <button onclick="updateLargeParcel()" type="submit" class="btn btn-primary">Update</button>
                                 </form>
                             </div>
                         </div>
                     </div>
+                    <!--
                     <div class="card">
                         <div class="card-header" id="headingThree">
                             <h2 class="mb-0">
@@ -169,12 +158,16 @@
                             </div>
                         </div>
                     </div>
+                        -->
                 </div>
 
                 <div class="row">
                     <div class="col-12 col-lg-6">
                         <h5>Product Categories</h5>
-                        <p>Catagories for products. These define different product areas within the shop. For easy browsing of the website.s</p>
+                        <p>
+                            Catagories for products. These define different product areas within the shop. For easy browsing of the website.<br>
+                            Changes to categories will be saved automatically.
+                        </p>
                         <div id="category-select" class="form-control category-select">
                             <div id="category-line-1" class="category-line">
                                 <label for="existing-cat-1"><p>Womens</p><i class="fas fa-times"></i></label>
@@ -225,31 +218,19 @@
                         <input id="product-tags" class="tags-selection-cont" type="text" value="Teal,Blue, White,Red,Yellow,,Long,Summer,Autumn,Winter,Warm,V-neck,Relaxed-Fit,long-Sleeve,Green,Purple,Brown,Black,Cream,Ivory,Maroon,Turquoise,Sage,Navy,Pink,Peach,Orange,Mustard,Duck Egg,Beige,Stright Fit,Baggy,Boot Cut,Sandal,Wedge,Boot,Stileto,Flat,Trainer,Vest,Cropped,T-shirt,Denim,Lace,Midi,Maxi,Bodycon,Hoodie,Sweatshirt,Blouse,Tunic,Jacket,Parka,Skinny,Shaping,Slim,High Wasted,Flare,Loose,Dungarees,Jumpsuit,Playsuit,Pump,Espandrillos,Loafers,Slip On,Flip Flop,Slippers,Belt,Jewellery,Necklace,Ring,Earing,Bracelet,Hair,Sunglasses,Scarf,Hat,Purse,Poncho,Tote,Hand Bag,Backpack,Short Sleeve,3/4,RoundNeck" data-role="tagsinput" placeholder="Tags" />
                     </div>
                 </div>
+
                 <h5>VAT</h5>
-                <p>This can be applied to all item pages or applied when a user goes to the basket.</p>
+                <p>This value should remain the current VAT rate of Mauritius</p>
                 <div class="row">
                     <div class="input-group mb-3 col-6">
-                        <input type="text" class="form-control" id="inputEmail4">
+                        <input type="text" class="form-control" id="input-vat" value="@Classes.Settings.getSetting("VAT")">
                         <select class="custom-select form-control">
                             <option selected>%</option>
-                            <option value="1">RS</option>
                         </select>
                     </div>
-                    <div class="col-6">
-                        <div class="input-group mb-3 col-6">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon1">VAT Setting</span>
-                            </div>
-                            <select class="custom-select form-control">
-                                <option value="0">OFF</option>
-                                <option value="1" selected>Add To Products</option>
-                                <option value="2">Add At Checkout</option>
-                            </select>
-                        </div>
-                    </div>
                 </div>
-                <button id="email-update-1" type="submit" class="btn btn-primary mb-2">Save Changes</button>
 
+                <button id="email-update-1" type="submit" class="btn btn-primary mb-2" onclick="saveShopChanges();">Save Changes</button>
 
             </div>
             <div class="tab-pane fade" id="nav-emails" role="tabpanel" aria-labelledby="nav-emails-tab">
@@ -509,11 +490,7 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
-
-
     </div>
-
 </div>  

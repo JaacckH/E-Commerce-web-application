@@ -145,10 +145,10 @@ namespace FINAL.Classes
             conn.Close();
         }
 
-        public async Task updateSettings(String sessionID, String email, String addressLine1, String addressLine2, String zipCode)
+        public void updateSettings(String sessionID, String email, String addressLine1, String addressLine2, String zipCode)
         {
             if (!String.IsNullOrEmpty(sessionID) && !String.IsNullOrEmpty(email) &&
-                !String.IsNullOrEmpty(addressLine1) && !String.IsNullOrEmpty(addressLine2) && 
+                !String.IsNullOrEmpty(addressLine1) && !String.IsNullOrEmpty(addressLine2) &&
                 !String.IsNullOrEmpty(zipCode) && UserFunctions.isAdmin(UserFunctions.getUserID(sessionID)))
             {
                 Settings.updateMassSettings(email, addressLine1, addressLine2, zipCode);
@@ -157,6 +157,65 @@ namespace FINAL.Classes
             else
             {
                 sendAlert(Context.ConnectionId, "Please enter all fields");
+            }
+        }
+
+        public void saveShopTabChanges(String sessionID, String vatString)
+        {
+            if (UserFunctions.isAdmin(UserFunctions.getUserID(sessionID)))
+            {
+                int vat = 0;
+                try
+                {
+                    vat = int.Parse(vatString);
+                }
+                catch { sendAlert(Context.ConnectionId, "VAT Must be an Integer value."); return; }
+
+                Settings.setSetting("VAT", vat.ToString());
+                sendSuccessAlert(Context.ConnectionId, "Settings Updated");
+            }
+        }
+
+        public void addCategory(String sessionID, String category)
+        {
+            if (UserFunctions.isAdmin(UserFunctions.getUserID(sessionID)) &&
+                !DBFunctions.valueExists("Categories", "Category", category))
+            {
+                DBFunctions.sendQuery("INSERT INTO Categories (Category) VALUES('" + category + "')'");
+                sendSuccessAlert(Context.ConnectionId, "Category Added");
+            }
+        }
+
+        public void deleteCategory(String sessionID, String category)
+        {
+            if (UserFunctions.isAdmin(UserFunctions.getUserID(sessionID)) &&
+                !DBFunctions.valueExists("Categories", "Category", category))
+            {
+                DBFunctions.sendQuery("DELETE FROM Categories WHERE Category='" + category + "';");
+                sendSuccessAlert(Context.ConnectionId, "Category Deleted");
+            }
+        }
+
+        public void updateParcel(String sessionID, String price, int type)
+        {
+            if (UserFunctions.isAdmin(UserFunctions.getUserID(sessionID)))
+            {
+                try
+                {
+                    if (type == 1)
+                    {
+                        Settings.setSetting("SmallParcelPrice", price.ToString());
+                    }
+                    else
+                    {
+                        Settings.setSetting("LargeParcelPrice", price.ToString());
+                    }
+                    sendSuccessAlert(Context.ConnectionId, "Parcel Settings Changed");
+                }
+                catch
+                {
+                    sendAlert(Context.ConnectionId, "Something went wrong, check the info you entered.");
+                }
             }
         }
     }

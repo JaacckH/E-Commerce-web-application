@@ -22,5 +22,27 @@ namespace FINAL.Classes
             conn.Close();
             Console.WriteLine(input);
         }
+
+        public static Boolean valueExists(String table, String column, String value)
+        {
+            SqlConnection conn = new SqlConnection();
+            conn.ConnectionString = DBFunctions.connectionString;
+            conn.Open();
+            SqlCommand query = conn.CreateCommand();
+            query.CommandText = "SELECT " + column + " FROM " + table;
+            SqlDataReader reader = query.ExecuteReader();
+
+            while (reader.Read())
+            {
+                if (reader[column].ToString() == value)
+                {
+                    conn.Close();
+                    return true;
+                }
+            }
+
+            conn.Close();
+            return false;
+        }
     }
 }

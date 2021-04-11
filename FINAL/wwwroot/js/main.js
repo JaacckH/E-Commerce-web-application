@@ -115,10 +115,12 @@ function closeProductDetails(rowID) {
     $("#card-lrg-detail-" + rowID).addClass("d-none");
 }
 
+var sizeColAmount = 0;
 
 function AddSizeCol(n) {
-    var $size_type = '                            <div class="size-column">';
-    $size_type += '                              <select class="form-control" id="exampleFormControlSelect1">';
+    sizeColAmount++;
+    var $size_type = '                            <div class="size-column" id="sizecol-' + sizeColAmount + '">';
+    $size_type += '                              <select class="form-control" id="sizecol-' + sizeColAmount + '-size">';
     $size_type += '                                <option>6</option>';
     $size_type += '                                <option>8</option>';
     $size_type += '                                <option>10</option>';
@@ -292,7 +294,7 @@ function AddCategory() {
     var newCategoryCaps = newCategory.substring(0, 1).toUpperCase() +
         newCategory.substring(1, newCategory.length);
 
-    if (newCategory.length != 0) {
+    if (newCategory.length > 0) {
         var $category_create = '<div id="category-new-line-' + categoryNumber + '" class="category-line">';
         $category_create += '<label for="new-cat-' + categoryNumber + '"><p>' + newCategoryCaps + '</p><i class="fas fa-times"></i></label>';
         $category_create += '<input type="checkbox" class="category-check" id="new-cat-' + categoryNumber + '">';
@@ -304,6 +306,8 @@ function AddCategory() {
 
         var element = document.getElementById("category-select");
         element.scrollTop = element.scrollHeight;
+
+        liveAddCategory(newCategory.toString());
     }
 }
 

@@ -112,3 +112,24 @@ function updateSettings() {
     var zip = document.getElementById('inputZip').value;
     connection.invoke("UpdateSettings", getSessionID(), email, addressLine1, addressLine2, zip);
 }
+
+function updateSmallParcel() {
+    var price = document.getElementById('input-cost-small').value;
+    connection.invoke("updateParcel", getSessionID(), price, 1);
+}
+
+function updateLargeParcel() {
+    var price = document.getElementById('input-cost-large').value;
+    connection.invoke("updateParcel", getSessionID(), price, 2);
+}
+
+function saveShopChanges() {
+    var vat = document.getElementById('input-vat').value;
+    connection.invoke("saveShopTabChanges", getSessionID(), vat);
+    updateSmallParcel();
+    updateLargeParcel();
+}
+
+function liveAddCategory(category) {
+    connection.invoke("addCategory", getSessionID(), category);
+}

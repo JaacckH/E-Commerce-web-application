@@ -93,7 +93,7 @@
 }
 
 
-.admin-product-page .bootstrap-tagsinput {
+ .bootstrap-tagsinput {
     background-color: var(--background-1);
     border-color: var(--background-2);
     line-height: 32px;
@@ -102,33 +102,33 @@
 }
 
 
-    .admin-product-page .bootstrap-tagsinput .tag {
+ .bootstrap-tagsinput .tag {
         color: var(--text-1);
         text-transform: capitalize;
         background-color: var(--background-2);
         padding: 5px 5px;
     }
 
-.admin-product-page .tags-selection-cont {
+ .tags-selection-cont {
     margin: 10px 0px;
     height: 100px;
     overflow-y: scroll;
 }
 
-    .admin-product-page .tags-selection-cont input {
+ .tags-selection-cont input {
         text-transform: capitalize;
         background-color: var(--background-1);
         padding: 0;
         margin: 0;
     }
 
-.admin-product-page .bootstrap-tagsinput .tag [data-role="remove"]:after {
+.bootstrap-tagsinput .tag [data-role="remove"]:after {
     font-weight: bold;
 }
 
 
 
-.admin-product-page .twitter-typeahead, .tt-menu {
+.twitter-typeahead, .tt-menu {
     width: 100%;
     background-color: white;
     padding-left: 5px;
@@ -494,10 +494,16 @@ body {
         padding: 2px 6px;
     }
 
-.admin-tags .twitter-typeahead pre, .admin-tags .twitter-typeahead .tt-menu, .admin-tags .twitter-typeahead .tt-hint {
+#admin-settings-page .twitter-typeahead pre, #admin-settings-page .twitter-typeahead .tt-menu, #admin-settings-page .twitter-typeahead .tt-hint {
     display: none !important;
     height: 0px;
-    visibility:hidden;
+    visibility: hidden;
+}
+
+.tt-hint {
+    display: none !important;
+    height: 0px;
+    visibility: hidden;
 }
 
 .category-line, .category-line label {

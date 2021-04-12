@@ -10,6 +10,228 @@
 <script src="~/js/signalr/dist/browser/signalr.js"></script>
 <script src="~/js/chat.js"></script>
 
+
+<style>
+    .main-header .title {
+        font-size: var(--text-size-xlarge) !important;
+        font-weight: bold;
+        /*margin-bottom:10%;*/
+    }
+
+    .main-header p {
+        font-size: var(--text-size-reg) !important;
+        margin-bottom: 25%;
+    }
+
+    .social-icons {
+        width: 8rem;
+    }
+
+    #main-index-page {
+    }
+
+
+
+    #main-header-panel [class*="row"] {
+        padding-bottom: 20px;
+    }
+
+    #main-header-panel {
+        margin-top: 10%;
+        padding-left: 6%;
+        padding-right: 6%;
+    }
+
+    .page-2, .page-4 {
+        background-color: #a3ccc8;
+    }
+
+
+    .page-2, .page-4 {
+        width: 100%;
+        margin-top: 50px;
+        clip-path: polygon(0 90px, 100% 0%, 100% calc(100% - 90px), 0 100%);
+    }
+
+    .page-footer, .page-6 {
+        width: 100%;
+        margin-top: 50px;
+        clip-path: polygon(0 90px, 100% 0%, 100% 100%, 0 100%);
+    }
+
+    .page-2, .page-4 {
+        padding: 10% 0;
+    }
+
+    .page-footer {
+        padding: calc(3% + 90px) 0 3% 0;
+    }
+
+    .page-2-container .card {
+        height: 100%;
+    }
+
+
+        .page-2-container .card h2 {
+            font-weight: bold;
+            text-align: center;
+        }
+
+
+    .section-header {
+        font-weight: bold;
+        text-align: center;
+        font-size: var(--text-size-xlarge);
+    }
+
+    .main-buttons {
+        text-align: center;
+        margin-top: 5%;
+        font-size: (--text-size-large);
+    }
+
+    .page-6 {
+        background-image: url('https://github.com/nateainsworth/Group-24/blob/master/Group-24/wwwroot/images/shop-picture.png?raw=true');
+        height: 100vh;
+        margin-bottom: -140px;
+        background-position: 50%;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    .subscribe-row form {
+        width: 100%;
+    }
+
+
+
+    .page-footer {
+        background-color: #000000;
+    }
+
+    .page-footer-container {
+        color: #ffffff;
+        padding-left: 6%;
+        padding-right: 6%;
+    }
+
+
+
+    /* XL size and above */
+    @@media (min-width: 1200px) {
+        .subscribe-row {
+            margin-top: -60px;
+        }
+    }
+
+    .header-img {
+        margin-top: -100px;
+        width: 100%;
+        right: 0;
+    }
+
+    .mobile-header-img {
+        margin-top: -40px;
+        width: 100%;
+        right: 0;
+    }
+    .create-container{
+        padding-top: 30vh;
+    }
+</style>
+
+<link rel="stylesheet" href="~/css/site.css">
+<div class="row page-1">
+    <div id="main-header-panel-create-account" class=" order-2 order-xl-1 col-12 col-md-9 col-xl-6 verticle-align-left">
+        <div class="row">
+            <div class="col-8 create-container">
+                <h1>CREATE ACCOUNT</h1>
+                <form>
+                    <div class="form-group">
+                        <input type="email" placeholder="EMAIL ADDRESS" class="form-control" id="email-input" aria-describedby="emailHelp">
+                    </div>
+                    <div class="form-group">
+                        <input type="confim-email" placeholder="CONFIRM EMAIL ADDRESS" class="form-control" id="sonfirm-email-input">
+                    </div>
+                    <div class="form-group">
+                        <input type="PASSWORD" placeholder="PASSWORD" class="form-control" id="password-input">
+                    </div>
+                    <div class="form-group">
+                        <input type="confim-PASSWORD" placeholder="CONFIRM PASSWORD" class="form-control" id="sonfirm-password-input">
+                    </div>
+                    <div class="form-group">
+                        <input type="address" placeholder="ADDRESS" class="form-control" id="address-input">
+                    </div>
+                    <div class="form-group">
+                        <input type="postcode" placeholder="POST CODE" class="form-control" id="postcode-input">
+                    </div>
+                    <div id="action-buttons" class="row col-12">
+                        <button type="submit" class="btn btn-ouioui">CREATE</button>
+                    </div>
+                </form>
+            </div>
+            <div class="col-12">
+                <p style="margin: -1px;">LOGIN WITH:</p>
+            </div>
+            <div class="col-12">
+                <div class="row col-12">
+                    <button id="social-btn" class="col">
+                        <i class="fab fa-google"></i>
+                        <span style="padding: 0 20px 0 20px">GOOGLE</span>
+                    </button>
+                    <button id="social-btn" class="col">
+                        <i class="fab fa-facebook-square"></i>
+                        <span style="padding: 0 20px 0 20px">FACEBOOK</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="col-12 col-xl-6 order-1 order-xl-2" style="overflow: hidden;">
+        <img src="https://raw.githubusercontent.com/nateainsworth/Group-24/master/Group-24/wwwroot/images/Header-Img.png" alt="" class="d-none d-xl-block header-img">
+        <img src="https://github.com/nateainsworth/Group-24/blob/master/Group-24/wwwroot/images/header-mobile.png?raw=true" class="d-block d-xl-none header-img mobile-header-img" alt="">
+
+    </div>
+</div>
+</div>
+
+<div class="page-footer">
+    <div class="row page-footer-container">
+        <div class="col-12 col-md-6 col-xl-3 order-4 order-xl-1">
+            <p>
+                <a>Terms & Conditions</a><br />
+                <a>Returns Policy</a><br />
+                <a>Privacy Policy</a><br />
+                <a>Delivery Information</a>
+            </p>
+
+            <p>Phone: +230 5988 0400</p>
+        </div>
+        <div class="col-12 col-md-6 col-xl-3 order-3 order-xl-2">
+            <p>
+                Address:<br />
+                Harbour Front Building,<br />
+                President John Kennedy St,<br />
+                Port Louis,<br />
+                Mauritius
+            </p>
+        </div>
+        <div class="col-12 col-md-6=12 col-xl-3 row order-2 order-xl-3">
+            <div class="col-12"><p>Opening Hours:</p></div>
+            <div class="col-6"><p>Mon - Fri<br />Saturday<br />Sunday</p></div>
+            <div class="col-6 px-4"><p>10am - 5pm<br />10am - 5pm<br />10am - 1pm</p></div>
+        </div>
+        <div class="col-12 col-md-8 px-4 col-xl-3 row subscribe-row order-1 order-xl-4">
+            <h3>BE UP TO DATE WITH OUR NEWS!</h3>
+            <form class="form-group">
+                <input type="email" class="form-control mb-3" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="EMAIL">
+                <button class="btn btn-ouioui-secondary">SUBSCRIBE</button>
+            </form>
+        </div>
+    </div>
+</div>
+<!--
 <h2>CREATE ACCOUNT</h2>
 <input type="text" class="form-control" id="forename" placeholder="Forename" required autocomplete="off" />
 <br />
@@ -30,3 +252,5 @@
 <input type="text" class="form-control" id="phonenumber" placeholder="Phone number" required autocomplete="off" />
 <br />
 <button type="button" class="arc-btn sign-in-btn col-12" onclick="createAccount();">CONTINUE</button>
+
+    -->

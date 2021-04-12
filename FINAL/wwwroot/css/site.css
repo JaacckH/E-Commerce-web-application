@@ -598,6 +598,85 @@ li {
 
 /* END OF SHOP PAGE*/
 
+/* START OF LOGIN */
+
+#main-header-panel-create-account {
+    padding-left: 6%;
+    padding-right: 6%;
+}
+
+.margin-left-5px {
+    margin-left: 5px;
+}
+
+#login-panel {
+
+    padding-left: 6%;
+}
+
+    #login-panel [class*="row"] {
+        padding-bottom: 20px;
+    }
+
+    #login-panel h1 {
+        font-size: var(--text-size-large);
+    }
+
+
+
+.btn-ouioui {
+    transition: 0.3s;
+    background-color: var(--text-1);
+    color: var(--text-2);
+    border-radius: 10px;
+    padding: 2px 20px 2px 20px;
+    font-size: var(--text-size-reg);
+    font-weight: bold;
+    border: 2px solid var(--text-1);
+}
+
+    .btn-ouioui:hover {
+        background-color: var(--text-2);
+        color: var(--text-1);
+    }
+
+.btn-ouioui-secondary {
+    transition: 0.3s;
+    background-color: var(--text-2);
+    color: var(--text-1);
+    border-radius: 10px;
+    padding: 2px 20px 2px 20px;
+    font-size: var(--text-size-reg);
+    font-weight: bold;
+    border: 2px solid var(--text-1);
+}
+
+    .btn-ouioui-secondary:hover {
+        background-color: var(--text-1);
+        color: var(--text-2);
+    }
+
+
+#social-btn {
+    transition: 1s;
+    background-color: white;
+    color: black;
+    padding: 10px;
+    border: 1px solid grey;
+}
+
+    #social-btn:hover {
+        transition: 1s;
+        background-color: black;
+        color: white;
+    }
+
+#login-form {
+    text-align: left;
+}
+
+/* END OF LOGIN */
+
 /* START OF CHECKOUT PAGE */
 
 .cardd {

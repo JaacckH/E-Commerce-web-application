@@ -409,6 +409,115 @@ body {
 }
 
 
+
+
+/* FOR PRODUCT DETAIL PAGE*/
+
+.smaller-image {
+    padding: 10px;
+    transition: 1s;
+}
+
+    .smaller-image:hover {
+        padding: 7px;
+        transition: 1s;
+    }
+
+#product-info-container {
+    padding-bottom: 20px;
+}
+
+#product-page {
+    color: var(--text-1);
+}
+
+#Product-description {
+    padding-top: 10vh;
+}
+
+    #Product-description h2 {
+        font-size: var(--text-size-reg);
+        font-weight: bold;
+    }
+
+    #Product-description a {
+        text-decoration: none;
+        color: var(--text-1);
+    }
+
+#product-desc {
+    font-size: var(--text-size-sml);
+}
+
+.color-checkbox {
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+}
+
+    .color-checkbox .checkmark {
+        width: 100%;
+        height: 100%;
+        border: 2px solid #222;
+        display: inline-block;
+        border-radius: 2px;
+    }
+
+#green {
+    background: #a1c995;
+}
+
+#blue {
+    background: #95bbc9;
+}
+
+.color-checkbox input:checked + #green {
+    background: #a1c995 url(https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/White_check.svg/1200px-White_check.svg.png) center/70% no-repeat;
+}
+
+.color-checkbox input:checked + #blue {
+    background: #95bbc9 url(https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/White_check.svg/1200px-White_check.svg.png) center/70% no-repeat;
+}
+
+[type*='checkbox'] {
+    display: none;
+}
+
+#other-products h6 {
+    padding-top: 20px;
+    margin-bottom: -4px;
+}
+
+:root {
+    --bootstrap-border: #ced4da;
+}
+
+
+.quantity-input-group {
+    width: 150px;
+}
+
+    .quantity-input-group input {
+        text-align: center;
+    }
+
+    .quantity-input-group .btn {
+        border: 1px solid var(--bootstrap-border);
+    }
+
+        .quantity-input-group .btn:hover {
+            background-color: var(--background-3);
+            color: var(--text-2);
+        }
+
+.btn:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+/* END OF PRODUCT DETAIL */
+
+
 /* ------------------ site wide END ----------------- */
 
 /* ----- RESPONSIVE OPTIONS MUST STAY AT BOTTOM ----- */

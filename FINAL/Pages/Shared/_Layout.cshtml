@@ -85,115 +85,115 @@
     <script src="~/js/main.js" asp-append-version="true"></script>
 
 </head>
+<body>
 
 
-@if (Classes.UserFunctions.isAdmin(Classes.UserFunctions.getUserID(SessionID))
-&& HttpContextAccessor.HttpContext.Request.Path.ToString().Contains("/Admin"))
-{
-    <div id="admin-page-layout" class="row">
-        <div id="admin-menu" class="d-none d-md-block col-12 col-md-3 col-xl-2">
-            <div class="row no-style">
-                <div class="col-12 d-md-none menu-close" onclick="ToggleMenu()"><i class="fas fa-times fa-1-5x"></i></div>
-                <div class="col-12 menu-stats verticle-align">
-                    <div class="row verticle-align">
-                        <div class="col-4">
-                            <p>Orders<br />106</p>
-                        </div>
-                        <div class="col-4">
-                            <p>New<br />80</p>
-                        </div>
-                        <div class="col-4">
-                            <p>Active<br />32</p>
-                        </div>
+    @if (Classes.UserFunctions.isAdmin(Classes.UserFunctions.getUserID(SessionID))
+   && HttpContextAccessor.HttpContext.Request.Path.ToString().Contains("/Admin"))
+    {
+        <div id="admin-page-layout" class="row">
+            <div id="admin-menu" class="d-none d-md-block col-12 col-md-3 col-xl-2">
+                <div class="row no-style">
+                    <div class="col-12 d-md-none menu-close" onclick="ToggleMenu()"><i class="fas fa-times fa-1-5x"></i></div>
+                    <div class="col-12 menu-stats verticle-align">
+                        <div class="row verticle-align">
+                            <div class="col-4">
+                                <p>Orders<br />106</p>
+                            </div>
+                            <div class="col-4">
+                                <p>New<br />80</p>
+                            </div>
+                            <div class="col-4">
+                                <p>Active<br />32</p>
+                            </div>
 
+                        </div>
                     </div>
                 </div>
-            </div>
-            <a href="/Admin/Dashboard">
-                <div class="row admin-menu-item">
-                    <div class="col-2 menu-icons"><i class="fas fa-chart-line fa-2x"></i></div>
-                    <div class="col-10 menu-header ">
-                        <h6>Dashboard</h6>
+                <a href="/Admin/Dashboard">
+                    <div class="row admin-menu-item">
+                        <div class="col-2 menu-icons"><i class="fas fa-chart-line fa-2x"></i></div>
+                        <div class="col-10 menu-header ">
+                            <h6>Dashboard</h6>
 
+                        </div>
                     </div>
-                </div>
-            </a>
-            <a href="/Admin/Orders">
+                </a>
+                <a href="/Admin/Orders">
+                    <div class="row admin-menu-item">
+                        <div class="col-2 menu-icons"><i class="fas fa-clipboard-list fa-2x"></i></div>
+                        <div class="col-10 menu-header"><h6>Orders</h6></div>
+                    </div>
+                </a>
+                <a href="/Admin/Products">
+                    <div class="row admin-menu-item">
+                        <div class="col-2 menu-icons"><i class="fas fa-archive fa-2x"></i></div>
+                        <div class="col-10 menu-header"><h6>Products</h6></div>
+                    </div>
+                </a>
+                <a href="/Admin/Promotions">
+                    <div class="row admin-menu-item">
+                        <div class="col-2 menu-icons"><i class="fas fa-tag fa-2x"></i></div>
+                        <div class="col-10 menu-header"><h6>Pomotions</h6></div>
+                    </div>
+                </a>
+                <a href="/Admin/PageEdits">
+                    <div class="row admin-menu-item">
+                        <div class="col-2 menu-icons"><i class="fas fa-file-alt fa-2x"></i></div>
+                        <div class="col-10 menu-header"><h6>Pages</h6></div>
+                    </div>
+                </a>
+                <a href="/Admin/Messages">
+                    <div class="row admin-menu-item">
+                        <div class="col-2 menu-icons"><i class="fas fa-envelope fa-2x"></i></div>
+                        <div class="col-10 menu-header"><h6>Messages</h6></div>
+                    </div>
+                </a>
+                <a href="/Admin/Settings">
+                    <div class="row admin-menu-item">
+                        <div class="col-2 menu-icons"><i class="fas fa-cog fa-2x"></i></div>
+                        <div class="col-10 menu-header"><h6>Settings</h6></div>
+                    </div>
+                </a>
                 <div class="row admin-menu-item">
-                    <div class="col-2 menu-icons"><i class="fas fa-clipboard-list fa-2x"></i></div>
-                    <div class="col-10 menu-header"><h6>Orders</h6></div>
+                    <div class="col-2 menu-icons"><i class="fas fa-power-off fa-2x"></i></div>
+                    <div class="col-10 menu-header"><h6>Log Out</h6></div>
                 </div>
-            </a>
-            <a href="/Admin/Products">
-                <div class="row admin-menu-item">
-                    <div class="col-2 menu-icons"><i class="fas fa-archive fa-2x"></i></div>
-                    <div class="col-10 menu-header"><h6>Products</h6></div>
+
+            </div>
+            <div id="admin-page" class="col-12 d-md-block col-md-9 col-xl-10">
+
+
+                <div class="admin-pages">
+                    <div class="menu-toggle d-md-none d-block" onclick="ToggleMenu()"><i class="fas fa-bars fa-1-5x"></i></div>
+                    @RenderBody()
+                    @RenderSection("Scripts", required: false)
                 </div>
-            </a>
-            <a href="/Admin/Promotions">
-                <div class="row admin-menu-item">
-                    <div class="col-2 menu-icons"><i class="fas fa-tag fa-2x"></i></div>
-                    <div class="col-10 menu-header"><h6>Pomotions</h6></div>
-                </div>
-            </a>
-            <a href="/Admin/PageEdits">
-                <div class="row admin-menu-item">
-                    <div class="col-2 menu-icons"><i class="fas fa-file-alt fa-2x"></i></div>
-                    <div class="col-10 menu-header"><h6>Pages</h6></div>
-                </div>
-            </a>
-            <a href="/Admin/Messages">
-                <div class="row admin-menu-item">
-                    <div class="col-2 menu-icons"><i class="fas fa-envelope fa-2x"></i></div>
-                    <div class="col-10 menu-header"><h6>Messages</h6></div>
-                </div>
-            </a>
-            <a href="/Admin/Settings">
-                <div class="row admin-menu-item">
-                    <div class="col-2 menu-icons"><i class="fas fa-cog fa-2x"></i></div>
-                    <div class="col-10 menu-header"><h6>Settings</h6></div>
-                </div>
-            </a>
-            <div class="row admin-menu-item">
-                <div class="col-2 menu-icons"><i class="fas fa-power-off fa-2x"></i></div>
-                <div class="col-10 menu-header"><h6>Log Out</h6></div>
+
+            </div>
+        </div>
+
+
+    }
+    else
+    {
+
+        <div id="chatbox">
+            <div id="chatbox-header">
+                <p style="float:left; padding:3px; padding-left:10px; font-size:14pt;">Send us a message</p>
+                <p style="float:right; padding:3px; padding-right:10px; font-size:14pt;"><b>X</b></p>
+            </div>
+
+            <div id="messages" style="height:333px; width:100%; overflow:hidden scroll;">
+                @Html.Raw(Classes.Messages.getUserMessages(Classes.UserFunctions.getUserID(SessionID)))
+            </div>
+
+            <div class="message-input">
+                <input id="message-messageinput" type="text" style="border:none; height:28px; width:84%; margin:0% 5%; float:left;" />
+                <p onclick="sendMessage();" style="border:none; height:28px; width:6%; float:right; font-size:13pt; padding:1px; color:black;"><b>></b></p>
             </div>
 
         </div>
-        <div id="admin-page" class="col-12 d-md-block col-md-9 col-xl-10">
-
-
-            <div class="admin-pages">
-                <div class="menu-toggle d-md-none d-block" onclick="ToggleMenu()"><i class="fas fa-bars fa-1-5x"></i></div>
-                @RenderBody()
-                @RenderSection("Scripts", required: false)
-            </div>
-
-        </div>
-    </div>
-
-
-}
-else
-{
-
-    <div id="chatbox">
-        <div id="chatbox-header">
-            <p style="float:left; padding:3px; padding-left:10px; font-size:14pt;">Send us a message</p>
-            <p style="float:right; padding:3px; padding-right:10px; font-size:14pt;"><b>X</b></p>
-        </div>
-
-        <div id="messages" style="height:333px; width:100%; overflow:hidden scroll;">
-            @Html.Raw(Classes.Messages.getUserMessages(Classes.UserFunctions.getUserID(SessionID)))
-        </div>
-
-        <div class="message-input">
-            <input id="message-messageinput" type="text" style="border:none; height:28px; width:84%; margin:0% 5%; float:left;" />
-            <p onclick="sendMessage();" style="border:none; height:28px; width:6%; float:right; font-size:13pt; padding:1px; color:black;"><b>></b></p>
-        </div>
-
-    </div>
-    <body>
 
         <!-- if(not logged into admin { )-->
 
@@ -208,6 +208,7 @@ else
         @RenderSection("Scripts", required: false)
 
 
-    </body>
-}
+
+    }
+</body>
 

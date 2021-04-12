@@ -394,6 +394,8 @@ body {
     --text-2: #ffffff;
     --text-size-reg: calc(20px + (20 - 18) * ((100vw - 300px) / (1600 - 300)));
     --text-size-sml: calc(10px + (10 - 8) * ((100vw - 300px) / (1600 - 300)));
+    --text-size-large: calc(35px + (35 - 20) * ((100vw - 300px) / (1600 - 300)));
+    --text-size-xlarge: calc(60px + (60 - 20) * ((100vw - 300px) / (1600 - 300)));
 }
 
 .verticle-align {
@@ -403,12 +405,19 @@ body {
     justify-content: center;
 }
 
+.verticle-align-left {
+    display: flex;
+    align-items: center;
+}
+
 .no-style {
     padding: 0;
     margin: 0;
 }
 
-
+#action-buttons .btn {
+    margin-top: 5px;
+}
 
 
 /* FOR PRODUCT DETAIL PAGE*/
@@ -1089,3 +1098,135 @@ p {
     padding-top: 20px;
 }
 /* ----------------- Admin create promo Page END ------------- */
+
+/* ----------------- Start Of Home Page ------------- */
+
+.main-header .title {
+    font-size: var(--text-size-xlarge) !important;
+    font-weight: bold;
+    /*margin-bottom:10%;*/
+}
+
+.main-header p {
+    font-size: var(--text-size-reg) !important;
+    margin-bottom: 25%;
+}
+
+.social-icons {
+    width: 8rem;
+}
+
+#main-index-page {
+}
+
+
+
+#main-header-panel [class*="row"] {
+    padding-bottom: 20px;
+}
+
+#main-header-panel {
+    margin-top: 10%;
+    padding-left: 6%;
+    padding-right: 6%;
+}
+
+.page-2, .page-4 {
+    background-color: #a3ccc8;
+}
+
+
+.page-2, .page-4 {
+    width: 100%;
+    margin-top: 50px;
+    clip-path: polygon(0 90px, 100% 0%, 100% calc(100% - 90px), 0 100%);
+}
+
+.page-footer, .page-6 {
+    width: 100%;
+    margin-top: 50px;
+    clip-path: polygon(0 90px, 100% 0%, 100% 100%, 0 100%);
+}
+
+.page-2, .page-4 {
+    padding: 10% 0;
+}
+
+.page-footer {
+    padding: calc(3% + 90px) 0 3% 0;
+}
+
+.page-2-container .card {
+    height: 100%;
+}
+
+
+    .page-2-container .card h2 {
+        font-weight: bold;
+        text-align: center;
+    }
+
+
+.section-header {
+    font-weight: bold;
+    text-align: center;
+    font-size: var(--text-size-xlarge);
+}
+
+.main-buttons {
+    text-align: center;
+    margin-top: 5%;
+    font-size: (--text-size-large);
+}
+
+.page-6 {
+    background-image: url('https://github.com/nateainsworth/Group-24/blob/master/Group-24/wwwroot/images/shop-picture.png?raw=true');
+    height: 100vh;
+    margin-bottom: -140px;
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.subscribe-row form {
+    width: 100%;
+}
+
+
+
+.page-footer {
+    background-color: #000000;
+}
+
+.page-footer-container {
+    color: #ffffff;
+    padding-left: 6%;
+    padding-right: 6%;
+}
+
+
+
+/* XL size and above */
+@media (min-width: 1200px) {
+    .subscribe-row {
+        margin-top: -60px;
+    }
+}
+
+.header-img {
+    margin-top: -100px;
+    width: 100%;
+    right: 0;
+}
+
+.mobile-header-img {
+    margin-top: -40px;
+    width: 100%;
+    right: 0;
+}
+
+
+
+
+
+/* ----------------- END Of Home Page ------------- */

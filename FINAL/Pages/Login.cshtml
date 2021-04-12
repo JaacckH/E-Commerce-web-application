@@ -163,15 +163,15 @@
                     <h1>LOGIN</h1>
                     <form>
                         <div class="form-group">
-                            <input type="email" placeholder="EMAIL" class="form-control" id="email-input" aria-describedby="emailHelp">
+                            <input type="email" placeholder="EMAIL" class="form-control" id="useremail" aria-describedby="emailHelp" value="Jack@Jack.com" >
                         </div>
                         <div class="form-group">
 
-                            <input type="password" placeholder="PASSWORD" class="form-control" id="password-input">
+                            <input id="userpassword" type="password" placeholder="PASSWORD" class="form-control" value="JackPass">
                             <small id="passwordHelp" class="form-text text-muted">FORGOTTEN PASSWORD?</small>
                         </div>
                         <div id="action-buttons" class="row col-12">
-                            <button type="submit" class="btn btn-ouioui">Login</button>
+                            <button type="submit" class="btn btn-ouioui" onclick="login();">Login</button>
                             <button id="create-btn" class="btn btn-ouioui-secondary margin-left-5px">SIGN UP</button>
                         </div>
                     </form>

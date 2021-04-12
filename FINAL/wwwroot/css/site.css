@@ -377,6 +377,8 @@ table tbody tr th {
 
 body {
     font-family: 'Montserrat', sans-serif;
+    width: 100vw;
+    overflow-x: hidden !important;
 }
 
 /* 
@@ -396,6 +398,20 @@ body {
     --text-size-sml: calc(10px + (10 - 8) * ((100vw - 300px) / (1600 - 300)));
     --text-size-large: calc(35px + (35 - 20) * ((100vw - 300px) / (1600 - 300)));
     --text-size-xlarge: calc(60px + (60 - 20) * ((100vw - 300px) / (1600 - 300)));
+}
+
+a, a:hover {
+    color: #000000 !important;
+    text-decoration: none;
+}
+
+.nav-link, .navbar-brand {
+    font-weight: bold;
+    color: black !important;
+}
+        .page-name {
+    width: 100vw;
+    overflow: hidden;
 }
 
 .verticle-align {

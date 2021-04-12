@@ -89,7 +89,7 @@
 
 
     @if (Classes.UserFunctions.isAdmin(Classes.UserFunctions.getUserID(SessionID))
-   && HttpContextAccessor.HttpContext.Request.Path.ToString().Contains("/Admin"))
+  && HttpContextAccessor.HttpContext.Request.Path.ToString().Contains("/Admin"))
     {
         <div id="admin-page-layout" class="row">
             <div id="admin-menu" class="d-none d-md-block col-12 col-md-3 col-xl-2">
@@ -135,12 +135,6 @@
                     <div class="row admin-menu-item">
                         <div class="col-2 menu-icons"><i class="fas fa-tag fa-2x"></i></div>
                         <div class="col-10 menu-header"><h6>Pomotions</h6></div>
-                    </div>
-                </a>
-                <a href="/Admin/PageEdits">
-                    <div class="row admin-menu-item">
-                        <div class="col-2 menu-icons"><i class="fas fa-file-alt fa-2x"></i></div>
-                        <div class="col-10 menu-header"><h6>Pages</h6></div>
                     </div>
                 </a>
                 <a href="/Admin/Messages">
@@ -196,13 +190,44 @@
         </div>
 
         <!-- if(not logged into admin { )-->
-
+        <!--
         <div id="navbar" style="background-color:#222; width:100%; height:40px;">
             <h3 id="basket-counter" style="color:white; float:right; padding:0px; margin:10px;"
                 onclick="window.location.href = '/Basket';">
-                @Classes.Basket.getNumOfItems(SessionID)
+               
             </h3>
         </div>
+        -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">OUI OUI</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">HOME</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">SHOP</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            ABOUT US
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">LOGIN</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item login-logout-btn">
+                        <a class="nav-link" href="#" onclick="window.location.href = '/Basket';"><i class="fas fa-shopping-cart"></i>@Classes.Basket.getNumOfItems(SessionID)</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
 
         @RenderBody()
         @RenderSection("Scripts", required: false)

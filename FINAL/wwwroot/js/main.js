@@ -415,3 +415,154 @@ function RemoveMessage() {
 }
 
 /* END OF CHECKOUT PAGE */
+
+
+var ctx = document.getElementById('myChart').getContext('2d');
+
+var myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: ['Mon', 'Tue', 'Wed', 'Thurs', 'Fri', 'Sat', 'Sun'],
+        datasets: [{
+            label: 'Sales Value',
+            data: [12, 19, 3, 5, 2, 3, 20],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+
+
+/* ---------- Start Dounut ------------- */
+var ctx = document.getElementById("device-chart").getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'pie',
+    data: {
+        labels: ["Desktop", "Mobile", "Tablet"],
+
+        datasets: [{
+            label: '# of Votes',
+            data: [12, 19, 3],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(75, 192, 192, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(75, 192, 192, 1)'
+
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        elements: {
+            arc: {
+                roundedCornersFor: 0
+            }
+        },
+        segmentShowStroke: false,
+        responsive: true,
+        maintainAspectRatio: true,
+        legend: {
+            // display: true
+
+            labels: {
+                filter(legendItem, data) {
+                    // only show 2nd dataset in legend
+                    return legendItem.text.includes("Red");
+                }
+            }
+
+
+        },
+        tooltips: {
+            filter: function (tooltipItem, data) {
+                var label = data.labels[tooltipItem.index];
+                console.log(tooltipItem, data, label);
+                //alert(label);
+
+                /*if (label == "Yellow") {
+                  return false;
+                } else {
+                  return true;
+                }*/
+                return true;
+            },
+
+        }
+    }
+});
+/* ---------- End Dounut ----------- */
+
+StatsPercent('percentage-1', -20);
+StatsPercent('percentage-2', 80);
+StatsPercent('percentage-3', 47);
+
+function StatsPercent(stat, percent) {
+    if (percent < 0) {
+        var path = $('#' + stat).get(0);
+        var pathLen = path.getTotalLength();
+        var adjustedLen = 100 + percent;
+        path.setAttribute('stroke-dasharray', '0,' + adjustedLen + ',' + adjustedLen + ',' + pathLen);
+    } else {
+        var path = $('#' + stat).get(0);
+        var pathLen = path.getTotalLength();
+        var adjustedLen = percent * pathLen / 100;
+        path.setAttribute('stroke-dasharray', adjustedLen + ' ' + pathLen);
+    }
+
+    var parent_element = document.getElementById(stat + '-svg');
+
+    // check if class exists and remove before setting correct class for the updated figures 
+    CheckRemoveClass(parent_element, "color-red");
+    CheckRemoveClass(parent_element, "color-amber");
+    CheckRemoveClass(parent_element, "color-green");
+
+
+    if (percent < 50 && percent > 10) {
+        parent_element.classList.add("color-amber");
+    }
+    if (percent >= 50) {
+        parent_element.classList.add("color-green");
+    }
+    if (percent < 0) {
+        parent_element.classList.add("color-red");
+    }
+
+    var text_element = document.getElementById(stat + '-text');
+    text_element.innerHTML = percent + '%';
+
+}
+
+
+
+function CheckRemoveClass(elementName, className) {
+    if (elementName.classList.contains(className)) {
+        elementName.classList.remove(className);
+    }
+}

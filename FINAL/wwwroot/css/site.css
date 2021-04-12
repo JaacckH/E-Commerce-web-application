@@ -1248,3 +1248,86 @@ p {
 
 
 /* ----------------- END Of Home Page ------------- */
+
+
+/* ----------------- Start Dashboard  ------------- */
+
+#device-chart {
+}
+
+
+
+.stats-label {
+    text-align: center;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+}
+
+    .stats-label p {
+        margin: 0;
+    }
+
+.chart-svg {
+    position: relative;
+    max-width: 90px;
+    min-width: 40px;
+    flex: 1;
+}
+
+svg:not(:root) {
+    overflow: hidden;
+}
+
+.circular-chart.color-red .circle-bg {
+    stroke: #efefef;
+}
+
+.circular-chart.color-red .circle {
+    stroke: #fd6666;
+}
+
+.circular-chart.color-amber .circle-bg {
+    stroke: #efefef;
+}
+
+.circular-chart.color-amber .circle {
+    stroke: #ffc90b;
+}
+
+.circular-chart.color-green .circle-bg {
+    stroke: #efefef;
+}
+
+.circular-chart.color-green .circle {
+    stroke: #b5e71b;
+}
+
+.circle-bg {
+    fill: none;
+    stroke: #eee;
+    stroke-width: 1.2;
+}
+
+.circle {
+    fill: none;
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    -webkit-animation: progress 1s ease-out forwards;
+    animation: progress 1s ease-out forwards;
+    /*stroke-dasharray: 60 60 100;*/
+}
+
+.percentage {
+    fill: #000000;
+    font-size: 0.5em;
+    text-anchor: middle;
+    font-weight: 400;
+}
+
+.no-margin {
+    margin: 0 !important;
+    margin-bottom: 3rem !important;
+}
+
+/* ----------------- end Dashboard  ------------- */

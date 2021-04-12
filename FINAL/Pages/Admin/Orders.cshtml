@@ -3,122 +3,52 @@
 @{
 }
 
-<div id="admin-page-layout" class="row">
-    <div id="admin-menu" class="d-none d-md-block col-12 col-md-3 col-xl-2">
-        <div class="row no-style">
-            <div class="col-12 d-md-none menu-close" onclick="ToggleMenu()"><i class="fas fa-times fa-1-5x"></i></div>
-            <div class="col-12 menu-stats verticle-align">
-                <div class="row verticle-align">
-                    <div class="col-4">
-                        <p>Orders<br />106</p>
-                    </div>
-                    <div class="col-4">
-                        <p>New<br />80</p>
-                    </div>
-                    <div class="col-4">
-                        <p>Active<br />32</p>
-                    </div>
 
+<div id="admin-page" class="col-12 d-md-block col-md-9 col-xl-10">
+
+    <!-- start of main -->
+    <div class="admin-pages">
+        <div class="menu-toggle d-md-none d-block" onclick="ToggleMenu()"><i class="fas fa-bars fa-1-5x"></i></div>
+        <div class="row">
+            <div class="col-12">
+                <h6 class="title">Admin Panel</h6>
+                <h1>Orders</h1>
+                <hr />
+            </div>
+            <div id="search-area" class="row col-12">
+                <div class="col-12 col-md-6 col-lg-4 col-xl-3"><input class="form-control" id="search-rows" type="text" placeholder="Search.."></div>
+                <div class="col-12 col-md-6 col-lg-4 col-xl-3"><input class="form-control d-none" id="refine-search" type="text" placeholder="refined.."></div>
+            </div>
+            <div class="col-12 col-md-12">
+                <div id="data-header" class="row">
+                    <div class="col-4 col-md-2 col-xl-2">
+                        <b># Order ID</b>
+                    </div>
+                    <div class="d-none d-md-block col-5 col-md-4 col-xl-3">
+                        Date
+                    </div>
+                    <div class="d-none d-md-block col-5 col-md-3 col-xl-3">
+                        Order Total
+                    </div>
+                    <div class="d-none d-md-block col-5 col-md-3 col-xl-3">
+                        Status
+                    </div>
+                    <div class="d-none d-md-block col-5 col-md-1 col-xl-1">
+
+                    </div>
                 </div>
+                <!-- ******************* change all areas which say 105 to the the order ID *************** -->
+
+                @Html.Raw(Model.getOrders())
+
             </div>
         </div>
-        <a href="/Admin/Dashboard">
-            <div class="row admin-menu-item">
-                <div class="col-2 menu-icons"><i class="fas fa-chart-line fa-2x"></i></div>
-                <div class="col-10 menu-header ">
-                    <h6>Dashboard</h6>
 
-                </div>
-            </div>
-        </a>
-        <a href="/Admin/Orders">
-            <div class="row admin-menu-item">
-                <div class="col-2 menu-icons"><i class="fas fa-clipboard-list fa-2x"></i></div>
-                <div class="col-10 menu-header"><h6>Orders</h6></div>
-            </div>
-        </a>
-        <a href="/Admin/Products">
-            <div class="row admin-menu-item">
-                <div class="col-2 menu-icons"><i class="fas fa-archive fa-2x"></i></div>
-                <div class="col-10 menu-header"><h6>Products</h6></div>
-            </div>
-        </a>
-        <a href="/Admin/Promotions">
-            <div class="row admin-menu-item">
-                <div class="col-2 menu-icons"><i class="fas fa-tag fa-2x"></i></div>
-                <div class="col-10 menu-header"><h6>Pomotions</h6></div>
-            </div>
-        </a>
-        <a href="/Admin/PageEdits">
-            <div class="row admin-menu-item">
-                <div class="col-2 menu-icons"><i class="fas fa-file-alt fa-2x"></i></div>
-                <div class="col-10 menu-header"><h6>Pages</h6></div>
-            </div>
-        </a>
-        <a href="/Admin/Messages">
-            <div class="row admin-menu-item">
-                <div class="col-2 menu-icons"><i class="fas fa-envelope fa-2x"></i></div>
-                <div class="col-10 menu-header"><h6>Messages</h6></div>
-            </div>
-        </a>
-        <a href="/Admin/Settings">
-            <div class="row admin-menu-item">
-                <div class="col-2 menu-icons"><i class="fas fa-cog fa-2x"></i></div>
-                <div class="col-10 menu-header"><h6>Settings</h6></div>
-            </div>
-        </a>
-        <div class="row admin-menu-item">
-            <div class="col-2 menu-icons"><i class="fas fa-power-off fa-2x"></i></div>
-            <div class="col-10 menu-header"><h6>Log Out</h6></div>
-        </div>
 
     </div>
-        <div id="admin-page" class="col-12 d-md-block col-md-9 col-xl-10">
-
-        <!-- start of main -->
-        <div class="admin-pages">
-            <div class="menu-toggle d-md-none d-block" onclick="ToggleMenu()"><i class="fas fa-bars fa-1-5x"></i></div>
-            <div class="row">
-                <div class="col-12">
-                    <h6 class="title">Admin Panel</h6>
-                    <h1>Orders</h1>
-                    <hr />
-                </div>
-                <div id="search-area" class="row col-12">
-                    <div class="col-12 col-md-6 col-lg-4 col-xl-3"><input class="form-control" id="search-rows" type="text" placeholder="Search.."></div>
-                    <div class="col-12 col-md-6 col-lg-4 col-xl-3"><input class="form-control d-none" id="refine-search" type="text" placeholder="refined.."></div>
-                </div>
-                <div class="col-12 col-md-12">
-                    <div id="data-header" class="row">
-                        <div class="col-4 col-md-2 col-xl-2">
-                            <b># Order ID</b>
-                        </div>
-                        <div class="d-none d-md-block col-5 col-md-4 col-xl-3">
-                            Date
-                        </div>
-                        <div class="d-none d-md-block col-5 col-md-3 col-xl-3">
-                            Order Total
-                        </div>
-                        <div class="d-none d-md-block col-5 col-md-3 col-xl-3">
-                            Status
-                        </div>
-                        <div class="d-none d-md-block col-5 col-md-1 col-xl-1">
-
-                        </div>
-                    </div>
-                    <!-- ******************* change all areas which say 105 to the the order ID *************** -->
-                    
-                    @Html.Raw(Model.getOrders())
-
-                </div>
-            </div>
-
-
-        </div>
-        <!-- end of main -->
-    </div>
-
+    <!-- end of main -->
 </div>
+
 
 
 <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">

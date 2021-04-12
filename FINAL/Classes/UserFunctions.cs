@@ -13,26 +13,28 @@ namespace FINAL.Classes
         // Function to return an item of user's data
         public static String getUserDetails(String userID, String detail)
         {
-            SqlConnection conn = new SqlConnection();
-            conn.ConnectionString = DBFunctions.connectionString;
-            conn.Open();
-            SqlCommand query = conn.CreateCommand();
-            query.CommandText = "SELECT * FROM Users";
-            SqlDataReader reader = query.ExecuteReader();
-
-            while (reader.Read())
+            if (userID != null)
             {
-                if (reader["UserID"].ToString() == userID.ToString())
+                SqlConnection conn = new SqlConnection();
+                conn.ConnectionString = DBFunctions.connectionString;
+                conn.Open();
+                SqlCommand query = conn.CreateCommand();
+                query.CommandText = "SELECT * FROM Users";
+                SqlDataReader reader = query.ExecuteReader();
+
+                while (reader.Read())
                 {
-                    String result = reader[detail].ToString();
-                    conn.Close();
-                    return result;
+                    if (reader["UserID"].ToString() == userID.ToString())
+                    {
+                        String result = reader[detail].ToString();
+                        conn.Close();
+                        return result;
+                    }
                 }
+
+                conn.Close();
             }
-
-            conn.Close();
             return null;
-
         }
 
         public static Boolean isAdmin(String userID)

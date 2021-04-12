@@ -15,7 +15,7 @@ namespace Group_Project.Models
 
         public void onLoad()
         {
-            if (UserFunctions.userLoggedIn(HttpContext.Request.Cookies["SessionID"]))
+           /* if (UserFunctions.userLoggedIn(HttpContext.Request.Cookies["SessionID"]))
             {
                 String userID = UserFunctions.getUserID(HttpContext.Request.Cookies["SessionID"]);
                 SqlConnection conn = new SqlConnection();
@@ -39,6 +39,7 @@ namespace Group_Project.Models
                     }
                 }
             }
+           */
         }
 
         public IActionResult checkout()

@@ -393,3 +393,19 @@ $(".dropdown_material ul li").click(function () {
 });
 
 /* END OF SHOP */
+
+/* START OF CHECKOUT PAGE */
+
+function ToggleMenu() {
+    const element = document.querySelector("#delivery-menu");
+    element.classList.toggle("d-none");
+    const element2 = document.querySelector("#payment-menu");
+    element2.classList.toggle("d-none");
+}
+
+function RemoveMessage() {
+    const element = document.querySelector("#covid-notification");
+    element.classList.toggle("d-none");
+}
+
+/* END OF CHECKOUT PAGE */

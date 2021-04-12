@@ -598,6 +598,250 @@ li {
 
 /* END OF SHOP PAGE*/
 
+/* START OF CHECKOUT PAGE */
+
+.cardd {
+    transform-style: preserve-3d;
+    position: relative;
+    width: 100%;
+    height: 280px;
+    perspective: 500px;
+}
+
+    .cardd .face {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border-radius: 15px;
+        background: rgba(255,255,255, 0.05);
+        backdrop-filter: blur(10px);
+        transform: translateY(0deg);
+        transform-style: preserve-3d;
+        backface-visibility: hidden;
+        box-shadow: 0px 10px 15px rgba(0,0,0,0.1);
+        transition: 1s;
+    }
+
+        .cardd .face.front {
+            background: url("https://image.freepik.com/free-vector/blurred-background-design_1107-219.jpg");
+        }
+
+        .cardd .face.back {
+            background: url("https://image.freepik.com/free-vector/blurred-background-design_1107-219.jpg");
+        }
+
+    .cardd:hover .face.front {
+        transform: rotateY(-180deg);
+    }
+
+    .cardd .face.back {
+        transform: rotateY(180deg);
+    }
+
+    .cardd:hover > .face.back {
+        transform: rotateY(0deg);
+    }
+
+
+    .cardd .face.front::before {
+        content: '';
+        position: absolute;
+        bottom: 40px;
+        right: 40px;
+        width: 60px;
+        height: 60px;
+        background: #fff;
+        border-radius: 50%;
+        opacity: 0.5;
+    }
+
+    .cardd .face.front::after {
+        content: '';
+        position: absolute;
+        bottom: 40px;
+        right: 80px;
+        width: 60px;
+        height: 60px;
+        background: #fff;
+        border-radius: 50%;
+        opacity: 0.7;
+    }
+
+    .cardd .face.front .debit {
+        position: absolute;
+        left: 40px;
+        top: 30px;
+        color: #fff;
+        font-weight: 500;
+    }
+
+    .cardd .face.front .bank {
+        position: absolute;
+        right: 40px;
+        top: 25px;
+        color: #fff;
+        font-weight: 500;
+        font-style: italic;
+    }
+
+    .cardd .face.front .chip {
+        position: absolute;
+        top: 80px;
+        left: 50px;
+        max-width: 65px;
+    }
+
+    .cardd .face.front .cardd-number {
+        position: absolute;
+        bottom: 110px;
+        left: 40px;
+        color: #fff;
+        font-weight: 500;
+        letter-spacing: 6px;
+        font-size: 18px;
+        text-shadow: 0 2px 1px #0005;
+    }
+
+    .cardd .face.front .valid {
+        position: absolute;
+        bottom: 70px;
+        left: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #fff;
+        font-weight: 300;
+        line-height: 1em;
+        text-align: right;
+        font-size: 15px;
+    }
+
+        .cardd .face.front .valid span:last-child {
+            margin-left: 20px;
+            font-size: 14px;
+            font-weight: 400;
+            letter-spacing: 2px;
+        }
+
+    .cardd .face.front .cardd-holder {
+        position: absolute;
+        bottom: 30px;
+        left: 40px;
+        color: #fff;
+        font-weight: 300;
+        letter-spacing: 2px;
+        font-size: 14px;
+    }
+
+    .cardd .face.back .black-bar {
+        position: absolute;
+        width: 100%;
+        height: 60px;
+        background: black;
+        top: 40px;
+    }
+
+    .cardd .face.back .ccvaddon {
+        position: absolute;
+        top: 120px;
+        left: 30px;
+    }
+
+        .cardd .face.back .ccvaddon p {
+            color: white;
+            font-weight: 400;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .cardd .face.back .ccvaddon .white-bar {
+            position: relative;
+            width: 102%;
+            height: 40px;
+            background: white;
+            margin-top: 5px;
+        }
+
+        .cardd .face.back .ccvaddon .ccv {
+            position: relative;
+            top: -35px;
+            left: 100%;
+            width: 50px;
+            height: 30px;
+            background: #ccc;
+            color: #111;
+            font-weight: 600;
+            letter-spacing: 3px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+    .cardd .face.back .random-text {
+        position: absolute;
+        bottom: 30px;
+        left: 30px;
+        right: 30px;
+        color: white;
+        font-size: 8px;
+        line-height: 1.4em;
+        font-weight: 300;
+    }
+
+
+.btn-order-page {
+    transition: 0.3s;
+    background-color: var(--text-2);
+    color: var(--text-1);
+    border-radius: 5px;
+    padding: 2px 20px 2px 20px;
+    font-size: var(--text-size-small);
+    border: 1px solid var(--text-1);
+}
+
+    .btn-order-page:hover {
+        background-color: var(--text-1);
+        color: var(--text-2);
+    }
+
+.spacing_top {
+    padding-top: 10px;
+}
+
+.card_date {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+p {
+    margin-bottom: 1px;
+}
+
+.order_details {
+    border: 1px solid grey;
+    border-radius: 10px;
+}
+
+.delivery_container {
+    border: 1px solid var(--text-1);
+    padding: 10px;
+    border-radius: 10px;
+}
+
+
+.covid-cont {
+    border-radius: 5px;
+    background-color: white;
+    border: 1px solid var(--text-1);
+    width: 100%;
+    z-index: 20;
+    bottom: 0;
+    padding: 10px;
+    position: fixed;
+}
+
+/* END OF CHECKOUT PAGE */
 
 /* ------------------ site wide END ----------------- */
 

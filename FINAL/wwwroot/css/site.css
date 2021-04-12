@@ -366,7 +366,9 @@ table tbody tr th {
         padding: 0;
     }
 
-
+#chatbox {
+    display: none;
+}
 /* --------------- site wide START ----------------- */
 .main {
     width: 80vw;

@@ -9,6 +9,7 @@ using Microsoft.Data.SqlClient;
 
 namespace Group_Project.Models
 {
+
     public class IndexModel : PageModel
     {
         public String getProductShowcase()

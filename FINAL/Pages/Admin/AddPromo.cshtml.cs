@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace FINAL.Pages.Admin
 {
-    public class PageEditsModel : PageModel
+    public class AddPromoModel : PageModel
     {
         public void OnGet()
         {

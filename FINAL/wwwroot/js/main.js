@@ -6,7 +6,13 @@ $('#category-select option').mousedown(function (e) {
 });
 
 
+
 $(document).ready(function () {
+    if ($('#datetimepicker6').length > 0) {
+        $('#datetimepicker6').datetimepicker();
+        $('#datetimepicker7').datetimepicker();
+    }
+
 var productTags = ['Teal', 'Blue', 'White', 'Long', 'Summer', 'Autumn', 'Winter', 'Warm', 'V-neck', 'Relaxed-Fit', 'long-Sleeve'
 ];
 

@@ -1,0 +1,68 @@
+﻿@page
+@model FINAL.Pages.Admin.AddPromoModel
+@{
+}
+<div class="row">
+    <div class="col-12">
+        <h6 class="title">Admin Panel</h6>
+        <h1>Create Promotion</h1>
+        <hr />
+    </div>
+    <div class="col-12 col-md-12">
+        <form>
+            <div class="row">
+                <div class="col-md-6">
+                    <label>Promo Code</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="inputEmail4" placeholder="Spring10">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" type="button" id="inputEmail4">Generate</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label for="inputGroupSelect01">Status</label>
+                    <div class="form-group">
+                        <select class="custom-select" id="inputGroupSelect01">
+                            <option value="0" selected>Active</option>
+                            <option value="1">Archived</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <label>Promo Type:</label>
+                    <div class="row">
+                        <div class="input-group mb-3 col-6">
+                            <input type="text" aria-label="First name" class="form-control col-8" value="10">
+                            <select class="custom-select col-4" id="inputGroupSelect01">
+                                <option value="0" selected>%</option>
+                                <option value="1">Rs</option>
+                            </select>
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary" type="button" id="button-addon2">Update</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class='col-md-6'>
+                    <label>Start Date</label>
+                   
+                    <input type="text" class="form-control" id="datetimepicker6">
+
+
+                </div>
+                <div class='col-md-6'>
+                    <label>End Date</label>
+                    
+                    <input type="text" class="form-control" id="datetimepicker7">
+
+
+                </div>
+            </div>
+            <div class="create-btn-cont">
+                <button class="btn btn-secondary">Create</button>
+            </div>
+        </form>
+
+    </div>
+</div>

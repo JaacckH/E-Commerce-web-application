@@ -991,3 +991,22 @@ p {
 
 
 /* ----------------- Admin Settings Page END ------------- */
+
+/* ----------------- Admin Message Page Start ------------- */
+
+.replies-section {
+    background-color: var(--background-2);
+    padding: 15px !important;
+    border-radius: 5px;
+}
+
+
+
+
+/* ----------------- Admin Message Page END ------------- */
+
+/* ----------------- Admin create promo Page Start ------------- */
+.create-btn-cont {
+    padding-top: 20px;
+}
+/* ----------------- Admin create promo Page END ------------- */

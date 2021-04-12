@@ -1,0 +1,191 @@
+﻿@page
+@model FINAL.Pages.ShopModel
+@{
+}
+
+<link rel="stylesheet" href="~/css/site.css">
+<script src="~/js/main.js"></script>
+
+<!-- start of nav -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">OUI OUI</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="#">HOME</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">SHOP</a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link" href="#">
+                    ABOUT US
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">LOGIN</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item login-logout-btn">
+                <a class="nav-link" href="#"><i class="fas fa-shopping-cart"></i>{QUANTITY}</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<!-- end of nav-->
+<!-- start of main -->
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-12" id="Shop-text">
+            <h1>SHOP</h1>
+        </div>
+    </div>
+
+    <div class="col-12">
+        <div class="col-12">
+            <div class="row">
+                <div class="col-6 "><div class="col-1"><a onclick="ToggleFilter();"><p style="cursor: pointer;">Filter</p></a></div></div>
+                <div class="col-6"><div class="col-12 col-md-6 col-lg-6 col-xl-6" style="float:right;"><input class="form-control" id="search-rows" type="text" placeholder="Search.."></div></div>
+
+            </div>
+            <div id="filter-menu" class="row d-none">
+                <div class="col-12">
+                    <div class="row">
+                        <div class="col-3">
+                            <div class="dropdown dropdown_size">
+                                <div class="def_op def_op_size">Size</div>
+                                <ul>
+                                    <li>Small</li>
+                                    <li>Medium</li>
+                                    <li>Large</li>
+                                    <li>XLarge</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="dropdown dropdown_category">
+                                <div class="def_op def_op_category">Category</div>
+                                <ul>
+                                    <li>Iron</li>
+                                    <li>Gold</li>
+                                    <li>Silk</li>
+                                    <li>Garbage</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="col-3">
+                            <div class="dropdown dropdown_color">
+                                <div class="def_op def_op_color">Color</div>
+                                <ul>
+                                    <li>white</li>
+                                    <li>green</li>
+                                    <li>red</li>
+                                    <li>orange</li>
+                                    <li>blue</li>
+                                </ul>
+                            </div>
+                        </div>
+
+
+                        <div class="col-3">
+                            <div class="dropdown dropdown_material">
+                                <div class="def_op def_op_material">Material</div>
+                                <ul>
+                                    <li>Silk</li>
+                                    <li>Cotton</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-12 col-md-6 col-xl-3" id="product-container">
+                    <img src="https://i.pinimg.com/564x/05/53/ca/0553cadabd0b7d23fb8b7d07d02b0680.jpg" alt="" id="shop-picture">
+                    <p>Long Sleeve Dress <br /> ₹ 800</p>
+                </div>
+
+
+
+                <div class="col-12 col-md-6 col-xl-3" id="product-container">
+                    <img src="https://images.asos-media.com/products/asos-edition-broderie-milkmaid-dress/11987063-1-mustard?$XXL$&wid=513&fit=constrain" alt="" id="shop-picture">
+                    <p>Long Sleeve Dress <br /> ₹ 800</p>
+                </div>
+                <div class="col-12 col-md-6 col-xl-3" id="product-container">
+                    <img src="https://images.asos-media.com/products/asos-edition-garden-floral-embroidered-maxi-dress/12622906-1-multi?$XXL$&wid=513&fit=constrain" alt="" id="shop-picture">
+                    <p>Long Sleeve Dress <br /> ₹ 800</p>
+                </div>
+                <div class="col-12 col-md-6 col-xl-3" id="product-container">
+                    <img src="https://images.asos-media.com/products/asos-design-long-sleeve-waterfall-deep-plunge-midi-dress/9248520-1-orange?$XXL$&wid=513&fit=constrain" alt="" id="shop-picture">
+                    <p>Long Sleeve Dress <br /> ₹ 800</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-md-6 col-xl-3" id="product-container">
+                    <img src="https://images.asos-media.com/products/asos-edition-ciara-sequin-kimono-sleeve-wedding-dress/11023434-2?$XXL$&wid=513&fit=constrain" alt="" id="shop-picture">
+                    <p>Long Sleeve Dress <br /> ₹ 800</p>
+                </div>
+                <div class="col-12 col-md-6 col-xl-3" id="product-container">
+                    <img src="https://images.asos-media.com/products/asos-design-long-sleeve-midi-dress-with-obi-belt-in-green/14448334-1-antiquegreen?$n_480w$&wid=476&fit=constrain" alt="" id="shop-picture">
+                    <p>Long Sleeve Dress <br /> ₹ 800</p>
+                </div>
+                <div class="col-12 col-md-6 col-xl-3" id="product-container">
+                    <img src="https://images.asos-media.com/products/asos-design-pleated-cami-midi-dress-with-drawstring-waist-in-forest-green/14093179-1-forestgreen?$n_480w$&wid=476&fit=constrain" alt="" id="shop-picture">
+                    <p>Long Sleeve Dress <br /> ₹ 800</p>
+                </div>
+                <div class="col-12 col-md-6 col-xl-3" id="product-container">
+                    <img src="https://cdn.mos.cms.futurecdn.net/ZFUJ2BzruvzKFrUJyEvHDY.jpg" alt="" id="shop-picture">
+                    <p>Long Sleeve Dress <br /> ₹ 800</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-md-6 col-xl-3" id="product-container">
+                    <img src="https://i.pinimg.com/564x/05/53/ca/0553cadabd0b7d23fb8b7d07d02b0680.jpg" alt="" id="shop-picture">
+                    <p>Long Sleeve Dress <br /> ₹ 800</p>
+                </div>
+                <div class="col-12 col-md-6 col-xl-3" id="product-container">
+                    <img src="https://images.asos-media.com/products/asos-edition-broderie-milkmaid-dress/11987063-1-mustard?$XXL$&wid=513&fit=constrain" alt="" id="shop-picture">
+                    <p>Long Sleeve Dress <br /> ₹ 800</p>
+                </div>
+                <div class="col-12 col-md-6 col-xl-3" id="product-container">
+                    <img src="https://images.asos-media.com/products/asos-edition-garden-floral-embroidered-maxi-dress/12622906-1-multi?$XXL$&wid=513&fit=constrain" alt="" id="shop-picture">
+                    <p>Long Sleeve Dress <br /> ₹ 800</p>
+                </div>
+                <div class="col-12 col-md-6 col-xl-3" id="product-container">
+                    <img src="https://images.asos-media.com/products/asos-design-long-sleeve-waterfall-deep-plunge-midi-dress/9248520-1-orange?$XXL$&wid=513&fit=constrain" alt="" id="shop-picture">
+                    <p>Long Sleeve Dress <br /> ₹ 800</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-md-6 col-xl-3" id="product-container">
+                    <img src="https://images.asos-media.com/products/asos-edition-ciara-sequin-kimono-sleeve-wedding-dress/11023434-2?$XXL$&wid=513&fit=constrain" alt="" id="shop-picture">
+                    <p>Long Sleeve Dress <br /> ₹ 800</p>
+                </div>
+                <div class="col-12 col-md-6 col-xl-3" id="product-container">
+                    <img src="https://images.asos-media.com/products/asos-design-long-sleeve-midi-dress-with-obi-belt-in-green/14448334-1-antiquegreen?$n_480w$&wid=476&fit=constrain" alt="" id="shop-picture">
+                    <p>Long Sleeve Dress <br /> ₹ 800</p>
+                </div>
+                <div class="col-12 col-md-6 col-xl-3" id="product-container">
+                    <img src="https://images.asos-media.com/products/asos-design-pleated-cami-midi-dress-with-drawstring-waist-in-forest-green/14093179-1-forestgreen?$n_480w$&wid=476&fit=constrain" alt="" id="shop-picture">
+                    <p>Long Sleeve Dress <br /> ₹ 800</p>
+                </div>
+                <div class="col-12 col-md-6 col-xl-3" id="product-container">
+                    <img src="https://cdn.mos.cms.futurecdn.net/ZFUJ2BzruvzKFrUJyEvHDY.jpg" alt="" id="shop-picture">
+                    <p>Long Sleeve Dress <br /> ₹ 800</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- end of main -->

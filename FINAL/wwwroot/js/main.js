@@ -342,3 +342,54 @@ function incrementquantity(amount) {
 }
 /* --------- end of product detail page ---------*/
 
+/* SHOP */
+
+function ToggleFilter() {
+    const element = document.querySelector("#filter-menu");
+    element.classList.toggle("d-none");
+}
+
+$(".def_op_size").click(function () {
+    $(".dropdown_size ul").addClass("active");
+});
+
+$(".dropdown_size ul li").click(function () {
+    var text = $(this).text();
+    $(".def_op_size").text(text);
+    $(".dropdown_size ul").removeClass("active");
+});
+
+
+$(".def_op_category").click(function () {
+    $(".dropdown_category ul").addClass("active");
+});
+
+$(".dropdown_category ul li").click(function () {
+    var text = $(this).text();
+    $(".def_op_category").text(text);
+    $(".dropdown_category ul").removeClass("active");
+});
+
+
+$(".def_op_color").click(function () {
+    $(".dropdown_color ul").addClass("active");
+});
+
+$(".dropdown_color ul li").click(function () {
+    var text = $(this).text();
+    $(".def_op_color").text(text);
+    $(".dropdown_color ul").removeClass("active");
+});
+
+
+$(".def_op_material").click(function () {
+    $(".dropdown_material ul").addClass("active");
+});
+
+$(".dropdown_material ul li").click(function () {
+    var text = $(this).text();
+    $(".def_op_material").text(text);
+    $(".dropdown_material ul").removeClass("active");
+});
+
+/* END OF SHOP */

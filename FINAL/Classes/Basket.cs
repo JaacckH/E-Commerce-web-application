@@ -113,6 +113,7 @@ namespace FINAL.Classes
                 }
             }
 
+            conn.Close();
             return html;
         }
 
@@ -157,13 +158,27 @@ namespace FINAL.Classes
 
                     for (int i = 0; i < quantity; i++)
                     {
-                        products.Add(int.Parse(reader["StockID"].ToString()));
+                        int product = int.Parse(reader["StockID"].ToString());
+                        if (!arrayContains(products, product))
+                        products.Add(product);
                     }
                 }
             }
 
             conn.Close();
             return products;
+        }
+
+        public static Boolean arrayContains(List<int> list, int item)
+        {
+            foreach(int num in list)
+            {
+                if (num == item)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }

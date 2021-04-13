@@ -36,7 +36,27 @@ namespace FINAL.Classes
         public static String getMainProductHtml(String productID)
         {
             String baseString = File.ReadAllText(Environment.CurrentDirectory + "/HTML/PRODUCTMAIN.html");
-            String price = "", imagePath = "", description = "", name = "", id = "", sizeHtml = "";
+            String price = "", imagePath = "", description = "", name = "", id = "", sizeHtml = "", maxQuantity = "";
+
+            SqlConnection connSize = new SqlConnection();
+            connSize.ConnectionString = DBFunctions.connectionString;
+            connSize.Open();
+            SqlCommand querySize = connSize.CreateCommand();
+            querySize.CommandText = "SELECT * FROM Stock";
+            SqlDataReader readerSize = querySize.ExecuteReader();
+
+            while (readerSize.Read())
+            {
+                if (readerSize["ProductID"].ToString() == productID
+                    && readerSize["Available"].ToString() != "False"
+                    && int.Parse(readerSize["Quantity"].ToString()) > 0)
+                {
+                    maxQuantity = readerSize["Quantity"].ToString();
+                    sizeHtml = "<option value=\"" + readerSize["StockID"] + "\">" + readerSize["SizeID"] + "</option>" + sizeHtml;
+                }
+            }
+
+            connSize.Close();
 
             SqlConnection conn = new SqlConnection();
             conn.ConnectionString = DBFunctions.connectionString;
@@ -49,25 +69,6 @@ namespace FINAL.Classes
             {
                 if (reader["ProductID"].ToString() == productID)
                 {
-                    SqlConnection connSize = new SqlConnection();
-                    connSize.ConnectionString = DBFunctions.connectionString;
-                    connSize.Open();
-                    SqlCommand querySize = connSize.CreateCommand();
-                    querySize.CommandText = "SELECT * FROM Stock";
-                    SqlDataReader readerSize = querySize.ExecuteReader();
-
-                    while (readerSize.Read())
-                    {
-                        if (readerSize["ProductID"].ToString() == productID
-                            && readerSize["Available"].ToString() != "False"
-                            && int.Parse(readerSize["Quantity"].ToString()) > 0)
-                        {
-                            sizeHtml += "<option value=\"" + readerSize["StockID"] + "\">" + readerSize["SizeID"] + "</option>";
-                        }
-                    }
-
-                    connSize.Close();
-
                     price = reader["Price"].ToString();
                     description = reader["Description"].ToString();
                     name = reader["Name"].ToString();
@@ -81,7 +82,8 @@ namespace FINAL.Classes
                 .Replace("{NAME}", name).Replace("{DESCRIPTION}", description)
                 .Replace("{IMAGE}", imagePath)
                 .Replace("{ID}", id.ToString())
-                .Replace("{SIZES}", sizeHtml);
+                .Replace("{SIZES}", sizeHtml)
+                .Replace("{MAXQUANTITY}", maxQuantity);
 
             return baseString;
         }

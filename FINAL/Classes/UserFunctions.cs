@@ -142,6 +142,7 @@ namespace FINAL.Classes
                 }
             }
 
+            conn.Close();
             return null;
         }
 
@@ -164,6 +165,7 @@ namespace FINAL.Classes
                 }
             }
 
+            conn.Close();
             return null;
         }
 

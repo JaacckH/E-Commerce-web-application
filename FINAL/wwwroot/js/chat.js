@@ -1,6 +1,7 @@
 ﻿
 var connection = new signalR.HubConnectionBuilder().withUrl("/chathub").build();
 connection.start();
+var maxQuantity = 10;
 
 setTimeout(300, setConnectionID);
 
@@ -30,6 +31,11 @@ connection.on("AppendDelivery", function (content, div) {
 
 connection.on("removeContainer", function (id) {
     document.getElementById('basket-product-' + id).outerHTML = "";
+});
+
+connection.on("setMaxQuantity", function (quantity) {
+    document.getElementById('quantityvalue').value = "1";
+    maxQuantity = parseInt(quantity);
 });
 
 function sendMessage() {
@@ -146,4 +152,11 @@ function deleteCategory(id) {
     connection.invoke("deleteCategory", getSessionID(), id);
     var cat = document.getElementById('category-line-' + id);
     cat.parentNode.removeChild(cat);
+}
+
+function updateQuantity() {
+    if (window.location.href.toString().includes("/Product")) {
+        var stockID = document.getElementById('input-size').value;
+        connection.invoke("updateQuantity", stockID);
+    }
 }

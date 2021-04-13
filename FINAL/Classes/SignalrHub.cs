@@ -228,5 +228,11 @@ namespace FINAL.Classes
                 sendSuccessAlert(Context.ConnectionId, "Email Template Updated");
             }
         }
+
+        public async Task updateQuantity(String stockID)
+        {
+            int maxQuantity = int.Parse(Stock.getStockDetail(int.Parse(stockID), "Quantity"));
+            await Clients.Client(Context.ConnectionId).SendAsync("setMaxQuantity", maxQuantity);
+        }
     }
 }

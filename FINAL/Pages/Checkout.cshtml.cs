@@ -11,7 +11,7 @@ namespace Group_Project.Models
 {
     public class CheckoutModel : PageModel
     {
-        public String name, addressline1, postcode, phonenumber, promocode, cardnum, expiry, cv2;
+        public String name, addressline1, postcode, phonenumber, promocode, cardnum, expiry, cv2, email;
 
         public IActionResult checkout()
         {
@@ -22,9 +22,14 @@ namespace Group_Project.Models
                 postcode = HttpContext.Request.Form["postcode"];
                 phonenumber = HttpContext.Request.Form["phonenumber"];
                 promocode = HttpContext.Request.Form["promocode"];
-                cardnum = HttpContext.Request.Form["cardnumber"];
-                expiry = HttpContext.Request.Form["expiry"];
+
+                cardnum = HttpContext.Request.Form["cardnumber1"] + HttpContext.Request.Form["cardnumber2"] +
+                    HttpContext.Request.Form["cardnumber3"] + HttpContext.Request.Form["cardnumber4"];
+
+                expiry = HttpContext.Request.Form["expiry1"] + "/" + HttpContext.Request.Form["expiry2"];
                 cv2 = HttpContext.Request.Form["cv2"];
+                email = HttpContext.Request.Form["email"];
+
 
                 String userID = UserFunctions.getUserID(HttpContext.Request.Cookies["SessionID"]);
                 int price = Basket.getTotalPrice(userID);
@@ -43,9 +48,9 @@ namespace Group_Project.Models
                     }
 
                 }
+                //Response.Redirect("/");
             }
             catch { }
-
             return null;
         }
 

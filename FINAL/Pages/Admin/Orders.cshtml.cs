@@ -67,7 +67,7 @@ namespace FINAL.Pages.Admin
                         {
                             String baseString = System.IO.File.ReadAllText(Environment.CurrentDirectory + "/HTML/ORDERS/ORDER_PRODUCTS.html");
                             baseString = baseString.Replace("{PRODUCTNAME}", reader2["Name"].ToString()).Replace("{QUANTITY}", reader["Quantity"].ToString())
-                                .Replace("{SIZE}", "Size")
+                                .Replace("{SIZE}", reader["Size"].ToString())
                                 .Replace("{COLOR}", "Color")
                                 .Replace("{PRICE}", reader["PurchasePrice"].ToString());
                             html += baseString;

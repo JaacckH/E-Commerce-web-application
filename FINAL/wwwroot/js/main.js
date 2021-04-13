@@ -321,29 +321,6 @@ function AddCategoryOLD() {
 $('#admin-settings-page .twitter-typeahead').addClass('sticky-top');
 
 
-/* ---------- admin settings page end ---------------- */
-
-/* --------- product detail page ---------*/
-function lowerQuantity() {
-    var currentquantity = document.getElementById("quantityvalue").value;
-    if (currentquantity > 1) {
-        currentquantity--;
-    }
-    // also sent quantity to the hub
-    document.getElementById("quantityvalue").value = currentquantity;
-}
-function incrementquantity(amount) {
-    amount = 5;
-    var currentquantity = document.getElementById("quantityvalue").value;
-    if (currentquantity < amount) { // the five is replaced with the actual quantity
-        currentquantity++;
-    }
-    // also sent quantity to the hub
-    document.getElementById("quantityvalue").value = currentquantity;
-}
-/* --------- end of product detail page ---------*/
-
-/* SHOP */
 
 function ToggleFilter() {
     const element = document.querySelector("#filter-menu");
@@ -578,9 +555,8 @@ function lowerQuantity() {
     document.getElementById("quantityvalue").value = currentquantity;
 }
 function incrementquantity(amount) {
-    amount = 5;
     var currentquantity = document.getElementById("quantityvalue").value;
-    if (currentquantity < amount) { // the five is replaced with the actual quantity
+    if (currentquantity < maxQuantity) { // the five is replaced with the actual quantity
         currentquantity++;
     }
     // also sent quantity to the hub

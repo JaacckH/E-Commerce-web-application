@@ -41,10 +41,10 @@ function setConnectionID() {
     connection.invoke("setConnectionID", getSessionID());
 }
 
-function addToBasket(id) {
-    var quantity = document.getElementById('product-quantity-select-' + id).value;
-    var sessionID = getSessionID();
-    var arg = sessionID + "," + id + "," + quantity;
+function addToBasket() {
+    var quantity = document.getElementById('quantityvalue').value;
+    var id = document.getElementById('input-size').value;
+    var arg = getSessionID() + "," + id + "," + quantity;
     connection.invoke("addToBasket", arg);
 }
 

@@ -13,40 +13,11 @@ namespace Group_Project.Models
     {
         public String name, addressline1, postcode, phonenumber, promocode, cardnum, expiry, cv2;
 
-        public void onLoad()
-        {
-           /* if (UserFunctions.userLoggedIn(HttpContext.Request.Cookies["SessionID"]))
-            {
-                String userID = UserFunctions.getUserID(HttpContext.Request.Cookies["SessionID"]);
-                SqlConnection conn = new SqlConnection();
-                conn.ConnectionString = DBFunctions.connectionString;
-                conn.Open();
-                SqlCommand query = conn.CreateCommand();
-                query.CommandText = "SELECT * FROM Users";
-                SqlDataReader reader = query.ExecuteReader();
-
-                while (reader.Read())
-                {
-                    if (reader["UserID"].ToString() == userID)
-                    {
-                        name = reader["Forename"] + " " + reader["Surname"];
-                        addressline1 = reader["AddressLine1"].ToString();
-                        postcode = reader["Postcode"].ToString();
-                        phonenumber = reader["PhoneNumber"].ToString();
-                        cardnum = reader["CardNumber"].ToString();
-                        expiry = reader["Expiry"].ToString();
-                        cv2 = reader["CV2"].ToString();
-                    }
-                }
-            }
-           */
-        }
-
         public IActionResult checkout()
         {
             try
             {
-                name = HttpContext.Request.Form["name"];
+                name = HttpContext.Request.Form["name"] + " " + HttpContext.Request.Form["surname"];
                 addressline1 = HttpContext.Request.Form["addressline1"];
                 postcode = HttpContext.Request.Form["postcode"];
                 phonenumber = HttpContext.Request.Form["phonenumber"];
@@ -64,7 +35,7 @@ namespace Group_Project.Models
 
                     if (Payment.isSuccessful(price, cardnum, cv2, expiry))
                     {
-                        Orders.processOrder(Basket.getProductIDs(userID), userID, promocode, price, cardnum, cv2, expiry, name, addressline1, postcode, phonenumber);
+                        Orders.processOrder(Basket.getStockIDs(userID), userID, promocode, price, cardnum, cv2, expiry, name, addressline1, postcode, phonenumber);
                     }
                     else
                     {
@@ -92,18 +63,20 @@ namespace Group_Project.Models
             {
                 if (reader["UserID"].ToString() == UserFunctions.getUserID(SessionID))
                 {
-                    html += getProductHtml(reader["ProductID"].ToString(),
-                        Basket.getItemQuantity(reader["UserID"].ToString(), reader["ProductID"].ToString()));
+                    html += getProductHtml(int.Parse(reader["StockID"].ToString()),
+                        Basket.getItemQuantity(reader["UserID"].ToString(), int.Parse(reader["StockID"].ToString())));
                 }
             }
 
             return html;
         }
 
-        public static String getProductHtml(String productID, int quantity)
+        public static String getProductHtml(int StockID, int quantity)
         {
             String baseString = System.IO.File.ReadAllText(Environment.CurrentDirectory + "/HTML/PRODUCTCHECKOUT.html");
             String price = "", imagePath = "", name = "";
+
+            String productID = Stock.getStockDetail(StockID, "ProductID");
 
             SqlConnection conn = new SqlConnection();
             conn.ConnectionString = DBFunctions.connectionString;
@@ -125,7 +98,7 @@ namespace Group_Project.Models
             conn.Close();
             baseString = baseString.Replace("{PRICE}", price).Replace("{IMAGE}", imagePath)
                 .Replace("{ID}", productID.ToString()).Replace("{QUANTITY}", quantity.ToString())
-                .Replace("{NAME}", name);
+                .Replace("{NAME}", name).Replace("{SIZE}", Stock.getStockDetail(StockID, "SizeID"));
 
             return baseString;
         }

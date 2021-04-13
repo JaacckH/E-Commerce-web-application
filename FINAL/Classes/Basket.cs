@@ -31,7 +31,7 @@ namespace FINAL.Classes
             return i;
         }
 
-        public static int getItemQuantity(String userID, String productID)
+        public static int getItemQuantity(String userID, int stockID)
         {
             SqlConnection conn = new SqlConnection();
             conn.ConnectionString = DBFunctions.connectionString;
@@ -42,7 +42,7 @@ namespace FINAL.Classes
 
             while (reader.Read())
             {
-                if (reader["UserID"].ToString() == userID && reader["ProductID"].ToString() == productID.ToString())
+                if (reader["UserID"].ToString() == userID && reader["StockID"].ToString() == stockID.ToString())
                 {
                     int result = int.Parse(reader["Quantity"].ToString());
                     conn.Close();
@@ -54,10 +54,12 @@ namespace FINAL.Classes
             return 0;
         }
 
-        public static String getProductHtml(String productID, int quantity)
+        public static String getProductHtml(int stockID, int quantity)
         {
             String baseString = File.ReadAllText(Environment.CurrentDirectory + "/HTML/PRODUCTBASKET.html");
             String price = "", imagePath = "", name = "";
+
+            String productID = Stock.getStockDetail(stockID, "ProductID");
 
             SqlConnection conn = new SqlConnection();
             conn.ConnectionString = DBFunctions.connectionString;
@@ -79,14 +81,13 @@ namespace FINAL.Classes
             conn.Close();
             baseString = baseString.Replace("{PRICE}", price).Replace("{IMAGE}", imagePath)
                 .Replace("{ID}", productID.ToString()).Replace("{QUANTITY}", quantity.ToString())
-                .Replace("{NAME}", name);
-
+                .Replace("{NAME}", name).Replace("{SIZE}", Stock.getStockDetail(stockID, "SizeID"));
             return baseString;
         }
 
-        public static Boolean containsItem(String userID, String productID)
+        public static Boolean containsItem(String userID, int stockID)
         {
-            if (getItemQuantity(userID, productID) == 0)
+            if (getItemQuantity(userID, stockID) == 0)
             {
                 return false;
             }
@@ -107,8 +108,8 @@ namespace FINAL.Classes
             {
                 if (reader["UserID"].ToString() == UserFunctions.getUserID(SessionID))
                 {
-                    html += getProductHtml(reader["ProductID"].ToString(),
-                        getItemQuantity(reader["UserID"].ToString(), reader["ProductID"].ToString()));
+                    html += getProductHtml(int.Parse(reader["StockID"].ToString()),
+                        getItemQuantity(reader["UserID"].ToString(), int.Parse(reader["StockID"].ToString())));
                 }
             }
 
@@ -127,10 +128,10 @@ namespace FINAL.Classes
             int price = 0;
             while (reader.Read())
             {
-                if(reader["UserID"].ToString() == userID)
+                if (reader["UserID"].ToString() == userID)
                 {
                     int quantity = int.Parse(reader["Quantity"].ToString());
-                    price += quantity * ProductFunctions.getProductPrice(reader["ProductID"].ToString());
+                    price += quantity * ProductFunctions.getProductPrice(int.Parse(reader["StockID"].ToString()));
                 }
             }
 
@@ -138,7 +139,7 @@ namespace FINAL.Classes
             return price;
         }
 
-        public static List<String> getProductIDs(String userID)
+        public static List<int> getStockIDs(String userID)
         {
             SqlConnection conn = new SqlConnection();
             conn.ConnectionString = DBFunctions.connectionString;
@@ -147,7 +148,7 @@ namespace FINAL.Classes
             query.CommandText = "SELECT * FROM Basket";
             SqlDataReader reader = query.ExecuteReader();
 
-            List<String> products = new List<String>();
+            List<int> products = new List<int>();
             while (reader.Read())
             {
                 if (reader["UserID"].ToString() == userID)
@@ -156,7 +157,7 @@ namespace FINAL.Classes
 
                     for (int i = 0; i < quantity; i++)
                     {
-                        products.Add(reader["ProductID"].ToString());
+                        products.Add(int.Parse(reader["StockID"].ToString()));
                     }
                 }
             }

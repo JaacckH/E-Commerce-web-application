@@ -8,7 +8,7 @@ namespace FINAL.Classes
     public static class Orders
     {
         //userID, price, cardnum, cv2, expiry, name, addressline1, postcode, phonenumber
-        public static void processOrder(List<String> products, String userID, String promoCode, int price, String cardNum, String cv2, 
+        public static void processOrder(List<int> stockItems, String userID, String promoCode, int price, String cardNum, String cv2, 
             String expiry, String name, String addressLine1, String postcode, String phoneNumber)
         {
             String orderReference = UserFunctions.generateSessionID();
@@ -19,11 +19,11 @@ namespace FINAL.Classes
 
             //do calculation for promo code
 
-            foreach (String product in products)
+            foreach (int item in stockItems)
             {
-                int promoprice = ProductFunctions.getProductPrice(product); //do calculation using promocode here
+                int promoprice = ProductFunctions.getProductPrice(item); //do calculation using promocode here
                 DBFunctions.sendQuery("INSERT INTO OrderedProducts (OrderID, ProductID, PurchasePrice) " +
-                    "VALUES('" + orderReference + "', '" + product + "', '" + promoprice + "');");
+                    "VALUES('" + orderReference + "', '" + item + "', '" + promoprice + "');");
             }
 
             DBFunctions.sendQuery("DELETE FROM Basket WHERE UserID='" + userID + "';");

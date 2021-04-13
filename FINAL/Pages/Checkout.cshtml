@@ -1,7 +1,6 @@
 ﻿@page
 @model Group_Project.Models.CheckoutModel
 @{
-    Model.onLoad();
 }
 
 <link rel="stylesheet" href="~/css/site.css">
@@ -67,13 +66,13 @@
                         <div class="col-6">
                             <div class="form-group">
                                 <label for="UserName">First name</label>
-                                <input type="text" class="form-control" id="UserName" required>
+                                <input type="text" class="form-control" id="UserName" name="name" required>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="form-group">
                                 <label for="UserLastName">Last name</label>
-                                <input type="text" class="form-control" id="UserLastName" required>
+                                <input type="text" class="form-control" id="UserLastName" name="surname" required>
                             </div>
                         </div>
                     </div>
@@ -82,9 +81,9 @@
                 <div class="col-12">
                     <div class="form-group">
                         <label for="Useraddress">Street address</label>
-                        <input type="text" class="form-control" id="Useraddress" placeholder="House number and street name" required>
+                        <input type="text" class="form-control" id="Useraddress" name="addressline1" placeholder="Address Line 1" required>
                         <p></p>
-                        <input type="text" class="form-control" id="Useraddress" placeholder="Apartament, suite, unit etc. (optional)" required>
+                        <input type="text" class="form-control" id="Useraddress" name="addressline2" placeholder="Apartament, suite, unit etc. (optional)" required>
                     </div>
                 </div>
 
@@ -230,44 +229,7 @@
                     </div>
                     <hr>
                     <div style="overflow-y:scroll; height:40vh;">
-                        <div class="col-12">
-                            <div class="row">
-                                <div class="col-9">
-                                    <p>{product-name} x{quantity}</p>
-                                    <p> Selected color: <span>{color}</span></p>
-                                    <p> Selected size: <span>{size}</span></p>
-                                </div>
-                                <div class="col-3">
-                                    <p style="float: right;">₹{price1}</p>
-                                </div>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="col-12">
-                            <div class="row">
-                                <div class="col-9">
-                                    <p>{product-name2} x{quantity}</p>
-                                    <p> Selected color: <span>{color}</span></p>
-                                    <p> Selected size: <span>{size}</span></p>
-                                </div>
-                                <div class="col-3">
-                                    <p style="float: right;">₹{price2}</p>
-                                </div>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="col-12">
-                            <div class="row">
-                                <div class="col-9">
-                                    <p>{product-name3} x{quantity}</p>
-                                    <p> Selected color: <span>{color}</span></p>
-                                    <p> Selected size: <span>{size}</span></p>
-                                </div>
-                                <div class="col-3">
-                                    <p style="float: right;">₹{price3}</p>
-                                </div>
-                            </div>
-                        </div>
+                        @Html.Raw(Model.getCheckoutItemsHtml(HttpContext.Request.Cookies["SessionID"]))
                     </div>
 
                     <hr>

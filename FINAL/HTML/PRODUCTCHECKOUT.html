@@ -1,15 +1,11 @@
-﻿<style>
-    #info{
-        float:right;
-    }
-</style>
-
-<div style="width:600px; height:200px; float:right;" id="checkout-product-{ID}">
-    <img src="{IMAGE}" style="height:200px;" />
-    <div id="info">
-        <h3 style="float:left;">{NAME}</h3>
-        <p style="float:right;">{PRICE}</p>
-        <h2>{QUANTITY}</h2>
+﻿<div class="col-12">
+    <div class="row">
+        <div class="col-9">
+            <p>{NAME} x{QUANTITY}</p>
+            <p> Selected size: <span>{SIZE}</span></p>
+        </div>
+        <div class="col-3">
+            <p style="float: right;">₹{PRICE}</p>
+        </div>
     </div>
-    <hr>
 </div>

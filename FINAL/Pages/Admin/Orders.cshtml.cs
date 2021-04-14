@@ -25,7 +25,8 @@ namespace FINAL.Pages.Admin
             while (reader.Read())
             {
                 String baseString = System.IO.File.ReadAllText(Environment.CurrentDirectory + "/HTML/ORDERS/ORDER.html");
-                baseString = baseString.Replace("{ID}", reader["OrderID"].ToString()).Replace("{DATE}", reader["DateTime"].ToString())
+                baseString = baseString.Replace("{ID}", reader["OrderID"].ToString())
+                    .Replace("{DATE}", Utility.getDateFromDay(int.Parse(reader["DateTime"].ToString())))
                     .Replace("{PRICE}", reader["Price"].ToString()).Replace("{STATUS}", reader["Status"].ToString())
                     .Replace("{NAME}", reader["Name"].ToString());
 

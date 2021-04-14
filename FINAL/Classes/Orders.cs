@@ -22,9 +22,9 @@ namespace FINAL.Classes
 
                 Console.WriteLine("ran1");
                 int promoprice = ProductFunctions.getProductPrice(item); //do calculation using promocode here
-                DBFunctions.sendQuery("INSERT INTO OrderedProducts (OrderID, ProductID, PurchasePrice, Quantity, Size) " +
+                DBFunctions.sendQuery("INSERT INTO OrderedProducts (OrderID, ProductID, PurchasePrice, Quantity, Size, DateTime) " +
                     "VALUES('" + orderReference + "', '" + Stock.getStockDetail(item, "ProductID") + "', '" + promoprice + "', '"
-                    + Basket.getItemQuantity(userID, item) + "', '" + Stock.getStockDetail(item, "SizeID") + "');");
+                    + Basket.getItemQuantity(userID, item) + "', '" + Stock.getStockDetail(item, "SizeID") + "', '" + DateTime.Now.DayOfYear + "');");
                 Console.WriteLine("ran2");
             }
 

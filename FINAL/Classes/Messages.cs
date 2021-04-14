@@ -61,7 +61,7 @@ namespace FINAL.Classes
             conn.ConnectionString = DBFunctions.connectionString;
             conn.Open();
             SqlCommand query = conn.CreateCommand();
-            query.CommandText = "SELECT * FROM Messages ORDER BY ID DESC";
+            query.CommandText = "SELECT * FROM Messages ORDER BY MessageID DESC";
             SqlDataReader reader = query.ExecuteReader();
 
             String html = "";
@@ -79,6 +79,32 @@ namespace FINAL.Classes
             conn.Close();
             return html;
         }
+
+        public static String getAdminIdleMessages(String userID, String target)
+        {
+            SqlConnection conn = new SqlConnection();
+            conn.ConnectionString = DBFunctions.connectionString;
+            conn.Open();
+            SqlCommand query = conn.CreateCommand();
+            query.CommandText = "SELECT * FROM Messages ORDER BY MessageID DESC";
+            SqlDataReader reader = query.ExecuteReader();
+
+            String html = "";
+            while (reader.Read())
+            {
+                if ((reader["UserID"].ToString() == target || reader["Recipient"].ToString() == target) && reader["Available"].ToString() == "False")
+                {
+                    String baseString = File.ReadAllText(Environment.CurrentDirectory + "/HTML/CHATBOX/ADMIN.html");
+                    baseString = baseString.Replace("{DATE}", reader["Date"].ToString())
+                        .Replace("{SENDER}", reader["UserID"].ToString()).Replace("{MESSAGE}", reader["Message"].ToString());
+                    html += baseString;
+                }
+            }
+
+            conn.Close();
+            return html;
+        }
+
 
         public static List<String> adminGetUsers()
         {
@@ -114,5 +140,43 @@ namespace FINAL.Classes
             return false;
         }
 
+        public static String getMessagesAsAdmin(String userID, String recipient)
+        {
+            SqlConnection conn = new SqlConnection();
+            conn.ConnectionString = DBFunctions.connectionString;
+            conn.Open();
+            SqlCommand query = conn.CreateCommand();
+            query.CommandText = "SELECT * FROM Messages";
+            SqlDataReader reader = query.ExecuteReader();
+
+            String html = "";
+            while (reader.Read())
+            {
+                if (reader["Recipient"].ToString() == recipient)
+                {
+                    String baseString = File.ReadAllText(Environment.CurrentDirectory + "/HTML/CHATBOX/SENT.html");
+                    html += baseString.Replace("{MESSAGE}", reader["Message"].ToString());
+                }
+                else if (reader["UserID"].ToString() == recipient)
+                {
+                    String baseString = File.ReadAllText(Environment.CurrentDirectory + "/HTML/CHATBOX/RECEIVED.html");
+                    html += baseString.Replace("{MESSAGE}", reader["Message"].ToString());
+                }
+            }
+
+            conn.Close();
+            return html;
+        }
+
+        public static String getChatbox(String userID, String recipient)
+        {
+            if (UserFunctions.isAdmin(userID))
+            {
+                return File.ReadAllText(Environment.CurrentDirectory + "/HTML/CHATBOX/ADMINBOX.html").Replace("{MESSAGES}",
+                   getMessagesAsAdmin(userID, recipient)).Replace("{RECIPIENT}", recipient);
+            }
+            return File.ReadAllText(Environment.CurrentDirectory + "/HTML/CHATBOX/USERBOX.html").Replace("{MESSAGES}",
+                getUserMessages(userID));
+        }
     }
 }

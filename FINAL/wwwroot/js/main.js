@@ -301,6 +301,8 @@ function loadNewCheckboxes() {
     }
 }
 
+
+
 loadNewCheckboxes();
 
 $(document).ready(function () {

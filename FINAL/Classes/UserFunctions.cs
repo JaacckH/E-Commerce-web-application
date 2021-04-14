@@ -43,9 +43,30 @@ namespace FINAL.Classes
             {
                 return true;
             }
+            return false; // true for testing
+        }
 
-            //needs to be return false, changed to true so i can debug easier
-            return true;
+        public static String getConnectionID(String userID)
+        {
+            SqlConnection conn = new SqlConnection();
+            conn.ConnectionString = DBFunctions.connectionString;
+            conn.Open();
+            SqlCommand query = conn.CreateCommand();
+            query.CommandText = "SELECT UserID,ConnectionID FROM Users UNION SELECT UserID,ConnectionID FROM Guests";
+            SqlDataReader reader = query.ExecuteReader();
+
+            while (reader.Read())
+            {
+                if (reader["UserID"].ToString() == userID)
+                {
+                    String result = reader["ConnectionID"].ToString();
+                    conn.Close();
+                    return result;
+                }
+            }
+
+            conn.Close();
+            return null;
         }
 
         //function to generate a random sessionID so it can be assigned to a user

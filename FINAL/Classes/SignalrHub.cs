@@ -25,7 +25,14 @@ namespace FINAL.Classes
 
         public void setConnectionID(String sessionID)
         {
-            DBFunctions.sendQuery("UPDATE Users SET ConnectionID='" + Context.ConnectionId + "' WHERE SessionID='" + sessionID + "';");
+            if (UserFunctions.userLoggedIn(sessionID))
+            {
+                DBFunctions.sendQuery("UPDATE Users SET ConnectionID='" + Context.ConnectionId + "' WHERE SessionID='" + sessionID + "';");
+            }
+            else
+            {
+                DBFunctions.sendQuery("UPDATE Guests SET ConnectionID='" + Context.ConnectionId + "' WHERE SessionID='" + sessionID + "';");
+            }
         }
 
         public void sendEmail(String email) //will need await when we sent confirmation or error to user
@@ -105,8 +112,8 @@ namespace FINAL.Classes
             {
                 String userID = UserFunctions.getUserID(sessionID);
                 message = message.Replace("'", "''");
-                DBFunctions.sendQuery("INSERT INTO Messages (UserID, Message, Active) VALUES('"
-                    + userID + "', '" + message + "', '1')");
+                DBFunctions.sendQuery("INSERT INTO Messages (UserID, Message, Active, Date) VALUES('"
+                    + userID + "', '" + message + "', '1', '" + DateTime.Now.ToString() + "')");
                 await appendContent(Context.ConnectionId, Messages.getMessageHTML(message, true), "messages");
                 await updateAdminMessages(userID, message);
             }
@@ -120,8 +127,9 @@ namespace FINAL.Classes
                 message = message.Replace("'", "''");
                 DBFunctions.sendQuery("INSERT INTO Messages (UserID, Message, Recipient, Active) VALUES('"
                     + userID + "', '" + message + "', '" + recipient + "', '1')");
-                await appendContent(UserFunctions.getUserDetails(recipient, "ConnectionID"), Messages.getMessageHTML(message, true), "messages");
-                await updateAdminMessages(userID, message);
+                await appendContent(Context.ConnectionId, Messages.getMessageHTML(message, true), "messages-" + recipient);
+                await appendContent(UserFunctions.getConnectionID(recipient), Messages.getMessageHTML(message, false), "messages");
+                //await updateAdminMessages(userID, message);
             }
         }
 
@@ -138,6 +146,7 @@ namespace FINAL.Classes
             {
                 if (reader["Admin"].ToString() == "True")
                 {
+                    Console.WriteLine(reader["ConnectionID"].ToString());
                     await appendContent(reader["ConnectionID"].ToString(), Messages.getMessageHTML(message, false), "messages-" + sender);
                 }
             }
@@ -233,6 +242,17 @@ namespace FINAL.Classes
         {
             int maxQuantity = int.Parse(Stock.getStockDetail(int.Parse(stockID), "Quantity"));
             await Clients.Client(Context.ConnectionId).SendAsync("setMaxQuantity", maxQuantity);
+        }
+
+        public async Task openChat(String SessionID, String recipient)
+        {
+            String userID = UserFunctions.getUserID(SessionID);
+            if (UserFunctions.isAdmin(userID) && recipient == "null")
+            {
+                sendAlert(Context.ConnectionId, "Null Recipient");
+                return;
+            }
+            await sendContent(Context.ConnectionId, Messages.getChatbox(userID, recipient), "chatbox-placeholder");
         }
     }
 }

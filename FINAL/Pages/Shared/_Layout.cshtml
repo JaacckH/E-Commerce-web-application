@@ -11,6 +11,7 @@
         Classes.DBFunctions.sendQuery("INSERT INTO Guests (UserID, SessionID) VALUES('" + Classes.UserFunctions.generateSessionID() + "', '" + sid + "');");
         HttpContextAccessor.HttpContext.Response.Cookies.Append("SessionID", sid);
     }
+
 }
 
 <style>
@@ -64,21 +65,7 @@
     }
 </style>
 
-<div id="chatbox">
-    <div id="chatbox-header">
-        <p style="float:left; padding:3px; padding-left:10px; font-size:14pt;">Send us a message</p>
-        <p style="float:right; padding:3px; padding-right:10px; font-size:14pt;"><b>X</b></p>
-    </div>
-
-    <div id="messages" style="height:333px; width:100%; overflow:hidden scroll;">
-        @Html.Raw(Classes.Messages.getUserMessages(Classes.UserFunctions.getUserID(SessionID)))
-    </div>
-
-    <div class="message-input">
-        <input id="message-messageinput" type="text" style="border:none; height:28px; width:84%; margin:0% 5%; float:left;" />
-        <p onclick="sendMessage();" style="border:none; height:28px; width:6%; float:right; font-size:13pt; padding:1px; color:black;"><b>></b></p>
-    </div>
-
+<div id="chatbox-placeholder">
 </div>
 
 <head>
@@ -103,15 +90,16 @@
     <script src="~/lib/date-picker/bootstrap-datetimepicker.min.js"></script>
 
     <script src="~/js/signalr/dist/browser/signalr.js"></script>
-    <script src="~/js/chat.js" asp-append-version="true"></script>
-    <script src="~/js/main.js" asp-append-version="true"></script>
+    <script src="~/js/chat.js"></script>
+    <script src="~/js/main.js"></script>
 
 </head>
 <body>
 
 
     @if (Classes.UserFunctions.isAdmin(Classes.UserFunctions.getUserID(SessionID))
- && (HttpContextAccessor.HttpContext.Request.Path.ToString().Contains("/Admin") || HttpContextAccessor.HttpContext.Request.Path.ToString().Contains("/admin")))
+ && (HttpContextAccessor.HttpContext.Request.Path.ToString().Contains("/Admin")
+ || HttpContextAccessor.HttpContext.Request.Path.ToString().Contains("/admin")))
     {
         <div id="admin-page-layout" class="row">
             <div id="admin-menu" class="d-none d-md-block col-12 col-md-3 col-xl-2">
@@ -194,32 +182,7 @@
     else
     {
 
-        <div id="chatbox">
-            <div id="chatbox-header">
-                <p style="float:left; padding:3px; padding-left:10px; font-size:14pt;">Send us a message</p>
-                <p style="float:right; padding:3px; padding-right:10px; font-size:14pt;"><b>X</b></p>
-            </div>
 
-            <div id="messages" style="height:333px; width:100%; overflow:hidden scroll;">
-                @Html.Raw(Classes.Messages.getUserMessages(Classes.UserFunctions.getUserID(SessionID)))
-            </div>
-
-            <div class="message-input">
-                <input id="message-messageinput" type="text" style="border:none; height:28px; width:84%; margin:0% 5%; float:left;" />
-                <p onclick="sendMessage();" style="border:none; height:28px; width:6%; float:right; font-size:13pt; padding:1px; color:black;"><b>></b></p>
-            </div>
-
-        </div>
-
-        <!-- if(not logged into admin { )-->
-        <!--
-        <div id="navbar" style="background-color:#222; width:100%; height:40px;">
-            <h3 id="basket-counter" style="color:white; float:right; padding:0px; margin:10px;"
-                onclick="window.location.href = '/Basket';">
-
-            </h3>
-        </div>
-        -->
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand" href="#">OUI OUI</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -239,9 +202,33 @@
                             ABOUT US
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/login">LOGIN</a>
-                    </li>
+
+                    @if (!Classes.UserFunctions.userLoggedIn(SessionID))
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" href="/login">LOGIN</a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" href="/logout">LOGOUT</a>
+                        </li>
+                    }
+
+                    @if (Classes.UserFunctions.isAdmin(Classes.UserFunctions.getUserID(SessionID)))
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Admin/Dashboard">ADMIN PANEL</a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" onclick="openChat();">CHAT TO US</a>
+                        </li>
+                    }
+
                 </ul>
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item login-logout-btn">
@@ -259,3 +246,6 @@
     }
 </body>
 
+<!--DONT DELETE-->
+<div id="messages-null">
+</div>

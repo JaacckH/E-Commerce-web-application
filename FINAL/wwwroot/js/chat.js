@@ -2,8 +2,7 @@
 var connection = new signalR.HubConnectionBuilder().withUrl("/chathub").build();
 connection.start();
 var maxQuantity = 10;
-
-setTimeout(300, setConnectionID);
+var recipient = "null";
 
 connection.on("setSessionID", function (sessionID) {
     document.cookie = "SessionID=" + sessionID;
@@ -23,6 +22,7 @@ connection.on("sendSuccessAlert", function (message) {
 
 connection.on("ContentDelivery", function (content, div) {
     document.getElementById(div).innerHTML = content;
+    scrollMessages();
 });
 
 connection.on("updateBasket", function (content) {
@@ -31,6 +31,7 @@ connection.on("updateBasket", function (content) {
 
 connection.on("AppendDelivery", function (content, div) {
     document.getElementById(div).innerHTML += content;
+    scrollMessages();
 });
 
 connection.on("removeContainer", function (id) {
@@ -41,6 +42,13 @@ connection.on("setMaxQuantity", function (quantity) {
     document.getElementById('quantityvalue').value = "1";
     maxQuantity = parseInt(quantity);
 });
+
+function scrollMessages() {
+    var chatboxes = document.getElementsByClassName("scroll");
+    for (var i = 0; i < chatboxes.length; i++) {
+        chatboxes[i].scrollTop = chatboxes[i].scrollHeight;
+    }
+}
 
 function sendMessage() {
     var message = document.getElementById('message-messageinput').value;
@@ -163,4 +171,20 @@ function updateQuantity() {
         var stockID = document.getElementById('input-size').value;
         connection.invoke("updateQuantity", stockID);
     }
+}
+
+function adminSendMessage() {
+    var message = document.getElementById('message-messageinput').value;
+    connection.invoke("adminSendMessage", getSessionID(), recipient, message)
+}
+
+function openChat() {
+    hideChat();
+    setConnectionID();
+    connection.invoke("openChat", getSessionID(), recipient);
+    scrollMessages();
+}
+
+function hideChat() {
+    document.getElementById('chatbox-placeholder').innerHTML = "";
 }

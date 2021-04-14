@@ -1440,3 +1440,51 @@ svg:not(:root) {
 }
 
 /* ----------------- end Dashboard  ------------- */
+
+/* ----------------- Start Basket  ------------- */
+
+
+#basket-page .card {
+    border-width: 0;
+}
+
+.remove-item {
+    position: absolute;
+    top: 7px;
+    right: 7px;
+    font-size: var(--text-size-reg);
+}
+
+.card-total {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+
+    .card-total p {
+        margin: 0;
+    }
+
+.page-title {
+    font-weight: bold;
+    font-size: var(--text-size-large);
+}
+
+#basket-page {
+    margin-top: 3%;
+}
+
+
+
+/* Write page CSS here*/
+
+#order-summary-text {
+    padding-top: 15px;
+}
+
+.order-summary {
+    width: 100%;
+    background: #ffffff;
+}
+

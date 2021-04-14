@@ -219,6 +219,45 @@ $(document).ready(function () {
             $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1 && $(this).text().toLowerCase().indexOf(value2) > -1)
         });
     });
+
+    window.calculateprice = calculateprice;
+
+    function calculateprice(id) {
+        var quantity = parseFloat(document.getElementById("input-" + id).value, 1);
+        var price = document.getElementById("current-price-" + id).innerHTML;
+        document.getElementById("total-" + id).innerHTML = price * quantity;
+        document.getElementById("mob-total-" + id).innerHTML = price * quantity;
+
+
+        UpdateBasket();
+    }
+
+    function UpdateBasket() {
+
+        var orderTotal = 0;
+        document.querySelectorAll('.item-total-main').forEach(function (element, index) {
+            orderTotal = parseInt(orderTotal) + parseInt(element.innerHTML);
+        });
+
+        document.getElementById("order-total").innerHTML = orderTotal;
+        var vat = 15;
+        var vatAmount = orderTotal * (vat / 100);
+        document.getElementById("vat-amount").innerHTML = vatAmount;
+        document.getElementById("vat-total").innerHTML = orderTotal + vatAmount;
+    }
+
+    if ($('#basket-page').length > 0) {
+        OnLoadBasket();
+    }
+
+    function OnLoadBasket() {
+        document.querySelectorAll('.item-id').forEach(function (element, index) {
+            calculateprice(element.innerHTML);
+            console.log(element.id)
+        });
+
+        UpdateBasket();
+    }
 });
 
 window.OpenDetails = OpenDetails;

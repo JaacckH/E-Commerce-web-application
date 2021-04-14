@@ -81,7 +81,9 @@ namespace FINAL.Classes
             conn.Close();
             baseString = baseString.Replace("{PRICE}", price).Replace("{IMAGE}", imagePath)
                 .Replace("{ID}", productID.ToString()).Replace("{QUANTITY}", quantity.ToString())
-                .Replace("{NAME}", name).Replace("{SIZE}", Stock.getStockDetail(stockID, "SizeID"));
+                .Replace("{NAME}", name).Replace("{SIZE}", Stock.getStockDetail(stockID, "SizeID"))
+                .Replace("{TOTAL}", (int.Parse(price) * quantity).ToString())
+                .Replace("{MAX}", (int.Parse(Stock.getStockDetail(stockID, "Quantity")) + 1).ToString());
             return baseString;
         }
 
@@ -140,6 +142,17 @@ namespace FINAL.Classes
             return price;
         }
 
+        public static int getVatAmount(String userID)
+        {
+            int full = getTotalPrice(userID);
+            return (int)Math.Round((double)(getTotalPrice(userID) * (decimal.Parse(Settings.getSetting("VAT")) / 100)));
+        }
+
+        public static int getTotalMinusVat(String userID)
+        {
+            return getTotalPrice(userID) - getVatAmount(userID);
+        }
+
         public static List<int> getStockIDs(String userID)
         {
             SqlConnection conn = new SqlConnection();
@@ -160,7 +173,7 @@ namespace FINAL.Classes
                     {
                         int product = int.Parse(reader["StockID"].ToString());
                         if (!arrayContains(products, product))
-                        products.Add(product);
+                            products.Add(product);
                     }
                 }
             }
@@ -171,7 +184,7 @@ namespace FINAL.Classes
 
         public static Boolean arrayContains(List<int> list, int item)
         {
-            foreach(int num in list)
+            foreach (int num in list)
             {
                 if (num == item)
                 {

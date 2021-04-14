@@ -68,13 +68,13 @@ namespace FINAL.Classes
                 DBFunctions.sendQuery("INSERT INTO Basket (UserID, StockID, Quantity) VALUES('" + userID + "', '" + stockID + "', '" + quantity + "');");
             }
 
-            await sendContent(Context.ConnectionId, Basket.getNumOfItems(sessionID).ToString(), "basket-counter");
+            await Clients.Client(Context.ConnectionId).SendAsync("updateBasket", Basket.getNumOfItems(sessionID).ToString());
         }
 
         public async Task removeFromBasket(String sessionID, String productID)
         {
             String userID = UserFunctions.getUserID(sessionID);
-            DBFunctions.sendQuery("DELETE FROM Basket WHERE UserID='" + userID + "' AND ProductID='" + productID + "';");
+            DBFunctions.sendQuery("DELETE FROM Basket WHERE UserID='" + userID + "' AND StockID='" + productID + "';");
             await Clients.Client(Context.ConnectionId).SendAsync("removeContainer", productID);
             await sendContent(Context.ConnectionId, Basket.getNumOfItems(sessionID).ToString(), "basket-counter");
         }

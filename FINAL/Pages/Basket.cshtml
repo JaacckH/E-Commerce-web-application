@@ -3,71 +3,11 @@
 @{
 }
 
-<button onclick="window.location.href = '/Checkout';">Checkout</button>
-
-<div id="productShowcase">
-    @Html.Raw(Classes.Basket.getBasketHtml(HttpContext.Request.Cookies["SessionID"]))
-    <h1>TOTAL PRICE: @Classes.Basket.getTotalPrice(Classes.UserFunctions.getUserID(HttpContext.Request.Cookies["SessionID"]))</h1>
-</div>
-
-
 <div id="basket-page" class="container">
     <h1 class="page-title">BASKET</h1>
     <hr />
     <div class="row">
-        <!-- START OF ITEM 3-->
-        <div class="col-12 mb-3">
-            <div class="card shadow">
-                <div class="row no-gutters">
-                    <div class="col-4 col-md-2">
-                        <img src="https://images.asos-media.com/products/pieces-mini-smock-dress-with-volume-sheer-sleeve-in-ditsy-floral/22481019-1-blackditsyfloral?$XXL$&wid=513&fit=constrain" style="margin-left: auto;
-  margin-right: auto;" alt="...">
-                    </div>
-                    <div class="col-8 col-md-7">
-                        <div class="card-body">
-                            <i class="remove-item d-block d-md-none fas fa-times-circle fa-2x"></i>
-                            <h5 class="card-title">SHORT SLEEVE DRESS #<span class="item-id">x54sdfg</span></h5>
-                            <div class="row">
-                                <div class="col-6 col-md-6 mb-3 order-1">
-                                    <h6>Color:</h6>
-                                    <p class="card-text">Pink</p>
-                                </div>
-                                <div class="col-6 col-md-6 mb-3 order-3 order-md-2">
-                                    <h6>QUANTITY:</h6>
-                                    <input id="input-x54sdfg" class="form-control" type="number" value="2" min="1" max="3" onclick="calculateprice('x54sdfg')">
-                                </div>
-
-
-                                <div class="col-6 col-md-6 order-2 order-md-3 mb-3 ">
-                                    <h6>SIZE:</h6>
-                                    <p class="card-text">12</p>
-                                </div>
-                                <div class="col-6 col-md-6 order-4 order-md-4 mb-3 ">
-                                    <h6>UNIT PRICE:</h6>
-                                    <p> ₹<span id="current-price-x54sdfg">800</span></p>
-                                </div>
-                                <div class="col-12 d-block d-md-none mobile-total order-5" style="text-align:center;">
-                                    <div>
-                                        <h6>ITEM TOTAL:</h6>
-                                        <p> ₹<span id="mob-total-x54sdfg" class="item-total"></span></p>
-                                    </div>
-
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-3 card-total d-none d-md-flex">
-                        <div>
-                            <h6>ITEM TOTAL:</h6>
-                            <p> ₹<span id="total-x54sdfg" class="item-total item-total-main"></span></p>
-                        </div>
-                        <i class="remove-item fas fa-times-circle fa-2x"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- END OF ITEM 3-->
+            @Html.Raw(Classes.Basket.getBasketHtml(HttpContext.Request.Cookies["SessionID"]))
         <hr width="100% " style="margin:15px;" />
         <div class="col-4 col-md-8"></div>
         <div class="col-8 col-md-4">
@@ -76,17 +16,17 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-8">TOTAL EXC VAT:</div>
-                        <div class="col-4"><p>₹<span id="order-total">1000</span></p></div>
+                        <div class="col-4"><p>₹<span id="order-total">@Classes.Basket.getTotalMinusVat(Classes.UserFunctions.getUserID(HttpContext.Request.Cookies["SessionID"]))</span></p></div>
                     </div>
                     <br>
                     <div class="row">
                         <div class="col-8">VAT ADDED:</div>
-                        <div class="col-4"><p>₹ <span id="vat-amount">1200</span></p></div>
+                        <div class="col-4"><p>₹ <span id="vat-amount">@Classes.Basket.getVatAmount(Classes.UserFunctions.getUserID(HttpContext.Request.Cookies["SessionID"]))</span></p></div>
                     </div>
                     <hr />
                     <div class="row">
                         <div class="col-8">TOTAL INC VAT:</div>
-                        <div class="col-4"><p>₹ <span id="vat-total">1200</span></p></div>
+                        <div class="col-4"><p>₹ <span id="vat-total">@Classes.Basket.getTotalPrice(Classes.UserFunctions.getUserID(HttpContext.Request.Cookies["SessionID"]))</span></p></div>
                     </div>
 
                     <button class="btn btn-ouioui mt-3" style="width:100%; margin-bottom:20px;" onclick="window.location.href = '/Checkout';">CHECKOUT</button>

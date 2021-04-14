@@ -25,6 +25,7 @@
         bottom: 20px;
         overflow: hidden;
         color: white;
+        z-index: 100;
     }
 
     #chatbox-header {
@@ -63,6 +64,23 @@
     }
 </style>
 
+<div id="chatbox">
+    <div id="chatbox-header">
+        <p style="float:left; padding:3px; padding-left:10px; font-size:14pt;">Send us a message</p>
+        <p style="float:right; padding:3px; padding-right:10px; font-size:14pt;"><b>X</b></p>
+    </div>
+
+    <div id="messages" style="height:333px; width:100%; overflow:hidden scroll;">
+        @Html.Raw(Classes.Messages.getUserMessages(Classes.UserFunctions.getUserID(SessionID)))
+    </div>
+
+    <div class="message-input">
+        <input id="message-messageinput" type="text" style="border:none; height:28px; width:84%; margin:0% 5%; float:left;" />
+        <p onclick="sendMessage();" style="border:none; height:28px; width:6%; float:right; font-size:13pt; padding:1px; color:black;"><b>></b></p>
+    </div>
+
+</div>
+
 <head>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;900&display=swap" rel="stylesheet">
@@ -93,7 +111,7 @@
 
 
     @if (Classes.UserFunctions.isAdmin(Classes.UserFunctions.getUserID(SessionID))
-  && (HttpContextAccessor.HttpContext.Request.Path.ToString().Contains("/Admin") || HttpContextAccessor.HttpContext.Request.Path.ToString().Contains("/admin")))
+ && (HttpContextAccessor.HttpContext.Request.Path.ToString().Contains("/Admin") || HttpContextAccessor.HttpContext.Request.Path.ToString().Contains("/admin")))
     {
         <div id="admin-page-layout" class="row">
             <div id="admin-menu" class="d-none d-md-block col-12 col-md-3 col-xl-2">
@@ -198,7 +216,7 @@
         <div id="navbar" style="background-color:#222; width:100%; height:40px;">
             <h3 id="basket-counter" style="color:white; float:right; padding:0px; margin:10px;"
                 onclick="window.location.href = '/Basket';">
-               
+
             </h3>
         </div>
         -->
@@ -227,7 +245,7 @@
                 </ul>
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item login-logout-btn">
-                        <a class="nav-link" onclick="window.location.href = '/Basket';"><i class="fas fa-shopping-cart"  id="basket-counter" ></i>@Classes.Basket.getNumOfItems(SessionID)</a>
+                        <a class="nav-link" onclick="window.location.href = '/Basket';"><i class="fas fa-shopping-cart" id="basket-counter">@Classes.Basket.getNumOfItems(SessionID)</i></a>
                     </li>
                 </ul>
             </div>

@@ -1,4 +1,4 @@
-﻿<style>
+﻿<!--<style>
     #info{
         float:right;
     }
@@ -13,4 +13,54 @@
         <h2>{QUANTITY}</h2>
     </div>
     <hr>
+</div>
+    -->
+<div class="col-12 mb-3" id="basket-product-{ID}">
+    <div class="card shadow">
+        <div class="row no-gutters">
+            <div class="col-4 col-md-2">
+                <img src="{IMAGE}" style="margin-left: auto; margin-right: auto;" alt="...">
+            </div>
+            <div class="col-8 col-md-7">
+                <div class="card-body">
+                    <i onclick="removeFromBasket('{ID}');" class="remove-item d-block d-md-none fas fa-times-circle fa-2x"></i>
+                    <h5 class="card-title">{NAME}<span class="item-id"></span></h5>
+                    <div class="row">
+                        <div class="col-6 col-md-6 mb-3 order-3 order-md-2">
+                            <h6>QUANTITY:</h6>
+                            <!--<input id="input-quantity-{ID}" class="form-control" type="number" value="{QUANTITY}" min="1" max="{MAX}" onclick="calculateprice('{ID}')">-->
+                            <p class="card-text">{QUANTITY}</p>
+                        </div>
+
+                        <div class="col-6 col-md-6 order-2 order-md-3 mb-3 ">
+                            <h6>PRODUCT ID:</h6>
+                            <p class="card-text">#{ID}</p>
+                        </div>
+                        <div class="col-6 col-md-6 order-2 order-md-3 mb-3 ">
+                            <h6>SIZE:</h6>
+                            <p class="card-text">{SIZE}</p>
+                        </div>
+                        <div class="col-6 col-md-6 order-4 order-md-4 mb-3 ">
+                            <h6>UNIT PRICE:</h6>
+                            <p>₹<span id="current-price-x54sdfg">{PRICE}</span></p>
+                        </div>
+                        <div class="col-12 d-block d-md-none mobile-total order-5" style="text-align:center;">
+                            <div>
+                                <h6>ITEM TOTAL:</h6>
+                                <p>₹<span id="mob-total-{ID}" class="item-total">{TOTAL}</span></p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-3 card-total d-none d-md-flex">
+                <div>
+                    <h6>ITEM TOTAL:</h6>
+                    <p>₹<span id="total-{ID}" class="item-total item-total-main">{TOTAL}</span></p>
+                </div>
+                <i onclick="removeFromBasket('{ID}');" class="remove-item fas fa-times-circle fa-2x"></i>
+            </div>
+        </div>
+    </div>
 </div>

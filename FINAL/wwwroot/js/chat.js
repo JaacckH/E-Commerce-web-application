@@ -25,6 +25,10 @@ connection.on("ContentDelivery", function (content, div) {
     document.getElementById(div).innerHTML = content;
 });
 
+connection.on("updateBasket", function (content) {
+    document.getElementById('basket-counter').innerHTML = content;
+});
+
 connection.on("AppendDelivery", function (content, div) {
     document.getElementById(div).innerHTML += content;
 });

@@ -97,7 +97,7 @@ function OpenProductDetails(rowID) {
         $("#search-rows").val(rowID)
         $("#refine-search").val('')
         $("#search-rows").keyup();
-        $('#search-area').addClass('d-none');
+        $('#search-area').addClass('invisible');
 
         $("#data-row-" + rowID).toggleClass("col-xl-6");
         $("#card-sml-detail-" + rowID).addClass("d-none");
@@ -110,7 +110,7 @@ window.closeProductDetails = closeProductDetails;
 function closeProductDetails(rowID) {
 
     $('#summary-panel-' + rowID).removeClass('d-none');
-    $('#search-area').removeClass('d-none');
+    $('#search-area').removeClass('invisible');
     $('#expanded-panel-' + rowID).addClass('d-none');
     $('#data-header').removeClass('d-none');
     $("#data-row-" + rowID).toggleClass("col-xl-6");
@@ -228,14 +228,14 @@ function OpenDetails(rowID) {
     $("#search-rows").keyup();
     $('#summary-panel-' + rowID).addClass('d-none');
     $('#expanded-panel-' + rowID).removeClass('d-none');
-    $('#search-area').addClass('d-none');
+    $('#search-area').addClass('invisible');
     $('#data-header').addClass('d-none');
 
 }
 
 function closeDetails(rowID) {
     $('#summary-panel-' + rowID).removeClass('d-none');
-    $('#search-area').removeClass('d-none');
+    $('#search-area').removeClass('invisible');
     $('#expanded-panel-' + rowID).addClass('d-none');
     $('#data-header').removeClass('d-none');
     $("#search-rows").val('');

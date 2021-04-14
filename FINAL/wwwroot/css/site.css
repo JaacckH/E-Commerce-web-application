@@ -149,7 +149,7 @@
     overflow-x: auto;
 }
 
-.card, .card-cont {
+#admin-page-layout .card, #admin-page-layout .card-cont {
     height: 100%;
 }
 
@@ -1173,10 +1173,10 @@ p {
 .page-footer {
     padding: calc(3% + 90px) 0 3% 0;
 }
-
+/*
 .page-2-container .card {
     height: 100%;
-}
+}*/
 
 
     .page-2-container .card h2 {

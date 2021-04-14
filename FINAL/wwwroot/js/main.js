@@ -13,59 +13,56 @@ $(document).ready(function () {
         $('#datetimepicker7').datetimepicker();
     }
 
-var productTags = ['Teal', 'Blue', 'White', 'Long', 'Summer', 'Autumn', 'Winter', 'Warm', 'V-neck', 'Relaxed-Fit', 'long-Sleeve'
-];
+    var productTags = ['Teal', 'Blue', 'White', 'Long', 'Summer', 'Autumn', 'Winter', 'Warm', 'V-neck', 'Relaxed-Fit', 'long-Sleeve'
+    ];
 
-var productTags = new Bloodhound({
-    datumTokenizer: Bloodhound.tokenizers.whitespace,
-    queryTokenizer: Bloodhound.tokenizers.whitespace,
-    local: productTags
-});
+    var productTags = new Bloodhound({
+        datumTokenizer: Bloodhound.tokenizers.whitespace,
+        queryTokenizer: Bloodhound.tokenizers.whitespace,
+        local: productTags
+    });
 
-$('#product-tags').tagsinput({
-    typeaheadjs: [{
-        hint: true,
-        highlight: true,
-        minLength: 1
-    },
-    {
-        name: 'productTags',
-        source: productTags
-    }],
-    freeInput: true,
-    tagClass: 'badge',
-    capitalize: function (item) {
-        return item ? item.charAt(0).toUpperCase() + item.slice(1).toLowerCase() : item;
-    }
-});
-
-
-$('#product-tags').on("beforeItemAdd", function (e) {
-    var name = e.item;
-    var allow = true;
-    $(this).prev().find(".tag").each(function (i, valor) {
-        if ($(this).text().toLowerCase() == name.toString().toLowerCase()) {
-            allow = false;
-            return false;
+    $('#product-tags').tagsinput({
+        typeaheadjs: [{
+            hint: true,
+            highlight: true,
+            minLength: 1
+        },
+        {
+            name: 'productTags',
+            source: productTags
+        }],
+        freeInput: false,
+        tagClass: 'badge',
+        capitalize: function (item) {
+            return item ? item.charAt(0).toUpperCase() + item.slice(1).toLowerCase() : item;
         }
-    })
+    });
 
-    if (!allow) {
-        console.log("repeat");
-        e.cancel = true;
-    }
+
+    $('#product-tags').on("beforeItemAdd", function (e) {
+        var name = e.item;
+        var allow = true;
+        $(this).prev().find(".tag").each(function (i, valor) {
+            if ($(this).text().toLowerCase() == name.toString().toLowerCase()) {
+                allow = false;
+                return false;
+            }
+        })
+
+        if (!allow) {
+            console.log("repeat");
+            e.cancel = true;
+        }
+    });
+
 });
-
-});
-
-
 
 var imageUploadCount = 0;
 window.AddImageUpload = AddImageUpload;
 function AddImageUpload(input) {
     var reader = new FileReader();
     reader.onload = function (e) {
-
 
         var $image_upload = '               <div id="uploaded-image-' + imageUploadCount + '" class="img-column contains" onclick="RemoveUpload(' + imageUploadCount + ',1)">';
         $image_upload += '                 <img class="img-object" src="' + e.target.result + '" alt="...">';
@@ -79,7 +76,6 @@ function AddImageUpload(input) {
     reader.readAsDataURL(input.files[0]);
     imageUploadCount++;
 }
-
 
 function RemoveUpload(imageID, n) {
     //existing image
@@ -128,8 +124,8 @@ var sizeColAmount = 0;
 
 function AddSizeCol(n) {
     sizeColAmount++;
-    var $size_type = '                            <div class="size-column" id="sizecol-' + sizeColAmount + '">';
-    $size_type += '                              <select class="form-control" id="sizecol-' + sizeColAmount + '-size">';
+    var $size_type = '                            <div class="size-column" name="sizecol-' + sizeColAmount + '">';
+    $size_type += '                              <select class="form-control" name="sizecol-' + sizeColAmount + '-size">';
     $size_type += '                                <option>6</option>';
     $size_type += '                                <option>8</option>';
     $size_type += '                                <option>10</option>';
@@ -156,7 +152,7 @@ function AddSizeCol(n) {
     $size_type += '                                <option>41</option>';
     $size_type += '                                <option>42</option>';
     $size_type += '                              </select>';
-    $size_type += '                              <input class="size-input" type="text" value="1"/>';
+    $size_type += '                              <input class="size-input" name="input-quantity-' + sizeColAmount + '" type="text" value="1"/>';
     $size_type += '                            </div>';
 
 
@@ -170,10 +166,9 @@ function AddSizeCol(n) {
 function readURL(input) {
     var reader = new FileReader();
     reader.onload = function (e) {
-        document.getElementById("Img").setAttribute("src", e.target.result);
+        //document.getElementById("Img").setAttribute("src", e.target.result);
     };
     reader.readAsDataURL(input.files[0]);
-
 }
 
 
@@ -326,29 +321,6 @@ function AddCategoryOLD() {
 $('#admin-settings-page .twitter-typeahead').addClass('sticky-top');
 
 
-/* ---------- admin settings page end ---------------- */
-
-/* --------- product detail page ---------*/
-function lowerQuantity() {
-    var currentquantity = document.getElementById("quantityvalue").value;
-    if (currentquantity > 1) {
-        currentquantity--;
-    }
-    // also sent quantity to the hub
-    document.getElementById("quantityvalue").value = currentquantity;
-}
-function incrementquantity(amount) {
-    amount = 5;
-    var currentquantity = document.getElementById("quantityvalue").value;
-    if (currentquantity < amount) { // the five is replaced with the actual quantity
-        currentquantity++;
-    }
-    // also sent quantity to the hub
-    document.getElementById("quantityvalue").value = currentquantity;
-}
-/* --------- end of product detail page ---------*/
-
-/* SHOP */
 
 function ToggleFilter() {
     const element = document.querySelector("#filter-menu");
@@ -418,158 +390,175 @@ function RemoveMessage() {
 
 $(document).ready(function () {
 
-if ($('#myChart').length > 0) {
+    if ($('#myChart').length > 0) {
 
-    var ctx = document.getElementById('myChart').getContext('2d');
+        var ctx = document.getElementById('myChart').getContext('2d');
 
-    var myChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: ['Mon', 'Tue', 'Wed', 'Thurs', 'Fri', 'Sat', 'Sun'],
-            datasets: [{
-                label: 'Sales Value',
-                data: [12, 19, 3, 5, 2, 3, 20],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    });
-
-
-    /* ---------- Start Dounut ------------- */
-    var ctx = document.getElementById("device-chart").getContext('2d');
-    var myChart = new Chart(ctx, {
-        type: 'pie',
-        data: {
-            labels: ["Desktop", "Mobile", "Tablet"],
-
-            datasets: [{
-                label: '# of Votes',
-                data: [12, 19, 3],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(75, 192, 192, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255,99,132,1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(75, 192, 192, 1)'
-
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            elements: {
-                arc: {
-                    roundedCornersFor: 0
-                }
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Mon', 'Tue', 'Wed', 'Thurs', 'Fri', 'Sat', 'Sun'],
+                datasets: [{
+                    label: 'Sales Value',
+                    data: [12, 19, 3, 5, 2, 3, 20],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
             },
-            segmentShowStroke: false,
-            responsive: true,
-            maintainAspectRatio: true,
-            legend: {
-                // display: true
-
-                labels: {
-                    filter(legendItem, data) {
-                        // only show 2nd dataset in legend
-                        return legendItem.text.includes("Red");
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
                     }
                 }
+            }
+        });
 
 
+        /* ---------- Start Dounut ------------- */
+        var ctx = document.getElementById("device-chart").getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: ["Desktop", "Mobile", "Tablet"],
+
+                datasets: [{
+                    label: '# of Votes',
+                    data: [12, 19, 3],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(75, 192, 192, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255,99,132,1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(75, 192, 192, 1)'
+
+                    ],
+                    borderWidth: 1
+                }]
             },
-            tooltips: {
-                filter: function (tooltipItem, data) {
-                    var label = data.labels[tooltipItem.index];
-                    console.log(tooltipItem, data, label);
-                    //alert(label);
-
-                    /*if (label == "Yellow") {
-                      return false;
-                    } else {
-                      return true;
-                    }*/
-                    return true;
+            options: {
+                elements: {
+                    arc: {
+                        roundedCornersFor: 0
+                    }
                 },
+                segmentShowStroke: false,
+                responsive: true,
+                maintainAspectRatio: true,
+                legend: {
+                    // display: true
 
+                    labels: {
+                        filter(legendItem, data) {
+                            // only show 2nd dataset in legend
+                            return legendItem.text.includes("Red");
+                        }
+                    }
+
+
+                },
+                tooltips: {
+                    filter: function (tooltipItem, data) {
+                        var label = data.labels[tooltipItem.index];
+                        console.log(tooltipItem, data, label);
+                        //alert(label);
+
+                        /*if (label == "Yellow") {
+                          return false;
+                        } else {
+                          return true;
+                        }*/
+                        return true;
+                    },
+
+                }
+            }
+        });
+        /* ---------- End Dounut ----------- */
+
+        StatsPercent('percentage-1', -20);
+        StatsPercent('percentage-2', 80);
+        StatsPercent('percentage-3', 47);
+
+        function StatsPercent(stat, percent) {
+            if (percent < 0) {
+                var path = $('#' + stat).get(0);
+                var pathLen = path.getTotalLength();
+                var adjustedLen = 100 + percent;
+                path.setAttribute('stroke-dasharray', '0,' + adjustedLen + ',' + adjustedLen + ',' + pathLen);
+            } else {
+                var path = $('#' + stat).get(0);
+                var pathLen = path.getTotalLength();
+                var adjustedLen = percent * pathLen / 100;
+                path.setAttribute('stroke-dasharray', adjustedLen + ' ' + pathLen);
+            }
+
+            var parent_element = document.getElementById(stat + '-svg');
+
+            // check if class exists and remove before setting correct class for the updated figures 
+            CheckRemoveClass(parent_element, "color-red");
+            CheckRemoveClass(parent_element, "color-amber");
+            CheckRemoveClass(parent_element, "color-green");
+
+
+            if (percent < 50 && percent > 10) {
+                parent_element.classList.add("color-amber");
+            }
+            if (percent >= 50) {
+                parent_element.classList.add("color-green");
+            }
+            if (percent < 0) {
+                parent_element.classList.add("color-red");
+            }
+
+            var text_element = document.getElementById(stat + '-text');
+            text_element.innerHTML = percent + '%';
+
+        }
+
+
+
+        function CheckRemoveClass(elementName, className) {
+            if (elementName.classList.contains(className)) {
+                elementName.classList.remove(className);
             }
         }
-    });
-    /* ---------- End Dounut ----------- */
-
-    StatsPercent('percentage-1', -20);
-    StatsPercent('percentage-2', 80);
-    StatsPercent('percentage-3', 47);
-
-    function StatsPercent(stat, percent) {
-        if (percent < 0) {
-            var path = $('#' + stat).get(0);
-            var pathLen = path.getTotalLength();
-            var adjustedLen = 100 + percent;
-            path.setAttribute('stroke-dasharray', '0,' + adjustedLen + ',' + adjustedLen + ',' + pathLen);
-        } else {
-            var path = $('#' + stat).get(0);
-            var pathLen = path.getTotalLength();
-            var adjustedLen = percent * pathLen / 100;
-            path.setAttribute('stroke-dasharray', adjustedLen + ' ' + pathLen);
-        }
-
-        var parent_element = document.getElementById(stat + '-svg');
-
-        // check if class exists and remove before setting correct class for the updated figures 
-        CheckRemoveClass(parent_element, "color-red");
-        CheckRemoveClass(parent_element, "color-amber");
-        CheckRemoveClass(parent_element, "color-green");
-
-
-        if (percent < 50 && percent > 10) {
-            parent_element.classList.add("color-amber");
-        }
-        if (percent >= 50) {
-            parent_element.classList.add("color-green");
-        }
-        if (percent < 0) {
-            parent_element.classList.add("color-red");
-        }
-
-        var text_element = document.getElementById(stat + '-text');
-        text_element.innerHTML = percent + '%';
-
-    }
-
-
-
-    function CheckRemoveClass(elementName, className) {
-        if (elementName.classList.contains(className)) {
-            elementName.classList.remove(className);
-        }
-    }
 
     }
 
 });
+
+function lowerQuantity() {
+    var currentquantity = document.getElementById("quantityvalue").value;
+    if (currentquantity > 1) {
+        currentquantity--;
+    }
+    // also sent quantity to the hub
+    document.getElementById("quantityvalue").value = currentquantity;
+}
+function incrementquantity(amount) {
+    var currentquantity = document.getElementById("quantityvalue").value;
+    if (currentquantity < maxQuantity) { // the five is replaced with the actual quantity
+        currentquantity++;
+    }
+    // also sent quantity to the hub
+    document.getElementById("quantityvalue").value = currentquantity;
+}

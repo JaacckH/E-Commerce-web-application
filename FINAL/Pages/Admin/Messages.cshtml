@@ -13,17 +13,16 @@
         <div class="col-12 col-md-6 col-lg-4 col-xl-3"><input class="form-control" id="search-rows" type="text" placeholder="Search.."></div>
         <div class="col-12 col-md-6 col-lg-4 col-xl-3"><input class="form-control d-none" id="refine-search" type="text" placeholder="refined.."></div>
     </div>
-    <div class="col-12 col-lg-6">
-        <h5>Order Queries</h5>
-        <div id="data-header" class="row d-none">
+    <div class="col-12 col-md-12">
+        <div id="data-header" class="row">
             <div class="col-4 col-md-2 col-xl-2">
-                <b># Message ID</b>
+                <b>UserID ID</b>
             </div>
             <div class="d-none d-md-block col-5 col-md-3 col-xl-3">
                 From
             </div>
             <div class="d-none d-md-block col-5 col-md-3 col-xl-2">
-                Related To
+                Sent Via
             </div>
             <div class="d-none d-md-block col-5 col-md-3 col-xl-3">
                 Date
@@ -33,236 +32,54 @@
             </div>
         </div>
 
-        <ul class="list-group" id="data-list">
-            <!-- message starts -->
-            <li id="data-row-423" class="admin-list">
-                <div id="summary-panel-423" class="row" onclick="OpenDetails(423)">
-                    <div class="col-2 col-md-2 col-xl-2">
-                        <b>#423</b>
-                    </div>
-                    <div class="col-5 col-md-4 col-xl-3">
-                        John Douglas
-                    </div>
-                    <div class="col-5 col-md-3 col-xl-2">
-                        RE: Order <!-- Shop (website query), Complaint -->
-                    </div>
-                    <div class="col-2 d-md-none"></div>
-                    <div class="col-5 col-5 col-md-1 col-xl-3">
-                        02/10/2020 01:30pm
-                    </div>
-                    <div class="col-5 col-5 col-md-1 col-xl-2">
-                        Replied <!-- New, Read, Closed -->
-                    </div>
-                </div>
-                <!-- expanded start -->
-                <div id="expanded-panel-423" class="row d-none">
-                    <div class="col-6">
-                        <h4>#423</h4>
-                    </div>
-                    <div class="col-6 admin-close-view">
-                        <span onclick="closeDetails(423)"><i class="fas fa-times fa-1-5x"></i></span>
-                    </div>
-                    <div class="col-6">
-                        <h6>From</h6> <p>John Douglas</p>
-                    </div>
-                    <div class="col-12 col-md-6">
-                        <h6>Date:</h6> <p>02/10/2020 01:30pm</p>
-                    </div>
-                    <div class="col-12">
-                        <h6>Related to:</h6> <p>Order <!-- link to order --><a href="">#123</a></p>
-
-                    </div>
-
-                    <div class="col-12 col-md-6">
-                        <h6>Status:</h6> <p>Replied</p>
-                    </div>
-                    <div class="col-12 col-md-12">
-                        <h6>Message:</h6> <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum risus purus, pulvinar a mi at, dignissim gravida lorem. Morbi sollicitudin sem at ligula tincidunt convallis. Sed scelerisque urna enim, ac facilisis justo tristique viverra. Quisque eu velit lorem. Ut dictum nibh et ligula cursus tristique. Aenean leo justo, mollis in blandit ut, accumsan ut neque. Sed in justo accumsan, hendrerit justo nec, porta purus. Morbi eget gravida libero, in vulputate leo.</p>
-                    </div>
-                    <div class="col-12 col-md-12 replies-section">
-                        <h4>Replies:</h4>
-                        <div id="send-message-btn" class="row col-12">
-                            <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#staticBackdrop">Send Message</button>
+        @foreach (String user in Classes.Messages.adminGetUsers())
+        {
+            <ul class="list-group" id="data-list">
+                <!-- message starts -->
+                <li id="data-row-@user" class="admin-list">
+                    <div id="summary-panel-@user" class="row" onclick="OpenDetails('@user')">
+                        <div class="col-2 col-md-2 col-xl-2">
+                            <b>#@user</b>
                         </div>
-                        <table class="row">
-                            <tbody class="col-12">
-                                <tr class="row">
-                                    <th class="col">Date</th>
-                                    <th class="col">From</th>
-
-                                </tr>
-                                <tr class="row">
-                                    <td class="col">02/04/2021</td>
-                                    <td class="col">Automated</td>
-
-                                </tr>
-                                <tr>
-                                    <td colspan="3"><h6>Message</h6>We have recieved your query and will get back to you within 24 hours.</td>
-                                </tr>
-                                <tr class="row">
-                                    <td class="col" colspan="5"><hr /></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <table class="row">
-                            <tbody class="col-12">
-                                <tr class="row">
-                                    <th class="col">Date</th>
-                                    <th class="col">From</th>
-
-                                </tr>
-                                <tr class="row">
-                                    <td class="col">02/04/2021</td>
-                                    <td class="col">Darren</td>
-
-                                </tr>
-                                <tr>
-                                    <td colspan="3"><h6>Message</h6>Quisque eu velit lorem. Ut dictum nibh et ligula cursus tristique. Aenean leo justo, mollis in blandit ut, accumsan ut neque. Sed in justo accumsan, hendrerit justo nec, porta purus. Morbi eget gravida libero, in vulputate leo.</td>
-                                </tr>
-                                <tr class="row">
-                                    <td class="col" colspan="5"><hr /></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-
-                </div>
-
-                <!-- expanded end -->
-            </li>
-
-
-
-            <!-- message ends -->
-
-        </ul>
-
-    </div>
-    <div class="col-12 col-lg-6">
-        <h5>Live Queries</h5>
-        <div id="data-header" class="row d-none">
-            <div class="col-4 col-md-2 col-xl-2">
-                <b># Message ID</b>
-            </div>
-            <div class="d-none d-md-block col-5 col-md-3 col-xl-3">
-                From
-            </div>
-            <div class="d-none d-md-block col-5 col-md-3 col-xl-2">
-                Related To
-            </div>
-            <div class="d-none d-md-block col-5 col-md-3 col-xl-3">
-                Date
-            </div>
-            <div class="d-none d-md-block col-5 col-md-2 col-xl-2">
-                Status
-            </div>
-        </div>
-
-        <ul class="list-group" id="data-list">
-            <!-- message starts -->
-            <li id="data-row-423" class="admin-list">
-                <div id="summary-panel-423" class="row" onclick="OpenDetails(423)">
-                    <div class="col-2 col-md-2 col-xl-2">
-                        <b>#423</b>
-                    </div>
-                    <div class="col-5 col-md-4 col-xl-3">
-                        John Douglas
-                    </div>
-                    <div class="col-5 col-md-3 col-xl-2">
-                       RE:  Order <!-- Shop (website query), Complaint -->
-                    </div>
-                    <div class="col-2 d-md-none"></div>
-                    <div class="col-5 col-5 col-md-1 col-xl-3">
-                        02/10/2020 01:30pm
-                    </div>
-                    <div class="col-5 col-5 col-md-1 col-xl-2">
-                        Replied <!-- New, Read, Closed -->
-                    </div>
-                </div>
-                <!-- expanded start -->
-                <div id="expanded-panel-423" class="row d-none">
-                    <div class="col-6">
-                        <h4>#423</h4>
-                    </div>
-                    <div class="col-6 admin-close-view">
-                        <span onclick="closeDetails(423)"><i class="fas fa-times fa-1-5x"></i></span>
-                    </div>
-                    <div class="col-6">
-                        <h6>From</h6> <p>John Douglas</p>
-                    </div>
-                    <div class="col-12 col-md-6">
-                        <h6>Date:</h6> <p>02/10/2020 01:30pm</p>
-                    </div>
-                    <div class="col-12">
-                        <h6>Related to:</h6> <p>Order <!-- link to order --><a href="">#123</a></p>
-
-                    </div>
-
-                    <div class="col-12 col-md-6">
-                        <h6>Status:</h6> <p>Replied</p>
-                    </div>
-                    <div class="col-12 col-md-12">
-                        <h6>Message:</h6> <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum risus purus, pulvinar a mi at, dignissim gravida lorem. Morbi sollicitudin sem at ligula tincidunt convallis. Sed scelerisque urna enim, ac facilisis justo tristique viverra. Quisque eu velit lorem. Ut dictum nibh et ligula cursus tristique. Aenean leo justo, mollis in blandit ut, accumsan ut neque. Sed in justo accumsan, hendrerit justo nec, porta purus. Morbi eget gravida libero, in vulputate leo.</p>
-                    </div>
-                    <div class="col-12 col-md-12 replies-section">
-                        <h4>Replies:</h4>
-                        <div id="send-message-btn" class="row col-12">
-                            <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#staticBackdrop">Send Message</button>
+                        <div class="col-5 col-md-4 col-xl-3">
+                            @user
                         </div>
-                        <table class="row">
-                            <tbody class="col-12">
-                                <tr class="row">
-                                    <th class="col">Date</th>
-                                    <th class="col">From</th>
+                        <div class="col-5 col-md-3 col-xl-2">
+                            Chatbox
+                        </div>
+                        <div class="col-2 d-md-none"></div>
+                        <div class="col-5 col-5 col-md-1 col-xl-3">
+                            {RECENT}
+                        </div>
+                        <div class="col-5 col-5 col-md-1 col-xl-2">
+                            {STATUS} <!-- New, Read, Closed -->
+                        </div>
+                    </div>
+                    <!-- expanded start -->
+                    <div id="expanded-panel-@user" class="row d-none">
+                        <div class="col-6">
+                            <h4>#@user ({NAME})</h4>
+                        </div>
+                        <div class="col-6 admin-close-view">
+                            <span onclick="closeDetails('@user')"><i class="fas fa-times fa-1-5x"></i></span>
+                        </div>
+                        <div class="col-12 col-md-12">
 
-                                </tr>
-                                <tr class="row">
-                                    <td class="col">02/04/2021</td>
-                                    <td class="col">Automated</td>
+                            <div id="send-message-btn" class="row col-12" style="margin-top:15px;">
+                                <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#staticBackdrop">Send Message</button>
+                            </div>
+                            <h4>Corrospondance:</h4>
 
-                                </tr>
-                                <tr>
-                                    <td colspan="3"><h6>Message</h6>We have recieved your query and will get back to you within 24 hours.</td>
-                                </tr>
-                                <tr class="row">
-                                    <td class="col" colspan="5"><hr /></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <table class="row">
-                            <tbody class="col-12">
-                                <tr class="row">
-                                    <th class="col">Date</th>
-                                    <th class="col">From</th>
+                            @Html.Raw(Classes.Messages.getAdminMessages(Classes.UserFunctions.getUserID(HttpContext.Request.Cookies["SessionID"]), user)))
 
-                                </tr>
-                                <tr class="row">
-                                    <td class="col">02/04/2021</td>
-                                    <td class="col">Darren</td>
-
-                                </tr>
-                                <tr>
-                                    <td colspan="3"><h6>Message</h6>Quisque eu velit lorem. Ut dictum nibh et ligula cursus tristique. Aenean leo justo, mollis in blandit ut, accumsan ut neque. Sed in justo accumsan, hendrerit justo nec, porta purus. Morbi eget gravida libero, in vulputate leo.</td>
-                                </tr>
-                                <tr class="row">
-                                    <td class="col" colspan="5"><hr /></td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        </div>
                     </div>
 
+                    <!-- expanded end -->
+                </li>
+            </ul>
 
-                </div>
-
-                <!-- expanded end -->
-            </li>
-
-
-
-            <!-- message ends -->
-
-        </ul>
+        }
 
     </div>
 </div>

@@ -51,21 +51,21 @@ namespace FINAL.Classes
 
         public async Task addToBasket(String arg)
         {
-            String[] perams = arg.Split(',');
-            Console.WriteLine(arg + "!");
-            String sessionID = perams[0].ToString();
-            String productID = perams[1].ToString();
-            int quantity = int.Parse(perams[2].ToString());
+
+            String[] args = arg.Split(',');
+            String sessionID = args[0];
+            int stockID = int.Parse(args[1]);
+            int quantity = int.Parse(args[2]);
 
             String userID = UserFunctions.getUserID(sessionID);
-            if (Basket.containsItem(userID, productID))
+            if (Basket.containsItem(userID, stockID))
             {
-                int newQuantity = Basket.getItemQuantity(userID, productID) + 1;
-                DBFunctions.sendQuery("UPDATE Basket SET Quantity='" + newQuantity + "' WHERE UserID='" + userID + "' AND ProductID='" + productID + "';");
+                int newQuantity = Basket.getItemQuantity(userID, stockID) + 1;
+                DBFunctions.sendQuery("UPDATE Basket SET Quantity='" + newQuantity + "' WHERE UserID='" + userID + "' AND StockID='" + stockID + "';");
             }
             else
             {
-                DBFunctions.sendQuery("INSERT INTO Basket (UserID, ProductID, Quantity) VALUES('" + userID + "', '" + productID + "', '" + quantity + "');");
+                DBFunctions.sendQuery("INSERT INTO Basket (UserID, StockID, Quantity) VALUES('" + userID + "', '" + stockID + "', '" + quantity + "');");
             }
 
             await sendContent(Context.ConnectionId, Basket.getNumOfItems(sessionID).ToString(), "basket-counter");
@@ -227,6 +227,12 @@ namespace FINAL.Classes
                 Settings.updateEmailTemplate(id, subject, heading, body);
                 sendSuccessAlert(Context.ConnectionId, "Email Template Updated");
             }
+        }
+
+        public async Task updateQuantity(String stockID)
+        {
+            int maxQuantity = int.Parse(Stock.getStockDetail(int.Parse(stockID), "Quantity"));
+            await Clients.Client(Context.ConnectionId).SendAsync("setMaxQuantity", maxQuantity);
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿
 var connection = new signalR.HubConnectionBuilder().withUrl("/chathub").build();
 connection.start();
+var maxQuantity = 10;
 
 setTimeout(300, setConnectionID);
 
@@ -32,6 +33,11 @@ connection.on("removeContainer", function (id) {
     document.getElementById('basket-product-' + id).outerHTML = "";
 });
 
+connection.on("setMaxQuantity", function (quantity) {
+    document.getElementById('quantityvalue').value = "1";
+    maxQuantity = parseInt(quantity);
+});
+
 function sendMessage() {
     var message = document.getElementById('message-messageinput').value;
     connection.invoke("sendMessage", getSessionID(), message);
@@ -41,10 +47,10 @@ function setConnectionID() {
     connection.invoke("setConnectionID", getSessionID());
 }
 
-function addToBasket(id) {
-    var quantity = document.getElementById('product-quantity-select-' + id).value;
-    var sessionID = getSessionID();
-    var arg = sessionID + "," + id + "," + quantity;
+function addToBasket() {
+    var quantity = document.getElementById('quantityvalue').value;
+    var id = document.getElementById('input-size').value;
+    var arg = getSessionID() + "," + id + "," + quantity;
     connection.invoke("addToBasket", arg);
 }
 
@@ -146,4 +152,11 @@ function deleteCategory(id) {
     connection.invoke("deleteCategory", getSessionID(), id);
     var cat = document.getElementById('category-line-' + id);
     cat.parentNode.removeChild(cat);
+}
+
+function updateQuantity() {
+    if (window.location.href.toString().includes("/Product")) {
+        var stockID = document.getElementById('input-size').value;
+        connection.invoke("updateQuantity", stockID);
+    }
 }

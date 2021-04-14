@@ -33,29 +33,30 @@ namespace FINAL.Classes
             return null;
         }
 
-        public static int getNewestID()
-        {
-            SqlConnection conn = new SqlConnection();
-            conn.ConnectionString = DBFunctions.connectionString;
-            conn.Open();
-            SqlCommand query = conn.CreateCommand();
-            query.CommandText = "SELECT * FROM Products";
-            SqlDataReader reader = query.ExecuteReader();
-
-            int i = 0;
-            while (reader.Read())
-            {
-                i = int.Parse(reader["ProductID"].ToString());
-            }
-
-            conn.Close();
-            return i;
-        }
-
         public static String getMainProductHtml(String productID)
         {
             String baseString = File.ReadAllText(Environment.CurrentDirectory + "/HTML/PRODUCTMAIN.html");
-            String price = "", quantity = "", imagePath = "", description = "", name = "", id = "";
+            String price = "", imagePath = "", description = "", name = "", id = "", sizeHtml = "", maxQuantity = "";
+
+            SqlConnection connSize = new SqlConnection();
+            connSize.ConnectionString = DBFunctions.connectionString;
+            connSize.Open();
+            SqlCommand querySize = connSize.CreateCommand();
+            querySize.CommandText = "SELECT * FROM Stock";
+            SqlDataReader readerSize = querySize.ExecuteReader();
+
+            while (readerSize.Read())
+            {
+                if (readerSize["ProductID"].ToString() == productID
+                    && readerSize["Available"].ToString() != "False"
+                    && int.Parse(readerSize["Quantity"].ToString()) > 0)
+                {
+                    maxQuantity = readerSize["Quantity"].ToString();
+                    sizeHtml = "<option value=\"" + readerSize["StockID"] + "\">" + readerSize["SizeID"] + "</option>" + sizeHtml;
+                }
+            }
+
+            connSize.Close();
 
             SqlConnection conn = new SqlConnection();
             conn.ConnectionString = DBFunctions.connectionString;
@@ -69,7 +70,6 @@ namespace FINAL.Classes
                 if (reader["ProductID"].ToString() == productID)
                 {
                     price = reader["Price"].ToString();
-                    quantity = reader["Quantity"].ToString();
                     description = reader["Description"].ToString();
                     name = reader["Name"].ToString();
                     imagePath = reader["ImagePath"].ToString();
@@ -80,8 +80,10 @@ namespace FINAL.Classes
             conn.Close();
             baseString = baseString.Replace("{PRICE}", price)
                 .Replace("{NAME}", name).Replace("{DESCRIPTION}", description)
-                .Replace("{QUANTITY}", quantity).Replace("{IMAGE}", imagePath)
-                .Replace("{ID}", id.ToString());
+                .Replace("{IMAGE}", imagePath)
+                .Replace("{ID}", id.ToString())
+                .Replace("{SIZES}", sizeHtml)
+                .Replace("{MAXQUANTITY}", maxQuantity);
 
             return baseString;
         }
@@ -90,7 +92,7 @@ namespace FINAL.Classes
         public static String getSubProductHtml(String productID)
         {
             String baseString = File.ReadAllText(Environment.CurrentDirectory + "/HTML/PRODUCTSUB.html");
-            String price = "", quantity = "", imagePath = "", description = "", name = "", id = "";
+            String price = "", imagePath = "", description = "", name = "", id = "";
 
             SqlConnection conn = new SqlConnection();
             conn.ConnectionString = DBFunctions.connectionString;
@@ -104,7 +106,6 @@ namespace FINAL.Classes
                 if (reader["ProductID"].ToString() == productID.ToString())
                 {
                     price = reader["Price"].ToString();
-                    quantity = reader["Quantity"].ToString();
                     description = reader["Description"].ToString();
                     name = reader["Name"].ToString();
                     imagePath = reader["ImagePath"].ToString();
@@ -115,16 +116,15 @@ namespace FINAL.Classes
             conn.Close();
             baseString = baseString.Replace("{PRICE}", price)
                 .Replace("{NAME}", name).Replace("{DESCRIPTION}", description)
-                .Replace("{QUANTITY}", quantity).Replace("{IMAGE}", imagePath)
+                .Replace("{IMAGE}", imagePath)
                 .Replace("{ID}", id.ToString());
 
             return baseString;
         }
 
-
-        public static int getProductQuantity(String productID)
+        public static int getProductQuantity(String stockID)
         {
-            return int.Parse(getProductDetails(productID, "Quantity"));
+            return int.Parse(getProductDetails(stockID, "Quantity"));
         }
 
         public static Boolean productArchived(String productID)
@@ -133,7 +133,6 @@ namespace FINAL.Classes
             {
                 return true;
             }
-
             return false;
         }
 
@@ -143,7 +142,6 @@ namespace FINAL.Classes
             {
                 return true;
             }
-
             return false;
         }
 
@@ -153,7 +151,6 @@ namespace FINAL.Classes
             {
                 return true;
             }
-
             return false;
         }
 
@@ -162,9 +159,9 @@ namespace FINAL.Classes
             return int.Parse(getProductDetails(productID, "Status"));
         }
 
-        public static int getProductPrice(String productID)
+        public static int getProductPrice(int stockID)
         {
-            return int.Parse(getProductDetails(productID, "Price"));
+            return int.Parse(getProductDetails(Stock.getStockDetail(stockID, "ProductID"), "Price"));
         }
 
     }

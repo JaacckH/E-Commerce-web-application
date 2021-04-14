@@ -3,48 +3,17 @@
 @{
 }
 
-<!--
-<h1>Add Products</h1>
-
-<div>
-    <form method="post" enctype="multipart/form-data">
-        <div class="form-group">
-            
-            <label>Select a Image to upload</label>
-            <input type="file" asp-for="ImgFile" onchange="readURL(this)" accept="image/*" />
+<div class="admin-pages">
+    <div class="menu-toggle d-md-none d-block" onclick="ToggleMenu()"><i class="fas fa-bars fa-1-5x"></i></div>
+    <div class="row admin-product-page">
+        <div class="col-12">
+            <h6 class="title">Admin Panel</h6>
+            <h1>Add Product</h1>
+            <hr />
         </div>
 
-        <input type="text" name="productname" placeholder="product name">
-        <input type="text" name="productdescription" placeholder="product description">
-        <input type="text" name="productprice" placeholder="product price">
-        <input type="text" name="productquantity" placeholder="quantity">
-
-        <input type="submit" value="Upload" class="btn btn-secondary" />
-    </form>
-    <p>TempData["add-product-error"]</p>
-    <br />
-    <div>
-        <img id="Img" class="img-upload-preview" src="" alt="User Image Upload" />
-    </div>
-
-
-</div>
--->
-
-
-
-    <!-- start of main -->
-    <div class="admin-pages">
-        <div class="menu-toggle d-md-none d-block" onclick="ToggleMenu()"><i class="fas fa-bars fa-1-5x"></i></div>
-        <div class="row admin-product-page">
-            <div class="col-12">
-                <h6 class="title">Admin Panel</h6>
-                <h1>Add Product</h1>
-                <hr />
-            </div>
-
-            <div id="card-lrg-detail-123" class="col-md-8">
-
+        <div id="card-lrg-detail-123" class="col-md-8">
+            <form method="post" enctype="multipart/form-data">
                 <div class="card-body">
 
                     <div class="row">
@@ -54,12 +23,12 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="brief-product-name">Name</span>
                                 </div>
-                                <input type="text" class="form-control" placeholder="Brief Product Name" aria-label="price" aria-describedby="brief-product-name" value="">
+                                <input type="text" class="form-control" placeholder="Brief Product Name" aria-label="price" aria-describedby="brief-product-name" name="input-name">
                             </div>
                         </div>
                         <div class="form-group col-12">
                             <label for="material-info">Description:</label>
-                            <textarea id="product-description" class="form-control" rows="3"></textarea>
+                            <textarea id="product-description" class="form-control" rows="3" name="input-description"></textarea>
                         </div>
                         <div class="col-6">
                             <p class="margin-5-px">Price:</p>
@@ -67,7 +36,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="original-price">RS</span>
                                 </div>
-                                <input type="text" class="form-control" placeholder="Original" aria-label="price" aria-describedby="original-price" value="">
+                                <input type="text" class="form-control" placeholder="Original" aria-label="price" aria-describedby="original-price" name="input-price">
                             </div>
                         </div>
                         <div class="col-6">
@@ -76,7 +45,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="sale-price">RS</span>
                                 </div>
-                                <input type="text" class="form-control" placeholder="Sale" aria-label="sale-price" aria-describedby="sale-price" value="">
+                                <input type="text" class="form-control" placeholder="Sale" aria-label="sale-price" aria-describedby="sale-price" name="input-saleprice">
                             </div>
                         </div>
                     </div>
@@ -89,8 +58,8 @@
                         <div class="col-12 size-table margin-5-px row">
 
                             <div class="row col-12">
-                                <div class="size-column">
-                                    <select class="form-control" id="exampleFormControlSelect1">
+                                <div class="size-column" name="sizecol-0">
+                                    <select class="form-control" name="sizecol-0-size">
                                         <option>6</option>
                                         <option>8</option>
                                         <option>10</option>
@@ -117,11 +86,11 @@
                                         <option>41</option>
                                         <option>42</option>
                                     </select>
-                                    <input class="size-input" type="text" value="1" />
+                                    <input class="size-input" type="text" value="1" name="input-quantity-0" />
                                 </div>
 
                                 <div class="size-column add-size-type">
-                                    <button class="btn add-size-btn" onclick="AddSizeCol(123)">
+                                    <button class="btn add-size-btn" onclick="AddSizeCol(123)" type="button">
                                         <i class="fas fa-plus"></i>
                                     </button>
                                 </div>
@@ -139,7 +108,7 @@
                     <div class="row">
                         <div class="form-group col-12 col-lg-6">
                             <label for="category-select">Categories:</label>
-                            <select multiple class="form-control" id="category-select">
+                            <select multiple class="form-control" id="category-select" name="input-category">
                                 <option selected>Womens</option>
                                 <option>Mens</option>
                                 <option>Unisex</option>
@@ -152,7 +121,7 @@
                         </div>
                         <div class="form-group col-12 col-lg-6">
                             <label for="product-tags">Product Tags:</label>
-                            <input id="product-tags" class="tags-selection-cont" type="text" value="" placeholder="Tags" />
+                            <input id="product-tags" class="tags-selection-cont" type="text" value="" placeholder="Tags" name="input-tags" />
                         </div>
 
                         <div class="form-group col-12">
@@ -162,33 +131,21 @@
                         <div class="form-group col-12">
                             <label for="additional-images">Additional Images:</label>
                             <div class="imges-row row col-12">
-
-                                <div id="existing-image-12" class="img-column contains" onclick="RemoveUpload(12,0)">
-                                    <img class="img-object" src="https://images.unsplash.com/photo-1602944769505-229e6599d950?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1275&q=80" alt="...">
-                                    <div class="delete-img-btn"><i class="fas fa-times"></i></div>
-                                </div>
-
                                 <div class="img-column img-upload-btn">
-
                                     <i class="fas fa-plus"></i>
                                     <label for="image-upload" class="image-upload btn add-img-btn"></label>
-                                    <input hidden type="file" id="image-upload" onchange="AddImageUpload(this)" name="filename" accept="image/*">
+                                    <input hidden type="file" id="image-upload" asp-for="ImgFile" onchange="AddImageUpload(this)" accept="image/*">
                                 </div>
-
-
                             </div>
-                            <button class="btn btn-secondary update-btn">Add</button>
+                            <button class="btn btn-secondary update-btn" type="submit">Add</button>
                         </div>
                     </div>
 
                 </div>
-            </div>
-
-
-            </ul>
-
+            </form>
         </div>
     </div>
+</div>
 
 
 

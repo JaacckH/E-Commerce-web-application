@@ -169,7 +169,7 @@ namespace FINAL.Classes
             }
         }
 
-        public void saveShopTabChanges(String sessionID, String vatString)
+        public void saveShopTabChanges(String sessionID, String vatString, String tagsString)
         {
             if (UserFunctions.isAdmin(UserFunctions.getUserID(sessionID)))
             {
@@ -181,6 +181,7 @@ namespace FINAL.Classes
                 catch { sendAlert(Context.ConnectionId, "VAT Must be an Integer value."); return; }
 
                 Settings.setSetting("VAT", vat.ToString());
+                Settings.setSetting("Tags", tagsString.ToString());
                 sendSuccessAlert(Context.ConnectionId, "Settings Updated");
             }
         }

@@ -6,6 +6,7 @@
 <link rel="stylesheet" href="~/css/site.css">
 <script src="~/js/main.js"></script>
 
+
 <!-- start of main -->
 
 <div class="container">
@@ -19,57 +20,97 @@
     <div class="col-12">
         <div class="col-12">
             <div class="row">
-                <div class="col-6 "><div class="col-1"><a onclick="ToggleFilter();"><p style="cursor: pointer;">Filter</p></a></div></div>
-                <div class="col-6"><div class="col-12 col-md-6 col-lg-6 col-xl-6" style="float:right;"><input class="form-control" id="search-rows" type="text" placeholder="Search.."></div></div>
+                <div class="col-6 mb-3"><a onclick="ToggleFilter();"><p style="cursor: pointer;">Filter</p></a></div>
+                <div class="col-6"><div class="col-12 col-md-6 col-lg-6 col-xl-6" style="float:right; padding-right: 0px;"><input class="form-control" id="product-search-rows" type="text" placeholder="Search.."></div></div>
 
             </div>
-            <div id="filter-menu" class="row d-none">
+            <div id="filter-menu" class="row ">
+                <!-- d-none -->
                 <div class="col-12">
                     <div class="row">
                         <div class="col-3">
-                            <div class="dropdown dropdown_size">
-                                <div class="def_op def_op_size">Size</div>
-                                <ul>
-                                    <li>Small</li>
-                                    <li>Medium</li>
-                                    <li>Large</li>
-                                    <li>XLarge</li>
-                                </ul>
+                            <div class="form-group">
+                                <label for="size-filter">SIZE</label>
+                                <select class="form-control" id="size-filter">
+                                    <option>ALL</option>
+                                    <option disabled><b>DRESS SIZE</b></option>
+                                    <option>6</option>
+                                    <option>8</option>
+                                    <option>10</option>
+                                    <option>12</option>
+                                    <option>14</option>
+                                    <option>16</option>
+                                    <option>18</option>
+                                    <option>20</option>
+                                    <option>22</option>
+                                    <option disabled><b>SIZE</b></option>
+                                    <option>XS</option>
+                                    <option>S</option>
+                                    <option>M</option>
+                                    <option>L</option>
+                                    <option>XL</option>
+                                    <option>XXL</option>
+                                    <option disabled><b>EU SIZE</b></option>
+                                    <option>35</option>
+                                    <option>36</option>
+                                    <option>37</option>
+                                    <option>38</option>
+                                    <option>39</option>
+                                    <option>40</option>
+                                    <option>41</option>
+                                    <option>42</option>
+                                </select>
                             </div>
                         </div>
                         <div class="col-3">
-                            <div class="dropdown dropdown_category">
-                                <div class="def_op def_op_category">Category</div>
-                                <ul>
-                                    <li>Iron</li>
-                                    <li>Gold</li>
-                                    <li>Silk</li>
-                                    <li>Garbage</li>
-                                </ul>
+                            <div class="form-group">
+                                <label for="category-filter">CATEGORY</label>
+                                <select class="form-control" id="category-filter">
+                                    <option>ALL</option>
+                                    <option>Womens</option>
+                                    <option>Mens</option>
+                                    <option>Unisex</option>
+                                    <option disabled>SUB CATEGORIES</option>
+                                    <option>Dresses</option>
+                                    <option>Tops</option>
+                                    <option>Trousers</option>
+                                    <option>Jumpers</option>
+                                    <option>Shoes</option>
+                                </select>
                             </div>
                         </div>
 
                         <div class="col-3">
-                            <div class="dropdown dropdown_color">
-                                <div class="def_op def_op_color">Color</div>
-                                <ul>
-                                    <li>white</li>
-                                    <li>green</li>
-                                    <li>red</li>
-                                    <li>orange</li>
-                                    <li>blue</li>
-                                </ul>
+                            <div class="form-group">
+                                <label for="colour-filter">COLOUR</label>
+                                <select class="form-control" id="colour-filter">
+                                    <option>ALL</option>
+                                    <option>Black</option>
+                                    <option>White</option>
+                                    <option>Red</option>
+                                    <option>Blue</option>
+                                    <option>Yellow</option>
+                                    <option>Green</option>
+                                    <option>Orange</option>
+                                    <option>Purple</option>
+                                    <option>Pink</option>
+                                    <option>Brown</option>
+                                    <option>Grey</option>
+                                </select>
                             </div>
                         </div>
 
 
                         <div class="col-3">
-                            <div class="dropdown dropdown_material">
-                                <div class="def_op def_op_material">Material</div>
-                                <ul>
-                                    <li>Silk</li>
-                                    <li>Cotton</li>
-                                </ul>
+                            <div class="form-group">
+                                <label for="filter-sortby">SORT BY</label>
+                                <select class="form-control" id="filter-sortby">
+                                    <option selected>No Filter</option>
+                                    <option>Low to High</option>
+                                    <option>High to Low</option>
+                                    <option>New Products</option>
+                                    <option>Sale Products</option>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -77,89 +118,54 @@
 
                 </div>
             </div>
-            <div class="row">
+            <div id="product-rows" class="row product-rows productShowcase">
+                @Html.Raw(Model.getProductShowcase())
 
-                <div class="col-12 col-md-6 col-xl-3" id="product-container">
-                    <img src="https://i.pinimg.com/564x/05/53/ca/0553cadabd0b7d23fb8b7d07d02b0680.jpg" alt="" id="shop-picture">
-                    <p>Long Sleeve Dress <br /> ₹ 800</p>
-                </div>
+            </div>
 
-
-
-                <div class="col-12 col-md-6 col-xl-3" id="product-container">
-                    <img src="https://images.asos-media.com/products/asos-edition-broderie-milkmaid-dress/11987063-1-mustard?$XXL$&wid=513&fit=constrain" alt="" id="shop-picture">
-                    <p>Long Sleeve Dress <br /> ₹ 800</p>
-                </div>
-                <div class="col-12 col-md-6 col-xl-3" id="product-container">
-                    <img src="https://images.asos-media.com/products/asos-edition-garden-floral-embroidered-maxi-dress/12622906-1-multi?$XXL$&wid=513&fit=constrain" alt="" id="shop-picture">
-                    <p>Long Sleeve Dress <br /> ₹ 800</p>
-                </div>
-                <div class="col-12 col-md-6 col-xl-3" id="product-container">
-                    <img src="https://images.asos-media.com/products/asos-design-long-sleeve-waterfall-deep-plunge-midi-dress/9248520-1-orange?$XXL$&wid=513&fit=constrain" alt="" id="shop-picture">
-                    <p>Long Sleeve Dress <br /> ₹ 800</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12 col-md-6 col-xl-3" id="product-container">
-                    <img src="https://images.asos-media.com/products/asos-edition-ciara-sequin-kimono-sleeve-wedding-dress/11023434-2?$XXL$&wid=513&fit=constrain" alt="" id="shop-picture">
-                    <p>Long Sleeve Dress <br /> ₹ 800</p>
-                </div>
-                <div class="col-12 col-md-6 col-xl-3" id="product-container">
-                    <img src="https://images.asos-media.com/products/asos-design-long-sleeve-midi-dress-with-obi-belt-in-green/14448334-1-antiquegreen?$n_480w$&wid=476&fit=constrain" alt="" id="shop-picture">
-                    <p>Long Sleeve Dress <br /> ₹ 800</p>
-                </div>
-                <div class="col-12 col-md-6 col-xl-3" id="product-container">
-                    <img src="https://images.asos-media.com/products/asos-design-pleated-cami-midi-dress-with-drawstring-waist-in-forest-green/14093179-1-forestgreen?$n_480w$&wid=476&fit=constrain" alt="" id="shop-picture">
-                    <p>Long Sleeve Dress <br /> ₹ 800</p>
-                </div>
-                <div class="col-12 col-md-6 col-xl-3" id="product-container">
-                    <img src="https://cdn.mos.cms.futurecdn.net/ZFUJ2BzruvzKFrUJyEvHDY.jpg" alt="" id="shop-picture">
-                    <p>Long Sleeve Dress <br /> ₹ 800</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12 col-md-6 col-xl-3" id="product-container">
-                    <img src="https://i.pinimg.com/564x/05/53/ca/0553cadabd0b7d23fb8b7d07d02b0680.jpg" alt="" id="shop-picture">
-                    <p>Long Sleeve Dress <br /> ₹ 800</p>
-                </div>
-                <div class="col-12 col-md-6 col-xl-3" id="product-container">
-                    <img src="https://images.asos-media.com/products/asos-edition-broderie-milkmaid-dress/11987063-1-mustard?$XXL$&wid=513&fit=constrain" alt="" id="shop-picture">
-                    <p>Long Sleeve Dress <br /> ₹ 800</p>
-                </div>
-                <div class="col-12 col-md-6 col-xl-3" id="product-container">
-                    <img src="https://images.asos-media.com/products/asos-edition-garden-floral-embroidered-maxi-dress/12622906-1-multi?$XXL$&wid=513&fit=constrain" alt="" id="shop-picture">
-                    <p>Long Sleeve Dress <br /> ₹ 800</p>
-                </div>
-                <div class="col-12 col-md-6 col-xl-3" id="product-container">
-                    <img src="https://images.asos-media.com/products/asos-design-long-sleeve-waterfall-deep-plunge-midi-dress/9248520-1-orange?$XXL$&wid=513&fit=constrain" alt="" id="shop-picture">
-                    <p>Long Sleeve Dress <br /> ₹ 800</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12 col-md-6 col-xl-3" id="product-container">
-                    <img src="https://images.asos-media.com/products/asos-edition-ciara-sequin-kimono-sleeve-wedding-dress/11023434-2?$XXL$&wid=513&fit=constrain" alt="" id="shop-picture">
-                    <p>Long Sleeve Dress <br /> ₹ 800</p>
-                </div>
-                <div class="col-12 col-md-6 col-xl-3" id="product-container">
-                    <img src="https://images.asos-media.com/products/asos-design-long-sleeve-midi-dress-with-obi-belt-in-green/14448334-1-antiquegreen?$n_480w$&wid=476&fit=constrain" alt="" id="shop-picture">
-                    <p>Long Sleeve Dress <br /> ₹ 800</p>
-                </div>
-                <div class="col-12 col-md-6 col-xl-3" id="product-container">
-                    <img src="https://images.asos-media.com/products/asos-design-pleated-cami-midi-dress-with-drawstring-waist-in-forest-green/14093179-1-forestgreen?$n_480w$&wid=476&fit=constrain" alt="" id="shop-picture">
-                    <p>Long Sleeve Dress <br /> ₹ 800</p>
-                </div>
-                <div class="col-12 col-md-6 col-xl-3" id="product-container">
-                    <img src="https://cdn.mos.cms.futurecdn.net/ZFUJ2BzruvzKFrUJyEvHDY.jpg" alt="" id="shop-picture">
-                    <p>Long Sleeve Dress <br /> ₹ 800</p>
-                </div>
-            </div>
         </div>
 
     </div>
+</div>
+<!-- end of main -->
+
+
+
+
+<div class="page-footer">
+    <div class="row page-footer-container">
+        <div class="col-12 col-md-6 col-xl-3 order-4 order-xl-1">
+            <p>
+                <a>Terms & Conditions</a><br />
+                <a>Returns Policy</a><br />
+                <a>Privacy Policy</a><br />
+                <a>Delivery Information</a>
+            </p>
+
+            <p>Phone: +230 5988 0400</p>
+        </div>
+        <div class="col-12 col-md-6 col-xl-3 order-3 order-xl-2">
+            <p>
+                Address:<br />
+                Harbour Front Building,<br />
+                President John Kennedy St,<br />
+                Port Louis,<br />
+                Mauritius
+            </p>
+        </div>
+        <div class="col-12 col-md-6=12 col-xl-3 row order-2 order-xl-3">
+            <div class="col-12"><p>Opening Hours:</p></div>
+            <div class="col-6"><p>Mon - Fri<br />Saturday<br />Sunday</p></div>
+            <div class="col-6 px-4"><p>10am - 5pm<br />10am - 5pm<br />10am - 1pm</p></div>
+        </div>
+        <div class="col-12 col-md-8 px-4 col-xl-3 row subscribe-row order-1 order-xl-4">
+            <h3>BE UP TO DATE WITH OUR NEWS!</h3>
+            <form class="form-group">
+                <input type="email" class="form-control mb-3" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="EMAIL">
+                <button class="btn btn-ouioui-secondary">SUBSCRIBE</button>
+            </form>
+        </div>
     </div>
-    <!-- end of main -->
 
 
-<div id="productShowcase">
-    @Html.Raw(Model.getProductShowcase())
 </div>

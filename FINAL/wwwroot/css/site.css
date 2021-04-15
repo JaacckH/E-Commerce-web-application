@@ -544,6 +544,35 @@ a, a:hover {
 
 
 /* SHOP PAGE */
+#filter-menu {
+    padding: 10px 0;
+}
+
+.feature-tag {
+    position: absolute;
+    top: 20px;
+    right: 15px;
+    padding: 5px;
+    color: white;
+    border-radius: 10px 0px 0px 10px;
+    padding-left: 10px;
+}
+
+    .feature-tag p {
+        margin: 0;
+        line-height: normal;
+        font-weight: bold;
+    }
+
+    .feature-tag.new {
+        background-color: #c7c9d3;
+    }
+
+    .feature-tag.sale {
+        background-color: #dc0000;
+    }
+
+/* Write page CSS here*/
 
 li {
     text-decoration: none;
@@ -600,6 +629,10 @@ li {
         border: 8px solid;
         border-color: black transparent transparent transparent;
     }
+
+.product-container {
+    cursor: pointer;
+}
 
 #Shop-text {
     text-align: center;

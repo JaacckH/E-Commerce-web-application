@@ -603,3 +603,254 @@ function incrementquantity(amount) {
     // also sent quantity to the hub
     document.getElementById("quantityvalue").value = currentquantity;
 }
+
+
+
+
+/* ----- shop page start ----- */
+
+
+var categoryParam = '';
+
+function ToggleFilter() {
+    const element = document.querySelector("#filter-menu");
+    element.classList.toggle("d-none");
+}
+
+$(".def_op_size").click(function () {
+    $(".dropdown_size ul").addClass("active");
+});
+
+$(".dropdown_size ul li").click(function () {
+    var text = $(this).text();
+    $(".def_op_size").text(text);
+    $(".dropdown_size ul").removeClass("active");
+});
+
+
+$(".def_op_category").click(function () {
+    $(".dropdown_category ul").addClass("active");
+});
+
+$(".dropdown_category ul li").click(function () {
+    var text = $(this).text();
+    $(".def_op_category").text(text);
+    $(".dropdown_category ul").removeClass("active");
+});
+
+
+$(".def_op_color").click(function () {
+    $(".dropdown_color ul").addClass("active");
+});
+
+$(".dropdown_color ul li").click(function () {
+    var text = $(this).text();
+    $(".def_op_color").text(text);
+    $(".dropdown_color ul").removeClass("active");
+});
+
+
+$(".def_op_material").click(function () {
+    $(".dropdown_material ul").addClass("active");
+});
+
+$(".dropdown_material ul li").click(function () {
+    var text = $(this).text();
+    $(".def_op_material").text(text);
+    $(".dropdown_material ul").removeClass("active");
+});
+
+
+
+$(document).ready(function () {
+
+
+    $("#product-search-rows").on("keyup", function () {
+        $(".product-container").filter(function (index, element) {
+            $(this).toggle(CheckTags(element.id, 0, 0));
+        });
+    });
+
+    $("#size-filter").on("change", function () {
+        $(".product-container").filter(function (index, element) {
+            $(this).toggle(CheckTags(element.id, 0, 0));
+        });
+    });
+
+    $("#category-filter").on("change", function () {
+        $(".product-container").filter(function (index, element) {
+            $(this).toggle(CheckTags(element.id, 0, 0));
+        });
+    });
+    $("#colour-filter").on("change", function () {
+        $(".product-container").filter(function (index, element) {
+            $(this).toggle(CheckTags(element.id, 0, 0));
+        });
+    });
+
+    $("#filter-sortby").on("change", function () {
+        var selection = $("#filter-sortby").val().toLowerCase();
+        if (selection == 'no filter') {
+            RemoveOrder();
+
+            $(".product-container").filter(function (index, element) {
+                $(this).toggle(CheckTags(element.id, 0, 0));
+            });
+        }
+        if (selection == 'new products') {
+            $(".product-container").filter(function (index, element) {
+                $(this).toggle(CheckTags(element.id, 1, 'new'));
+            });
+        }
+        if (selection == 'sale products') {
+            $(".product-container").filter(function (index, element) {
+                $(this).toggle(CheckTags(element.id, 1, 'sale'));
+            });
+        }
+        if (selection == 'low to high' || selection == 'high to low') {
+            RemoveOrder();
+
+            var productArray = [{}];
+
+            $(".product-container").filter(function (index, element) {
+                var j = element.id.lastIndexOf('-');
+                var n = element.id.substring(j + 1);
+
+                var productCost = parseInt($("#" + element.id + " #product-price-" + n).text());
+
+                productArray.push({
+                    "ID": n,
+                    "Cost": productCost
+                });
+
+            });
+
+            console.log(productArray);
+
+            var newProductOrder = [];
+            var inserted;
+
+            for (var i = 0, ii = productArray.length; i < ii; i++) {
+                inserted = false;
+                for (var j = 0, jj = newProductOrder.length; j < jj; j++) {
+                    if (productArray[i]["Cost"] < newProductOrder[j]["Cost"]) {
+                        inserted = true;
+
+                        newProductOrder.splice(j, 0, productArray[i]);
+                        break;
+                    }
+                }
+
+                if (!inserted)
+                    newProductOrder.push(productArray[i])
+            }
+
+            console.log(newProductOrder);
+        }
+        if (selection == 'low to high') {
+
+            for (var i = 1; i < newProductOrder.length; i++) {
+
+                $('#product-cont-' + newProductOrder[i]["ID"]).removeClass('[class="order-"]');
+                console.log("product-cont-" + newProductOrder[i]["ID"]);
+                var element = document.getElementById("product-cont-" + newProductOrder[i]["ID"]);
+                element.classList.toggle(("order-" + i));
+            }
+        }
+
+        if (selection == 'high to low') {
+            console.log('high to low called');
+            for (var i = 1; i < newProductOrder.length; i++) {
+                //$('#product-cont-' + newProductOrder[i]["ID"]).removeClass('[class="order-"]');
+
+                console.log("product-cont-" + newProductOrder[i]["ID"]);
+                var element = document.getElementById("product-cont-" + newProductOrder[i]["ID"]);
+                var orderPlace = newProductOrder.length - i;
+                element.classList.toggle(("order-" + orderPlace));
+            }
+
+
+        }
+
+    });
+
+
+
+    var arrClasses = [];
+
+    function RemoveOrder(id) {
+        $("#product-rows div[class*='order-']").removeClass(function () { // Select the element divs which has class that starts with some-class-
+            var className = this.className.match(/order-\d+/); //get a match to match the pattern some-class-somenumber and extract that classname
+            if (className) {
+                arrClasses.push(className[0]); //if it is the one then push it to array
+                return className[0]; //return it for removal
+            }
+        });
+    }
+
+
+
+    function CheckTags(element, a, value5) {
+        if ($("#" + element + " .product-tags-hidden").text().toLowerCase().indexOf('sale') > -1) {
+
+            var featureTags = '<div class="feature-tag sale"><p>SALE</p></div>';
+            $("#" + element).append(featureTags);
+        }
+        if ($("#" + element + " .product-tags-hidden").text().toLowerCase().indexOf('new') > -1) {
+
+            var featureTags = '<div class="feature-tag new"><p>NEW</p></div>';
+            $("#" + element).append(featureTags);
+            //<div class="feature-tag new"><p>NEW</p></div>
+        }
+
+        var TagValue = false;
+        var value = $("#product-search-rows").val().toLowerCase();
+        var value2 = $("#size-filter").val().toLowerCase();
+        var value3 = $("#category-filter").val().toLowerCase();
+        var value4 = $("#colour-filter").val().toLowerCase();
+
+        if (value2 == 'all') {
+            value2 = '';
+        }
+        if (value3 == 'all') {
+            value3 = '';
+        }
+        if (value4 == 'all') {
+            value4 = '';
+        }
+
+        if (a == 1) {
+
+            if ($("#" + element + " .product-tags-hidden").text().toLowerCase().indexOf(value) > -1 && $("#" + element + " .product-tags-hidden").text().toLowerCase().indexOf(value2) > -1 && $("#" + element + " .product-tags-hidden").text().toLowerCase().indexOf(value3) > -1 && $("#" + element + " .product-tags-hidden").text().toLowerCase().indexOf(value4) > -1 && $("#" + element + " .product-tags-hidden").text().toLowerCase().indexOf(categoryParam) > -1 && $("#" + element + " .product-tags-hidden").text().toLowerCase().indexOf(value5) > -1) {
+                TagValue = true;
+            }
+        } else {
+            if ($("#" + element + " .product-tags-hidden").text().toLowerCase().indexOf(value) > -1 && $("#" + element + " .product-tags-hidden").text().toLowerCase().indexOf(value2) > -1 && $("#" + element + " .product-tags-hidden").text().toLowerCase().indexOf(value3) > -1 && $("#" + element + " .product-tags-hidden").text().toLowerCase().indexOf(value4) > -1 && $("#" + element + " .product-tags-hidden").text().toLowerCase().indexOf(categoryParam) > -1) {
+                TagValue = true;
+            }
+        }
+
+        return TagValue;
+    }
+
+    if (window.location.href.indexOf("category") > -1) {
+
+        var urlParams = new URLSearchParams(window.location.search);
+        categoryParam = urlParams.get('category');
+    }
+
+    $(".product-container").filter(function (index, element) {
+        $(this).toggle(CheckTags(element.id));
+    });
+
+    //&category=dresses
+
+});
+
+
+document.addEventListener("DOMContentLoaded", function (event) {
+
+});
+
+
+/* ------ shop page end ------- */

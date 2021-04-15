@@ -76,67 +76,69 @@
         <h1 class="section-header">SHOP</h1>
         <div class="container">
             <!-- Working Version Start-->
-            <div id="productShowcase">
+            <div id="product-rows" class="row product-rows productShowcase">
                 @Html.Raw(Model.getProductShowcase())
+
             </div>
-           <!-- working version END -->
             
-            <div class="row " >
-                <div class="col-12 col-md-6 col-xl-3" id="product-container">
-                    <img src="https://i.pinimg.com/564x/05/53/ca/0553cadabd0b7d23fb8b7d07d02b0680.jpg" alt="" id="shop-picture">
-                    <p>Long Sleeve Dress <br /> ₹ 800</p>
-                </div>
-                <div class="col-12 col-md-6 col-xl-3" id="product-container">
-                    <img src="https://images.asos-media.com/products/asos-edition-broderie-milkmaid-dress/11987063-1-mustard?$XXL$&wid=513&fit=constrain" alt="" id="shop-picture">
-                    <p>Long Sleeve Dress <br /> ₹ 800</p>
-                </div>
-                <div class="col-12 col-md-6 col-xl-3" id="product-container">
-                    <img src="https://images.asos-media.com/products/asos-edition-garden-floral-embroidered-maxi-dress/12622906-1-multi?$XXL$&wid=513&fit=constrain" alt="" id="shop-picture">
-                    <p>Long Sleeve Dress <br /> ₹ 800</p>
-                </div>
-                <div class="col-12 col-md-6 col-xl-3" id="product-container">
-                    <img src="https://images.asos-media.com/products/asos-design-long-sleeve-waterfall-deep-plunge-midi-dress/9248520-1-orange?$XXL$&wid=513&fit=constrain" alt="" id="shop-picture">
-                    <p>Long Sleeve Dress <br /> ₹ 800</p>
-                </div>
+            <!-- working version END
+
+    <div class="row " >
+        <div class="col-12 col-md-6 col-xl-3" id="product-container">
+            <img src="https://i.pinimg.com/564x/05/53/ca/0553cadabd0b7d23fb8b7d07d02b0680.jpg" alt="" id="shop-picture">
+            <p>Long Sleeve Dress <br /> ₹ 800</p>
+        </div>
+        <div class="col-12 col-md-6 col-xl-3" id="product-container">
+            <img src="https://images.asos-media.com/products/asos-edition-broderie-milkmaid-dress/11987063-1-mustard?$XXL$&wid=513&fit=constrain" alt="" id="shop-picture">
+            <p>Long Sleeve Dress <br /> ₹ 800</p>
+        </div>
+        <div class="col-12 col-md-6 col-xl-3" id="product-container">
+            <img src="https://images.asos-media.com/products/asos-edition-garden-floral-embroidered-maxi-dress/12622906-1-multi?$XXL$&wid=513&fit=constrain" alt="" id="shop-picture">
+            <p>Long Sleeve Dress <br /> ₹ 800</p>
+        </div>
+        <div class="col-12 col-md-6 col-xl-3" id="product-container">
+            <img src="https://images.asos-media.com/products/asos-design-long-sleeve-waterfall-deep-plunge-midi-dress/9248520-1-orange?$XXL$&wid=513&fit=constrain" alt="" id="shop-picture">
+            <p>Long Sleeve Dress <br /> ₹ 800</p>
+        </div>
 
 
-                <div class="col-12 col-md-6 col-xl-3" id="product-container">
-                    <img src="https://images.asos-media.com/products/asos-edition-ciara-sequin-kimono-sleeve-wedding-dress/11023434-2?$XXL$&wid=513&fit=constrain" alt="" id="shop-picture">
-                    <p>Long Sleeve Dress <br /> ₹ 800</p>
-                </div>
-                <div class="col-12 col-md-6 col-xl-3" id="product-container">
-                    <img src="https://images.asos-media.com/products/asos-design-long-sleeve-midi-dress-with-obi-belt-in-green/14448334-1-antiquegreen?$n_480w$&wid=476&fit=constrain" alt="" id="shop-picture">
-                    <p>Long Sleeve Dress <br /> ₹ 800</p>
-                </div>
-                <div class="col-12 col-md-6 col-xl-3" id="product-container">
-                    <img src="https://images.asos-media.com/products/asos-design-pleated-cami-midi-dress-with-drawstring-waist-in-forest-green/14093179-1-forestgreen?$n_480w$&wid=476&fit=constrain" alt="" id="shop-picture">
-                    <p>Long Sleeve Dress <br /> ₹ 800</p>
-                </div>
-                <div class="col-12 col-md-6 col-xl-3" id="product-container">
-                    <img src="https://cdn.mos.cms.futurecdn.net/ZFUJ2BzruvzKFrUJyEvHDY.jpg" alt="" id="shop-picture">
-                    <p>Long Sleeve Dress <br /> ₹ 800</p>
-                </div>
+        <div class="col-12 col-md-6 col-xl-3" id="product-container">
+            <img src="https://images.asos-media.com/products/asos-edition-ciara-sequin-kimono-sleeve-wedding-dress/11023434-2?$XXL$&wid=513&fit=constrain" alt="" id="shop-picture">
+            <p>Long Sleeve Dress <br /> ₹ 800</p>
+        </div>
+        <div class="col-12 col-md-6 col-xl-3" id="product-container">
+            <img src="https://images.asos-media.com/products/asos-design-long-sleeve-midi-dress-with-obi-belt-in-green/14448334-1-antiquegreen?$n_480w$&wid=476&fit=constrain" alt="" id="shop-picture">
+            <p>Long Sleeve Dress <br /> ₹ 800</p>
+        </div>
+        <div class="col-12 col-md-6 col-xl-3" id="product-container">
+            <img src="https://images.asos-media.com/products/asos-design-pleated-cami-midi-dress-with-drawstring-waist-in-forest-green/14093179-1-forestgreen?$n_480w$&wid=476&fit=constrain" alt="" id="shop-picture">
+            <p>Long Sleeve Dress <br /> ₹ 800</p>
+        </div>
+        <div class="col-12 col-md-6 col-xl-3" id="product-container">
+            <img src="https://cdn.mos.cms.futurecdn.net/ZFUJ2BzruvzKFrUJyEvHDY.jpg" alt="" id="shop-picture">
+            <p>Long Sleeve Dress <br /> ₹ 800</p>
+        </div>
 
 
-                <div class="col-12 col-md-6 col-xl-3" id="product-container">
-                    <img src="https://i.pinimg.com/564x/05/53/ca/0553cadabd0b7d23fb8b7d07d02b0680.jpg" alt="" id="shop-picture">
-                    <p>Long Sleeve Dress <br /> ₹ 800</p>
-                </div>
-                <div class="col-12 col-md-6 col-xl-3" id="product-container">
-                    <img src="https://images.asos-media.com/products/asos-edition-broderie-milkmaid-dress/11987063-1-mustard?$XXL$&wid=513&fit=constrain" alt="" id="shop-picture">
-                    <p>Long Sleeve Dress <br /> ₹ 800</p>
-                </div>
-                <div class="col-12 col-md-6 col-xl-3" id="product-container">
-                    <img src="https://images.asos-media.com/products/asos-edition-garden-floral-embroidered-maxi-dress/12622906-1-multi?$XXL$&wid=513&fit=constrain" alt="" id="shop-picture">
-                    <p>Long Sleeve Dress <br /> ₹ 800</p>
-                </div>
-                <div class="col-12 col-md-6 col-xl-3" id="product-container">
-                    <img src="https://images.asos-media.com/products/asos-design-long-sleeve-waterfall-deep-plunge-midi-dress/9248520-1-orange?$XXL$&wid=513&fit=constrain" alt="" id="shop-picture">
-                    <p>Long Sleeve Dress <br /> ₹ 800</p>
-                </div>
+        <div class="col-12 col-md-6 col-xl-3" id="product-container">
+            <img src="https://i.pinimg.com/564x/05/53/ca/0553cadabd0b7d23fb8b7d07d02b0680.jpg" alt="" id="shop-picture">
+            <p>Long Sleeve Dress <br /> ₹ 800</p>
+        </div>
+        <div class="col-12 col-md-6 col-xl-3" id="product-container">
+            <img src="https://images.asos-media.com/products/asos-edition-broderie-milkmaid-dress/11987063-1-mustard?$XXL$&wid=513&fit=constrain" alt="" id="shop-picture">
+            <p>Long Sleeve Dress <br /> ₹ 800</p>
+        </div>
+        <div class="col-12 col-md-6 col-xl-3" id="product-container">
+            <img src="https://images.asos-media.com/products/asos-edition-garden-floral-embroidered-maxi-dress/12622906-1-multi?$XXL$&wid=513&fit=constrain" alt="" id="shop-picture">
+            <p>Long Sleeve Dress <br /> ₹ 800</p>
+        </div>
+        <div class="col-12 col-md-6 col-xl-3" id="product-container">
+            <img src="https://images.asos-media.com/products/asos-design-long-sleeve-waterfall-deep-plunge-midi-dress/9248520-1-orange?$XXL$&wid=513&fit=constrain" alt="" id="shop-picture">
+            <p>Long Sleeve Dress <br /> ₹ 800</p>
+        </div>
 
-            </div>
-
+    </div>
+       -->
 
 
         </div>

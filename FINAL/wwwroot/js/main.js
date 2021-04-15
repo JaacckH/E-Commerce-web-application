@@ -627,7 +627,7 @@ function ToggleFilter() {
     const element = document.querySelector("#filter-menu");
     element.classList.toggle("d-none");
 }
-
+/*
 $(".def_op_size").click(function () {
     $(".dropdown_size ul").addClass("active");
 });
@@ -671,7 +671,7 @@ $(".dropdown_material ul li").click(function () {
     $(".dropdown_material ul").removeClass("active");
 });
 
-
+*/
 
 $(document).ready(function () {
 
@@ -851,7 +851,13 @@ $(document).ready(function () {
     }
 
     $(".product-container").filter(function (index, element) {
-        $(this).toggle(CheckTags(element.id));
+        if ($('.main-index-page').length > 0) {
+            $(".product-container").filter(function (index, element) {
+                $(this).toggle(true);
+            });
+        } else {
+            $(this).toggle(CheckTags(element.id));
+        }
     });
 
     //&category=dresses
@@ -859,9 +865,6 @@ $(document).ready(function () {
 });
 
 
-document.addEventListener("DOMContentLoaded", function (event) {
-
-});
 
 
 /* ------ shop page end ------- */

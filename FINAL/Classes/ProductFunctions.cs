@@ -132,7 +132,7 @@ namespace FINAL.Classes
                     && int.Parse(readerSize["Quantity"].ToString()) > 0)
                 {
                     sizes = readerSize["SizeID"].ToString() + "," + sizes;
-                    //sizeHtml = "<option value=\"" + readerSize["StockID"] + "\">" + readerSize["SizeID"] + "</option>" + sizeHtml;
+                   
                 }
             }
 

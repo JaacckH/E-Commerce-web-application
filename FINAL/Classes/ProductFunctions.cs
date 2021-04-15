@@ -83,7 +83,8 @@ namespace FINAL.Classes
                 .Replace("{IMAGE}", imagePath)
                 .Replace("{ID}", id.ToString())
                 .Replace("{SIZES}", sizeHtml)
-                .Replace("{MAXQUANTITY}", maxQuantity);
+                .Replace("{MAXQUANTITY}", maxQuantity)
+                .Replace("{PRICE}".ToString(), price);
 
             return baseString;
         }

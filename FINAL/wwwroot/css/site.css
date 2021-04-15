@@ -1455,6 +1455,11 @@ svg:not(:root) {
     stroke: #b5e71b;
 }
 
+.Montserrat {
+    font-family: 'Montserrat';
+    font-weight:600;
+}
+
 .circle-bg {
     fill: none;
     stroke: #eee;
@@ -1479,7 +1484,7 @@ svg:not(:root) {
 
 .no-margin {
     margin: 0 !important;
-    margin-bottom: 3rem !important;
+    margin-bottom: 1.5rem !important;
 }
 
 /* ----------------- end Dashboard  ------------- */

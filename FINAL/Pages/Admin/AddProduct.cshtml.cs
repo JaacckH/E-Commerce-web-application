@@ -38,6 +38,7 @@ namespace Group_Project.Models
             String name = HttpContext.Request.Form["input-name"];
             String description = HttpContext.Request.Form["input-description"];
             String price = HttpContext.Request.Form["input-price"];
+            String tags = HttpContext.Request.Form["product-tags"];
 
             if (String.IsNullOrEmpty(name) || String.IsNullOrEmpty(description) || String.IsNullOrEmpty(price))
             {
@@ -63,8 +64,8 @@ namespace Group_Project.Models
                 catch { }
             }
 
-            DBFunctions.sendQuery("INSERT INTO Products (ProductID, Name, Description, Price, ImagePath) " +
-                "VALUES('" + id + "', '" + name + "', '" + description + "', '" + price + "', '../ProductImages/" + path + "')");
+            DBFunctions.sendQuery("INSERT INTO Products (ProductID, Name, Description, Price, ImagePath, Tags) " +
+                "VALUES('" + id + "', '" + name + "', '" + description + "', '" + price + "', '../ProductImages/" + path + ", " + tags + "')");
 
             var FileToUpload = Path.Combine(_env.WebRootPath, Path2, path);
             using (var Fstream = new FileStream(FileToUpload, FileMode.Create))

@@ -143,7 +143,8 @@ function updateLargeParcel() {
 
 function saveShopChanges() {
     var vat = document.getElementById('input-vat').value;
-    connection.invoke("saveShopTabChanges", getSessionID(), vat);
+    var shopTags = document.getElementById('admin-product-tags').value;
+    connection.invoke("saveShopTabChanges", getSessionID(), vat, shopTags);
     updateSmallParcel();
     updateLargeParcel();
 }

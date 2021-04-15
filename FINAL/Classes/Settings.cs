@@ -58,7 +58,7 @@ namespace FINAL.Classes
 
         public static void setSetting(String setting, String value)
         {
-            DBFunctions.sendQuery("UPDATE Settings SET Value='" + value + "' WHERE Setting='" + setting + "';"); ;
+            DBFunctions.sendQuery("UPDATE Settings SET Value='" + value + "' WHERE Setting='" + setting + "';"); 
         }
 
         public static String getAdminEmail()

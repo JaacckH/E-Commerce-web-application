@@ -1,0 +1,230 @@
+﻿@page
+@model FINAL.Pages.UserSettingsModel
+@{
+}
+
+<style>
+    .settings-text:hover {
+        cursor: pointer;
+    }
+</style>
+
+<div class="container">
+    <br><br>
+    <div class="row">
+        <div class="col-12 row">
+            <p class=" col collapsed settings-text" type="button" onclick="menuSelection(1)" style="color: red" id="1" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">Personal information</p>
+            <p class=" col collapsed settings-text" type="button" onclick="menuSelection(2)" id="2" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">Billing information</p>
+
+            <p class="col collapsed settings-text" type="button" onclick="menuSelection(3)" id="3" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">Email subscribtion</p>
+
+            <p class="col collapsed settings-text" type="button" onclick="menuSelection(4)" id="4" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">Purchase history</p>
+
+
+        </div>
+        <div class="col-12">
+            <div class="accordion" id="accordionExample">
+                <div class="card">
+
+                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                        <div class="card-body">
+                            <div class="col-12 spacing_top">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label for="UserName">First name</label>
+                                            <input type="text" class="form-control" id="UserName" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label for="UserLastName">Last name</label>
+                                            <input type="text" class="form-control" id="UserLastName" required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="UserNo">Phone number</label>
+                                    <input type="number" class="form-control" id="UserNo" required>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="UserEmail">Email address</label>
+                                    <input type="email" class="form-control" id="UserEmail" required>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <button id="create-btn" class="btn btn-ouioui-secondary margin-left-5px">SAVE CHANGES</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                        <div class="card-body">
+
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="Useraddress">Street address</label>
+                                    <input type="text" class="form-control" id="Useraddress" placeholder="House number and street name" required>
+                                    <p></p>
+                                    <input type="text" class="form-control" id="Useraddress" placeholder="Apartament, suite, unit etc. (optional)" required>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="Useraddress2">Town / City</label>
+                                    <input type="text" class="form-control" id="Useraddress2" required>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="UserPostCode">Postcode</label>
+                                    <input type="text" class="form-control" id="UserPostCode" required>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <button id="create-btn" class="btn btn-ouioui-secondary margin-left-5px">SAVE CHANGES</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                        <div class="card-body">
+                            You are subscribed <div class="col-12">
+                                <button id="create-btn" class="btn btn-ouioui-secondary margin-left-5px">Unsubscribe</button>
+                            </div>
+                            <hr>
+                            <div class="col-12">
+                                <button id="create-btn" class="btn btn-ouioui-secondary margin-left-5px">Subscribe</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div id="collapseFour" class="collapse" aria-labelledby="collapseFour" data-parent="#accordionExample">
+                        <div class="card-body">
+
+                            <div class="col-12 mb-3">
+                                <div class="card shadow">
+                                    <div class="row no-gutters">
+                                        <div class="col-4 col-md-2">
+                                            <img src="https://images.asos-media.com/products/pieces-mini-smock-dress-with-volume-sheer-sleeve-in-ditsy-floral/22481019-1-blackditsyfloral?$XXL$&wid=513&fit=constrain" style="margin-left: auto;
+  margin-right: auto; width: 190px;" alt="...">
+                                        </div>
+                                        <div class="col-8 col-md-7" style="padding-left: 10px">
+                                            <div class="card-body">
+                                                <h5 class="card-title">SHORT SLEEVE DRESS #<span class="item-id">x54sdfg</span></h5>
+                                                <div class="row">
+                                                    <div class="col-6 col-md-6 mb-3 order-1">
+                                                        <h6>Color:</h6>
+                                                        <p class="card-text">Grey</p>
+                                                    </div>
+                                                    <div class="col-6 col-md-6 mb-3 order-3 order-md-2">
+                                                        <h6>QUANTITY:</h6>
+                                                        <p class="card-text">2</p>
+                                                    </div>
+
+
+                                                    <div class="col-6 col-md-6 order-2 order-md-3 mb-3 ">
+                                                        <h6>SIZE:</h6>
+                                                        <p class="card-text">12</p>
+                                                    </div>
+                                                    <div class="col-6 col-md-6 order-4 order-md-4 mb-3 ">
+                                                        <h6>UNIT PRICE:</h6>
+                                                        <p> ₹<span id="current-price-x54sdfg">800</span></p>
+                                                    </div>
+                                                    <div class="col-12 d-block d-md-none mobile-total order-5" style="text-align:center;">
+                                                        <div>
+                                                            <h6>ITEM TOTAL:</h6>
+                                                            <p> ₹<span id="mob-total-x54sdfg" class="item-total">1600</span></p>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md-3 card-total d-none d-md-flex">
+                                            <div>
+                                                <h6>TOTAL PAID:</h6>
+                                                <p> ₹<span id="total-x54sdfg" class="item-total">1600</span></p>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+                            <div class="col-12 mb-3">
+                                <div class="card shadow">
+                                    <div class="row no-gutters">
+                                        <div class="col-4 col-md-2">
+                                            <img src="https://images.asos-media.com/products/pieces-mini-smock-dress-with-volume-sheer-sleeve-in-ditsy-floral/22481019-1-blackditsyfloral?$XXL$&wid=513&fit=constrain" style="margin-left: auto;
+  margin-right: auto; width: 190px;" alt="...">
+                                        </div>
+                                        <div class="col-8 col-md-7" style="padding-left: 10px">
+                                            <div class="card-body">
+                                                <h5 class="card-title">SHORT SLEEVE DRESS #<span class="item-id">x54sdfg</span></h5>
+                                                <div class="row">
+                                                    <div class="col-6 col-md-6 mb-3 order-1">
+                                                        <h6>Color:</h6>
+                                                        <p class="card-text">Grey</p>
+                                                    </div>
+                                                    <div class="col-6 col-md-6 mb-3 order-3 order-md-2">
+                                                        <h6>QUANTITY:</h6>
+                                                        <p class="card-text">2</p>
+                                                    </div>
+
+
+                                                    <div class="col-6 col-md-6 order-2 order-md-3 mb-3 ">
+                                                        <h6>SIZE:</h6>
+                                                        <p class="card-text">12</p>
+                                                    </div>
+                                                    <div class="col-6 col-md-6 order-4 order-md-4 mb-3 ">
+                                                        <h6>UNIT PRICE:</h6>
+                                                        <p> ₹<span id="current-price-x54sdfg">800</span></p>
+                                                    </div>
+                                                    <div class="col-12 d-block d-md-none mobile-total order-5" style="text-align:center;">
+                                                        <div>
+                                                            <h6>ITEM TOTAL:</h6>
+                                                            <p> ₹<span id="mob-total-x54sdfg" class="item-total">1600</span></p>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md-3 card-total d-none d-md-flex">
+                                            <div>
+                                                <h6>TOTAL PAID:</h6>
+                                                <p> ₹<span id="total-x54sdfg" class="item-total">1600</span></p>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

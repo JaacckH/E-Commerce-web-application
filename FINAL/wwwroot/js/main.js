@@ -7,11 +7,20 @@ $('#category-select option').mousedown(function (e) {
 
 
 
+
 $(document).ready(function () {
     if ($('#datetimepicker6').length > 0) {
         $('#datetimepicker6').datetimepicker();
         $('#datetimepicker7').datetimepicker();
     }
+
+    ProductTags('product-tags',false);
+    ProductTags('admin-product-tags',true);
+
+});
+
+
+function ProductTags(tagsid, freeinput) {
 
     var productTags = ['Teal', 'Blue', 'White', 'Long', 'Summer', 'Autumn', 'Winter', 'Warm', 'V-neck', 'Relaxed-Fit', 'long-Sleeve'
     ];
@@ -22,7 +31,7 @@ $(document).ready(function () {
         local: productTags
     });
 
-    $('#product-tags').tagsinput({
+    $('#' + tagsid).tagsinput({
         typeaheadjs: [{
             hint: true,
             highlight: true,
@@ -32,7 +41,7 @@ $(document).ready(function () {
             name: 'productTags',
             source: productTags
         }],
-        freeInput: false,
+        freeInput: freeinput,
         tagClass: 'badge',
         capitalize: function (item) {
             return item ? item.charAt(0).toUpperCase() + item.slice(1).toLowerCase() : item;
@@ -40,7 +49,7 @@ $(document).ready(function () {
     });
 
 
-    $('#product-tags').on("beforeItemAdd", function (e) {
+    $('#' + tagsid).on("beforeItemAdd", function (e) {
         var name = e.item;
         var allow = true;
         $(this).prev().find(".tag").each(function (i, valor) {
@@ -55,8 +64,8 @@ $(document).ready(function () {
             e.cancel = true;
         }
     });
+}
 
-});
 
 var imageUploadCount = 0;
 window.AddImageUpload = AddImageUpload;
@@ -854,3 +863,25 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
 
 /* ------ shop page end ------- */
+
+/* LOGIN PAGE */
+
+function ToggleForgotten() {
+    const element = document.querySelector("#main-header-panel-create-account");
+    element.classList.toggle("d-none");
+    const element2 = document.querySelector("#main-header-panel-create-account-reset-password");
+    element2.classList.toggle("d-none");
+}
+
+/* END OF LOGIN PAGE */
+
+/* User settings */
+
+function menuSelection(id) {
+    for (var i = 1; i < 5; i++) {
+        document.getElementById(i).style.color = "black";
+    }
+    document.getElementById(id).style.color = "red";
+}
+
+/* end of user settigns */

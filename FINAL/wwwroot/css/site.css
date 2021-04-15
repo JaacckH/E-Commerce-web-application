@@ -666,6 +666,15 @@ li {
     padding-right: 6%;
 }
 
+#main-header-panel-create-account-reset-password {
+    padding-left: 6%;
+    padding-right: 6%;
+}
+
+.forgotten:hover {
+    cursor: pointer;
+}
+
 .margin-left-5px {
     margin-left: 5px;
 }

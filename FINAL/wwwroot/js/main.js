@@ -21,49 +21,51 @@ $(document).ready(function () {
 
 
 function ProductTags(tagsid, freeinput) {
-
-    var productTags = ['Teal', 'Blue', 'White', 'Long', 'Summer', 'Autumn', 'Winter', 'Warm', 'V-neck', 'Relaxed-Fit', 'long-Sleeve'
-    ];
-
-    var productTags = new Bloodhound({
-        datumTokenizer: Bloodhound.tokenizers.whitespace,
-        queryTokenizer: Bloodhound.tokenizers.whitespace,
-        local: productTags
-    });
-
-    $('#' + tagsid).tagsinput({
-        typeaheadjs: [{
-            hint: true,
-            highlight: true,
-            minLength: 1
-        },
-        {
-            name: 'productTags',
-            source: productTags
-        }],
-        freeInput: freeinput,
-        tagClass: 'badge',
-        capitalize: function (item) {
-            return item ? item.charAt(0).toUpperCase() + item.slice(1).toLowerCase() : item;
-        }
-    });
+    if ($('#predefined-tags').length > 0) {
+        var productDefinedTags = document.getElementById("predefined-tags").value;
+        productTags = productDefinedTags.split(',');
 
 
-    $('#' + tagsid).on("beforeItemAdd", function (e) {
-        var name = e.item;
-        var allow = true;
-        $(this).prev().find(".tag").each(function (i, valor) {
-            if ($(this).text().toLowerCase() == name.toString().toLowerCase()) {
-                allow = false;
-                return false;
+        var productTags = new Bloodhound({
+            datumTokenizer: Bloodhound.tokenizers.whitespace,
+            queryTokenizer: Bloodhound.tokenizers.whitespace,
+            local: productTags
+        });
+
+        $('#' + tagsid).tagsinput({
+            typeaheadjs: [{
+                hint: true,
+                highlight: true,
+                minLength: 1
+            },
+            {
+                name: 'productTags',
+                source: productTags
+            }],
+            freeInput: freeinput,
+            tagClass: 'badge',
+            capitalize: function (item) {
+                return item ? item.charAt(0).toUpperCase() + item.slice(1).toLowerCase() : item;
             }
-        })
+        });
 
-        if (!allow) {
-            console.log("repeat");
-            e.cancel = true;
-        }
-    });
+
+        $('#' + tagsid).on("beforeItemAdd", function (e) {
+            var name = e.item;
+            var allow = true;
+            $(this).prev().find(".tag").each(function (i, valor) {
+                if ($(this).text().toLowerCase() == name.toString().toLowerCase()) {
+                    allow = false;
+                    return false;
+                }
+            })
+
+            if (!allow) {
+                console.log("repeat");
+                e.cancel = true;
+            }
+        });
+    }
 }
 
 

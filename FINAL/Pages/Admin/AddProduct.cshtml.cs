@@ -75,5 +75,8 @@ namespace Group_Project.Models
             TempData["add-product-error"] = "Product Added Successfully";
             return null;
         }
+
+
+
     }
 }

@@ -22,9 +22,9 @@ namespace FINAL.Classes
 
                 Console.WriteLine("ran1");
                 int promoprice = ProductFunctions.getProductPrice(item); //do calculation using promocode here
-                DBFunctions.sendQuery("INSERT INTO OrderedProducts (OrderID, ProductID, PurchasePrice, Quantity, Size, DateTime) " +
+                DBFunctions.sendQuery("INSERT INTO OrderedProducts (OrderID, ProductID, PurchasePrice, Quantity, Size) " +
                     "VALUES('" + orderReference + "', '" + Stock.getStockDetail(item, "ProductID") + "', '" + promoprice + "', '"
-                    + Basket.getItemQuantity(userID, item) + "', '" + Stock.getStockDetail(item, "SizeID") + "', '" + DateTime.Now.DayOfYear + "');");
+                    + Basket.getItemQuantity(userID, item) + "', '" + Stock.getStockDetail(item, "SizeID") + "');");
                 Console.WriteLine("ran2");
             }
 
@@ -35,9 +35,9 @@ namespace FINAL.Classes
                 userID += " (GUEST)";
             }
 
-            DBFunctions.sendQuery("INSERT INTO Orders (OrderID, UserID, Name, AddressLine1, Postcode, PhoneNumber, Price, CardNumber, CV2, Expiry) " +
+            DBFunctions.sendQuery("INSERT INTO Orders (OrderID, UserID, Name, AddressLine1, Postcode, PhoneNumber, Price, CardNumber, CV2, Expiry, DateTime) " +
                 "VALUES('" + orderReference + "', '" + userID + "', '" + name + "', '" + addressLine1 + "', '" + postcode + "', '"
-                + phoneNumber + "', '" + price + "', '" + cardNum + "', '" + cv2 + "', '" + expiry + "');");
+                + phoneNumber + "', '" + price + "', '" + cardNum + "', '" + cv2 + "', '" + expiry + "', '" + DateTime.Now.DayOfYear + "');");
 
         }
 

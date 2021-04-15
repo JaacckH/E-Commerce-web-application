@@ -26,7 +26,7 @@ connection.on("ContentDelivery", function (content, div) {
 });
 
 connection.on("updateBasket", function (content) {
-    document.getElementById('basket-counter').innerHTML = content;
+    document.getElementById('basket-counter').innerHTML = " " + content;
 });
 
 connection.on("AppendDelivery", function (content, div) {

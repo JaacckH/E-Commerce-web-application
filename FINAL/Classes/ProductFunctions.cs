@@ -92,7 +92,7 @@ namespace FINAL.Classes
         public static String getSubProductHtml(String productID)
         {
             String baseString = File.ReadAllText(Environment.CurrentDirectory + "/HTML/PRODUCTSUB.html");
-            String price = "", imagePath = "", description = "", name = "", id = "";
+            String price = "", imagePath = "", description = "", name = "", id = "", tags ="", sizes ="";
 
             SqlConnection conn = new SqlConnection();
             conn.ConnectionString = DBFunctions.connectionString;
@@ -110,13 +110,40 @@ namespace FINAL.Classes
                     name = reader["Name"].ToString();
                     imagePath = reader["ImagePath"].ToString();
                     id = reader["ProductID"].ToString();
+                    tags = reader["Tags"].ToString();
                 }
             }
 
             conn.Close();
+
+
+            SqlConnection connSize = new SqlConnection();
+            connSize.ConnectionString = DBFunctions.connectionString;
+            connSize.Open();
+            SqlCommand querySize = connSize.CreateCommand();
+            querySize.CommandText = "SELECT * FROM Stock";
+            SqlDataReader readerSize = querySize.ExecuteReader();
+
+            while (readerSize.Read())
+            {
+                if (readerSize["ProductID"].ToString() == productID
+                    && readerSize["Available"].ToString() != "False"
+                    && int.Parse(readerSize["Quantity"].ToString()) > 0)
+                {
+                    sizes = readerSize["SizeID"].ToString() + "," + sizes;
+                    //sizeHtml = "<option value=\"" + readerSize["StockID"] + "\">" + readerSize["SizeID"] + "</option>" + sizeHtml;
+                }
+            }
+
+            connSize.Close();
+
+
+
+
             baseString = baseString.Replace("{PRICE}", price)
                 .Replace("{NAME}", name).Replace("{DESCRIPTION}", description)
                 .Replace("{IMAGE}", imagePath)
+                .Replace("{TAGS}", name + "," + sizes + "," + tags)
                 .Replace("{ID}", id.ToString());
 
             return baseString;

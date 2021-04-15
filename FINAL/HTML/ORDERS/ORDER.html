@@ -1,6 +1,6 @@
 ﻿<ul class="list-group" id="data-list">
     <!-- order starts -->
-    <li id="data-row-{ID}" class="admin-list">
+    <li id="data-row-{ID}" class="admin-list shadow" style="border:none;">
         <div id="summary-panel-{ID}" class="row" onclick="OpenDetails('{ID}');">
             <div class="col-2 col-md-2 col-xl-2">
                 <b>#{ID}</b>
@@ -9,14 +9,11 @@
                 {DATE}
             </div>
             <div class="col-5 col-md-3 col-xl-3">
-                {PRICE}
+                ₹{PRICE}
             </div>
             <div class="col-2 d-md-none"></div>
             <div class="col-5 col-md-3 col-xl-3">
-                {STATUS}
-            </div>
-            <div class="col-5 col-md-1 col-xl-1">
-                {ACTION}
+                <p style="color:#00cc0a; font-size:13pt;" class="status"><i class="fas fa-circle"></i> Order Placed
             </div>
 
         </div>

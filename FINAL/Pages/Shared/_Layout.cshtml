@@ -12,7 +12,7 @@
         HttpContextAccessor.HttpContext.Response.Cookies.Append("SessionID", sid);
     }
 
-    if (HttpContextAccessor.HttpContext.Request.Path.ToString().ToLower().Contains("/admin") 
+    if (HttpContextAccessor.HttpContext.Request.Path.ToString().ToLower().Contains("/admin")
         && !Classes.UserFunctions.isAdmin(Classes.UserFunctions.getUserID(SessionID)))
     {
         HttpContextAccessor.HttpContext.Response.Redirect("/");
@@ -104,7 +104,7 @@
 
 
     @if (Classes.UserFunctions.isAdmin(Classes.UserFunctions.getUserID(SessionID))
- && (HttpContextAccessor.HttpContext.Request.Path.ToString().ToLower().Contains("/admin")))
+&& (HttpContextAccessor.HttpContext.Request.Path.ToString().ToLower().Contains("/admin")))
     {
         <div id="admin-page-layout" class="row">
             <div id="admin-menu" class="d-none d-md-block col-12 col-md-3 col-xl-2">
@@ -208,19 +208,6 @@
                         </a>
                     </li>
 
-                    @if (!Classes.UserFunctions.userLoggedIn(SessionID))
-                    {
-                        <li class="nav-item">
-                            <a class="nav-link" href="/login">LOGIN</a>
-                        </li>
-                    }
-                    else
-                    {
-                        <li class="nav-item">
-                            <a class="nav-link" href="/logout">LOGOUT</a>
-                        </li>
-                    }
-
                     @if (Classes.UserFunctions.isAdmin(Classes.UserFunctions.getUserID(SessionID)))
                     {
                         <li class="nav-item">
@@ -234,10 +221,23 @@
                         </li>
                     }
 
+                    @if (!Classes.UserFunctions.userLoggedIn(SessionID))
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" href="/login">LOGIN</a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" href="/logout">LOGOUT</a>
+                        </li>
+                    }
+
                 </ul>
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item login-logout-btn">
-                        <a class="nav-link" onclick="window.location.href = '/Basket';"><i class="fas fa-shopping-cart" id="basket-counter">@Classes.Basket.getNumOfItems(SessionID)</i></a>
+                        <a class="nav-link" onclick="window.location.href = '/Basket';"><p id="basket-counter" class="monserrat-font" style="font-size:16pt; cursor:pointer;">@Classes.Basket.getNumOfItems(SessionID)</p></a>
                     </li>
                 </ul>
             </div>

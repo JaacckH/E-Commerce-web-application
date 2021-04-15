@@ -14,6 +14,7 @@ namespace FINAL.Pages.Admin
     {
         public String getOrders()
         {
+
             SqlConnection conn = new SqlConnection();
             conn.ConnectionString = DBFunctions.connectionString;
             conn.Open();
@@ -24,20 +25,30 @@ namespace FINAL.Pages.Admin
             String html = "";
             while (reader.Read())
             {
-                String baseString = System.IO.File.ReadAllText(Environment.CurrentDirectory + "/HTML/ORDERS/ORDER.html");
-                baseString = baseString.Replace("{ID}", reader["OrderID"].ToString())
-                    .Replace("{DATE}", Utility.getDateFromDay(int.Parse(reader["DateTime"].ToString())))
-                    .Replace("{PRICE}", reader["Price"].ToString()).Replace("{STATUS}", reader["Status"].ToString())
-                    .Replace("{NAME}", reader["Name"].ToString());
+                try
+                {
+                    String baseString = System.IO.File.ReadAllText(Environment.CurrentDirectory + "/HTML/ORDERS/ORDER.html");
+                    baseString = baseString.Replace("{ID}", reader["OrderID"].ToString())
+                        .Replace("{DATE}", Utility.getDateFromDay(int.Parse(reader["DateTime"].ToString())))
+                        .Replace("{PRICE}", reader["Price"].ToString()).Replace("{STATUS}", reader["Status"].ToString())
+                        .Replace("{NAME}", reader["Name"].ToString());
 
-                String address = reader["Name"] + "<br/>" + reader["AddressLine1"] + "<br/>" + reader["Postcode"];
-                baseString = baseString.Replace("{ADDRESS}", address).Replace("{PRODUCTS}", getOrderProducts(reader["OrderID"].ToString()));
+                    String address = reader["Name"] + "<br/>" + reader["AddressLine1"] + "<br/>" + reader["Postcode"];
+                    baseString = baseString.Replace("{ADDRESS}", address).Replace("{PRODUCTS}", getOrderProducts(reader["OrderID"].ToString()));
 
-                html += baseString;
+                    html += baseString;
+                }
+                catch
+                {
+
+                }
             }
 
             conn.Close();
             return html;
+
+            return null;
+
         }
 
         public String getOrderProducts(String orderID)

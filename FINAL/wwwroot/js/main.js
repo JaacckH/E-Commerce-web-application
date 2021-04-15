@@ -854,3 +854,14 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
 
 /* ------ shop page end ------- */
+
+/* LOGIN PAGE */
+
+function ToggleForgotten() {
+    const element = document.querySelector("#main-header-panel-create-account");
+    element.classList.toggle("d-none");
+    const element2 = document.querySelector("#main-header-panel-create-account-reset-password");
+    element2.classList.toggle("d-none");
+}
+
+/* END OF LOGIN PAGE */

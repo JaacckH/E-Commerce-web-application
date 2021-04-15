@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.SignalR;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
@@ -262,6 +263,14 @@ namespace FINAL.Classes
             {
                 Messages.setStatus(userID, 1);
             }
+        }
+
+        public void confirmOrderEmail(String sessionID, String email)
+        {
+            String UserID = UserFunctions.getUserID(sessionID);
+            String OrderId = Orders.lastUserOrderID(UserID);
+
+            EmailManagement.SendEmail(email, "Order " + OrderId + " Confirmation","Thanks for choosing Oui Oui fashion! Your order has been placed! order ID: "+ OrderId + ".");
         }
     }
 }

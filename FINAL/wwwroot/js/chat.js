@@ -197,3 +197,10 @@ function markAsSettled(user) {
     connection.invoke("markAsSettled", getSessionID(), user);
     window.location.reload();
 }
+
+
+function SendConfirmEmail() {
+    var Email = document.getElementById('UserEmail').value;
+    
+    connection.invoke("confirmOrderEmail", getSessionID(), Email);
+}

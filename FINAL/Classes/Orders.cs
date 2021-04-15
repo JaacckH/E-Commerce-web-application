@@ -1,4 +1,5 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,6 +40,29 @@ namespace FINAL.Classes
                 "VALUES('" + orderReference + "', '" + userID + "', '" + name + "', '" + addressLine1 + "', '" + postcode + "', '"
                 + phoneNumber + "', '" + price + "', '" + cardNum + "', '" + cv2 + "', '" + expiry + "', '" + DateTime.Now.DayOfYear + "');");
 
+        }
+
+        public static string lastUserOrderID(String UserID)
+        {
+            SqlConnection conn = new SqlConnection();
+            conn.ConnectionString = DBFunctions.connectionString;
+            conn.Open();
+            SqlCommand query = conn.CreateCommand();
+            query.CommandText = "SELECT * FROM Orders WHERE UserID = '" + UserID +"';";
+            SqlDataReader reader = query.ExecuteReader();
+
+            while (reader.Read())
+            {
+                if (!String.IsNullOrEmpty(reader["OrderID"].ToString()))
+                {
+                    String id = reader["OrderID"].ToString();
+                    conn.Close();
+                    return id;
+                }
+            }
+
+            conn.Close();
+            return "";
         }
 
     }

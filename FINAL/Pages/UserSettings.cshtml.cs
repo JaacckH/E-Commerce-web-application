@@ -23,6 +23,9 @@ namespace FINAL.Pages
 
              CardNumber = Classes.UserFunctions.getUserDetails(UserID, "CardNumber");
              Expiry = Classes.UserFunctions.getUserDetails(UserID, "Expiry");
+
+
+
         }
 
 

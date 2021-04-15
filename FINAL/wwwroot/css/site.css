@@ -1554,3 +1554,37 @@ svg:not(:root) {
     ::-webkit-scrollbar-thumb:hover {
         background: #137f79;
     }
+
+
+
+    /* Checkout Success */
+
+.message-box {
+    display: flex;
+    justify-content: center;
+    padding-top: 20vh;
+    padding-bottom: 20vh;
+}
+
+.success-container {
+    background: white;
+    height: 480px;
+    width: 90%;
+    box-shadow: 5px 5px 10px grey;
+    text-align: center;
+}
+
+.confirm-green-box {
+    width: 100%;
+    height: 140px;
+    background: #d7f5da;
+}
+
+
+.monserrat-font {
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: 2px;
+}
+
+/* Checkout Success  end*/
+

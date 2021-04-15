@@ -874,3 +874,14 @@ function ToggleForgotten() {
 }
 
 /* END OF LOGIN PAGE */
+
+/* User settings */
+
+function menuSelection(id) {
+    for (var i = 1; i < 5; i++) {
+        document.getElementById(i).style.color = "black";
+    }
+    document.getElementById(id).style.color = "red";
+}
+
+/* end of user settigns */

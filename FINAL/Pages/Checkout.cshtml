@@ -19,145 +19,147 @@
             <div class="col-12 spacing_top"> <h1>Billing details</h1></div>
             <div class="col-12 col-md-6">
 
-                <div class="col-12 delivery_container">
-                    <a onclick="ToggleMenu();"><p style="cursor: pointer;">DELIVERY DETAILS</p></a>
-                </div>
-                <div id="delivery-menu">
-                    <div class="col-12 spacing_top">
-                        <div class="row">
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label for="UserName">First name</label>
-                                    <input type="text" class="form-control" id="UserName" name="name" required>
+                <div class="col-12 delivery_container shadow">
+                    <a onclick="ToggleMenu();"><p class="checkout-header" style="cursor: pointer;">DELIVERY DETAILS</p></a>
+                    <div id="delivery-menu">
+                        <div class="col-12 spacing_top">
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="UserName">First name</label>
+                                        <input type="text" class="form-control" id="UserName" name="name" required>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="UserLastName">Last name</label>
+                                        <input type="text" class="form-control" id="UserLastName" name="surname" required>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label for="UserLastName">Last name</label>
-                                    <input type="text" class="form-control" id="UserLastName" name="surname" required>
-                                </div>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="Useraddress">Street address</label>
+                                <input type="text" class="form-control" id="Useraddress" name="addressline1" placeholder="Address Line 1" required>
+                                <p></p>
+                                <input type="text" class="form-control" id="Useraddress" name="addressline2" placeholder="Apartament, suite, unit etc. (optional)" required>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="col-12">
-                        <div class="form-group">
-                            <label for="Useraddress">Street address</label>
-                            <input type="text" class="form-control" id="Useraddress" name="addressline1" placeholder="Address Line 1" required>
-                            <p></p>
-                            <input type="text" class="form-control" id="Useraddress" name="addressline2" placeholder="Apartament, suite, unit etc. (optional)" required>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="Useraddress2">Town / City</label>
+                                <input type="text" class="form-control" id="Useraddress2" required>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="col-12">
-                        <div class="form-group">
-                            <label for="Useraddress2">Town / City</label>
-                            <input type="text" class="form-control" id="Useraddress2" required>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="UserPostCode">Postcode</label>
+                                <input type="text" class="form-control" id="UserPostCode" name="postcode" required>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="col-12">
-                        <div class="form-group">
-                            <label for="UserPostCode">Postcode</label>
-                            <input type="text" class="form-control" id="UserPostCode" name="postcode" required>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="UserNo">Phone number</label>
+                                <input type="number" class="form-control" id="UserNo" name="phonenumber" required>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="col-12">
-                        <div class="form-group">
-                            <label for="UserNo">Phone number</label>
-                            <input type="number" class="form-control" id="UserNo" name="phonenumber" required>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="UserEmail">Email address</label>
+                                <input type="email" class="form-control" id="UserEmail" name="email" required>
+                            </div>
                         </div>
+
                     </div>
 
-                    <div class="col-12">
-                        <div class="form-group">
-                            <label for="UserEmail">Email address</label>
-                            <input type="email" class="form-control" id="UserEmail" name="email" required>
-                        </div>
-                    </div>
 
-                </div>
-                <div class="spacing_top"></div>
-                <div class="col-12 delivery_container ">
-                    <a onclick="ToggleMenu();"><p style="cursor: pointer;">PAYMENT DETAILS</p></a>
-                </div>
+                    <div class="spacing_top"></div>
 
-                <div id="payment-menu" class="d-none">
-                    <br>
-                    <div class="col-12">
-                        <div class="row">
+                    <a onclick="ToggleMenu();"><p class="checkout-header" style="cursor: pointer;">PAYMENT DETAILS</p></a>
 
-                            <div class="col-8">
-                                <div class="form-group">
-                                    <label for="UserCardNo">Credit card number:</label>
-                                    <div class="">
-                                        <div class="row card_date">
-                                            <input type="num" style="width:20%" class="form-control" maxlength="4" name="cardnumber1" required />
-                                            <input type="num" style="width:20%" class="form-control" maxlength="4" name="cardnumber2" required />
-                                            <input type="num" style="width:20%" class="form-control" maxlength="4" name="cardnumber3" required />
-                                            <input type="num" style="width:20%" class="form-control" maxlength="4" name="cardnumber4" required />
+
+                    <div id="payment-menu" class="d-none">
+                        <br>
+                        <div class="col-12">
+                            <div class="row">
+
+                                <div class="col-8">
+                                    <div class="form-group">
+                                        <label for="UserCardNo">Credit card number:</label>
+                                        <div class="">
+                                            <div class="row card_date">
+                                                <input type="num" style="width:20%" class="form-control" maxlength="4" name="cardnumber1" required />
+                                                <input type="num" style="width:20%" class="form-control" maxlength="4" name="cardnumber2" required />
+                                                <input type="num" style="width:20%" class="form-control" maxlength="4" name="cardnumber3" required />
+                                                <input type="num" style="width:20%" class="form-control" maxlength="4" name="cardnumber4" required />
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                                <div class="col-1"></div>
+                                <div class="col-3">
+                                    <div class="form-group">
+                                        <label for="UserCardMonth">Expires:</label>
+                                        <div class="col-12">
+                                            <div class="row card_date">
+                                                <input type="num" placeholder="MM" class="form-control" id="UserCardMonth" name="expiry1" style="width:45%" required>
+                                                <input type="num" placeholder="YY" class="form-control" id="UserCardYear" name="expiry2" style="width:45%" required>
+                                            </div>
+
                                         </div>
                                     </div>
                                 </div>
 
 
                             </div>
-                            <div class="col-1"></div>
-                            <div class="col-3">
-                                <div class="form-group">
-                                    <label for="UserCardMonth">Expires:</label>
-                                    <div class="col-12">
-                                        <div class="row card_date">
-                                            <input type="num" placeholder="MM" class="form-control" id="UserCardMonth" name="expiry1" style="width:45%" required>
-                                            <input type="num" placeholder="YY" class="form-control" id="UserCardYear" name="expiry2" style="width:45%" required>
-                                        </div>
+                        </div>
 
+                        <br>
+
+                        <div class="col-12">
+                            <div class="row">
+                                <div class="col-8">
+                                    <div class="form-group ">
+                                        <label for="UserCardNo">Name on creadit card:</label>
+                                        <input type="text" class="form-control" id="UserCardNo" style="width: 100%" required>
+                                    </div>
+                                </div>
+                                <div class="col-1"></div>
+                                <div class="col-3">
+                                    <div class="form-group">
+                                        <label for="UserCardNo">CVC:</label>
+                                        <input type="number" class="form-control" id="UserCardNo" name="cv2" required>
                                     </div>
                                 </div>
                             </div>
-
-
                         </div>
-                    </div>
 
-                    <br>
-
-                    <div class="col-12">
-                        <div class="row">
-                            <div class="col-8">
-                                <div class="form-group ">
-                                    <label for="UserCardNo">Name on creadit card:</label>
-                                    <input type="text" class="form-control" id="UserCardNo" style="width: 100%" required>
-                                </div>
-                            </div>
-                            <div class="col-1"></div>
-                            <div class="col-3">
-                                <div class="form-group">
-                                    <label for="UserCardNo">CVC:</label>
-                                    <input type="number" class="form-control" id="UserCardNo" name="cv2" required>
-                                </div>
-                            </div>
-                        </div>
                     </div>
 
                 </div>
-
             </div>
-
 
 
 
             <div class="col-12 col-md-6">
                 <div class"row">
-                    <div class="">
-                        <p>Order notes (optional)</p>
-                        <div class="form-group">
-                            <textarea name="" id="" class="form-control" style="width:100%;" rows="2"></textarea>
-                        </div>
-                    </div>
+                    
 
-                    <div class="col-12 order_details">
+                    <div class="col-12 order_details shadow">
+                        <div class="">
+                            <p>Order notes (optional)</p>
+                            <div class="form-group">
+                                <textarea name="" id="" class="form-control" style="width:100%;" rows="2"></textarea>
+                            </div>
+                        </div>
                         <br>
                         <h4>Your order</h4>
                         <div class="row">
@@ -197,6 +199,49 @@
 
         </div>
     </form>
+
+</div>
+
+
+
+
+
+<div class="page-footer">
+    <div class="row page-footer-container">
+        <div class="col-12 col-md-6 col-xl-3 order-4 order-xl-1">
+            <p>
+                <a>Terms & Conditions</a><br />
+                <a>Returns Policy</a><br />
+                <a>Privacy Policy</a><br />
+                <a>Delivery Information</a>
+            </p>
+
+            <p>Phone: +230 5988 0400</p>
+        </div>
+        <div class="col-12 col-md-6 col-xl-3 order-3 order-xl-2">
+            <p>
+                Address:<br />
+                Harbour Front Building,<br />
+                President John Kennedy St,<br />
+                Port Louis,<br />
+                Mauritius
+            </p>
+        </div>
+        <div class="col-12 col-md-6=12 col-xl-3 row order-2 order-xl-3">
+            <div class="col-12"><p>Opening Hours:</p></div>
+            <div class="col-6"><p>Mon - Fri<br />Saturday<br />Sunday</p></div>
+            <div class="col-6 px-4"><p>10am - 5pm<br />10am - 5pm<br />10am - 1pm</p></div>
+        </div>
+        <div class="col-12 col-md-8 px-4 col-xl-3 row subscribe-row order-1 order-xl-4">
+            <h3>BE UP TO DATE WITH OUR NEWS!</h3>
+            <form class="form-group">
+                <input type="email" class="form-control mb-3" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="EMAIL">
+                <button class="btn btn-ouioui-secondary">SUBSCRIBE</button>
+            </form>
+        </div>
+    </div>
+
+
 
 </div>
 

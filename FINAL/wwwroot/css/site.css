@@ -1,6 +1,17 @@
-﻿
-/* ----------------- admin Product page Start -------------------*/
+﻿.page-footer-container a{
+    color:white;
+}
 
+
+.checkout-header {
+    cursor: pointer;
+    background-color: var(--background-3);
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+/* ----------------- admin Product page Start -------------------*/
 .update-btn {
     margin-top: 20px;
 }
@@ -968,12 +979,12 @@ p {
 }
 
 .order_details {
-    border: 1px solid grey;
+    /*border: 1px solid grey;*/
     border-radius: 10px;
 }
 
 .delivery_container {
-    border: 1px solid var(--text-1);
+    /*border: 1px solid var(--text-1);*/
     padding: 10px;
     border-radius: 10px;
 }

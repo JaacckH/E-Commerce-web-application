@@ -374,6 +374,10 @@ table tbody tr th {
     overflow: hidden;
 }
 
+.status {
+    font-family: 'Montserrat', sans-serif;
+}
+
 body {
     font-family: 'Montserrat', sans-serif;
     width: 100vw;

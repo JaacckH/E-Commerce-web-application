@@ -189,3 +189,8 @@ function openChat() {
 function hideChat() {
     document.getElementById('chatbox-placeholder').innerHTML = "";
 }
+
+function markAsSettled(user) {
+    connection.invoke("markAsSettled", getSessionID(), user);
+    window.location.reload();
+}

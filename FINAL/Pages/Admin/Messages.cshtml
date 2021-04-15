@@ -52,7 +52,7 @@
                             {RECENT}
                         </div>
                         <div class="col-6 col-md-6 col-xl-2">
-                            {STATUS} <!-- New, Read, Closed -->
+                            @Html.Raw(Classes.Messages.getStatusHTML(user)) <!-- New, Read, Closed -->
                         </div>
                     </div>
                     <!-- expanded start -->
@@ -67,10 +67,12 @@
 
                             <div id="send-message-btn" class="row col-12" style="margin-top:15px;">
                                 <button type="button" class="btn btn-outline-secondary" onclick="recipient = '@user'; openChat();">Send Message</button>
+                                <button type="button" class="btn btn-outline-secondary" style="border:none; color:#00cc0a;" 
+                                        onclick="markAsSettled('@user');">Mark as Settled</button>
                             </div>
                             <h4>Corrospondance:</h4>
 
-                            @Html.Raw(Classes.Messages.getAdminMessages(Classes.UserFunctions.getUserID(HttpContext.Request.Cookies["SessionID"]), user)))
+                            @Html.Raw(Classes.Messages.getAdminMessages(Classes.UserFunctions.getUserID(HttpContext.Request.Cookies["SessionID"]), user))
 
                         </div>
                     </div>

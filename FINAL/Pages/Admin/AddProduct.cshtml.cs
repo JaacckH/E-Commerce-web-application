@@ -67,6 +67,7 @@ namespace Group_Project.Models
             DBFunctions.sendQuery("INSERT INTO Products (ProductID, Name, Description, Price, ImagePath, Tags) " +
                 "VALUES('" + id + "', '" + name + "', '" + description + "', '" + price + "', '../ProductImages/" + path + ", " + tags + "')");
 
+
             var FileToUpload = Path.Combine(_env.WebRootPath, Path2, path);
             using (var Fstream = new FileStream(FileToUpload, FileMode.Create))
             {

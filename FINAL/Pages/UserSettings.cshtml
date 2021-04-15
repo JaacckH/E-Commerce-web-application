@@ -33,13 +33,13 @@
                                     <div class="col-6">
                                         <div class="form-group">
                                             <label for="UserName">First name</label>
-                                            <input type="text" class="form-control" id="UserName" required>
+                                            <input type="text" class="form-control" id="UserName" placeholder="@Model.FirstName" required >
                                         </div>
                                     </div>
                                     <div class="col-6">
                                         <div class="form-group">
                                             <label for="UserLastName">Last name</label>
-                                            <input type="text" class="form-control" id="UserLastName" required>
+                                            <input type="text" class="form-control" id="UserLastName" placeholder="@Model.Surname" required>
                                         </div>
                                     </div>
                                 </div>
@@ -47,14 +47,14 @@
                             <div class="col-12">
                                 <div class="form-group">
                                     <label for="UserNo">Phone number</label>
-                                    <input type="number" class="form-control" id="UserNo" required>
+                                    <input type="number" class="form-control" id="UserNo" placeholder="@Model.PhoneNumber" required>
                                 </div>
                             </div>
 
                             <div class="col-12">
                                 <div class="form-group">
                                     <label for="UserEmail">Email address</label>
-                                    <input type="email" class="form-control" id="UserEmail" required>
+                                    <input type="email" class="form-control" id="UserEmail" placeholder="@Model.Email"  required>
                                 </div>
                             </div>
                             <div class="col-12">
@@ -70,23 +70,23 @@
                             <div class="col-12">
                                 <div class="form-group">
                                     <label for="Useraddress">Street address</label>
-                                    <input type="text" class="form-control" id="Useraddress" placeholder="House number and street name" required>
+                                    <input type="text" class="form-control" id="Useraddress" placeholder="@Model.AddressLine1" required />
                                     <p></p>
-                                    <input type="text" class="form-control" id="Useraddress" placeholder="Apartament, suite, unit etc. (optional)" required>
+                                    <input type="text" class="form-control" id="Useraddress" placeholder="Apartament, suite, unit etc. (optional)" />
                                 </div>
                             </div>
 
                             <div class="col-12">
                                 <div class="form-group">
                                     <label for="Useraddress2">Town / City</label>
-                                    <input type="text" class="form-control" id="Useraddress2" required>
+                                    <input type="text" class="form-control" id="Useraddress2" placeholder="@Model.AddressLine2" required>
                                 </div>
                             </div>
 
                             <div class="col-12">
                                 <div class="form-group">
                                     <label for="UserPostCode">Postcode</label>
-                                    <input type="text" class="form-control" id="UserPostCode" required>
+                                    <input type="text" class="form-control" id="UserPostCode" placeholder="@Model.Postcode" required>
                                 </div>
                             </div>
 

@@ -41,6 +41,8 @@ namespace Group_Project.Models
                     if (Payment.isSuccessful(price, cardnum, cv2, expiry))
                     {
                         Orders.processOrder(Basket.getStockIDs(userID), userID, promocode, price, cardnum, cv2, expiry, name, addressline1, postcode, phonenumber);
+                        Response.Redirect("/CheckoutSuccess");
+                        return null;
                     }
                     else
                     {

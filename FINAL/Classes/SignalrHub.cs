@@ -78,11 +78,11 @@ namespace FINAL.Classes
             await Clients.Client(Context.ConnectionId).SendAsync("updateBasket", Basket.getNumOfItems(sessionID).ToString());
         }
 
-        public async Task removeFromBasket(String sessionID, String productID)
+        public async Task removeFromBasket(String sessionID, String stockID)
         {
             String userID = UserFunctions.getUserID(sessionID);
-            DBFunctions.sendQuery("DELETE FROM Basket WHERE UserID='" + userID + "' AND StockID='" + productID + "';");
-            await Clients.Client(Context.ConnectionId).SendAsync("removeContainer", productID);
+            DBFunctions.sendQuery("DELETE FROM Basket WHERE UserID='" + userID + "' AND StockID='" + stockID + "';");
+            await Clients.Client(Context.ConnectionId).SendAsync("removeContainer", stockID);
             await sendContent(Context.ConnectionId, Basket.getNumOfItems(sessionID).ToString(), "basket-counter");
         }
 

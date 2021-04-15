@@ -68,6 +68,9 @@ function addToBasket() {
 
 function removeFromBasket(id) {
     connection.invoke("removeFromBasket", getSessionID(), id);
+
+    //TEMPORARY
+    window.location.reload();
 }
 
 function getSessionID() {

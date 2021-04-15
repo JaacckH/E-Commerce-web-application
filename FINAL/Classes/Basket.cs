@@ -83,7 +83,8 @@ namespace FINAL.Classes
                 .Replace("{ID}", productID.ToString()).Replace("{QUANTITY}", quantity.ToString())
                 .Replace("{NAME}", name).Replace("{SIZE}", Stock.getStockDetail(stockID, "SizeID"))
                 .Replace("{TOTAL}", (int.Parse(price) * quantity).ToString())
-                .Replace("{MAX}", (int.Parse(Stock.getStockDetail(stockID, "Quantity")) + 1).ToString());
+                .Replace("{MAX}", (int.Parse(Stock.getStockDetail(stockID, "Quantity")) + 1).ToString())
+                .Replace("{STOCKID}", stockID.ToString());
             return baseString;
         }
 

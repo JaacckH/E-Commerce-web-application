@@ -15,6 +15,7 @@ namespace FINAL.Classes
         {
             try
             {
+                Console.WriteLine("(SQL) ATTEMPTING: " + input);
                 SqlConnection conn = new SqlConnection();
                 conn.ConnectionString = DBFunctions.connectionString;
                 conn.Open();
@@ -22,11 +23,11 @@ namespace FINAL.Classes
                 query.CommandText = input;
                 query.ExecuteReader();
                 conn.Close();
-                Console.WriteLine(input);
+                Console.WriteLine("(SQL) COMPLETED:  " + input);
             }
             catch(SqlException ex)
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine("(SQL) ERROR: " + ex.Message);
             }
 
         }

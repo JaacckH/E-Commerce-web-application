@@ -39,7 +39,7 @@
         {
             <ul class="list-group" id="data-list">
                 <!-- message starts -->
-                <li id="data-row-@user" class="admin-list">
+                <li id="data-row-@user" class="admin-list shadow" style="border: none; margin-bottom:20px;">
                     <div id="summary-panel-@user" class="row" onclick="OpenDetails('@user')">
                         <div class="col-6 col-md-6 col-xl-4">
                             <b>#@user</b>
@@ -49,7 +49,14 @@
                         </div>
 
                         <div class="col-6 col-md-6 col-xl-3">
-                            {RECENT}
+                            @if (Classes.UserFunctions.userLoggedIn(Classes.UserFunctions.getSessionID(user)))
+                            {
+                                <b>@Classes.UserFunctions.getUserDetails(user, "Forename") @Classes.UserFunctions.getUserDetails(user, "Surname")</b>
+                            }
+                            else
+                            {
+                                <b>GUEST</b>
+                            }
                         </div>
                         <div class="col-6 col-md-6 col-xl-2">
                             @Html.Raw(Classes.Messages.getStatusHTML(user)) <!-- New, Read, Closed -->
@@ -58,7 +65,14 @@
                     <!-- expanded start -->
                     <div id="expanded-panel-@user" class="row d-none">
                         <div class="col-6">
-                            <h4>#@user ({NAME})</h4>
+                            @if (Classes.UserFunctions.userLoggedIn(Classes.UserFunctions.getSessionID(user)))
+                            {
+                                <b>#@user (<b>@Classes.UserFunctions.getUserDetails(user, "Forename") @Classes.UserFunctions.getUserDetails(user, "Surname")</b>)</b>
+                            }
+                            else
+                            {
+                                <b>#@user (GUEST)</b>
+                            }
                         </div>
                         <div class="col-6 admin-close-view">
                             <span onclick="closeDetails('@user')"><i class="fas fa-times fa-1-5x"></i></span>
@@ -67,8 +81,10 @@
 
                             <div id="send-message-btn" class="row col-12" style="margin-top:15px;">
                                 <button type="button" class="btn btn-outline-secondary" onclick="recipient = '@user'; openChat();">Send Message</button>
-                                <button type="button" class="btn btn-outline-secondary" style="border:none; color:#00cc0a;" 
-                                        onclick="markAsSettled('@user');">Mark as Settled</button>
+                                <button type="button" class="btn btn-outline-secondary" style="border:none; color:#00cc0a;"
+                                        onclick="markAsSettled('@user');">
+                                    Mark as Settled
+                                </button>
                             </div>
                             <h4>Corrospondance:</h4>
 
@@ -112,7 +128,7 @@
         {
             <ul class="list-group" id="data-list">
                 <!-- message starts -->
-                <li id="data-row-@user" class="admin-list">
+                <li id="data-row-@user" class="admin-list shadow" style="border: none; margin-bottom:20px;">
                     <div id="summary-panel-@user" class="row" onclick="OpenDetails('@user')">
                         <div class="col-6 col-md-6 col-xl-4">
                             <b>#@user</b>
@@ -122,16 +138,30 @@
                         </div>
 
                         <div class="col-6 col-md-6 col-xl-3">
-                            {RECENT}
+                            @if (Classes.UserFunctions.userLoggedIn(Classes.UserFunctions.getSessionID(user)))
+                            {
+                                <b>@Classes.UserFunctions.getUserDetails(user, "Forename") @Classes.UserFunctions.getUserDetails(user, "Surname")</b>
+                            }
+                            else
+                            {
+                                <b>GUEST</b>
+                            }
                         </div>
                         <div class="col-6 col-md-6 col-xl-2">
-                            {STATUS} <!-- New, Read, Closed -->
+                            @Html.Raw(Classes.Messages.getStatusHTML(user)) <!-- New, Read, Closed -->
                         </div>
                     </div>
                     <!-- expanded start -->
                     <div id="expanded-panel-@user" class="row d-none">
                         <div class="col-6">
-                            <h4>#@user ({NAME})</h4>
+                            @if (Classes.UserFunctions.userLoggedIn(Classes.UserFunctions.getSessionID(user)))
+                            {
+                                <h4>#@user (<b>@Classes.UserFunctions.getUserDetails(user, "Forename") @Classes.UserFunctions.getUserDetails(user, "Surname")</b>)</h4>
+                            }
+                            else
+                            {
+                                <h4>#@user (GUEST)</h4>
+                            }
                         </div>
                         <div class="col-6 admin-close-view">
                             <span onclick="closeDetails('@user')"><i class="fas fa-times fa-1-5x"></i></span>
@@ -139,11 +169,15 @@
                         <div class="col-12 col-md-12">
 
                             <div id="send-message-btn" class="row col-12" style="margin-top:15px;">
-                                <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#staticBackdrop">Send Message</button>
+                                <button type="button" class="btn btn-outline-secondary" onclick="recipient = '@user'; openChat();">Send Message</button>
+                                <button type="button" class="btn btn-outline-secondary" style="border:none; color:#00cc0a;"
+                                        onclick="markAsSettled('@user');">
+                                    Mark as Settled
+                                </button>
                             </div>
                             <h4>Corrospondance:</h4>
 
-                            @Html.Raw(Classes.Messages.getAdminMessages(Classes.UserFunctions.getUserID(HttpContext.Request.Cookies["SessionID"]), user)))
+                            @Html.Raw(Classes.Messages.getAdminMessages(Classes.UserFunctions.getUserID(HttpContext.Request.Cookies["SessionID"]), user))
 
                         </div>
                     </div>

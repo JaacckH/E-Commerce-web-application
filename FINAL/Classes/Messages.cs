@@ -105,6 +105,10 @@ namespace FINAL.Classes
             return html;
         }
 
+        public static void setStatus(String userID, int status)
+        {
+            DBFunctions.sendQuery("UPDATE Messages SET Status='" + status + "' WHERE UserID='" + userID + "';");
+        }
 
         public static List<String> adminGetUsers()
         {
@@ -112,7 +116,7 @@ namespace FINAL.Classes
             conn.ConnectionString = DBFunctions.connectionString;
             conn.Open();
             SqlCommand query = conn.CreateCommand();
-            query.CommandText = "SELECT * FROM Messages";
+            query.CommandText = "SELECT * FROM Messages ORDER BY MessageID DESC";
             SqlDataReader reader = query.ExecuteReader();
 
             List<String> users = new List<String>();
@@ -177,6 +181,28 @@ namespace FINAL.Classes
             }
             return File.ReadAllText(Environment.CurrentDirectory + "/HTML/CHATBOX/USERBOX.html").Replace("{MESSAGES}",
                 getUserMessages(userID));
+        }
+
+        public static String getStatusHTML(String userID)
+        {
+            SqlConnection conn = new SqlConnection();
+            conn.ConnectionString = DBFunctions.connectionString;
+            conn.Open();
+            SqlCommand query = conn.CreateCommand();
+            query.CommandText = "SELECT * FROM Messages";
+            SqlDataReader reader = query.ExecuteReader();
+
+            String status = "";
+            while (reader.Read())
+            {
+                if (reader["UserID"].ToString() == userID)
+                {
+                    status = reader["Status"].ToString();
+                }
+            }
+
+            conn.Close();
+            return File.ReadAllText(Environment.CurrentDirectory + "/HTML/CHATBOX/STATUS/" + status + ".html");
         }
     }
 }

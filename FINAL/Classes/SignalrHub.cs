@@ -112,8 +112,8 @@ namespace FINAL.Classes
             {
                 String userID = UserFunctions.getUserID(sessionID);
                 message = message.Replace("'", "''");
-                DBFunctions.sendQuery("INSERT INTO Messages (UserID, Message, Active, Date) VALUES('"
-                    + userID + "', '" + message + "', '1', '" + DateTime.Now.ToString() + "')");
+                DBFunctions.sendQuery("INSERT INTO Messages (UserID, Message, Active, Date, Status) VALUES('"
+                    + userID + "', '" + message + "', '1', '" + DateTime.Now.ToString() + "', '3')");
                 await appendContent(Context.ConnectionId, Messages.getMessageHTML(message, true), "messages");
                 await updateAdminMessages(userID, message);
             }
@@ -125,11 +125,11 @@ namespace FINAL.Classes
             {
                 String userID = UserFunctions.getUserID(sessionID);
                 message = message.Replace("'", "''");
-                DBFunctions.sendQuery("INSERT INTO Messages (UserID, Message, Recipient, Active) VALUES('"
-                    + userID + "', '" + message + "', '" + recipient + "', '1')");
+                DBFunctions.sendQuery("INSERT INTO Messages (UserID, Message, Recipient, Active, Status) VALUES('"
+                    + userID + "', '" + message + "', '" + recipient + "', '1', '2')");
+                Messages.setStatus(recipient, 2);
                 await appendContent(Context.ConnectionId, Messages.getMessageHTML(message, true), "messages-" + recipient);
                 await appendContent(UserFunctions.getConnectionID(recipient), Messages.getMessageHTML(message, false), "messages");
-                //await updateAdminMessages(userID, message);
             }
         }
 
@@ -253,6 +253,14 @@ namespace FINAL.Classes
                 return;
             }
             await sendContent(Context.ConnectionId, Messages.getChatbox(userID, recipient), "chatbox-placeholder");
+        }
+
+        public void markAsSettled(String sessionID, String userID)
+        {
+            if (UserFunctions.isAdmin(UserFunctions.getUserID(sessionID)))
+            {
+                Messages.setStatus(userID, 1);
+            }
         }
     }
 }

@@ -12,6 +12,12 @@
         HttpContextAccessor.HttpContext.Response.Cookies.Append("SessionID", sid);
     }
 
+    if (HttpContextAccessor.HttpContext.Request.Path.ToString().ToLower().Contains("/admin") 
+        && !Classes.UserFunctions.isAdmin(Classes.UserFunctions.getUserID(SessionID)))
+    {
+        HttpContextAccessor.HttpContext.Response.Redirect("/");
+    }
+
 }
 
 <style>
@@ -98,8 +104,7 @@
 
 
     @if (Classes.UserFunctions.isAdmin(Classes.UserFunctions.getUserID(SessionID))
- && (HttpContextAccessor.HttpContext.Request.Path.ToString().Contains("/Admin")
- || HttpContextAccessor.HttpContext.Request.Path.ToString().Contains("/admin")))
+ && (HttpContextAccessor.HttpContext.Request.Path.ToString().ToLower().Contains("/admin")))
     {
         <div id="admin-page-layout" class="row">
             <div id="admin-menu" class="d-none d-md-block col-12 col-md-3 col-xl-2">

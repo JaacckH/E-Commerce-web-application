@@ -115,6 +115,11 @@ namespace FINAL.Classes
                 }
             }
 
+            if(html == "")
+            {
+                html = "<center><h1 style=\"margin:50px 0px;\" class=\"Montserrat\">YOUR BASKET IS EMPTY</h1></center>";
+            }
+
             conn.Close();
             return html;
         }

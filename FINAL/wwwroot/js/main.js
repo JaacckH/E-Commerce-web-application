@@ -425,12 +425,34 @@ $(".dropdown_material ul li").click(function () {
 /* END OF SHOP */
 
 /* START OF CHECKOUT PAGE */
+window.ToggleCheckoutMenu = ToggleCheckoutMenu;
+function ToggleCheckoutMenu(menu) {
+    if (menu == "delivery-menu") {
+        const element = document.querySelector("#delivery-menu");
+        element.classList.remove("d-none");
+        const element2 = document.querySelector("#payment-menu");
+        element2.classList.add("d-none");
+        const element3 = document.querySelector("#promotion-menu");
+        element3.classList.add("d-none");
+    }
+    if (menu == "payment-menu") {
+        const element = document.querySelector("#delivery-menu");
+        element.classList.add("d-none");
+        const element2 = document.querySelector("#payment-menu");
+        element2.classList.remove("d-none");
+        const element3 = document.querySelector("#promotion-menu");
+        element3.classList.add("d-none");
+    }
+    if (menu == "promotion-menu") {
+        const element = document.querySelector("#delivery-menu");
+        element.classList.add("d-none");
+        const element2 = document.querySelector("#payment-menu");
+        element2.classList.add("d-none");
+        const element3 = document.querySelector("#promotion-menu");
+        element3.classList.remove("d-none");
+    }
 
-function ToggleMenu() {
-    const element = document.querySelector("#delivery-menu");
-    element.classList.toggle("d-none");
-    const element2 = document.querySelector("#payment-menu");
-    element2.classList.toggle("d-none");
+    
 }
 
 function RemoveMessage() {
@@ -842,6 +864,12 @@ $(document).ready(function () {
             $("#" + element).append(featureTags);
             //<div class="feature-tag new"><p>NEW</p></div>
         }
+        if ($("#" + element + " .product-tags-hidden").text().toLowerCase().indexOf('featured') > -1) {
+
+            var featureTags = '<div class="feature-tag feature"><p>FEATURED</p></div>';
+            $("#" + element).append(featureTags);
+            //<div class="feature-tag new"><p>NEW</p></div>
+        }
 
         var TagValue = false;
         var value = $("#product-search-rows").val().toLowerCase();
@@ -919,3 +947,20 @@ function menuSelection(id) {
 }
 
 /* end of user settigns */
+
+
+
+$(document).ready(function () {
+    $('#checkout-page input[type="checkbox"]').click(function () {
+
+        const element = document.querySelector("#create-account-inputs");
+
+
+        if ($(this).is(":checked")) {
+            element.classList.toggle("d-none");
+        }
+        else if ($(this).is(":not(:checked)")) {
+            element.classList.toggle("d-none");
+        }
+    });
+});

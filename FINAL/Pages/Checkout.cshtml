@@ -1,7 +1,10 @@
-﻿@page
+﻿
+@page
 @model Group_Project.Models.CheckoutModel
 @{
 }
+
+
 
 <link rel="stylesheet" href="~/css/site.css">
 <script src="~/js/main.js"></script>
@@ -13,14 +16,14 @@
     </div>
 </div>
 
-<div class="container">
+<div id="checkout-page"  class="container">
     <form asp-action="@Model.checkout()">
         <div class="row">
-            <div class="col-12 spacing_top"> <h1>Billing details</h1></div>
+            <div class="col-12 spacing_top"> <h1 class="page-title">Billing details</h1></div>
             <div class="col-12 col-md-6">
 
                 <div class="col-12 delivery_container shadow">
-                    <a onclick="ToggleMenu();"><p class="checkout-header" style="cursor: pointer;">DELIVERY DETAILS</p></a>
+                    <a onclick="ToggleCheckoutMenu('delivery-menu');" ><p class="checkout-header mb-3" style="cursor: pointer;">DELIVERY DETAILS</p></a>
                     <div id="delivery-menu">
                         <div class="col-12 spacing_top">
                             <div class="row">
@@ -79,9 +82,9 @@
                     </div>
 
 
-                    <div class="spacing_top"></div>
+                  
 
-                    <a onclick="ToggleMenu();"><p class="checkout-header" style="cursor: pointer;">PAYMENT DETAILS</p></a>
+                    <a  onclick="ToggleCheckoutMenu('payment-menu');" ><p class="checkout-header mb-3" style="cursor: pointer;">PAYMENT DETAILS</p></a>
 
 
                     <div id="payment-menu" class="d-none">
@@ -144,6 +147,22 @@
 
                     </div>
 
+                    <a onclick="ToggleCheckoutMenu('promotion-menu');"><p class="checkout-header mb-3" style="cursor: pointer;">PROMOTION CODE</p></a>
+                    <div id="promotion-menu" class="d-none">
+
+                                    <div class="card-body mb-3">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="PromoCode" placeholder="e.g. SUMMERVIBE" required>
+                                            <p style="padding-top: 5px;"></p>
+                                            <button id="promo-btn" class="btn btn-order-page" style="float: right; ">ADD</button>
+                                        </div>
+                                    </div>
+
+
+                    </div>
+
+                    
+
                 </div>
             </div>
 
@@ -151,7 +170,7 @@
 
             <div class="col-12 col-md-6">
                 <div class"row">
-                    
+
 
                     <div class="col-12 order_details shadow">
                         <div class="">
@@ -178,7 +197,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <p style="float: left;">Total</p>
-                                <p style="float: right;">Rs5.54</p>
+                                <p style="float: right;">₹5.54</p>
                             </div>
                         </div>
                         <hr>
@@ -187,7 +206,7 @@
                         </div>
                         <br>
                         <div class="col-12">
-                            <button id="create-btn"  onclick="SendConfirmEmail()" class="btn btn-order-page margin-left-5px">PLACE ORDER</button>
+                            <button id="create-btn" class="btn btn-order-page margin-left-5px">PLACE ORDER</button>
                         </div>
                         <br>
                     </div>
@@ -245,3 +264,334 @@
 
 </div>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+<link rel="stylesheet" href="~/css/site.css">
+<script src="~/js/main.js"></script>
+
+<div class="covid-cont" id="covid-notification">
+    <div clall="row">
+        <p>Due to COVID-19 situations the products will be shipped after the lockdown has ended. More informaiton can be found <a href="https://upload.wikimedia.org/wikipedia/commons/7/76/Boris_Johnson_official_portrait_%28cropped%29.jpg">here</a>. <button style="float:right;" onclick="RemoveMessage();" id="create-btn" class="btn btn-order-page margin-left-5px">Okay</button></p>
+
+    </div>
+</div>
+
+<script>
+
+    $(document).ready(function () {
+        $('input[type="checkbox"]').click(function () {
+
+            const element = document.querySelector("#create-account-inputs");
+
+
+            if ($(this).is(":checked")) {
+                element.classList.toggle("d-none");
+            }
+            else if ($(this).is(":not(:checked)")) {
+                element.classList.toggle("d-none");
+            }
+        });
+    });
+</script>
+
+<div id="checkout-page" class="container">
+    <form asp-action="">
+        <div class="row">
+            <div class="col-12 spacing_top"> <h1 class="page-title">BILLING DETAILS</h1></div>
+
+
+
+            <div class="col-12 col-md-6">
+
+                <div class="col-12 delivery_container">
+                    <a onclick="ToggleMenu();"><p style="cursor: pointer;">DELIVERY DETAILS</p></a>
+                </div>
+                <div id="delivery-menu">
+                    <div class="col-12 spacing_top">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="UserName">First name</label>
+                                    <input type="text" class="form-control" id="UserName" required>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="UserLastName">Last name</label>
+                                    <input type="text" class="form-control" id="UserLastName" required>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="Useraddress">Street address</label>
+                            <input type="text" class="form-control" id="Useraddress" placeholder="House number and street name" required>
+                            <p></p>
+                            <input type="text" class="form-control" id="Useraddress" placeholder="Apartament, suite, unit etc. (optional)" required>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="Useraddress2">Town / City</label>
+                            <input type="text" class="form-control" id="Useraddress2" required>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="UserPostCode">Postcode</label>
+                            <input type="text" class="form-control" id="UserPostCode" required>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="UserNo">Phone number</label>
+                            <input type="number" class="form-control" id="UserNo" required>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="UserEmail">Email address</label>
+                            <input type="email" class="form-control" id="UserEmail" required>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-check">
+                            <input Style="display:block;" class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                I want to create account
+                            </label>
+                        </div>
+                    </div>
+                    <br>
+                    <div id="create-account-inputs" class="d-none">
+
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="UserEmail">Create Password</label>
+                                <input type="Password" class="form-control" id="UserPassword" required>
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="UserEmail">Confirm Password</label>
+                                <input type="Password" class="form-control" id="UserConfirmPassword" required>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="spacing_top"></div>
+                <div class="col-12 delivery_container ">
+                    <a onclick="ToggleMenu();"><p style="cursor: pointer;">PAYMENT DETAILS</p></a>
+                </div>
+
+                <div id="payment-menu" class="d-none">
+
+                    <br>
+
+                    <div class="col-12">
+                        <div class="row">
+
+                            <div class="col-8">
+                                <div class="form-group">
+                                    <label for="UserCardNo">Credit card number:</label>
+                                    <div class="">
+                                        <div class="row card_date">
+                                            <input type="num" style="width:20%" class="form-control" maxlength="4" required />
+                                            <input type="num" style="width:20%" class="form-control" maxlength="4" required />
+                                            <input type="num" style="width:20%" class="form-control" maxlength="4" required />
+                                            <input type="num" style="width:20%" class="form-control" maxlength="4" required />
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                            <div class="col-1"></div>
+                            <div class="col-3">
+                                <div class="form-group">
+                                    <label for="UserCardMonth">Expires:</label>
+                                    <div class="col-12">
+                                        <div class="row card_date">
+                                            <input type="num" placeholder="MM" class="form-control" id="UserCardMonth" style="width:45%" required>
+                                            <input type="num" placeholder="YY" class="form-control" id="UserCardYear" style="width:45%" required>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                    <br>
+
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-8">
+                                <div class="form-group ">
+                                    <label for="UserCardNo">Name on creadit card:</label>
+                                    <input type="text" class="form-control" id="UserCardNo" style="width: 100%" required>
+                                </div>
+                            </div>
+                            <div class="col-1"></div>
+                            <div class="col-3">
+                                <div class="form-group">
+                                    <label for="UserCardNo">CVC:</label>
+                                    <input type="number" class="form-control" id="UserCardNo" required>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+
+            <div class="col-12 col-md-6">
+                <div class"row">
+                    <div class="">
+                        <p>Order notes (optional)</p>
+                        <div class="form-group">
+                            <textarea name="" id="" class="form-control" style="width:100%;" rows="2"></textarea>
+                        </div>
+                    </div>
+
+                    
+
+                    <div class="col-12 order_details">
+                        <br>
+                        <h4>Your order</h4>
+                        <div class="row">
+                            <div class="col-12">
+                                <p style="float: left;">PRODUCT</p>
+                                <p style="float: right;">TOTAL</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div style="overflow-y:scroll; height:40vh;">
+                            
+
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-12">
+                                <p style="float: left;">Total</p>
+                                <p style="float: right;">Rs 4200</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-12">
+                                <p style="float: left;">Discounts</p>
+                                <p style="float: right;">Rs 0</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-12">
+                                <p style="float: left;">VAT</p>
+                                <p style="float: right;">15%</p>
+                            </div>
+                        </div>
+                        <hr>
+
+                        <div class="row">
+                            <div class="col-12">
+                                <p style="float: left;">Total Inc. VAT</p>
+                                <p style="float: right;">Rs 4400</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div>
+                            <p>Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our <a href="">privacy policy</a>.</p>
+                        </div>
+                        <br>
+                        <div class="col-12">
+                            <button id="create-btn" class="btn btn-order-page margin-left-5px">PLACE ORDER</button>
+                        </div>
+                        <br>
+                    </div>
+                    <br>
+                    <div class="col-12"></div>
+                    <div class="col-12"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+</div>
+
+
+
+
+
+<div class="page-footer">
+    <div class="row page-footer-container">
+        <div class="col-12 col-md-6 col-xl-3 order-4 order-xl-1">
+            <p>
+                <a>Terms & Conditions</a><br />
+                <a>Returns Policy</a><br />
+                <a>Privacy Policy</a><br />
+                <a>Delivery Information</a>
+            </p>
+
+            <p>Phone: +230 5988 0400</p>
+        </div>
+        <div class="col-12 col-md-6 col-xl-3 order-3 order-xl-2">
+            <p>
+                Address:<br />
+                Harbour Front Building,<br />
+                President John Kennedy St,<br />
+                Port Louis,<br />
+                Mauritius
+            </p>
+        </div>
+        <div class="col-12 col-md-6=12 col-xl-3 row order-2 order-xl-3">
+            <div class="col-12"><p>Opening Hours:</p></div>
+            <div class="col-6"><p>Mon - Fri<br />Saturday<br />Sunday</p></div>
+            <div class="col-6 px-4"><p>10am - 5pm<br />10am - 5pm<br />10am - 1pm</p></div>
+        </div>
+        <div class="col-12 col-md-8 px-4 col-xl-3 row subscribe-row order-1 order-xl-4">
+            <h3>BE UP TO DATE WITH OUR NEWS!</h3>
+            <form class="form-group">
+                <input type="email" class="form-control mb-3" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="EMAIL">
+                <button class="btn btn-ouioui-secondary">SUBSCRIBE</button>
+            </form>
+        </div>
+    </div>
+
+
+
+</div>
+
+
+-->

@@ -288,60 +288,61 @@
     {
 
 
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">OUI OUI</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+    <a class="navbar-brand" href="#">OUI OUI</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/index">HOME</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/shop">SHOP</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/AboutUs">
-                            ABOUT US
-                        </a>
-                    </li>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav justify-content-center">
+            <li class="nav-item">
+                <a class="nav-link" href="/index">HOME</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/shop">SHOP</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/AboutUs">
+                    ABOUT US
+                </a>
+            </li>
 
-                    @if (Classes.UserFunctions.isAdmin(Classes.UserFunctions.getUserID(SessionID)))
-                    {
-                        <li class="nav-item">
-                            <a class="nav-link" href="/Admin/Dashboard">ADMIN PANEL</a>
-                        </li>
-                    }
-                    else
-                    {
-                        <li class="nav-item">
-                            <a class="nav-link" onclick="openChat();">CHAT TO US</a>
-                        </li>
-                    }
+            @if (Classes.UserFunctions.isAdmin(Classes.UserFunctions.getUserID(SessionID)))
+            {
+                <li class="nav-item">
+                    <a class="nav-link" href="/Admin/Dashboard">ADMIN PANEL</a>
+                </li>
+            }
+            else
+            {
+                <li class="nav-item">
+                    <a class="nav-link" onclick="openChat();">CHAT TO US</a>
+                </li>
+            }
 
-                    @if (!Classes.UserFunctions.userLoggedIn(SessionID))
-                    {
-                        <li class="nav-item">
-                            <a class="nav-link" href="/login">LOGIN</a>
-                        </li>
-                    }
-                    else
-                    {
-                        <li class="nav-item">
-                            <a class="nav-link" href="/logout">LOGOUT</a>
-                        </li>
-                    }
+            @if (!Classes.UserFunctions.userLoggedIn(SessionID))
+            {
+                <li class="nav-item">
+                    <a class="nav-link" href="/login">LOGIN</a>
+                </li>
+            }
+            else
+            {
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout">LOGOUT</a>
+                </li>
+            }
 
-                </ul>
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item login-logout-btn">
-                        <a class="nav-link" onclick="window.location.href = '/Basket';"><p id="basket-counter" class="monserrat-font" style="font-size:16pt; cursor:pointer;">@Classes.Basket.getNumOfItems(SessionID)</p></a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
+        </ul>
+
+    </div>
+    <ul class="navbar-nav ml-auto">
+        <li class="nav-item login-logout-btn">
+            <a class="nav-link" onclick="window.location.href = '/Basket';"><p id="basket-counter" class="monserrat-font" style="font-size:16pt; cursor:pointer;"><i class="bi bi-bag-fill"></i>@Classes.Basket.getNumOfItems(SessionID)</p></a>
+        </li>
+    </ul>
+</nav>
 
         @RenderBody()
         @RenderSection("Scripts", required: false)

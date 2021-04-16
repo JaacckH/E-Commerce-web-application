@@ -1,5 +1,9 @@
-﻿.page-footer-container a{
-    color:white;
+﻿.navbar-nav.justify-content-center {
+    width: 100%;
+}
+
+.page-footer-container a {
+    color: white !important;
 }
 
 

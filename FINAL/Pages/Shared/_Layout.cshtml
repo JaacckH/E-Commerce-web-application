@@ -29,7 +29,7 @@
         background-color: white;
         border: none;
         border-radius: 10px;
-        position: absolute;
+        position: fixed;
         right: 20px;
         bottom: 20px;
         overflow: hidden;
@@ -73,9 +73,6 @@
     }
 </style>
 
-<div id="chatbox-placeholder">
-</div>
-
 <head>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;900&display=swap" rel="stylesheet">
@@ -89,6 +86,7 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.11.1/typeahead.bundle.min.js"></script>
 
+    <script src="~/lib/jquery/jquery-ui.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.0.2/chart.min.js"></script>
     <script src="~/lib/bootstrap/bootstrap-tagsinput.js"></script>
     <link rel="stylesheet" href="~/css/site.css">
@@ -103,6 +101,16 @@
 
 </head>
 <body>
+
+    <div id="chatbox-placeholder">
+    </div>
+
+    <div id="comm-btn" class="communication-button" >
+        <div class="hover-comm"><p>CHAT WITH US</p></div>
+        <div>
+            <i class="fas fa-comments"></i>
+        </div>
+    </div>
 
 
     @if (Classes.UserFunctions.isAdmin(Classes.UserFunctions.getUserID(SessionID))
@@ -256,7 +264,7 @@
                     @RenderBody()
                     @RenderSection("Scripts", required: false)
 
-                <script>
+                    <script>
                         day1 = @Classes.Orders.getNumOfOrdersForDay(day - 6);
                         day2 = @Classes.Orders.getNumOfOrdersForDay(day - 5);
                         day3 = @Classes.Orders.getNumOfOrdersForDay(day - 4);
@@ -294,7 +302,7 @@
                         newUsersPercentage = -100 + Math.round((usersToday / usersYesterday) * 100);
 
 
-                </script>
+                    </script>
 
                 </div>
 

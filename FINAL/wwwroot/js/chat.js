@@ -194,13 +194,29 @@ function adminSendMessage() {
 
 function openChat() {
     hideChat();
+    ToggleChatButton();
     setConnectionID();
     connection.invoke("openChat", getSessionID(), recipient);
     scrollMessages();
+
+    setTimeout(function () { 
+    if ($('#chatbox').length > 0) {
+        console.log('chatbox-exists');
+        $("#chatbox").draggable({ handle: "#chatbox-header" });
+
+        }
+    }, 300);
 }
 
 function hideChat() {
+   
     document.getElementById('chatbox-placeholder').innerHTML = "";
+    
+}
+
+function ToggleChatButton() {
+    const element = document.querySelector("#comm-btn");
+    element.classList.toggle("d-none");
 }
 
 function markAsSettled(user) {

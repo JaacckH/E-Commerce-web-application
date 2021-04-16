@@ -9,6 +9,30 @@ $('#category-select option').mousedown(function (e) {
 
 
 $(document).ready(function () {
+
+    $('#comm-btn').bind('click', function () {
+        if ($(this).data('dragging')) return;
+        openChat();
+    });
+    
+    $("#comm-btn").draggable({
+        scroll: false,
+        start: function (event, ui) {
+            $(this).data('dragging', true);
+        },
+        stop: function (event, ui) {
+            setTimeout(function () {
+                console.log("hi " + this);
+                $(event.target).data('dragging', false);
+            }, 1);
+        }
+    });
+
+    $("#comm-btn").draggable({
+        scroll: false
+    })
+
+
     if ($('#datetimepicker6').length > 0) {
         $('#datetimepicker6').datetimepicker();
         $('#datetimepicker7').datetimepicker();
@@ -18,6 +42,8 @@ $(document).ready(function () {
     ProductTags('admin-product-tags', true);
 
 });
+
+
 
 
 function ProductTags(tagsid, freeinput) {

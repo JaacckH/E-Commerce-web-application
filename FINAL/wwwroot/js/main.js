@@ -434,6 +434,8 @@ function ToggleCheckoutMenu(menu) {
         element2.classList.add("d-none");
         const element3 = document.querySelector("#promotion-menu");
         element3.classList.add("d-none");
+        const element4 = document.querySelector("#notes-menu");
+        element4.classList.add("d-none");
     }
     if (menu == "payment-menu") {
         const element = document.querySelector("#delivery-menu");
@@ -442,6 +444,8 @@ function ToggleCheckoutMenu(menu) {
         element2.classList.remove("d-none");
         const element3 = document.querySelector("#promotion-menu");
         element3.classList.add("d-none");
+        const element4 = document.querySelector("#notes-menu");
+        element4.classList.add("d-none");
     }
     if (menu == "promotion-menu") {
         const element = document.querySelector("#delivery-menu");
@@ -450,6 +454,19 @@ function ToggleCheckoutMenu(menu) {
         element2.classList.add("d-none");
         const element3 = document.querySelector("#promotion-menu");
         element3.classList.remove("d-none");
+        const element4 = document.querySelector("#notes-menu");
+        element4.classList.add("d-none");
+
+    }
+    if (menu == "notes-menu") {
+        const element = document.querySelector("#delivery-menu");
+        element.classList.add("d-none");
+        const element2 = document.querySelector("#payment-menu");
+        element2.classList.add("d-none");
+        const element3 = document.querySelector("#promotion-menu");
+        element3.classList.add("d-none");
+        const element4 = document.querySelector("#notes-menu");
+        element4.classList.remove("d-none");
     }
 
     

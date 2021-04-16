@@ -241,6 +241,7 @@ function SendConfirmEmail() {
     connection.invoke("confirmOrderEmail", getSessionID(), Email);
 }
 
+window.getUrlVariable = getUrlVariable;
 function getUrlVariable(variable) {
     var query = window.location.search.substring(1);
     var vars = query.split("?");

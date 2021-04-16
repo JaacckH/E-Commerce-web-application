@@ -20,8 +20,9 @@
     font-weight: bold;
 }
 
-.menu-fixed{
-    position:fixed;
+.menu-fixed {
+    position: fixed;
+    left: -10px;
 }
 
 /* ----------------- admin Product page Start -------------------*/
@@ -359,11 +360,12 @@ table tbody tr th {
 
 .admin-menu-item {
     position: relative;
-    padding: 5px 10px;
+    padding: 5px 20px;
     margin: 0;
+
 }
 
-    .admin-menu-item:hover::before {
+    .admin-menu-item:hover::before, .admin-drop-menu:hover::before {
         content: '';
         position: absolute;
         width: 100%;
@@ -390,6 +392,18 @@ table tbody tr th {
         padding: 0;
     }
 
+.admin-drop-hidden{
+    display:none;
+}
+
+
+.admin-drop-menu:hover .admin-drop-hidden {
+    display: block !important;
+}
+
+.admin-drop-menu {
+    position: relative;
+}
 /* --------------- site wide START ----------------- */
 .main {
     width: 80vw;

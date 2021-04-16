@@ -5,7 +5,7 @@
 
 
 
-<div class="row">
+<div id="#admin-user-page" class="row">
     <div class="col-12">
         <h6 class="title">Admin Panel</h6>
         <h1>Users</h1>
@@ -24,14 +24,15 @@
                 Name
             </div>
             <div class="d-none d-md-block col-5 col-md-2 col-xl-2">
+                Type
+            </div>
+            <div class="d-none d-md-block col-5 col-md-2 col-xl-2">
                 Orders
             </div>
             <div class="d-none d-md-block col-5 col-md-2 col-xl-2">
                 Messages
             </div>
-            <div class="d-none d-md-block col-5 col-md-2 col-xl-2">
-                Type
-            </div>
+
         </div>
         <!-- ******************* change all areas which say 105 to the the order ID *************** -->
         <ul class="list-group" id="data-list">
@@ -44,16 +45,17 @@
                     <div class="col-5 col-md-4 col-xl-3">
                         Graham Smith
                     </div>
-                    <div class="col-5 col-md-3 col-xl-2">
-                        <button type="button" class="btn btn-secondary">Orders</button>
-                    </div>
-                    <div class="col-2 d-md-none"></div>
-                    <div class="col-5 col-md-3 col-xl-2">
-                        <button type="button" class="btn btn-secondary">Messages</button>
-                    </div>
                     <div class="col-5 col-md-1 col-xl-2">
                         Admin
                     </div>
+                    <div class="col-5 col-md-3 col-xl-2">
+                        <button type="button" class="btn btn-secondary" onclick="window.location.href = '/Admin/Orders?user={USERID}'">Orders</button>
+                    </div>
+                    <div class="col-2 d-md-none"></div>
+                    <div class="col-5 col-md-3 col-xl-2">
+                        <button type="button" class="btn btn-secondary" onclick="window.location.href = '/Admin/Messages?user={USERID}'">Messages</button>
+                    </div>
+                    
 
                 </div>
                 <!-- expanded start -->
@@ -79,10 +81,10 @@
                         </p>
                     </div>
                     <div class="col-12 col-md-6 col-xl-4 button-col">
-                        <button type="button" class="btn btn-secondary">Orders</button>
+                        <button type="button" class="btn btn-secondary" onclick="window.location.href = '/Admin/Orders?user={USERID}'">Orders</button>
                     </div>
                     <div class="col-12 col-md-6 col-xl-4 button-col">
-                        <button type="button" class="btn btn-secondary">Messages</button>
+                        <button type="button" class="btn btn-secondary" onclick="window.location.href = '/Admin/Messages?user={USERID}'">Messages</button>
                     </div>
                     <div class="col-12 col-md-6 col-xl-4 button-col">
                         <button type="button" class="btn btn-secondary">Promote</button>
@@ -93,11 +95,7 @@
                 <!-- expanded end -->
             </li>
 
-
-            <div class="row full-order-info">
-
-            </div>
-            <!-- order ends -->
+            <!-- user ends here -->
 
 
         </ul>

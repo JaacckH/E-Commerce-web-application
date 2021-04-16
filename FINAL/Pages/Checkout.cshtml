@@ -13,155 +13,225 @@
     </div>
 </div>
 
+<script>
+
+    $(document).ready(function () {
+        $('input[type="checkbox"]').click(function () {
+
+            const element = document.querySelector("#create-account-inputs");
+
+
+            if ($(this).is(":checked")) {
+                element.classList.toggle("d-none");
+            }
+            else if ($(this).is(":not(:checked)")) {
+                element.classList.toggle("d-none");
+            }
+        });
+    });
+</script>
+
 <div class="container">
-    
     <form asp-action="@Model.checkout()">
         <div class="row">
+            <div class="col-12 spacing_top"> <h1>Billing details</h1></div>
 
-            <div class="col-12 spacing_top"> <h1  class="page-title">Billing details</h1></div>
+
+
             <div class="col-12 col-md-6">
 
-                <div class="col-12 delivery_container shadow">
-                    <a onclick="ToggleMenu();"><p class="checkout-header" style="cursor: pointer;">DELIVERY DETAILS</p></a>
-                    <div id="delivery-menu">
-                        <div class="col-12 spacing_top">
-                            <div class="row">
-                                <div class="col-6">
-                                    <div class="form-group">
-                                        <label for="UserName">First name</label>
-                                        <input type="text" class="form-control" id="UserName" name="name" required>
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="form-group">
-                                        <label for="UserLastName">Last name</label>
-                                        <input type="text" class="form-control" id="UserLastName" name="surname" required>
-                                    </div>
+                <div class="col-12 delivery_container">
+                    <a onclick="ToggleMenu();"><p style="cursor: pointer;">DELIVERY DETAILS</p></a>
+                </div>
+                <div id="delivery-menu">
+                    <div class="col-12 spacing_top">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="UserName">First name</label>
+                                    <input type="text" class="form-control" id="UserName" required>
                                 </div>
                             </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="UserLastName">Last name</label>
+                                    <input type="text" class="form-control" id="UserLastName" required>
+                                </div>
+                            </div>
                         </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="Useraddress">Street address</label>
+                            <input type="text" class="form-control" id="Useraddress" placeholder="House number and street name" required>
+                            <p></p>
+                            <input type="text" class="form-control" id="Useraddress" placeholder="Apartament, suite, unit etc. (optional)" required>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="Useraddress2">Town / City</label>
+                            <input type="text" class="form-control" id="Useraddress2" required>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="UserPostCode">Postcode</label>
+                            <input type="text" class="form-control" id="UserPostCode" required>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="UserNo">Phone number</label>
+                            <input type="number" class="form-control" id="UserNo" required>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="UserEmail">Email address</label>
+                            <input type="email" class="form-control" id="UserEmail" required>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-check">
+                            <input Style="display:block;" class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                I want to create account
+                            </label>
+                        </div>
+                    </div>
+                    <br>
+                    <div id="create-account-inputs" class="d-none">
 
                         <div class="col-12">
                             <div class="form-group">
-                                <label for="Useraddress">Street address</label>
-                                <input type="text" class="form-control" id="Useraddress" name="addressline1" placeholder="Address Line 1" required>
-                                <p></p>
-                                <input type="text" class="form-control" id="Useraddress" name="addressline2" placeholder="Apartament, suite, unit etc. (optional)" required>
+                                <label for="UserEmail">Create Password</label>
+                                <input type="Password" class="form-control" id="UserPassword" required>
                             </div>
                         </div>
 
                         <div class="col-12">
                             <div class="form-group">
-                                <label for="Useraddress2">Town / City</label>
-                                <input type="text" class="form-control" id="Useraddress2" required>
-                            </div>
-                        </div>
-
-                        <div class="col-12">
-                            <div class="form-group">
-                                <label for="UserPostCode">Postcode</label>
-                                <input type="text" class="form-control" id="UserPostCode" name="postcode" required>
-                            </div>
-                        </div>
-
-                        <div class="col-12">
-                            <div class="form-group">
-                                <label for="UserNo">Phone number</label>
-                                <input type="number" class="form-control" id="UserNo" name="phonenumber" required>
-                            </div>
-                        </div>
-
-                        <div class="col-12">
-                            <div class="form-group">
-                                <label for="UserEmail">Email address</label>
-                                <input type="email" class="form-control" id="UserEmail" name="email" required>
+                                <label for="UserEmail">Confirm Password</label>
+                                <input type="Password" class="form-control" id="UserConfirmPassword" required>
                             </div>
                         </div>
 
                     </div>
+                </div>
+                <div class="spacing_top"></div>
+                <div class="col-12 delivery_container ">
+                    <a onclick="ToggleMenu();"><p style="cursor: pointer;">PAYMENT DETAILS</p></a>
+                </div>
 
+                <div id="payment-menu" class="d-none">
 
-                    <div class="spacing_top"></div>
+                    <br>
 
-                    <a onclick="ToggleMenu();"><p class="checkout-header" style="cursor: pointer;">PAYMENT DETAILS</p></a>
+                    <div class="col-12">
+                        <div class="row">
 
-
-                    <div id="payment-menu" class="d-none">
-                        <br>
-                        <div class="col-12">
-                            <div class="row">
-
-                                <div class="col-8">
-                                    <div class="form-group">
-                                        <label for="UserCardNo">Credit card number:</label>
-                                        <div class="">
-                                            <div class="row card_date">
-                                                <input type="num" style="width:20%" class="form-control" maxlength="4" name="cardnumber1" required />
-                                                <input type="num" style="width:20%" class="form-control" maxlength="4" name="cardnumber2" required />
-                                                <input type="num" style="width:20%" class="form-control" maxlength="4" name="cardnumber3" required />
-                                                <input type="num" style="width:20%" class="form-control" maxlength="4" name="cardnumber4" required />
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-                                </div>
-                                <div class="col-1"></div>
-                                <div class="col-3">
-                                    <div class="form-group">
-                                        <label for="UserCardMonth">Expires:</label>
-                                        <div class="col-12">
-                                            <div class="row card_date">
-                                                <input type="num" placeholder="MM" class="form-control" id="UserCardMonth" name="expiry1" style="width:45%" required>
-                                                <input type="num" placeholder="YY" class="form-control" id="UserCardYear" name="expiry2" style="width:45%" required>
-                                            </div>
-
+                            <div class="col-8">
+                                <div class="form-group">
+                                    <label for="UserCardNo">Credit card number:</label>
+                                    <div class="">
+                                        <div class="row card_date">
+                                            <input type="num" style="width:20%" class="form-control" maxlength="4" required />
+                                            <input type="num" style="width:20%" class="form-control" maxlength="4" required />
+                                            <input type="num" style="width:20%" class="form-control" maxlength="4" required />
+                                            <input type="num" style="width:20%" class="form-control" maxlength="4" required />
                                         </div>
                                     </div>
                                 </div>
 
 
                             </div>
-                        </div>
+                            <div class="col-1"></div>
+                            <div class="col-3">
+                                <div class="form-group">
+                                    <label for="UserCardMonth">Expires:</label>
+                                    <div class="col-12">
+                                        <div class="row card_date">
+                                            <input type="num" placeholder="MM" class="form-control" id="UserCardMonth" style="width:45%" required>
+                                            <input type="num" placeholder="YY" class="form-control" id="UserCardYear" style="width:45%" required>
+                                        </div>
 
-                        <br>
-
-                        <div class="col-12">
-                            <div class="row">
-                                <div class="col-8">
-                                    <div class="form-group ">
-                                        <label for="UserCardNo">Name on creadit card:</label>
-                                        <input type="text" class="form-control" id="UserCardNo" style="width: 100%" required>
-                                    </div>
-                                </div>
-                                <div class="col-1"></div>
-                                <div class="col-3">
-                                    <div class="form-group">
-                                        <label for="UserCardNo">CVC:</label>
-                                        <input type="number" class="form-control" id="UserCardNo" name="cv2" required>
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
+
+                        </div>
+                    </div>
+
+                    <br>
+
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-8">
+                                <div class="form-group ">
+                                    <label for="UserCardNo">Name on creadit card:</label>
+                                    <input type="text" class="form-control" id="UserCardNo" style="width: 100%" required>
+                                </div>
+                            </div>
+                            <div class="col-1"></div>
+                            <div class="col-3">
+                                <div class="form-group">
+                                    <label for="UserCardNo">CVC:</label>
+                                    <input type="number" class="form-control" id="UserCardNo" required>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                 </div>
+
             </div>
+
 
 
 
             <div class="col-12 col-md-6">
                 <div class"row">
+                    <div class="">
+                        <p>Order notes (optional)</p>
+                        <div class="form-group">
+                            <textarea name="" id="" class="form-control" style="width:100%;" rows="2"></textarea>
+                        </div>
+                    </div>
 
+                    <div class="">
 
-                    <div class="col-12 order_details shadow">
-                        <div class="">
-                            <p>Order notes (optional)</p>
-                            <div class="form-group">
-                                <textarea name="" id="" class="form-control" style="width:100%;" rows="2"></textarea>
+                        <div class="accordion" id="accordionExample">
+                            <div class="card">
+                                <div class="card-header" id="promo-container">
+                                    <h2 class="mb-0">
+                                        <button class="btn  btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" id="Promo-button">
+                                            Add Promo Code
+                                        </button>
+                                    </h2>
+                                </div>
+
+                                <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="PromoCode" placeholder="e.g. SUMMERVIBE" required>
+                                            <p style="padding-top: 5px;"></p>
+                                            <button id="promo-btn" class="btn btn-order-page" style="float: right; ">ADD</button>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+                        <br>
+                    </div>
+
+                    <div class="col-12 order_details">
                         <br>
                         <h4>Your order</h4>
                         <div class="row">
@@ -174,13 +244,33 @@
                         <div style="overflow-y:scroll; height:40vh;">
                             @Html.Raw(Model.getCheckoutItemsHtml(HttpContext.Request.Cookies["SessionID"]))
                         </div>
-
+                        <hr>
+                        <div class="row">
+                            <div class="col-12">
+                                <p style="float: left;">Total</p>
+                                <p style="float: right;">Rs 4200</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-12">
+                                <p style="float: left;">Discounts</p>
+                                <p style="float: right;">Rs 0</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-12">
+                                <p style="float: left;">VAT</p>
+                                <p style="float: right;">15%</p>
+                            </div>
+                        </div>
                         <hr>
 
                         <div class="row">
                             <div class="col-12">
-                                <p style="float: left;">Total</p>
-                                <p style="float: right;">Rs5.54</p>
+                                <p style="float: left;">Total Inc. VAT</p>
+                                <p style="float: right;">Rs 4400</p>
                             </div>
                         </div>
                         <hr>
@@ -189,7 +279,7 @@
                         </div>
                         <br>
                         <div class="col-12">
-                            <button id="create-btn" onclick="SendConfirmEmail()" class="btn btn-order-page margin-left-5px">PLACE ORDER</button>
+                            <button id="create-btn" class="btn btn-order-page margin-left-5px">PLACE ORDER</button>
                         </div>
                         <br>
                     </div>
@@ -198,7 +288,6 @@
                     <div class="col-12"></div>
                 </div>
             </div>
-
         </div>
     </form>
 

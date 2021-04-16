@@ -58,6 +58,7 @@ function scrollMessages() {
 function sendMessage() {
     var message = document.getElementById('message-messageinput').value;
     connection.invoke("sendMessage", getSessionID(), message);
+    document.getElementById('message-messageinput').value = '';
 }
 
 function setConnectionID() {
@@ -189,8 +190,12 @@ function updateQuantity() {
 
 function adminSendMessage() {
     var message = document.getElementById('message-messageinput').value;
-    connection.invoke("adminSendMessage", getSessionID(), recipient, message)
+    connection.invoke("adminSendMessage", getSessionID(), recipient, message);
+    document.getElementById('message-messageinput').value = '';
 }
+
+
+
 
 function openChat() {
     hideChat();
@@ -199,19 +204,24 @@ function openChat() {
     connection.invoke("openChat", getSessionID(), recipient);
     scrollMessages();
 
-    setTimeout(function () {
-        if ($('#chatbox').length > 0) {
-            console.log('chatbox-exists');
-            $("#chatbox").draggable({ handle: "#chatbox-header" });
+    setTimeout(function () { 
+    if ($('#chatbox').length > 0) {
+        $("#chatbox").draggable({ handle: "#chatbox-header" });
 
+        $('#message-messageinput').on('keypress', function (event) {
+            if (event.which === 13) {
+                sendMessage();
+                return false;
+            }
+        });
         }
     }, 300);
 }
 
 function hideChat() {
-
+   
     document.getElementById('chatbox-placeholder').innerHTML = "";
-
+    
 }
 
 function ToggleChatButton() {
@@ -227,7 +237,7 @@ function markAsSettled(user) {
 
 function SendConfirmEmail() {
     var Email = document.getElementById('UserEmail').value;
-
+    
     connection.invoke("confirmOrderEmail", getSessionID(), Email);
 }
 
@@ -242,6 +252,5 @@ function getUrlVariable(variable) {
 }
 
 function addPromoCode() {
-    var promoCode = document.getElementById('promoCode').value;
-    connection.invoke("addPromoCode", getSessionID(), promoCode);
+    document.getElementById('promoCode').value;
 }

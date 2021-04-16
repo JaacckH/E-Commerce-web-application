@@ -105,15 +105,12 @@
     <div id="chatbox-placeholder">
     </div>
 
-    @if (!Classes.UserFunctions.isAdmin(Classes.UserFunctions.getUserID(SessionID)))
-    {
-        <div id="comm-btn" class="communication-button">
-            <div class="hover-comm"><p></p></div>
-            <div>
-                <i class="fas fa-comments"></i>
-            </div>
+    <div id="comm-btn" class="communication-button" >
+        <div class="hover-comm"><p>CHAT WITH US</p></div>
+        <div>
+            <i class="fas fa-comments"></i>
         </div>
-    }
+    </div>
 
 
     @if (Classes.UserFunctions.isAdmin(Classes.UserFunctions.getUserID(SessionID))
@@ -124,23 +121,11 @@
                 <div class="menu-fixed">
                     <div class="row no-style">
                         <div class="col-12 d-md-none menu-close" onclick="ToggleMenu()"><i class="fas fa-times fa-1-5x"></i></div>
-
-                        <div class="col-12 menu-stats verticle-align dmin-menu-item" style="height:300px; margin-top:0px;">
-                            <img src="~/admin.png" style="width:220px;">
+                        <div class="col-12 menu-stats verticle-align">
+                            <img src="~/admin.png" style="width:250px;">
                         </div>
 
                     </div>
-
-                    <a href="/">
-                        <div class="row admin-menu-item">
-                            <div class="col-2 menu-icons"><i class="fas fa-undo fa-2x"></i></div>
-                            <div class="col-10 menu-header ">
-                                <h6>Back to Shop</h6>
-
-                            </div>
-                        </div>
-                    </a>
-
                     <a href="/Admin/Dashboard">
                         <div class="row admin-menu-item">
                             <div class="col-2 menu-icons"><i class="fas fa-chart-line fa-2x"></i></div>
@@ -148,12 +133,6 @@
                                 <h6>Dashboard</h6>
 
                             </div>
-                        </div>
-                    </a>
-                    <a href="/Admin/Users">
-                        <div class="row admin-menu-item">
-                            <div class="col-2 menu-icons"><i class="fas fa-user-friends fa-2x"></i></div>
-                            <div class="col-10 menu-header"><h6>Users</h6></div>
                         </div>
                     </a>
                     <a href="/Admin/Orders">
@@ -352,12 +331,7 @@
                             <a class="nav-link" href="/Admin/Dashboard">ADMIN PANEL</a>
                         </li>
                     }
-                    else if(Classes.UserFunctions.userLoggedIn(SessionID))
-                    {
-                        <li class="nav-item">
-                            <a class="nav-link" href="/UserSettings">MY ACCOUNT</a>
-                        </li>
-                    }
+                    
 
                     @if (!Classes.UserFunctions.userLoggedIn(SessionID))
                     {

@@ -813,6 +813,12 @@ $(document).ready(function () {
             $("#" + element).append(featureTags);
             //<div class="feature-tag new"><p>NEW</p></div>
         }
+        if ($("#" + element + " .product-tags-hidden").text().toLowerCase().indexOf('featured') > -1) {
+
+            var featureTags = '<div class="feature-tag feature"><p>FEATURED</p></div>';
+            $("#" + element).append(featureTags);
+            //<div class="feature-tag new"><p>NEW</p></div>
+        }
 
         var TagValue = false;
         var value = $("#product-search-rows").val().toLowerCase();

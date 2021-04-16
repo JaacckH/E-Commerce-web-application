@@ -14,9 +14,11 @@
 </div>
 
 <div class="container">
+    
     <form asp-action="@Model.checkout()">
         <div class="row">
-            <div class="col-12 spacing_top"> <h1>Billing details</h1></div>
+
+            <div class="col-12 spacing_top"> <h1  class="page-title">Billing details</h1></div>
             <div class="col-12 col-md-6">
 
                 <div class="col-12 delivery_container shadow">
@@ -151,7 +153,7 @@
 
             <div class="col-12 col-md-6">
                 <div class"row">
-                    
+
 
                     <div class="col-12 order_details shadow">
                         <div class="">
@@ -187,7 +189,7 @@
                         </div>
                         <br>
                         <div class="col-12">
-                            <button id="create-btn"  onclick="SendConfirmEmail()" class="btn btn-order-page margin-left-5px">PLACE ORDER</button>
+                            <button id="create-btn" onclick="SendConfirmEmail()" class="btn btn-order-page margin-left-5px">PLACE ORDER</button>
                         </div>
                         <br>
                     </div>

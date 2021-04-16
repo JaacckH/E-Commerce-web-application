@@ -6,7 +6,11 @@
     color: white !important;
 }
 
-
+.empty-basket {
+    width: 100%;
+    text-align: center;
+    margin:50px 0px;
+}
 .checkout-header {
     cursor: pointer;
     background-color: var(--background-3);
@@ -454,7 +458,7 @@ a, a:hover {
 }
 
 
-/* FOR PRODUCT DETAIL PAGE*/
+/* -------------- FOR PRODUCT DETAIL PAGE --------------- */
 
 .smaller-image {
     padding: 10px;
@@ -558,11 +562,11 @@ a, a:hover {
     box-shadow: none;
 }
 
-/* END OF PRODUCT DETAIL */
+/* ---------------- END OF PRODUCT DETAIL ------------------ */
 
 
 
-/* SHOP PAGE */
+/* ------------------ SHOP PAGE ------------------ */
 #filter-menu {
     padding: 10px 0;
 }
@@ -581,6 +585,10 @@ a, a:hover {
         margin: 0;
         line-height: normal;
         font-weight: bold;
+    }
+
+    .feature-tag.feature {
+        background-color: var(--background-3);
     }
 
     .feature-tag.new {
@@ -1534,7 +1542,7 @@ svg:not(:root) {
     font-size: var(--text-size-large);
 }
 
-#basket-page {
+#basket-page, #shop-page, #basket-page {
     margin-top: 3%;
 }
 

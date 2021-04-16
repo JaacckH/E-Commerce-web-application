@@ -118,7 +118,7 @@ namespace FINAL.Classes
 
             if(html == "")
             {
-                html = "<center><h1 style=\"margin:50px 0px;\" class=\"Montserrat\">YOUR BASKET IS EMPTY</h1></center>";
+                html = "<h1  class=\"Montserrat empty-basket\">YOUR BASKET IS EMPTY</h1>";
             }
 
             conn.Close();

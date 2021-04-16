@@ -1689,3 +1689,24 @@ svg:not(:root) {
 }
 
 /* ------------------------ chat button end ------------------------------*/
+
+/* ------------------------ User page start ------------------------------*/
+
+
+#admin-user-page .summary-panel-header {
+    align-items: center;
+}
+
+.button-col {
+    justify-content: center;
+}
+
+.button-col button {
+    width: 100%;
+}
+
+.summary-panel-header button {
+    width: 100%;
+}
+
+/* ------------------------ User page end ------------------------------*/

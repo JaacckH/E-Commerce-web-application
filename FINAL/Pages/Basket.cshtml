@@ -16,17 +16,17 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-8">TOTAL EXC VAT:</div>
-                        <div class="col-4"><p>₹<span id="order-total">@Classes.Basket.getTotalMinusVat(Classes.UserFunctions.getUserID(HttpContext.Request.Cookies["SessionID"]))</span></p></div>
+                        <div class="col-4"><p>Rs<span id="order-total">@Classes.Basket.getTotalMinusVat(Classes.UserFunctions.getUserID(HttpContext.Request.Cookies["SessionID"]))</span></p></div>
                     </div>
                     <br>
                     <div class="row">
                         <div class="col-8">VAT ADDED:</div>
-                        <div class="col-4"><p>₹ <span id="vat-amount">@Classes.Basket.getVatAmount(Classes.UserFunctions.getUserID(HttpContext.Request.Cookies["SessionID"]))</span></p></div>
+                        <div class="col-4"><p>Rs <span id="vat-amount">@Classes.Basket.getVatAmount(Classes.UserFunctions.getUserID(HttpContext.Request.Cookies["SessionID"]))</span></p></div>
                     </div>
                     <hr />
                     <div class="row">
                         <div class="col-8">TOTAL INC VAT:</div>
-                        <div class="col-4"><p>₹ <span id="vat-total">@Classes.Basket.getTotalPrice(Classes.UserFunctions.getUserID(HttpContext.Request.Cookies["SessionID"]))</span></p></div>
+                        <div class="col-4"><p>Rs <span id="vat-total">@Classes.Basket.getTotalPrice(Classes.UserFunctions.getUserID(HttpContext.Request.Cookies["SessionID"]))</span></p></div>
                     </div>
 
                     <button class="btn btn-ouioui mt-3" style="width:100%; margin-bottom:20px;" onclick="window.location.href = '/Checkout';">CHECKOUT</button>

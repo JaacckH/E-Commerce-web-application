@@ -1,6 +1,10 @@
 ﻿@page
 @model Group_Project.Models.IndexModel
 @{
+    if(HttpContext.Request.Cookies["rtc"] == "True")
+    {
+        Response.Redirect("/Checkout");
+    }
 }
 
 <div class="main-index-page page-name">

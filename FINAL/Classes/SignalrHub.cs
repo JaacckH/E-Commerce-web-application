@@ -10,17 +10,21 @@ namespace FINAL.Classes
 {
     public class SignalrHub : Hub
     {
-        public async Task createUserAccount(String forename, String surname, String email, String password, String confirmpassword, String addressline1, String addressline2, String postcode, String phonenumber)
+        public async Task createUserAccount(Boolean returnToCheckout, String sessionID, String forename, String surname, String email, String password, String confirmpassword, String addressline1, String addressline2, String postcode, String phonenumber)
         {
-            String response = LoginCreateAccount.createSuccessful(forename, surname, email, password, confirmpassword, addressline1, addressline2, postcode, int.Parse(phonenumber));
+            String response = LoginCreateAccount.createSuccessful(sessionID, forename, surname, email, password, confirmpassword, addressline1, addressline2, postcode, int.Parse(phonenumber));
             if (response == "DONE")
             {
+                if (returnToCheckout == true)
+                {
+                    await Clients.Client(Context.ConnectionId).SendAsync("setCheckoutCookie");
+                }
                 loginUser(email, password);
             }
             else
             {
+                //send error notification
                 Console.WriteLine(response);
-                //send error to user instead of writing to console
             }
         }
 
@@ -270,7 +274,7 @@ namespace FINAL.Classes
             String UserID = UserFunctions.getUserID(sessionID);
             String OrderId = Orders.lastUserOrderID(UserID);
 
-            EmailManagement.SendEmail(email, "Order " + OrderId + " Confirmation","Thanks for choosing Oui Oui fashion! Your order has been placed! order ID: "+ OrderId + ".");
+            EmailManagement.SendEmail(email, "Order " + OrderId + " Confirmation", "Thanks for choosing Oui Oui fashion! Your order has been placed! order ID: " + OrderId + ".");
         }
     }
 }

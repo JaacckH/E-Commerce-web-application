@@ -26,7 +26,7 @@ connection.on("ContentDelivery", function (content, div) {
 });
 
 connection.on("updateBasket", function (content) {
-    document.getElementById('basket-counter').innerHTML = " " + content;
+    document.getElementById('basket-counter').innerHTML = '<i class="bi bi - bag - fill"></i> ' + content;
 });
 
 connection.on("AppendDelivery", function (content, div) {
@@ -42,6 +42,11 @@ connection.on("setMaxQuantity", function (quantity) {
     document.getElementById('quantityvalue').value = "1";
     maxQuantity = parseInt(quantity);
 });
+
+connection.on("setCheckoutCookie", function () {
+    document.cookie = "rtc=" + "True";
+});
+
 
 function scrollMessages() {
     var chatboxes = document.getElementsByClassName("scroll");
@@ -99,7 +104,12 @@ function createAccount() {
     var postcode = document.getElementById('postcode').value;
     var phonenumber = document.getElementById('phonenumber').value;
 
-    connection.invoke("createUserAccount", forename, surname, email, password, confirmpassword, addressline1, addressline2, postcode, phonenumber);
+    var rtc = false;
+    if (getUrlVariable('rtc') == "True") {
+        rtc = true;
+    }
+
+    connection.invoke("createUserAccount", rtc, getSessionID(), forename, surname, email, password, confirmpassword, addressline1, addressline2, postcode, phonenumber);
 }
 
 function login() {
@@ -203,4 +213,14 @@ function SendConfirmEmail() {
     var Email = document.getElementById('UserEmail').value;
     
     connection.invoke("confirmOrderEmail", getSessionID(), Email);
+}
+
+function getUrlVariable(variable) {
+    var query = window.location.search.substring(1);
+    var vars = query.split("?");
+    for (var i = 0; i < vars.length; i++) {
+        var pair = vars[i].split("=");
+        if (pair[0] == variable) { return pair[1]; }
+    }
+    return (false);
 }

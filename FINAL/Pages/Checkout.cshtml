@@ -2,12 +2,15 @@
 @page
 @model Group_Project.Models.CheckoutModel
 @{
+    HttpContext.Response.Cookies.Delete("rtc");
 }
 
 
+@if (!Classes.UserFunctions.userLoggedIn(HttpContext.Request.Cookies["SessionID"]))
+{
 
-<link rel="stylesheet" href="~/css/site.css">
-<script src="~/js/main.js"></script>
+}
+
 
 <div class="covid-cont" id="covid-notification">
     <div clall="row">
@@ -16,7 +19,7 @@
     </div>
 </div>
 
-<div id="checkout-page"  class="container">
+<div id="checkout-page" class="container">
     <form asp-action="@Model.checkout()">
         <div class="row">
             <div class="col-12 col-md-6">
@@ -210,7 +213,7 @@
                 </div>
             </div>
 
-       </div>
+        </div>
     </form>
 
 </div>
@@ -479,7 +482,7 @@
                         </div>
                     </div>
 
-                    
+
 
                     <div class="col-12 order_details">
                         <br>
@@ -492,7 +495,7 @@
                         </div>
                         <hr>
                         <div style="overflow-y:scroll; height:40vh;">
-                            
+
 
                         </div>
                         <hr>

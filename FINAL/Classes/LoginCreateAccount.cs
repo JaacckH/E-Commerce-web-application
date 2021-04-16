@@ -11,7 +11,7 @@ namespace FINAL.Classes
 {
     public class LoginCreateAccount
     {
-        public static String createSuccessful(String forename, String surname, String email, String password, String confirmpassword, String addressline1, String addressline2, String postcode, int phonenumber)
+        public static String createSuccessful(String sessionID, String forename, String surname, String email, String password, String confirmpassword, String addressline1, String addressline2, String postcode, int phonenumber)
         {
             if (String.IsNullOrEmpty(forename) || String.IsNullOrEmpty(surname) || String.IsNullOrEmpty(email) || String.IsNullOrEmpty(password) || String.IsNullOrEmpty(addressline1) || String.IsNullOrEmpty(addressline2) || String.IsNullOrEmpty(postcode) || String.IsNullOrEmpty(phonenumber.ToString()))
             {
@@ -42,18 +42,11 @@ namespace FINAL.Classes
                 return "The phone number is invalid";
             }
 
+            String userID = UserFunctions.getUserID(sessionID);
             String hashedpassword = UserFunctions.hashSingleValue(password);
-            String characters = "ABCDEFGHIJKLMONPQRSTUVWQYZ0123456789abcdefghijklmnopqrstuvwxyz";
-            String sessionUserID = "";
-            Random rand = new Random();
-
-            for (int i = 0; i < 12; i++)
-            {
-                sessionUserID += characters[rand.Next(characters.Length)];
-            }
 
             DBFunctions.sendQuery("INSERT INTO Users (UserID, Forename, Surname, Email, Password, AddressLine1, AddressLine2, Postcode, PhoneNumber, DateCreated) " +
-                "VALUES ('" + sessionUserID + "', '" + forename + "', '" + surname + "', '" + email + "', '" + hashedpassword + "', '" + addressline1 + "', '" + addressline2 + "', '" + postcode + "', '" + phonenumber + "', '" + DateTime.Now.DayOfYear + "')");
+                "VALUES ('" + userID + "', '" + forename + "', '" + surname + "', '" + email + "', '" + hashedpassword + "', '" + addressline1 + "', '" + addressline2 + "', '" + postcode + "', '" + phonenumber + "', '" + DateTime.Now.DayOfYear + "')");
             return "DONE";
         }
 

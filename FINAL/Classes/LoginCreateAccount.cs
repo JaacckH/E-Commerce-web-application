@@ -33,7 +33,7 @@ namespace FINAL.Classes
             {
                 return "Your password must be between 8 and 20 characters long";
             }
-            if (postcode.Length != 5)
+            if (postcode.Length < 8)
             {
                 return "The post code is invalid";
             }
@@ -52,7 +52,8 @@ namespace FINAL.Classes
                 sessionUserID += characters[rand.Next(characters.Length)];
             }
 
-            DBFunctions.sendQuery("INSERT INTO Users (UserID, Forename, Surname, Email, Password, AddressLine1, AddressLine2, Postcode, PhoneNumber) VALUES ('" + sessionUserID + "', '" + forename + "', '" + surname + "', '" + email + "', '" + hashedpassword + "', '" + addressline1 + "', '" + addressline2 + "', '" + postcode + "', '" + phonenumber + "')");
+            DBFunctions.sendQuery("INSERT INTO Users (UserID, Forename, Surname, Email, Password, AddressLine1, AddressLine2, Postcode, PhoneNumber, DateCreated) " +
+                "VALUES ('" + sessionUserID + "', '" + forename + "', '" + surname + "', '" + email + "', '" + hashedpassword + "', '" + addressline1 + "', '" + addressline2 + "', '" + postcode + "', '" + phonenumber + "', '" + DateTime.Now.DayOfYear + "')");
             return "DONE";
         }
 

@@ -18,6 +18,8 @@
         HttpContextAccessor.HttpContext.Response.Redirect("/");
     }
 
+    int day = DateTime.Now.DayOfYear;
+
 }
 
 <style>
@@ -172,11 +174,109 @@
             </div>
             <div id="admin-page" class="col-12 d-md-block col-md-9 col-xl-10">
 
-
                 <div class="admin-pages">
                     <div class="menu-toggle d-md-none d-block" onclick="ToggleMenu()"><i class="fas fa-bars fa-1-5x"></i></div>
+
+                    <div class="row">
+                        <div class="col-4 no-margin">
+                            <div class="row shadow p-3 mb-5 bg-white rounded no-margin">
+                                <div class="col-8 stats-label">
+                                    <div class="">
+                                        <h6>New Orders (Today)</h6>
+                                        <p>@Classes.Orders.getNumOfOrdersForDay(day)</p>
+                                    </div>
+                                </div>
+                                <div class="col-4 ">
+                                    <div class="chart-svg">
+                                        <svg id="percentage-1-svg" viewBox="0 0 36 36" class="circular-chart">
+                                            <path class="circle-bg" d="M18 2.0845
+                            a 15.9155 15.9155 0 0 1 0 31.831
+                            a 15.9155 15.9155 0 0 1 0 -31.831"></path>
+                                            <path class="circle" stroke-dasharray="0, 70 , 70 , 100" d="M18 2.0845
+                            a 15.9155 15.9155 0 0 1 0 31.831
+                            a 15.9155 15.9155 0 0 1 0 -31.831" id="percentage-1"></path>
+                                            <text x="18" y="20.35" id="percentage-1-text" class="percentage"></text>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- new order end -->
+                        <div class="col-4">
+                            <div class="row shadow p-3 mb-5 bg-white rounded no-margin">
+                                <div class="col-8 stats-label">
+                                    <div class="">
+                                        <h6>New Users (Today)</h6>
+                                        <p>10</p>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="chart-svg">
+                                        <svg id="percentage-2-svg" viewBox="0 0 36 36" class="circular-chart">
+                                            <path class="circle-bg" d="M18 2.0845
+                            a 15.9155 15.9155 0 0 1 0 31.831
+                            a 15.9155 15.9155 0 0 1 0 -31.831"></path>
+                                            <path class="circle" stroke-dasharray="0, 70 , 70 , 100" d="M18 2.0845
+                            a 15.9155 15.9155 0 0 1 0 31.831
+                            a 15.9155 15.9155 0 0 1 0 -31.831" id="percentage-2"></path>
+                                            <text x="18" y="20.35" id="percentage-2-text" class="percentage"></text>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Start active sessions -->
+                        <div class="col-4 ">
+                            <div class="row shadow p-3 mb-5 bg-white rounded no-margin">
+                                <div class="col-8 stats-label">
+                                    <div class="">
+                                        <h6>Active Sessions</h6>
+                                        <p>6</p>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="chart-svg">
+                                        <svg id="percentage-3-svg" viewBox="0 0 36 36" class="circular-chart">
+                                            <path class="circle-bg" d="M18 2.0845
+                            a 15.9155 15.9155 0 0 1 0 31.831
+                            a 15.9155 15.9155 0 0 1 0 -31.831"></path>
+                                            <path class="circle" stroke-dasharray="0, 70 , 70 , 100" d="M18 2.0845
+                            a 15.9155 15.9155 0 0 1 0 31.831
+                            a 15.9155 15.9155 0 0 1 0 -31.831" id="percentage-3"></path>
+                                            <text x="18" y="20.35" id="percentage-3-text" class="percentage"></text>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     @RenderBody()
                     @RenderSection("Scripts", required: false)
+
+                <script>
+            day1 = @Classes.Orders.getNumOfOrdersForDay(day - 6);
+            day2 = @Classes.Orders.getNumOfOrdersForDay(day - 5);
+            day3 = @Classes.Orders.getNumOfOrdersForDay(day - 4);
+            day4 = @Classes.Orders.getNumOfOrdersForDay(day - 3);
+            day5 = @Classes.Orders.getNumOfOrdersForDay(day - 2);
+            day6 = @Classes.Orders.getNumOfOrdersForDay(day - 1);
+            day7 = @Classes.Orders.getNumOfOrdersForDay(day);
+
+            day1Date = '@Classes.Utility.getDateFromDay(day - 6)';
+            day2Date = '@Classes.Utility.getDateFromDay(day - 5)';
+            day3Date = '@Classes.Utility.getDateFromDay(day - 4)';
+            day4Date = '@Classes.Utility.getDateFromDay(day - 3)';
+            day5Date = '@Classes.Utility.getDateFromDay(day - 2)';
+            day6Date = '@Classes.Utility.getDateFromDay(day - 1)';
+                        day7Date = '@Classes.Utility.getDateFromDay(day)';
+
+                        newOrdersPercentage =  (@Classes.Orders.getNumOfOrdersForDay(day - 1) / @Classes.Orders.getNumOfOrdersForDay(day));
+
+
+                </script>
+
                 </div>
 
             </div>

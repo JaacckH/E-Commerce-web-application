@@ -617,7 +617,12 @@ $(document).ready(function () {
             var path = $('#' + stat).get(0);
             var pathLen = path.getTotalLength();
             var adjustedLen = 100 + percent;
-            path.setAttribute('stroke-dasharray', '0,' + adjustedLen + ',' + adjustedLen + ',' + pathLen);
+            if (percent < -50) {
+                var adjustedLen2 = 100 - adjustedLen;
+                path.setAttribute('stroke-dasharray', '0,' + adjustedLen + ',' + adjustedLen2 + ',' + pathLen);
+            } else {
+                path.setAttribute('stroke-dasharray', '0,' + adjustedLen + ',' + adjustedLen + ',' + pathLen);
+            }
         } else {
             var path = $('#' + stat).get(0);
             var pathLen = path.getTotalLength();

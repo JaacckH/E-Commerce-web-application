@@ -971,7 +971,7 @@ function menuSelection(id) {
 
 
 $(document).ready(function () {
-    $('#checkout-page input[type="checkbox"]').click(function () {
+    $('#checkBoxID').click(function () {
 
         const element = document.querySelector("#create-account-inputs");
 

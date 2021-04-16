@@ -9,58 +9,39 @@
         <hr />
     </div>
     <div class="col-12 col-md-12">
-        <form>
+        <form asp-action="@Model.addPromo()">
             <div class="row">
                 <div class="col-md-6">
                     <label>Promo Code</label>
                     <div class="input-group">
-                        <input type="text" class="form-control" id="inputEmail4" placeholder="Spring10">
+                        <input type="text" class="form-control" id="inputEmail4" placeholder="Enter Code" name="input-name">
                         <div class="input-group-append">
                             <button class="btn btn-outline-secondary" type="button" id="inputEmail4">Generate</button>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <label for="inputGroupSelect01">Status</label>
-                    <div class="form-group">
-                        <select class="custom-select" id="inputGroupSelect01">
-                            <option value="0" selected>Active</option>
-                            <option value="1">Archived</option>
-                        </select>
-                    </div>
-                </div>
                 <div class="col-12">
-                    <label>Promo Type:</label>
+                    <label>Promotion Percentage:</label>
                     <div class="row">
                         <div class="input-group mb-3 col-6">
-                            <input type="text" aria-label="First name" class="form-control col-8" value="10">
+                            <input type="text" aria-label="percentage" class="form-control col-8" value="10" name="input-percentage">
                             <select class="custom-select col-4" id="inputGroupSelect01">
                                 <option value="0" selected>%</option>
-                                <option value="1">Rs</option>
                             </select>
-                            <div class="input-group-append">
-                                <button class="btn btn-outline-secondary" type="button" id="button-addon2">Update</button>
-                            </div>
                         </div>
                     </div>
                 </div>
                 <div class='col-md-6'>
                     <label>Start Date</label>
-                   
-                    <input type="text" class="form-control" id="datetimepicker6">
-
-
+                    <input type="text" class="form-control" id="datetimepicker6" name="input-start">
                 </div>
                 <div class='col-md-6'>
-                    <label>End Date</label>
-                    
-                    <input type="text" class="form-control" id="datetimepicker7">
-
-
+                    <label>Duration (Days)</label>
+                    <input type="text" class="form-control" name="input-duration">
                 </div>
             </div>
             <div class="create-btn-cont">
-                <button class="btn btn-secondary">Create</button>
+                <button class="btn btn-secondary" type="submit">Create</button>
             </div>
         </form>
 

@@ -224,3 +224,7 @@ function getUrlVariable(variable) {
     }
     return (false);
 }
+
+function addPromoCode() {
+    document.getElementById('promoCode').value;
+}

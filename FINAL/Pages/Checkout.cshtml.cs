@@ -21,7 +21,7 @@ namespace Group_Project.Models
                 addressline1 = HttpContext.Request.Form["addressline1"];
                 postcode = HttpContext.Request.Form["postcode"];
                 phonenumber = HttpContext.Request.Form["phonenumber"];
-                promocode = HttpContext.Request.Form["promocode"];
+                promocode = HttpContext.Request.Form["promoCode"];
 
                 cardnum = HttpContext.Request.Form["cardnumber1"] + HttpContext.Request.Form["cardnumber2"] +
                     HttpContext.Request.Form["cardnumber3"] + HttpContext.Request.Form["cardnumber4"];

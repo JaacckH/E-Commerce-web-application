@@ -109,24 +109,14 @@
 && (HttpContextAccessor.HttpContext.Request.Path.ToString().ToLower().Contains("/admin")))
     {
         <div id="admin-page-layout" class="row">
-            <div id="admin-menu" class="d-none d-md-block col-12 col-md-3 col-xl-2">
+            <div id="admin-menu" class="d-none d-md-block col-12 col-md-3 col-xl-2" style="background-color:#f8f9fa">
                 <div class="menu-fixed">
                     <div class="row no-style">
                         <div class="col-12 d-md-none menu-close" onclick="ToggleMenu()"><i class="fas fa-times fa-1-5x"></i></div>
                         <div class="col-12 menu-stats verticle-align">
-                            <div class="row verticle-align">
-                                <div class="col-4">
-                                    <p>Orders<br />106</p>
-                                </div>
-                                <div class="col-4">
-                                    <p>New<br />80</p>
-                                </div>
-                                <div class="col-4">
-                                    <p>Active<br />32</p>
-                                </div>
-
-                            </div>
+                            <img src="~/admin.png" style="width:250px;">
                         </div>
+
                     </div>
                     <a href="/Admin/Dashboard">
                         <div class="row admin-menu-item">

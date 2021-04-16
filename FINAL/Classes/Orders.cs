@@ -17,16 +17,12 @@ namespace FINAL.Classes
             GC.Collect();
             String orderReference = UserFunctions.generateSessionID();
 
-            Console.WriteLine("ran0");
             foreach (int item in stockItems)
             {
-
-                Console.WriteLine("ran1");
                 int promoprice = ProductFunctions.getProductPrice(item); //do calculation using promocode here
                 DBFunctions.sendQuery("INSERT INTO OrderedProducts (OrderID, ProductID, PurchasePrice, Quantity, Size) " +
                     "VALUES('" + orderReference + "', '" + Stock.getStockDetail(item, "ProductID") + "', '" + promoprice + "', '"
                     + Basket.getItemQuantity(userID, item) + "', '" + Stock.getStockDetail(item, "SizeID") + "');");
-                Console.WriteLine("ran2");
             }
 
             DBFunctions.sendQuery("DELETE FROM Basket WHERE UserID='" + userID + "';");
@@ -42,13 +38,13 @@ namespace FINAL.Classes
 
         }
 
-        public static string lastUserOrderID(String UserID)
+        public static String lastUserOrderID(String UserID)
         {
             SqlConnection conn = new SqlConnection();
             conn.ConnectionString = DBFunctions.connectionString;
             conn.Open();
             SqlCommand query = conn.CreateCommand();
-            query.CommandText = "SELECT * FROM Orders WHERE UserID = '" + UserID +"';";
+            query.CommandText = "SELECT * FROM Orders WHERE UserID = '" + UserID + "';";
             SqlDataReader reader = query.ExecuteReader();
 
             while (reader.Read())
@@ -62,7 +58,26 @@ namespace FINAL.Classes
             }
 
             conn.Close();
-            return "";
+            return null;
+        }
+
+        public static int getNumOfOrdersForDay(int day)
+        {
+            SqlConnection conn = new SqlConnection();
+            conn.ConnectionString = DBFunctions.connectionString;
+            conn.Open();
+            SqlCommand query = conn.CreateCommand();
+            query.CommandText = "SELECT * FROM Orders WHERE DateTime='" + day + "';";
+            SqlDataReader reader = query.ExecuteReader();
+
+            int amount = 0;
+            while (reader.Read())
+            {
+                amount++;
+            }
+
+            conn.Close();
+            return amount;
         }
 
     }

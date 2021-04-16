@@ -1,6 +1,7 @@
 ﻿@page
 @model FINAL.Pages.Admin.DashboardModel
 @{
+    int day = DateTime.Now.DayOfYear;
 }
 
 <div class="row ">
@@ -9,84 +10,13 @@
         <h1>Dashboard</h1>
         <hr />
 
-        <div class="row ">
+        <div class="row">
             <!-- new order start -->
-            <div class="col-4 no-margin">
-                <div class="row shadow p-3 mb-5 bg-white rounded no-margin" style="margin-bottom:1.5rem;">
-                    <div class="col-8 stats-label">
-                        <div class="">
-                            <h6>New Orders</h6>
-                            <p>150</p>
-                        </div>
-                    </div>
-                    <div class="col-4 ">
-                        <div class="chart-svg">
-                            <svg id="percentage-1-svg" viewBox="0 0 36 36" class="circular-chart">
-                                <path class="circle-bg" d="M18 2.0845
-                            a 15.9155 15.9155 0 0 1 0 31.831
-                            a 15.9155 15.9155 0 0 1 0 -31.831"></path>
-                                <path class="circle" stroke-dasharray="0, 70 , 70 , 100" d="M18 2.0845
-                            a 15.9155 15.9155 0 0 1 0 31.831
-                            a 15.9155 15.9155 0 0 1 0 -31.831" id="percentage-1"></path>
-                                <text x="18" y="20.35" id="percentage-1-text" class="percentage"></text>
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- new order end -->
-            <div class="col-4">
-                <div class="row shadow p-3 mb-5 bg-white rounded no-margin" style="margin-bottom:1.5rem;">
-                    <div class="col-8 stats-label">
-                        <div class="">
-                            <h6>New Customer</h6>
-                            <p>10</p>
-                        </div>
-                    </div>
-                    <div class="col-4">
-                        <div class="chart-svg">
-                            <svg id="percentage-2-svg" viewBox="0 0 36 36" class="circular-chart">
-                                <path class="circle-bg" d="M18 2.0845
-                            a 15.9155 15.9155 0 0 1 0 31.831
-                            a 15.9155 15.9155 0 0 1 0 -31.831"></path>
-                                <path class="circle" stroke-dasharray="0, 70 , 70 , 100" d="M18 2.0845
-                            a 15.9155 15.9155 0 0 1 0 31.831
-                            a 15.9155 15.9155 0 0 1 0 -31.831" id="percentage-2"></path>
-                                <text x="18" y="20.35" id="percentage-2-text" class="percentage"></text>
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Start active sessions -->
-            <div class="col-4 ">
-                <div class="row shadow p-3 mb-5 bg-white rounded no-margin" style="margin-bottom:1.5rem;">
-                    <div class="col-8 stats-label">
-                        <div class="">
-                            <h6>Active Sessions</h6>
-                            <p>6</p>
-                        </div>
-                    </div>
-                    <div class="col-4">
-                        <div class="chart-svg">
-                            <svg id="percentage-3-svg" viewBox="0 0 36 36" class="circular-chart">
-                                <path class="circle-bg" d="M18 2.0845
-                            a 15.9155 15.9155 0 0 1 0 31.831
-                            a 15.9155 15.9155 0 0 1 0 -31.831"></path>
-                                <path class="circle" stroke-dasharray="0, 70 , 70 , 100" d="M18 2.0845
-                            a 15.9155 15.9155 0 0 1 0 31.831
-                            a 15.9155 15.9155 0 0 1 0 -31.831" id="percentage-3"></path>
-                                <text x="18" y="20.35" id="percentage-3-text" class="percentage"></text>
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            
             <!-- End active sessions -->
             <div class="col-12 shadow mb-5 bg-white rounded">
                 <div class="col-12">
-                    <p>Sales Figures for last 7 days (month / year in drop down)</p>
+                    <p style="margin-top:20px;">Sales Figures for the Past 7 Days (@Classes.Utility.getDateFromDay(day - 6) - @Classes.Utility.getDateFromDay(day))</p>
                     <canvas id="myChart" width="400" height="100"></canvas>
                 </div>
             </div>
@@ -98,9 +28,6 @@
                 <p>Where orders are from pinpointed on a map</p>
             </div>
         </div>
-
-
-
 
     </div>
 

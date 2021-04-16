@@ -14,8 +14,8 @@ $(document).ready(function () {
         $('#datetimepicker7').datetimepicker();
     }
 
-    ProductTags('product-tags',false);
-    ProductTags('admin-product-tags',true);
+    ProductTags('product-tags', false);
+    ProductTags('admin-product-tags', true);
 
 });
 
@@ -440,6 +440,28 @@ function RemoveMessage() {
 
 /* END OF CHECKOUT PAGE */
 
+var day1 = 0;
+var day2 = 0;
+var day3 = 0;
+var day4 = 0;
+var day5 = 0;
+var day6 = 0;
+var day7 = 0;
+
+var day1Date = '00/00/00';
+var day2Date = '00/00/00';
+var day3Date = '00/00/00';
+var day4Date = '00/00/00';
+var day5Date = '00/00/00';
+var day6Date = '00/00/00';
+var day7Date = '00/00/00';
+
+var newOrdersPercentage = 0;
+var newUsersPercentage = 0;
+var activeSessionsPercentage = 0;
+
+
+
 $(document).ready(function () {
 
     if ($('#myChart').length > 0) {
@@ -449,10 +471,10 @@ $(document).ready(function () {
         var myChart = new Chart(ctx, {
             type: 'line',
             data: {
-                labels: ['Mon', 'Tue', 'Wed', 'Thurs', 'Fri', 'Sat', 'Sun'],
+                labels: [day1Date, day2Date, day3Date, day4Date, day5Date, day6Date, day7Date],
                 datasets: [{
                     label: 'Sales Value',
-                    data: [12, 19, 3, 5, 2, 3, 20],
+                    data: [day1, day2, day3, day4, day5, day6, day7],
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
                         'rgba(54, 162, 235, 0.2)',
@@ -544,55 +566,62 @@ $(document).ready(function () {
                 }
             }
         });
-        /* ---------- End Dounut ----------- */
+    }
+    /* ---------- End Dounut ----------- */
 
-        StatsPercent('percentage-1', -20);
-        StatsPercent('percentage-2', 80);
-        StatsPercent('percentage-3', 47);
+    StatsPercent('percentage-1', newOrdersPercentage);
+    StatsPercent('percentage-2', newUsersPercentage);
+    StatsPercent('percentage-3', activeSessionsPercentage);
 
-        function StatsPercent(stat, percent) {
-            if (percent < 0) {
-                var path = $('#' + stat).get(0);
-                var pathLen = path.getTotalLength();
-                var adjustedLen = 100 + percent;
-                path.setAttribute('stroke-dasharray', '0,' + adjustedLen + ',' + adjustedLen + ',' + pathLen);
-            } else {
-                var path = $('#' + stat).get(0);
-                var pathLen = path.getTotalLength();
-                var adjustedLen = percent * pathLen / 100;
-                path.setAttribute('stroke-dasharray', adjustedLen + ' ' + pathLen);
-            }
+    function StatsPercent(stat, percent) {
+        if (percent < 0) {
+            var path = $('#' + stat).get(0);
+            var pathLen = path.getTotalLength();
+            var adjustedLen = 100 + percent;
+            path.setAttribute('stroke-dasharray', '0,' + adjustedLen + ',' + adjustedLen + ',' + pathLen);
+        } else {
+            var path = $('#' + stat).get(0);
+            var pathLen = path.getTotalLength();
+            var adjustedLen = percent * pathLen / 100;
+            path.setAttribute('stroke-dasharray', adjustedLen + ' ' + pathLen);
+        }
 
-            var parent_element = document.getElementById(stat + '-svg');
+        var parent_element = document.getElementById(stat + '-svg');
 
-            // check if class exists and remove before setting correct class for the updated figures 
-            CheckRemoveClass(parent_element, "color-red");
-            CheckRemoveClass(parent_element, "color-amber");
-            CheckRemoveClass(parent_element, "color-green");
+        // check if class exists and remove before setting correct class for the updated figures 
+        CheckRemoveClass(parent_element, "color-red");
+        CheckRemoveClass(parent_element, "color-amber");
+        CheckRemoveClass(parent_element, "color-green");
 
 
-            if (percent < 50 && percent > 10) {
-                parent_element.classList.add("color-amber");
-            }
-            if (percent >= 50) {
-                parent_element.classList.add("color-green");
-            }
-            if (percent < 0) {
-                parent_element.classList.add("color-red");
-            }
+        if (percent < 50 && percent > 10) {
+            parent_element.classList.add("color-amber");
+        }
+        if (percent >= 50) {
+            parent_element.classList.add("color-green");
+        }
+        if (percent < 0) {
+            parent_element.classList.add("color-red");
+        }
 
-            var text_element = document.getElementById(stat + '-text');
-            text_element.innerHTML = percent + '%';
+        var text_element = document.getElementById(stat + '-text');
 
+        text_element.innerHTML = percent;
+
+        if (parseInt(percent) > 0) {
+            text_element.innerHTML = '+' + percent;
         }
 
 
+    }
 
-        function CheckRemoveClass(elementName, className) {
-            if (elementName.classList.contains(className)) {
-                elementName.classList.remove(className);
-            }
+
+
+    function CheckRemoveClass(elementName, className) {
+        if (elementName.classList.contains(className)) {
+            elementName.classList.remove(className);
         }
+
 
     }
 

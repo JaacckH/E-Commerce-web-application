@@ -20,6 +20,10 @@
     font-weight: bold;
 }
 
+.menu-fixed{
+    position:fixed;
+}
+
 /* ----------------- admin Product page Start -------------------*/
 .update-btn {
     margin-top: 20px;

@@ -15,87 +15,25 @@
     <div class="col-12 col-md-12">
         <div id="data-header" class="row">
             <div class="col-4 col-md-2 col-xl-2">
-                <b># Promotion ID</b>
+                <b>Promo Code</b>
             </div>
             <div class="d-none d-md-block col-5 col-md-4 col-xl-3">
-                Code
+                Times Used
             </div>
             <div class="d-none d-md-block col-5 col-md-3 col-xl-3">
                 Status
             </div>
             <div class="d-none d-md-block col-5 col-md-3 col-xl-2">
-                Active In
+                Start Date
             </div>
             <div class="d-none d-md-block col-5 col-md-1 col-xl-2">
-                Active For
+                End Date
             </div>
         </div>
 
         <ul class="list-group" id="data-list">
             <!-- Promotions starts -->
-            <li id="data-row-123" class="admin-list shadow" style="border:none;">
-                <div id="summary-panel-123" class="row" onclick="OpenDetails(123)">
-                    <div class="col-2 col-md-2 col-xl-2">
-                        <b>#123</b>
-                    </div>
-                    <div class="col-5 col-md-4 col-xl-3">
-                        Summer10
-                    </div>
-                    <div class="col-5 col-md-3 col-xl-3">
-                        Active
-                    </div>
-                    <div class="col-2 d-md-none"></div>
-                    <div class="col-5 col-5 col-md-1 col-xl-2">
-                        0 Days
-                    </div>
-                    <div class="col-5 col-5 col-md-1 col-xl-2">
-                        11 Days
-                    </div>
-                </div>
-                <!-- expanded start -->
-                <div id="expanded-panel-123" class="row d-none">
-                    <div class="col-6">
-                        <h4>#123</h4>
-                    </div>
-                    <div class="col-6 admin-close-view">
-                        <span onclick="closeDetails(123)"><i class="fas fa-times fa-1-5x"></i></span>
-                    </div>
-                    <div class="col-12">
-                        <h6>Promo Code:</h6> <p>Summer10</p>
-                    </div>
-                    <div class="col-12">
-                        <h6>Promo Type:</h6>
-                        <div class="row">
-                            <div class="input-group mb-3 col-6">
-                                <input type="text" aria-label="First name" class="form-control col-8" value="10">
-                                <select class="custom-select col-4" id="inputGroupSelect01">
-                                    <option value="0" selected>%</option>
-                                    <option value="1">Rs</option>
-                                </select>
-                                <div class="input-group-append">
-                                    <button class="btn btn-outline-secondary" type="button" id="button-addon2">Update</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-6">
-                        <h6>Status:</h6> <p>Active</p>
-                    </div>
-                    <div class="col-12 col-md-6">
-                        <h6>Times Used:</h6> <p>232</p>
-                    </div>
-                    <div class="col-12 col-md-6">
-                        <h6>Start Date:</h6> <p>02/10/2020 01:30pm</p>
-                    </div>
-                    <div class="col-12 col-md-6">
-                        <h6>End Date:</h6> <p>02/10/2020 01:30pm</p>
-                    </div>
-
-
-                </div>
-
-                <!-- expanded end -->
-            </li>
+            @Html.Raw(Classes.Promotions.listPromotions())
             <!-- Promotions ends -->
 
         </ul>

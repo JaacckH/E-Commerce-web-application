@@ -13,8 +13,18 @@ namespace FINAL.Classes
         public static void processOrder(List<int> stockItems, String userID, String promoCode, int price, String cardNum, String cv2,
             String expiry, String name, String addressLine1, String postcode, String phoneNumber)
         {
-
             GC.Collect();
+
+            if (Promotions.codeExists(promoCode))
+            {
+                int percent = Promotions.getPercentage(promoCode);
+                price = (1 - (percent / 100)) * price;
+            }
+            else
+            {
+                promoCode = null;
+            }
+
             String orderReference = UserFunctions.generateSessionID();
 
             foreach (int item in stockItems)
@@ -32,9 +42,9 @@ namespace FINAL.Classes
                 userID += " (GUEST)";
             }
 
-            DBFunctions.sendQuery("INSERT INTO Orders (OrderID, UserID, Name, AddressLine1, Postcode, PhoneNumber, Price, CardNumber, CV2, Expiry, DateTime) " +
+            DBFunctions.sendQuery("INSERT INTO Orders (OrderID, UserID, Name, AddressLine1, Postcode, PhoneNumber, Price, CardNumber, CV2, Expiry, DateTime, PromoCode) " +
                 "VALUES('" + orderReference + "', '" + userID + "', '" + name + "', '" + addressLine1 + "', '" + postcode + "', '"
-                + phoneNumber + "', '" + price + "', '" + cardNum + "', '" + cv2 + "', '" + expiry + "', '" + DateTime.Now.DayOfYear + "');");
+                + phoneNumber + "', '" + price + "', '" + cardNum + "', '" + cv2 + "', '" + expiry + "', '" + DateTime.Now.DayOfYear + "', '" + promoCode + "');");
 
         }
 

@@ -759,6 +759,15 @@ li {
 /* END OF LOGIN */
 
 /* START OF CHECKOUT PAGE */
+#promo-container {
+    background: white;
+    border: 0px;
+}
+
+#Promo-button {
+    background: white;
+}
+
 
 .cardd {
     transform-style: preserve-3d;
@@ -979,12 +988,12 @@ p {
 }
 
 .order_details {
-    /*border: 1px solid grey;*/
+    border: 1px solid grey;
     border-radius: 10px;
 }
 
 .delivery_container {
-    /*border: 1px solid var(--text-1);*/
+    border: 1px solid var(--text-1);
     padding: 10px;
     border-radius: 10px;
 }
@@ -1000,6 +1009,8 @@ p {
     padding: 10px;
     position: fixed;
 }
+
+
 
 /* END OF CHECKOUT PAGE */
 

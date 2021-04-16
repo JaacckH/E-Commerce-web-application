@@ -781,6 +781,8 @@ li {
 }
 
 
+
+
 .cardd {
     transform-style: preserve-3d;
     position: relative;
@@ -1000,12 +1002,12 @@ p {
 }
 
 .order_details {
-    border: 1px solid grey;
+    /*border: 1px solid grey;*/
     border-radius: 10px;
 }
 
 .delivery_container {
-    border: 1px solid var(--text-1);
+    /*border: 1px solid var(--text-1);*/
     padding: 10px;
     border-radius: 10px;
 }
@@ -1021,8 +1023,6 @@ p {
     padding: 10px;
     position: fixed;
 }
-
-
 
 /* END OF CHECKOUT PAGE */
 
@@ -1553,7 +1553,7 @@ svg:not(:root) {
     font-size: var(--text-size-large);
 }
 
-#basket-page, #shop-page, #basket-page {
+#basket-page, #shop-page, #checkout-page {
     margin-top: 3%;
 }
 

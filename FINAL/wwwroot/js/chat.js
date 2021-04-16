@@ -58,6 +58,7 @@ function scrollMessages() {
 function sendMessage() {
     var message = document.getElementById('message-messageinput').value;
     connection.invoke("sendMessage", getSessionID(), message);
+    document.getElementById('message-messageinput').value = '';
 }
 
 function setConnectionID() {
@@ -189,8 +190,12 @@ function updateQuantity() {
 
 function adminSendMessage() {
     var message = document.getElementById('message-messageinput').value;
-    connection.invoke("adminSendMessage", getSessionID(), recipient, message)
+    connection.invoke("adminSendMessage", getSessionID(), recipient, message);
+    document.getElementById('message-messageinput').value = '';
 }
+
+
+
 
 function openChat() {
     hideChat();
@@ -201,9 +206,14 @@ function openChat() {
 
     setTimeout(function () { 
     if ($('#chatbox').length > 0) {
-        console.log('chatbox-exists');
         $("#chatbox").draggable({ handle: "#chatbox-header" });
 
+        $('#message-messageinput').on('keypress', function (event) {
+            if (event.which === 13) {
+                sendMessage();
+                return false;
+            }
+        });
         }
     }, 300);
 }

@@ -190,6 +190,23 @@ namespace FINAL.Classes
             return null;
         }
 
+        public static int getNumOfUsersForDay(int day)
+        {
+            SqlConnection conn = new SqlConnection();
+            conn.ConnectionString = DBFunctions.connectionString;
+            conn.Open();
+            SqlCommand query = conn.CreateCommand();
+            query.CommandText = "SELECT DateCreated FROM Users WHERE DateCreated='" + day + "';";
+            SqlDataReader reader = query.ExecuteReader();
 
+            int i = 0;
+            while (reader.Read())
+            {
+                i++;
+            }
+
+            conn.Close();
+            return i;
+        }
     }
 }

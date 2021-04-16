@@ -469,7 +469,7 @@ function ToggleCheckoutMenu(menu) {
         element4.classList.remove("d-none");
     }
 
-    
+
 }
 
 function RemoveMessage() {
@@ -610,7 +610,7 @@ $(document).ready(function () {
 
     StatsPercent('percentage-1', newOrdersPercentage);
     StatsPercent('percentage-2', newUsersPercentage);
-    StatsPercent('percentage-3', activeSessionsPercentage);
+    StatsPercent('percentage-3', 19);
 
     function StatsPercent(stat, percent) {
         if (percent < 0) {
@@ -633,22 +633,25 @@ $(document).ready(function () {
         CheckRemoveClass(parent_element, "color-green");
 
 
-        if (percent < 50 && percent > 10) {
+        if (percent < 20 && percent > 0) {
             parent_element.classList.add("color-amber");
         }
-        if (percent >= 50) {
+        if (percent >= 20) {
             parent_element.classList.add("color-green");
         }
         if (percent < 0) {
             parent_element.classList.add("color-red");
         }
+        if (percent == 0) {
+            parent_element.classList.add("color-blue");
+        }
 
         var text_element = document.getElementById(stat + '-text');
 
-        text_element.innerHTML = percent;
+        text_element.innerHTML = percent + '%';
 
         if (parseInt(percent) > 0) {
-            text_element.innerHTML = '+' + percent;
+            text_element.innerHTML = '+' + percent + '%';
         }
 
 

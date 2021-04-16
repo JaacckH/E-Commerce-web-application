@@ -9,8 +9,9 @@
 .empty-basket {
     width: 100%;
     text-align: center;
-    margin:50px 0px;
+    margin: 50px 0px;
 }
+
 .checkout-header {
     cursor: pointer;
     background-color: var(--background-3);
@@ -112,7 +113,7 @@
 }
 
 
- .bootstrap-tagsinput {
+.bootstrap-tagsinput {
     background-color: var(--background-1);
     border-color: var(--background-2);
     line-height: 32px;
@@ -121,20 +122,20 @@
 }
 
 
- .bootstrap-tagsinput .tag {
+    .bootstrap-tagsinput .tag {
         color: var(--text-1);
         text-transform: capitalize;
         background-color: var(--background-2);
         padding: 5px 5px;
     }
 
- .tags-selection-cont {
+.tags-selection-cont {
     margin: 10px 0px;
     height: 100px;
     overflow-y: scroll;
 }
 
- .tags-selection-cont input {
+    .tags-selection-cont input {
         text-transform: capitalize;
         background-color: var(--background-1);
         padding: 0;
@@ -172,13 +173,13 @@
     height: 100%;
 }
 
-    .card img {
-        /*max-height: 240px;*/
-        overflow: hidden;
-        object-fit: cover;
-        width: 100%;
-        min-height: 100% !important;
-    }
+.card img {
+    /*max-height: 240px;*/
+    overflow: hidden;
+    object-fit: cover;
+    width: 100%;
+    min-height: 100% !important;
+}
 
 .size-input {
     max-width: 100%;
@@ -431,7 +432,8 @@ a, a:hover {
     font-weight: bold;
     color: black !important;
 }
-        .page-name {
+
+.page-name {
     width: 100vw;
     overflow: hidden;
 }
@@ -703,7 +705,6 @@ li {
 }
 
 #login-panel {
-
     padding-left: 6%;
 }
 
@@ -1256,10 +1257,10 @@ p {
 }*/
 
 
-    .page-2-container .card h2 {
-        font-weight: bold;
-        text-align: center;
-    }
+.page-2-container .card h2 {
+    font-weight: bold;
+    text-align: center;
+}
 
 
 .section-header {
@@ -1465,38 +1466,26 @@ svg:not(:root) {
     overflow: hidden;
 }
 
-.circular-chart.color-red .circle-bg {
-    stroke: #efefef;
-}
-
 .circular-chart.color-red .circle {
-    stroke: #fd6666;
-}
-
-.circular-chart.color-amber .circle-bg {
-    stroke: #efefef;
+    stroke: #ff002a;
 }
 
 .circular-chart.color-amber .circle {
     stroke: #ffc90b;
 }
 
-.circular-chart.color-green .circle-bg {
-    stroke: #efefef;
-}
-
 .circular-chart.color-green .circle {
-    stroke: #b5e71b;
+    stroke: #11df47;
 }
 
 .Montserrat {
     font-family: 'Montserrat';
-    font-weight:600;
+    font-weight: 600;
 }
 
 .circle-bg {
+    stroke: #ddefed;
     fill: none;
-    stroke: #eee;
     stroke-width: 1.2;
 }
 
@@ -1591,7 +1580,7 @@ svg:not(:root) {
 
 
 
-    /* Checkout Success */
+/* Checkout Success */
 
 .message-box {
     display: flex;

@@ -276,5 +276,19 @@ namespace FINAL.Classes
 
             EmailManagement.SendEmail(email, "Order " + OrderId + " Confirmation", "Thanks for choosing Oui Oui fashion! Your order has been placed! order ID: " + OrderId + ".");
         }
+
+        public async Task addPromoCode(String sessionID, String promoCode)
+        {
+            String userID = UserFunctions.getUserID(sessionID);
+            if (Promotions.codeExists(promoCode) && Promotions.getPromoStatus(promoCode) == 1)
+            {
+                int prePrice = Basket.getTotalPrice(userID, null);
+                int price = Basket.getTotalPrice(userID, promoCode);
+                await sendContent(Context.ConnectionId, "Promotions: (CODE: " + promoCode + ")", "promotion-display");
+                await sendContent(Context.ConnectionId, "Rs -" + (prePrice - price) + " (-" + Promotions.getPercentage(promoCode) + "%)", "promotion-amount");
+                await sendContent(Context.ConnectionId, "Rs " + price.ToString(), "checkout-total");
+            }
+        }
+
     }
 }

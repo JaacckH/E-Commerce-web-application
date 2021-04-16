@@ -199,19 +199,19 @@ function openChat() {
     connection.invoke("openChat", getSessionID(), recipient);
     scrollMessages();
 
-    setTimeout(function () { 
-    if ($('#chatbox').length > 0) {
-        console.log('chatbox-exists');
-        $("#chatbox").draggable({ handle: "#chatbox-header" });
+    setTimeout(function () {
+        if ($('#chatbox').length > 0) {
+            console.log('chatbox-exists');
+            $("#chatbox").draggable({ handle: "#chatbox-header" });
 
         }
     }, 300);
 }
 
 function hideChat() {
-   
+
     document.getElementById('chatbox-placeholder').innerHTML = "";
-    
+
 }
 
 function ToggleChatButton() {
@@ -227,7 +227,7 @@ function markAsSettled(user) {
 
 function SendConfirmEmail() {
     var Email = document.getElementById('UserEmail').value;
-    
+
     connection.invoke("confirmOrderEmail", getSessionID(), Email);
 }
 
@@ -242,5 +242,6 @@ function getUrlVariable(variable) {
 }
 
 function addPromoCode() {
-    document.getElementById('promoCode').value;
+    var promoCode = document.getElementById('promoCode').value;
+    connection.invoke("addPromoCode", getSessionID(), promoCode);
 }

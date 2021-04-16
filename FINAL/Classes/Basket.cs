@@ -122,7 +122,7 @@ namespace FINAL.Classes
             return html;
         }
 
-        public static int getTotalPrice(String userID)
+        public static int getTotalPrice(String userID, String promoCode)
         {
             SqlConnection conn = new SqlConnection();
             conn.ConnectionString = DBFunctions.connectionString;
@@ -140,6 +140,17 @@ namespace FINAL.Classes
                     price += quantity * ProductFunctions.getProductPrice(int.Parse(reader["StockID"].ToString()));
                 }
             }
+            Console.WriteLine("PRICE1:" + price + ".");
+            if (promoCode != null && Promotions.codeExists(promoCode) && Promotions.getPromoStatus(promoCode) == 1)
+            {
+                int percent = Promotions.getPercentage(promoCode);
+                //price = (1 - (percent / 100)) * price;
+                //Console.WriteLine("PRICE1.5:" + (1 - (percent / 100)));
+                //Console.WriteLine("PRICE2:" + price + ".");
+                price = (int)Math.Round((double)(price * (1- (decimal.Parse(Settings.getSetting("VAT")) / 100))));
+                Console.WriteLine("PRICE2:" + price + ".");
+
+            }
 
             conn.Close();
             return price;
@@ -147,13 +158,13 @@ namespace FINAL.Classes
 
         public static int getVatAmount(String userID)
         {
-            int full = getTotalPrice(userID);
-            return (int)Math.Round((double)(getTotalPrice(userID) * (decimal.Parse(Settings.getSetting("VAT")) / 100)));
+            int full = getTotalPrice(userID, null);
+            return (int)Math.Round((double)(getTotalPrice(userID, null) * (decimal.Parse(Settings.getSetting("VAT")) / 100)));
         }
 
         public static int getTotalMinusVat(String userID)
         {
-            return getTotalPrice(userID) - getVatAmount(userID);
+            return getTotalPrice(userID, null) - getVatAmount(userID);
         }
 
         public static List<int> getStockIDs(String userID)

@@ -32,7 +32,7 @@ namespace Group_Project.Models
 
 
                 String userID = UserFunctions.getUserID(HttpContext.Request.Cookies["SessionID"]);
-                int price = Basket.getTotalPrice(userID);
+                int price = Basket.getTotalPrice(userID, promocode);
 
                 if (!String.IsNullOrEmpty(name) && !String.IsNullOrEmpty(addressline1) &&
                     !String.IsNullOrEmpty(postcode) && !String.IsNullOrEmpty(phonenumber))
@@ -50,7 +50,6 @@ namespace Group_Project.Models
                     }
 
                 }
-                //Response.Redirect("/");
             }
             catch { }
             return null;

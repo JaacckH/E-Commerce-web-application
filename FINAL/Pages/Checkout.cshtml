@@ -158,9 +158,9 @@
 
                             <div class="card-body mb-3">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" id="PromoCode" placeholder="e.g. SUMMERVIBE" name="promoCode">
+                                    <input type="text" class="form-control" id="promoCode" placeholder="e.g. SUMMERVIBE" name="promoCode">
                                     <p style="padding-top: 5px;"></p>
-                                    <button id="promo-btn" class="btn btn-order-page" style="float: right; ">ADD</button>
+                                    <button id="promo-btn" class="btn btn-order-page" style="float: right;" onclick="addPromoCode();">ADD</button>
                                 </div>
                             </div>
 
@@ -192,9 +192,15 @@
                         <hr>
 
                         <div class="row">
+
                             <div class="col-12">
-                                <p style="float: left;">Total</p>
-                                <p style="float: right;">@Html.Raw(Classes.Basket.getTotalPrice(Classes.UserFunctions.getUserID(HttpContext.Request.Cookies["SessionID"])))</p>
+                                <p style="float: left;" id="promotion-display">Promotions: None</p>
+                                <p style="float: right;" id="promotion-amount">Rs -0</p>
+                            </div>
+
+                            <div class="col-12">
+                                <p style="float: left;">Total:</p>
+                                <p style="float: right;" id="checkout-total">Rs @Html.Raw(Classes.Basket.getTotalPrice(Classes.UserFunctions.getUserID(HttpContext.Request.Cookies["SessionID"]), null))</p>
                             </div>
                         </div>
                         <hr>

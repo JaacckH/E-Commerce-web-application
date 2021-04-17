@@ -294,7 +294,7 @@ namespace FINAL.Classes
         public async Task addPromoCode(String sessionID, String promoCode)
         {
             String userID = UserFunctions.getUserID(sessionID);
-            if (UserFunctions.isAdmin(UserFunctions.getUserID(sessionID)) && 
+            if (UserFunctions.isAdmin(UserFunctions.getUserID(sessionID)) &&
                 Promotions.codeExists(promoCode) && Promotions.getPromoStatus(promoCode) == 1)
             {
                 int prePrice = Basket.getTotalPrice(userID, null);
@@ -351,6 +351,16 @@ namespace FINAL.Classes
                 await sendContent(Context.ConnectionId, accountType, "account-type2-" + userID);
                 sendSuccessAlert(Context.ConnectionId, "User permissions were changed");
 
+            }
+        }
+
+        public async Task deletePromoCode(String sessionID, String promoCode)
+        {
+            if (Promotions.codeExists(promoCode) && UserFunctions.isAdmin(UserFunctions.getUserID(sessionID)))
+            {
+                DBFunctions.sendQuery("DELETE FROM Promotions WHERE PromoCode='" + promoCode + "';");
+                await Clients.Client(Context.ConnectionId).SendAsync("deleteContainer", "data-row-" + promoCode);
+                sendSuccessAlert(Context.ConnectionId, "Promotion Deleted");
             }
         }
 

@@ -22,7 +22,7 @@ namespace FINAL.Classes
             while (reader.Read())
             {
                 String baseString = File.ReadAllText(Environment.CurrentDirectory + "/HTML/ADMIN/PROMOTIONS.html")
-                    .Replace("{ID}", reader["Id"].ToString()).Replace("{CODE}", reader["PromoCode"].ToString())
+                    .Replace("{ID}", reader["PromoCode"].ToString()).Replace("{CODE}", reader["PromoCode"].ToString())
                     .Replace("{PERCENTAGE}", reader["Percentage"].ToString()).Replace("{START}", Utility.getDateFromDay(int.Parse(reader["StartDate"].ToString())))
                     .Replace("{END}", Utility.getDateFromDay(int.Parse(reader["EndDate"].ToString())))
                     .Replace("{USAGE}", getUsageAmount(reader["PromoCode"].ToString()).ToString())

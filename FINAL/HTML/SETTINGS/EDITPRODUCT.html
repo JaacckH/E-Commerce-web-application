@@ -1,14 +1,14 @@
 ﻿<li id="data-row-{ID}" class="data-row-{ID} admin-item-list col-12 col-xl-6">
-    <div id="product-card-{ID}" class="card mb-3 shadow" style="border:none;">
+    <div id="product-card-{ID}" class="card mb-3 shadow" style="border:none; margin-bottom:15px">
         <div class="row no-gutters card-cont">
             <div class="col-md-4">
                 <img src="{IMAGE}" alt="...">
             </div>
             <div id="card-sml-detail-{ID}" class="col-md-8">
                 <div class="card-body">
-                    <h5 class="card-title">{NAME} {ID}</h5>
+                    <h5 class="card-title">{NAME} #{ID}</h5>
                     <p class="card-text margin-5-px"><b>Category:</b> {CATEGORY}</p>
-                    <p class="card-text margin-5-px"><b>Rs 1400</b></p>
+                    <p class="card-text margin-5-px"><b>Rs {PRICE}</b></p>
                     <p class="card-text margin-5-px"><b>Stock:</b></p>
                     <table class="col-12 size-table margin-5-px">
                         <tbody>

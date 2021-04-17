@@ -30,6 +30,10 @@ connection.on("removeContainer", function (id) {
     document.getElementById('basket-product-' + id).outerHTML = "";
 });
 
+connection.on("deleteContainer", function (id) {
+    document.getElementById(id).outerHTML = "";
+});
+
 connection.on("setMaxQuantity", function (quantity) {
     document.getElementById('quantityvalue').value = "1";
     maxQuantity = parseInt(quantity);
@@ -284,5 +288,10 @@ function updateOrderStatus(id) {
 
 function promoteUser(id) {
     connection.invoke("promoteUser", getSessionID(), id);
+}
+
+function deletePromoCode(promoCode) {
+    closeDetails(promoCode);
+    connection.invoke("deletePromoCode", getSessionID(), promoCode);
 }
 

@@ -1,5 +1,5 @@
 ﻿<li id="data-row-{ID}" class="admin-list shadow" style="border:none; margin-bottom: 20px;">
-    <div id="summary-panel-{ID}" class="row" onclick="OpenDetails('{ID}')">
+    <div id="summary-panel-{ID}" class="row" onclick="OpenDetails('{ID}');">
         <div class="col-2 col-md-2 col-xl-2">
             <b>{CODE}</b>
         </div>
@@ -50,7 +50,7 @@
         </div>
 
         <div class="input-group-append">
-            <button class="btn btn-outline-secondary" type="button" id="button-addon2" style="margin:15px;">DELETE</button>
+            <button class="btn btn-outline-secondary" type="button" id="button-addon2" style="margin:15px;" onclick="deletePromoCode('{CODE}');">Delete</button>
         </div>
 
     </div>

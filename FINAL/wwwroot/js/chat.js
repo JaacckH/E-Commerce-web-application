@@ -47,6 +47,26 @@ connection.on("setCheckoutCookie", function () {
     document.cookie = "rtc=" + "True";
 });
 
+connection.on("ShowError", function (message) {
+    //document.getElementById('alert-box').style.visibility = 'visible';
+    slideSource.classList.toggle('fade');
+    document.getElementById('alert-message').innerHTML = message;
+    setTimeout(hideAlert, 2500);
+});
+
+connection.on("ShowSuccess", function (message) {
+    //document.getElementById('success-box').style.visibility = 'visible';
+    slideSource.classList.toggle('fade');
+    document.getElementById('success-message').innerHTML = message;
+    setTimeout(hideSuccess, 2500);
+});
+
+connection.on("ShowAcknowledge", function (message) {
+    //document.getElementById('acknowledge-box').style.visibility = 'visible';
+    slideSource.classList.toggle('fade');
+    document.getElementById('acknowledge-message').innerHTML = message;
+    setTimeout(hideAcknowledge, 1000);
+});
 
 function scrollMessages() {
     var chatboxes = document.getElementsByClassName("scroll");
@@ -254,3 +274,4 @@ function getUrlVariable(variable) {
 function addPromoCode() {
     document.getElementById('promoCode').value;
 }
+

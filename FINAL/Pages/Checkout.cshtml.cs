@@ -102,7 +102,7 @@ namespace Group_Project.Models
             }
 
             conn.Close();
-            baseString = baseString.Replace("{PRICE}", price).Replace("{IMAGE}", imagePath)
+            baseString = baseString.Replace("{PRICE}", Utility.formatPrice(price)).Replace("{IMAGE}", imagePath)
                 .Replace("{ID}", productID.ToString()).Replace("{QUANTITY}", quantity.ToString())
                 .Replace("{NAME}", name).Replace("{SIZE}", Stock.getStockDetail(StockID, "SizeID"));
 

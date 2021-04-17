@@ -1,6 +1,6 @@
 ﻿<ul class="list-group" id="data-list">
     <!-- order starts -->
-    <li id="data-row-{ID}" class="admin-list shadow" style="border:none;">
+    <li id="data-row-{ID}" class="admin-list shadow" style="border:none; margin-bottom:20px;">
         <div id="summary-panel-{ID}" class="row" onclick="OpenDetails('{ID}');">
             <div class="col-2 col-md-2 col-xl-2">
                 <b>#{ID}</b>
@@ -13,18 +13,22 @@
             </div>
             <div class="col-2 d-md-none"></div>
             <div class="col-5 col-md-3 col-xl-3">
-                <p style="color:#00cc0a; font-size:13pt;" class="status"><i class="fas fa-circle"></i> Order Placed
+                <div id="order-status1-{ID}">{STATUS}</div>
             </div>
 
         </div>
         <!-- expanded start -->
         <div id="expanded-panel-{ID}" class="row d-none">
             <div class="col-6">
-                <h4>#{ID}</h4>
+                <h4 style="margin-bottom:20px;">#{ID}</h4>
             </div>
             <div class="col-6 admin-close-view">
                 <span onclick="closeDetails('{ID}')"><i class="fas fa-times fa-1-5x"></i></span>
             </div>
+            <div class="col-12 order-date">
+                    <h6><b>Status:</b></h6>
+                    <div id="order-status2-{ID}">{STATUS}</div>
+                </div>
             <div class="col-12 order-date">
                 <h6><b>Date:</b></h6> {DATE}
             </div>
@@ -44,15 +48,15 @@
                             <span class="input-group-text" id="inputGroupFileAddon01">Status</span>
                         </div>
 
-                        <select class="custom-select" id="inputGroupSelect04" aria-label="Example select with button addon">
+                        <select class="custom-select" id="order-status-select-{ID}" aria-label="Select Status">
                             <option value="1" selected>Processing</option>
                             <option value="2">Shipped</option>
                             <option value="3">Delivered</option>
-                            <option value="3">Cancelled</option>
-                            <option value="3">Refunded</option>
+                            <option value="4">Cancelled</option>
+                            <option value="5">Refunded</option>
                         </select>
                         <div class="input-group-append">
-                            <button class="btn btn-outline-secondary" type="button">Update</button>
+                            <button class="btn btn-outline-secondary" type="button" onclick="updateOrderStatus('{ID}');">Update</button>
                         </div>
                     </div>
                 </div>
@@ -73,9 +77,9 @@
                             <tbody class="col-12">
                                 <tr class="row">
                                     <th class="col">Product</th>
+                                    <th class="col">Product ID</th>
                                     <th class="col">Qty</th>
                                     <th class="col">Size</th>
-                                    <th class="col">Colour</th>
                                     <th class="col">Amount</th>
                                 </tr>
                                 {PRODUCTS}

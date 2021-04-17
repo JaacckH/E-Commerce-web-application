@@ -76,10 +76,10 @@ namespace FINAL.Classes
             }
 
             conn.Close();
-            baseString = baseString.Replace("{PRICE}", price).Replace("{IMAGE}", imagePath)
+            baseString = baseString.Replace("{PRICE}", Utility.formatPrice(price)).Replace("{IMAGE}", imagePath)
                 .Replace("{ID}", productID.ToString()).Replace("{QUANTITY}", quantity.ToString())
                 .Replace("{NAME}", name).Replace("{SIZE}", Stock.getStockDetail(stockID, "SizeID"))
-                .Replace("{TOTAL}", (int.Parse(price) * quantity).ToString())
+                .Replace("{TOTAL}", Utility.formatPrice((int.Parse(price) * quantity).ToString()))
                 .Replace("{MAX}", (int.Parse(Stock.getStockDetail(stockID, "Quantity")) + 1).ToString())
                 .Replace("{STOCKID}", stockID.ToString());
             return baseString;
@@ -140,7 +140,6 @@ namespace FINAL.Classes
                     price += quantity * ProductFunctions.getProductPrice(int.Parse(reader["StockID"].ToString()));
                 }
             }
-            Console.WriteLine("PRICE1:" + price + ".");
             if (promoCode != null && Promotions.codeExists(promoCode) && Promotions.getPromoStatus(promoCode) == 1)
             {
                 int percent = Promotions.getPercentage(promoCode);
@@ -148,8 +147,6 @@ namespace FINAL.Classes
                 //Console.WriteLine("PRICE1.5:" + (1 - (percent / 100)));
                 //Console.WriteLine("PRICE2:" + price + ".");
                 price = (int)Math.Round((double)(price * (1- (decimal.Parse(Settings.getSetting("VAT")) / 100))));
-                Console.WriteLine("PRICE2:" + price + ".");
-
             }
 
             conn.Close();

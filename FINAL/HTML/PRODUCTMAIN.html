@@ -187,7 +187,7 @@
             </div>
         </div>
         <div class="col-12">
-            <h1>DAISY STREET</h1>
+            <h1 style="font-weight:600;">{CATEGORY}</h1>
         </div>
     </div>
 
@@ -201,37 +201,37 @@
             <div class"row">
                 <div id="product-info-container">
                     <div class="col-12">
-                        <h5>{NAME}</h5>
-                        <p>Rs <span>{PRICE}</span></p>
+                        <h1 style="font-weight:600;">{NAME}</h1>
+                        <p style="font-size:20pt;">Rs <span>{PRICE}</span></p>
                     </div>
                 </div>
 
                 <div class="col-12">
-                    <p style="margin-bottom: 5px;">PRODUCT DETAILS</p>
+                    <h5 style="margin-bottom: 5px; margin-top:5px; font-weight:600;">Details</h5>
                 </div>
 
                 <div id="product-info-container">
                     <div class="col-12" id="product-desc">
-                        {DESCRIPTION}
+                        <p style="font-size:14pt;">{DESCRIPTION}</p>
                     </div>
                 </div>
 
                 <div id="product-info-container">
                     <div class="col-12">
-                        <p style="margin-bottom: 5px;">MATERIALS</p>
+                        <h5 style="margin-bottom: 5px; margin-top:5px; font-weight:600;">Materials</h5>
                     </div>
-                    <div class="col-12" id="product-desc">100% Cotton</div>
+                    <div class="col-12" id="product-desc"><p style="font-size:14pt;">100% Cotton</p></div>
                 </div>
 
                 <div id="product-info-container">
                     <div class="col-12">
-                        <p style="margin-bottom: 5px;">Product ID</p>
+                        <h5 style="margin-bottom: 5px; margin-top:5px;  font-weight:600;">Product ID</h5>
                     </div>
-                    <div class="col-12" id="product-desc">#{ID}</div>
+                    <div class="col-12" id="product-desc"><p style="font-size:14pt;">#{ID}</p></div>
                 </div>
 
                 <div class="col-12">
-                    <p style="margin-bottom: 5px;">Quantity</p>
+                    <h5 style="margin-bottom: 5px; margin-top:5px; font-weight:600;">Quantity</h5>
                 </div>
 
                 <div class="col-12">
@@ -249,14 +249,14 @@
 
                 <div class="col-12">
 
-                    <label for="input-size">Size:</label>
+                    <label for="input-size"><h5 style="margin-bottom: 5px; margin-top:12px;  font-weight:600;">Size</h5></label>
                     <select class="form-control" id="input-size" onchange="updateQuantity();">
                         {SIZES}
                     </select>
                 </div>
 
                 <div class="col-12" style="padding-top: 20px">
-                    <button id="create-btn" class="btn btn-ouioui-secondary margin-left-5px" onclick="addToBasket();">Add to basket</button>
+                    <button id="create-btn" class="btn btn-ouioui-secondary margin-left-5px" onclick="addToBasket();">Add to Basket</button>
                 </div>
 
                 <script>

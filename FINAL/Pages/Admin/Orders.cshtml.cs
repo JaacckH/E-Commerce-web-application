@@ -28,9 +28,11 @@ namespace FINAL.Pages.Admin
                 try
                 {
                     String baseString = System.IO.File.ReadAllText(Environment.CurrentDirectory + "/HTML/ORDERS/ORDER.html");
+                    String status = System.IO.File.ReadAllText(Environment.CurrentDirectory
+                                + "/HTML/ORDERS/STATUS/" + Orders.getOrderStatus(reader["OrderID"].ToString()) + ".html");
                     baseString = baseString.Replace("{ID}", reader["OrderID"].ToString())
                         .Replace("{DATE}", Utility.getDateFromDay(int.Parse(reader["DateTime"].ToString())))
-                        .Replace("{PRICE}", reader["Price"].ToString()).Replace("{STATUS}", reader["Status"].ToString())
+                        .Replace("{PRICE}", reader["Price"].ToString()).Replace("{STATUS}", status)
                         .Replace("{NAME}", reader["Name"].ToString());
 
                     String address = reader["Name"] + "<br/>" + reader["AddressLine1"] + "<br/>" + reader["Postcode"];
@@ -80,7 +82,7 @@ namespace FINAL.Pages.Admin
                             String baseString = System.IO.File.ReadAllText(Environment.CurrentDirectory + "/HTML/ORDERS/ORDER_PRODUCTS.html");
                             baseString = baseString.Replace("{PRODUCTNAME}", reader2["Name"].ToString()).Replace("{QUANTITY}", reader["Quantity"].ToString())
                                 .Replace("{SIZE}", reader["Size"].ToString())
-                                .Replace("{COLOR}", "Color")
+                                .Replace("{ID}", "#" + reader["ProductID"].ToString())
                                 .Replace("{PRICE}", reader["PurchasePrice"].ToString());
                             html += baseString;
                         }

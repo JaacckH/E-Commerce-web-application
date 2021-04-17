@@ -19,8 +19,8 @@
     </div>
 </div>
 
-<div id="checkout-page" class="container">
-    <form asp-action="@Model.checkout()">
+<form asp-action="@Model.checkout()">
+    <div id="checkout-page" class="container">
         <div class="row">
             <div class="col-12 col-md-6">
                 <div class="row pl-3 pr-3">
@@ -130,7 +130,7 @@
                                 <div class="row">
                                     <div class="col-8">
                                         <div class="form-group ">
-                                            <label for="UserCardNo">Name on creadit card:</label>
+                                            <label for="UserCardNo">Name on Card:</label>
                                             <input type="text" class="form-control" id="UserCardNo" style="width: 100%" required>
                                         </div>
                                     </div>
@@ -200,7 +200,7 @@
 
                             <div class="col-12">
                                 <p style="float: left;">Total:</p>
-                                <p style="float: right;" id="checkout-total">Rs @Html.Raw(Classes.Basket.getTotalPrice(Classes.UserFunctions.getUserID(HttpContext.Request.Cookies["SessionID"]), null))</p>
+                                <p style="float: right;" id="checkout-total">Rs @Html.Raw(Classes.Utility.formatPrice(Classes.Basket.getTotalPrice(Classes.UserFunctions.getUserID(HttpContext.Request.Cookies["SessionID"]), null).ToString()))</p>
                             </div>
                         </div>
                         <hr>
@@ -209,7 +209,7 @@
                         </div>
                         <br>
                         <div class="col-12">
-                            <button id="create-btn" class="btn btn-order-page margin-left-5px">PLACE ORDER</button>
+                            <button id="create-btn" class="btn btn-order-page margin-left-5px" type="submit">PLACE ORDER</button>
                         </div>
                         <br>
                     </div>
@@ -220,9 +220,8 @@
             </div>
 
         </div>
-    </form>
-
-</div>
+    </div>
+</form>
 
 
 

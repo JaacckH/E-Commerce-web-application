@@ -36,7 +36,7 @@ namespace FINAL.Classes
         public static String getMainProductHtml(String productID)
         {
             String baseString = File.ReadAllText(Environment.CurrentDirectory + "/HTML/PRODUCTMAIN.html");
-            String price = "", imagePath = "", description = "", name = "", id = "", sizeHtml = "", maxQuantity = "";
+            String price = "", imagePath = "", description = "", name = "", id = "", sizeHtml = "", maxQuantity = "", category = "";
 
             SqlConnection connSize = new SqlConnection();
             connSize.ConnectionString = DBFunctions.connectionString;
@@ -74,17 +74,19 @@ namespace FINAL.Classes
                     name = reader["Name"].ToString();
                     imagePath = reader["ImagePath"].ToString();
                     id = reader["ProductID"].ToString();
+                    category = reader["Category"].ToString();
                 }
             }
 
             conn.Close();
-            baseString = baseString.Replace("{PRICE}", price)
+            baseString = baseString.Replace("{PRICE}", Utility.formatPrice(price))
                 .Replace("{NAME}", name).Replace("{DESCRIPTION}", description)
                 .Replace("{IMAGE}", imagePath)
                 .Replace("{ID}", id.ToString())
                 .Replace("{SIZES}", sizeHtml)
                 .Replace("{MAXQUANTITY}", maxQuantity)
-                .Replace("{PRICE}".ToString(), price);
+                .Replace("{PRICE}".ToString(), price)
+                .Replace("{CATEGORY}", category);
 
             return baseString;
         }
@@ -93,7 +95,7 @@ namespace FINAL.Classes
         public static String getSubProductHtml(String productID)
         {
             String baseString = File.ReadAllText(Environment.CurrentDirectory + "/HTML/PRODUCTSUB.html");
-            String price = "", imagePath = "", description = "", name = "", id = "", tags ="", sizes ="";
+            String price = "", imagePath = "", description = "", name = "", id = "", tags = "", sizes = "";
 
             SqlConnection conn = new SqlConnection();
             conn.ConnectionString = DBFunctions.connectionString;
@@ -132,16 +134,13 @@ namespace FINAL.Classes
                     && int.Parse(readerSize["Quantity"].ToString()) > 0)
                 {
                     sizes = readerSize["SizeID"].ToString() + "," + sizes;
-                   
+
                 }
             }
 
             connSize.Close();
 
-
-
-
-            baseString = baseString.Replace("{PRICE}", price)
+            baseString = baseString.Replace("{PRICE}", Utility.formatPrice(price))
                 .Replace("{NAME}", name).Replace("{DESCRIPTION}", description)
                 .Replace("{IMAGE}", imagePath)
                 .Replace("{TAGS}", name + "," + sizes + "," + tags)

@@ -292,9 +292,32 @@ namespace FINAL.Classes
                 int prePrice = Basket.getTotalPrice(userID, null);
                 int price = Basket.getTotalPrice(userID, promoCode);
                 await sendContent(Context.ConnectionId, "Promotions: (CODE: " + promoCode + ")", "promotion-display");
-                await sendContent(Context.ConnectionId, "Rs -" + (prePrice - price) + " (-" + Promotions.getPercentage(promoCode) + "%)", "promotion-amount");
-                await sendContent(Context.ConnectionId, "Rs " + price.ToString(), "checkout-total");
+                await sendContent(Context.ConnectionId, "Rs -" + Utility.formatPrice((prePrice - price).ToString()) + " (-" + Promotions.getPercentage(promoCode) + "%)", "promotion-amount");
+                await sendContent(Context.ConnectionId, "Rs " + Utility.formatPrice(price.ToString()), "checkout-total");
+                sendSuccessAlert(Context.ConnectionId, "Promotion Code Applied");
             }
+            else
+            {
+                sendAlert(Context.ConnectionId, "Invalid Promotion Code");
+            }
+        }
+
+        public async Task updateOrderStatus(String sessionID, String orderID, String status)
+        {
+            if (UserFunctions.isAdmin(UserFunctions.getUserID(sessionID)) &&
+                int.Parse(status) != Orders.getOrderStatus(orderID))
+            {
+                Orders.setOrderStatus(orderID, int.Parse(status));
+                await UpdateOrderStatusHtml(orderID, int.Parse(status));
+                sendSuccessAlert(Context.ConnectionId, "Order Status Updated");
+            }
+        }
+
+        public async Task UpdateOrderStatusHtml(String orderID, int status)
+        {
+            String statusHtml = System.IO.File.ReadAllText(Environment.CurrentDirectory
+            + "/HTML/ORDERS/STATUS/" + status + ".html");
+            await Clients.Client(Context.ConnectionId).SendAsync("UpdateOrderStatus", orderID, statusHtml);
         }
 
     }

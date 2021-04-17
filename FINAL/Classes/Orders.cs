@@ -42,9 +42,9 @@ namespace FINAL.Classes
                 userID += " (GUEST)";
             }
 
-            DBFunctions.sendQuery("INSERT INTO Orders (OrderID, UserID, Name, AddressLine1, Postcode, PhoneNumber, Price, CardNumber, CV2, Expiry, DateTime, PromoCode) " +
+            DBFunctions.sendQuery("INSERT INTO Orders (OrderID, UserID, Name, AddressLine1, Postcode, PhoneNumber, Price, CardNumber, CV2, Expiry, DateTime, PromoCode, Status) " +
                 "VALUES('" + orderReference + "', '" + userID + "', '" + name + "', '" + addressLine1 + "', '" + postcode + "', '"
-                + phoneNumber + "', '" + price + "', '" + cardNum + "', '" + cv2 + "', '" + expiry + "', '" + DateTime.Now.DayOfYear + "', '" + promoCode + "');");
+                + phoneNumber + "', '" + price + "', '" + cardNum + "', '" + cv2 + "', '" + expiry + "', '" + DateTime.Now.DayOfYear + "', '" + promoCode + "', '1');");
 
         }
 
@@ -88,6 +88,30 @@ namespace FINAL.Classes
 
             conn.Close();
             return amount;
+        }
+
+        public static int getOrderStatus(String orderID)
+        {
+            SqlConnection conn = new SqlConnection();
+            conn.ConnectionString = DBFunctions.connectionString;
+            conn.Open();
+            SqlCommand query = conn.CreateCommand();
+            query.CommandText = "SELECT OrderID, Status FROM Orders WHERE OrderID='" + orderID + "';";
+            SqlDataReader reader = query.ExecuteReader();
+
+            int status = 0;
+            while (reader.Read())
+            {
+                status = int.Parse(reader["Status"].ToString());
+            }
+
+            conn.Close();
+            return status;
+        }
+
+        public static void setOrderStatus(String orderID, int status)
+        {
+            DBFunctions.sendQuery("UPDATE Orders SET Status='" + status + "' WHERE OrderID='" + orderID + "';");
         }
 
     }

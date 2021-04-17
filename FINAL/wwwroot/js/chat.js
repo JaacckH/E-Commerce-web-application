@@ -63,6 +63,11 @@ connection.on("ShowAcknowledge", function (message) {
     setTimeout(hideAcknowledge, 1000);
 });
 
+connection.on("UpdateOrderStatus", function (orderID, html) {
+    document.getElementById('order-status1-' + orderID).innerHTML = html;
+    document.getElementById('order-status2-' + orderID).innerHTML = html;
+});
+
 function scrollMessages() {
     var chatboxes = document.getElementsByClassName("scroll");
     for (var i = 0; i < chatboxes.length; i++) {
@@ -214,11 +219,10 @@ function adminSendMessage() {
 
 function openChat() {
     hideChat();
-    ToggleChatButton();
     setConnectionID();
     connection.invoke("openChat", getSessionID(), recipient);
     scrollMessages();
-
+    ToggleChatButton();
     setTimeout(function () { 
     if ($('#chatbox').length > 0) {
         $("#chatbox").draggable({ handle: "#chatbox-header" });
@@ -234,9 +238,7 @@ function openChat() {
 }
 
 function hideChat() {
-   
-    document.getElementById('chatbox-placeholder').innerHTML = "";
-    
+    document.getElementById('chatbox-placeholder').innerHTML = "";   
 }
 
 function ToggleChatButton() {
@@ -268,6 +270,13 @@ function getUrlVariable(variable) {
 }
 
 function addPromoCode() {
-    document.getElementById('promoCode').value;
+    var promoCode = document.getElementById('promoCode').value;
+    connection.invoke("addPromoCode", getSessionID(), promoCode);
+}
+
+function updateOrderStatus(id) {
+    var status = document.getElementById('order-status-select-' + id).value;
+    console.log(status);
+    connection.invoke("updateOrderStatus", getSessionID(), id, status);
 }
 

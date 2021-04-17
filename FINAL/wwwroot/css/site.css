@@ -362,7 +362,6 @@ table tbody tr th {
     position: relative;
     padding: 5px 20px;
     margin: 0;
-
 }
 
     .admin-menu-item:hover::before, .admin-drop-menu:hover::before {
@@ -392,8 +391,8 @@ table tbody tr th {
         padding: 0;
     }
 
-.admin-drop-hidden{
-    display:none;
+.admin-drop-hidden {
+    display: none;
 }
 
 
@@ -1603,7 +1602,7 @@ svg:not(:root) {
 .message-box {
     display: flex;
     justify-content: center;
-    padding-top: 20vh;
+    padding-top: 15vh;
     padding-bottom: 20vh;
 }
 
@@ -1611,7 +1610,6 @@ svg:not(:root) {
     background: white;
     height: 480px;
     width: 90%;
-    box-shadow: 5px 5px 10px grey;
     text-align: center;
 }
 
@@ -1649,9 +1647,9 @@ svg:not(:root) {
 }
 
 .message {
-    border-radius: 15px;
+    border-radius: 25px;
     width: calc(50% + 1px);
-    margin: 10px;
+    margin: 10px 15px;
 }
 
 .message-sent {
@@ -1661,7 +1659,7 @@ svg:not(:root) {
 }
 
 .message-recieved {
-    background-color: white;
+    background-color: #f8f9fa;
     color: black;
     float: left;
 }
@@ -1747,6 +1745,63 @@ svg:not(:root) {
     position: fixed;
     top: 0px;
     left: 0px;
+}
+
+.alert {
+    padding: 20px;
+    background-color: #f44336;
+    color: white;
+    z-index: 6900;
+    position: fixed;
+    max-width: 400px;
+    width: 100%;
+    left: calc(50% - 200px);
+    top: 100px;
+    border-radius: 20px;
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+.success {
+    padding: 20px;
+    background-color: #00ff72;
+    color: #181a1e;
+    z-index: 6899;
+    position: fixed;
+    max-width: 400px;
+    width: 100%;
+    left: calc(50% - 200px);
+    top: 100px;
+    border-radius: 20px;
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+.acknowledge {
+    padding: 10px 20px;
+    background-color: var(--background-3);
+    color: var(--text);
+    z-index: 6898;
+    position: fixed;
+    max-width: 300px;
+    width: 100%;
+    left: calc(50% - 150px);
+    top: 100px;
+    border-radius: 20px;
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+    .acknowledge.fade {
+        opacity: 1;
+    }
+
+.success.fade {
+    opacity: 1;
+}
+
+.alert.fade {
+    opacity: 1;
 }
 
 /* ------------------------ chat button end ------------------------------*/

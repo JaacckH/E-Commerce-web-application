@@ -249,6 +249,30 @@ $(document).ready(function () {
 });
 
 $(document).ready(function () {
+
+
+    if (window.location.href.indexOf("user") > -1) {
+
+        var urlParams = new URLSearchParams(window.location.search);
+        userParam = urlParams.get('user');
+
+        $("#search-rows").val(userParam);
+        $("#refine-search").val('');
+        $("#search-rows").keyup();
+        
+    }
+
+    if (window.location.href.indexOf("order") > -1) {
+
+        var urlParams = new URLSearchParams(window.location.search);
+        userParam = urlParams.get('order');
+
+        $("#search-rows").val(userParam);
+        $("#refine-search").val('');
+        $("#search-rows").keyup();
+
+    }
+
     $("#refine-search").on("keyup", function () {
         var value = $(this).val().toLowerCase();
         var value2 = $("#search-rows").val().toLowerCase();
@@ -318,6 +342,9 @@ function closeDetails(rowID) {
     $("#search-rows").keyup();
 
 }
+
+
+
 
 
 /* -------- admin settings page Start --------- */

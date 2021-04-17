@@ -3,102 +3,40 @@
 @{
 }
 
-
-
 <div id="#admin-user-page" class="row">
     <div class="col-12">
         <h6 class="title">Admin Panel</h6>
         <h1>Users</h1>
         <hr />
     </div>
+
     <div id="search-area" class="row col-12">
         <div class="col-12 col-md-6 col-lg-4 col-xl-3"><input class="form-control" id="search-rows" type="text" placeholder="Search.."></div>
         <div class="col-12 col-md-6 col-lg-4 col-xl-3"><input class="form-control d-none" id="refine-search" type="text" placeholder="refined.."></div>
     </div>
-    <div class="col-12 col-md-12">
-        <div id="data-header" class="row">
-            <div class="col-4 col-md-3 col-xl-3">
-                <b># User ID</b>
-            </div>
-            <div class="d-none d-md-block col-5 col-md-3 col-xl-3">
-                Name
-            </div>
-            <div class="d-none d-md-block col-5 col-md-2 col-xl-2">
-                Type
-            </div>
-            <div class="d-none d-md-block col-5 col-md-2 col-xl-2">
-                Orders
-            </div>
-            <div class="d-none d-md-block col-5 col-md-2 col-xl-2">
-                Messages
-            </div>
 
+</div>
+
+<div class="col-12 col-md-12">
+    <div id="data-header" class="row">
+        <div class="col-4 col-md-3 col-xl-3">
+            <b># User ID</b>
         </div>
-        <!-- ******************* change all areas which say 105 to the the order ID *************** -->
-        <ul class="list-group" id="data-list">
-            <!-- User Starts -->
-            <li id="data-row-105" class="admin-list">
-                <div id="summary-panel-105" class="row summary-panel-header" onclick="OpenDetails(105);">
-                    <div class="col-2 col-md-2 col-xl-3">
-                        <b>#105</b>
-                    </div>
-                    <div class="col-5 col-md-4 col-xl-3">
-                        Graham Smith
-                    </div>
-                    <div class="col-5 col-md-1 col-xl-2">
-                        Admin
-                    </div>
-                    <div class="col-5 col-md-3 col-xl-2">
-                        <button type="button" class="btn btn-secondary" onclick="window.location.href = '/Admin/Orders?user={USERID}'">Orders</button>
-                    </div>
-                    <div class="col-2 d-md-none"></div>
-                    <div class="col-5 col-md-3 col-xl-2">
-                        <button type="button" class="btn btn-secondary" onclick="window.location.href = '/Admin/Messages?user={USERID}'">Messages</button>
-                    </div>
-                    
-
-                </div>
-                <!-- expanded start -->
-                <div id="expanded-panel-105" class="row d-none">
-                    <div class="col-6">
-                        <h4>#105</h4>
-                    </div>
-                    <div class="col-6 admin-close-view">
-                        <span onclick="closeDetails(105)"><i class="fas fa-times fa-1-5x"></i></span>
-                    </div>
-                    <div class="col-12 order-date">
-                        <h6>Name:</h6> Graham Smith
-                    </div>
-                    <div class="col-12 order-date">
-                        <h6>Name:</h6> John Williams
-                    </div>
-                    <div class="col-12 order-date">
-                        <h6>Shipping Address</h6>
-                        <p>
-                            1 Oak Road,<br />
-                            Port Louis,<br />
-                            Mauritius
-                        </p>
-                    </div>
-                    <div class="col-12 col-md-6 col-xl-4 button-col">
-                        <button type="button" class="btn btn-secondary" onclick="window.location.href = '/Admin/Orders?user={USERID}'">Orders</button>
-                    </div>
-                    <div class="col-12 col-md-6 col-xl-4 button-col">
-                        <button type="button" class="btn btn-secondary" onclick="window.location.href = '/Admin/Messages?user={USERID}'">Messages</button>
-                    </div>
-                    <div class="col-12 col-md-6 col-xl-4 button-col">
-                        <button type="button" class="btn btn-secondary">Promote</button>
-                    </div>
-
-                </div>
-
-                <!-- expanded end -->
-            </li>
-
-            <!-- user ends here -->
-
-
-        </ul>
-
+        <div class="d-none d-md-block col-5 col-md-3 col-xl-3">
+            Name
+        </div>
+        <div class="d-none d-md-block col-5 col-md-2 col-xl-2">
+            Type
+        </div>
+        <div class="d-none d-md-block col-5 col-md-2 col-xl-2">
+            Orders
+        </div>
+        <div class="d-none d-md-block col-5 col-md-2 col-xl-2">
+            Messages
+        </div>
     </div>
+
+    @Html.Raw(Classes.Users.getUsersHTML())
+
+
 </div>

@@ -32,8 +32,9 @@ namespace FINAL.Pages.Admin
                                 + "/HTML/ORDERS/STATUS/" + Orders.getOrderStatus(reader["OrderID"].ToString()) + ".html");
                     baseString = baseString.Replace("{ID}", reader["OrderID"].ToString())
                         .Replace("{DATE}", Utility.getDateFromDay(int.Parse(reader["DateTime"].ToString())))
-                        .Replace("{PRICE}", reader["Price"].ToString()).Replace("{STATUS}", status)
-                        .Replace("{NAME}", reader["Name"].ToString());
+                        .Replace("{PRICE}", Utility.formatPrice(reader["Price"].ToString())).Replace("{STATUS}", status)
+                        .Replace("{NAME}", reader["Name"].ToString())
+                        .Replace("{USERID}", Orders.getWhoOrdered(reader["OrderID"].ToString()));
 
                     String address = reader["Name"] + "<br/>" + reader["AddressLine1"] + "<br/>" + reader["Postcode"];
                     baseString = baseString.Replace("{ADDRESS}", address).Replace("{PRODUCTS}", getOrderProducts(reader["OrderID"].ToString()));
@@ -83,7 +84,7 @@ namespace FINAL.Pages.Admin
                             baseString = baseString.Replace("{PRODUCTNAME}", reader2["Name"].ToString()).Replace("{QUANTITY}", reader["Quantity"].ToString())
                                 .Replace("{SIZE}", reader["Size"].ToString())
                                 .Replace("{ID}", "#" + reader["ProductID"].ToString())
-                                .Replace("{PRICE}", reader["PurchasePrice"].ToString());
+                                .Replace("{PRICE}", Utility.formatPrice(reader["PurchasePrice"].ToString()));
                             html += baseString;
                         }
                     }

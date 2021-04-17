@@ -114,5 +114,24 @@ namespace FINAL.Classes
             DBFunctions.sendQuery("UPDATE Orders SET Status='" + status + "' WHERE OrderID='" + orderID + "';");
         }
 
+        public static String getWhoOrdered(String orderID)
+        {
+            SqlConnection conn = new SqlConnection();
+            conn.ConnectionString = DBFunctions.connectionString;
+            conn.Open();
+            SqlCommand query = conn.CreateCommand();
+            query.CommandText = "SELECT UserID, OrderID FROM Orders WHERE OrderID='" + orderID + "';";
+            SqlDataReader reader = query.ExecuteReader();
+
+            String userID = "";
+            while (reader.Read())
+            {
+                userID = reader["UserID"].ToString();
+            }
+
+            conn.Close();
+            return userID;
+        }
+
     }
 }

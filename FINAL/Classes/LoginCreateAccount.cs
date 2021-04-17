@@ -11,42 +11,38 @@ namespace FINAL.Classes
 {
     public class LoginCreateAccount
     {
-        public static String createSuccessful(String sessionID, String forename, String surname, String email, String password, String confirmpassword, String addressline1, String addressline2, String postcode, int phonenumber)
+        public static String createSuccessful(String sessionID, String forename, String surname, String email, String password, String confirmpassword, String addressline1, int phonenumber)
         {
-            if (String.IsNullOrEmpty(forename) || String.IsNullOrEmpty(surname) || String.IsNullOrEmpty(email) || String.IsNullOrEmpty(password) || String.IsNullOrEmpty(addressline1) || String.IsNullOrEmpty(addressline2) || String.IsNullOrEmpty(postcode) || String.IsNullOrEmpty(phonenumber.ToString()))
+            if (String.IsNullOrEmpty(forename) || String.IsNullOrEmpty(surname) || String.IsNullOrEmpty(email) || String.IsNullOrEmpty(password) || String.IsNullOrEmpty(addressline1) || String.IsNullOrEmpty(phonenumber.ToString()))
             {
                 return "You left an empty field";
             }
             if (UserFunctions.emailIsRegistered(email))
             {
-                return "This email already exists";
+                return "An account with this email already exists";
             }
             if (!email.Contains("@") || !email.Contains("."))
             {
-                return "Your email address is missing \"@\" or a \".\"";
+                return "Please enter a valid email address";
             }
             if (password != confirmpassword)
             {
-                return "Confirm password don't match";
+                return "The passwords you entered do not match";
             }
             if (password.Length > 20 || password.Length < 8)
             {
                 return "Your password must be between 8 and 20 characters long";
             }
-            if (postcode.Length < 8)
+            if (phonenumber.ToString().Length > 15)
             {
-                return "The post code is invalid";
-            }
-            if (phonenumber.ToString().Length != 7)
-            {
-                return "The phone number is invalid";
+                return "Please enter a valid phone number";
             }
 
             String userID = UserFunctions.getUserID(sessionID);
             String hashedpassword = UserFunctions.hashSingleValue(password);
 
-            DBFunctions.sendQuery("INSERT INTO Users (UserID, Forename, Surname, Email, Password, AddressLine1, AddressLine2, Postcode, PhoneNumber, DateCreated) " +
-                "VALUES ('" + userID + "', '" + forename + "', '" + surname + "', '" + email + "', '" + hashedpassword + "', '" + addressline1 + "', '" + addressline2 + "', '" + postcode + "', '" + phonenumber + "', '" + DateTime.Now.DayOfYear + "')");
+            DBFunctions.sendQuery("INSERT INTO Users (UserID, Forename, Surname, Email, Password, AddressLine1, PhoneNumber, DateCreated) " +
+                "VALUES ('" + userID + "', '" + forename + "', '" + surname + "', '" + email + "', '" + hashedpassword + "', '" + addressline1 + "', '" + phonenumber + "', '" + DateTime.Now.DayOfYear + "')");
             return "DONE";
         }
 

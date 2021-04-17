@@ -31,7 +31,7 @@ namespace FINAL.Pages.Admin
                 String baseString = System.IO.File.ReadAllText(Environment.CurrentDirectory + "/HTML/SETTINGS/EDITPRODUCT.html")
                     .Replace("{ID}", reader["ProductID"].ToString()).Replace("{NAME}", reader["Name"].ToString())
                     .Replace("{DESCRIPTION}", reader["Description"].ToString()).Replace("{CATEGORY}", reader["Category"].ToString())
-                    .Replace("{PRICE}", reader["Price"].ToString()).Replace("{SALEPRICE}", reader["Price"].ToString())
+                    .Replace("{PRICE}", Utility.formatPrice(reader["Price"].ToString())).Replace("{SALEPRICE}", Utility.formatPrice(reader["Price"].ToString()))
                     .Replace("{IMAGE}", reader["ImagePath"].ToString()).Replace("{DESCRIPTION}", reader["Description"].ToString());
                 html += baseString;
             }

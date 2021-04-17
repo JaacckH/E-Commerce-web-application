@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.SignalR;
 using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -10,21 +11,27 @@ namespace FINAL.Classes
 {
     public class SignalrHub : Hub
     {
-        public async Task createUserAccount(Boolean returnToCheckout, String sessionID, String forename, String surname, String email, String password, String confirmpassword, String addressline1, String addressline2, String postcode, String phonenumber)
+        public async Task createUserAccount(Boolean returnToCheckout, String sessionID, String forename, String surname, String email, String password, String confirmpassword, String addressline1, String phonenumber)
         {
-            String response = LoginCreateAccount.createSuccessful(sessionID, forename, surname, email, password, confirmpassword, addressline1, addressline2, postcode, int.Parse(phonenumber));
-            if (response == "DONE")
+            try
             {
-                if (returnToCheckout == true)
+                String response = LoginCreateAccount.createSuccessful(sessionID, forename, surname, email, password, confirmpassword, addressline1, int.Parse(phonenumber));
+                if (response == "DONE")
                 {
-                    await Clients.Client(Context.ConnectionId).SendAsync("setCheckoutCookie");
+                    if (returnToCheckout == true)
+                    {
+                        await Clients.Client(Context.ConnectionId).SendAsync("setCheckoutCookie");
+                    }
+                    loginUser(email, password);
                 }
-                loginUser(email, password);
+                else
+                {
+                    sendAlert(Context.ConnectionId, response);
+                }
             }
-            else
+            catch
             {
-                //send error notification
-                Console.WriteLine(response);
+                sendAlert(Context.ConnectionId, "You left an empty field");
             }
         }
 
@@ -133,7 +140,7 @@ namespace FINAL.Classes
 
         public async Task adminSendMessage(String sessionID, String recipient, String message)
         {
-            if (!String.IsNullOrEmpty(message))
+            if (!String.IsNullOrEmpty(message) && UserFunctions.isAdmin(UserFunctions.getUserID(sessionID)))
             {
                 String userID = UserFunctions.getUserID(sessionID);
                 message = message.Replace("'", "''");
@@ -287,7 +294,8 @@ namespace FINAL.Classes
         public async Task addPromoCode(String sessionID, String promoCode)
         {
             String userID = UserFunctions.getUserID(sessionID);
-            if (Promotions.codeExists(promoCode) && Promotions.getPromoStatus(promoCode) == 1)
+            if (UserFunctions.isAdmin(UserFunctions.getUserID(sessionID)) && 
+                Promotions.codeExists(promoCode) && Promotions.getPromoStatus(promoCode) == 1)
             {
                 int prePrice = Basket.getTotalPrice(userID, null);
                 int price = Basket.getTotalPrice(userID, promoCode);
@@ -318,6 +326,32 @@ namespace FINAL.Classes
             String statusHtml = System.IO.File.ReadAllText(Environment.CurrentDirectory
             + "/HTML/ORDERS/STATUS/" + status + ".html");
             await Clients.Client(Context.ConnectionId).SendAsync("UpdateOrderStatus", orderID, statusHtml);
+        }
+
+        public async Task promoteUser(String sessionID, String userID)
+        {
+            if (UserFunctions.isAdmin(UserFunctions.getUserID(sessionID)))
+            {
+                if (UserFunctions.getUserID(sessionID) == userID)
+                {
+                    sendAlert(Context.ConnectionId, "You may not demote yourself");
+                    return;
+                }
+
+                String accountType = File.ReadAllText(Environment.CurrentDirectory + "/HTML/ADMIN/USERS/STATUS/2.html");
+                int admin = 1;
+                if (UserFunctions.isAdmin(userID))
+                {
+                    accountType = File.ReadAllText(Environment.CurrentDirectory + "/HTML/ADMIN/USERS/STATUS/1.html");
+                    admin = 0;
+                }
+
+                DBFunctions.sendQuery("UPDATE Users SET Admin='" + admin + "' WHERE UserID='" + userID + "';");
+                await sendContent(Context.ConnectionId, accountType, "account-type1-" + userID);
+                await sendContent(Context.ConnectionId, accountType, "account-type2-" + userID);
+                sendSuccessAlert(Context.ConnectionId, "User permissions were changed");
+
+            }
         }
 
     }

@@ -146,27 +146,33 @@
         <div class="row">
             <div class="col-8 create-container">
                 <h1>CREATE ACCOUNT</h1>
-                    <div class="form-group">
-                        <input type="email" placeholder="EMAIL ADDRESS" class="form-control" id="email-input" aria-describedby="emailHelp">
-                    </div>
-                    <div class="form-group">
-                        <input type="confim-email" placeholder="CONFIRM EMAIL ADDRESS" class="form-control" id="sonfirm-email-input">
-                    </div>
-                    <div class="form-group">
-                        <input type="PASSWORD" placeholder="PASSWORD" class="form-control" id="password-input">
-                    </div>
-                    <div class="form-group">
-                        <input type="confim-PASSWORD" placeholder="CONFIRM PASSWORD" class="form-control" id="sonfirm-password-input">
-                    </div>
-                    <div class="form-group">
-                        <input type="address" placeholder="ADDRESS" class="form-control" id="address-input">
-                    </div>
-                    <div class="form-group">
-                        <input type="postcode" placeholder="POST CODE" class="form-control" id="postcode-input">
-                    </div>
-                    <div id="action-buttons" class="row col-12">
-                        <button type="submit" class="btn btn-ouioui" onclick="createAccount();">CREATE</button>
-                    </div>
+                <div class="form-group">
+                    <input type="text" placeholder="Forename" class="form-control" id="forename" aria-describedby="emailHelp">
+                </div>
+                <div class="form-group">
+                    <input type="text" placeholder="Surname" class="form-control" id="surname" aria-describedby="emailHelp">
+                </div>
+                <div class="form-group">
+                    <input type="email" placeholder="Email Address" class="form-control" id="email-input" aria-describedby="emailHelp">
+                </div>
+                <div class="form-group">
+                    <input type="email" placeholder="Confirm Email Address" class="form-control" id="email">
+                </div>
+                <div class="form-group">
+                    <input type="password" placeholder="Password" class="form-control" id="password">
+                </div>
+                <div class="form-group">
+                    <input type="password" placeholder="Confirm Password" class="form-control" id="confirmpassword">
+                </div>
+                <div class="form-group">
+                    <input type="text" placeholder="Address" class="form-control" id="addressline1">
+                </div>
+                <div class="form-group">
+                    <input type="number" placeholder="Mobile Number" class="form-control" id="phonenumber">
+                </div>
+                <div id="action-buttons" class="row col-12">
+                    <button type="submit" class="btn btn-ouioui" onclick="createAccount();">Create Account</button>
+                </div>
             </div>
             <div class="col-12">
                 <p style="margin: -1px;">LOGIN WITH:</p>

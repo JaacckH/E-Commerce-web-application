@@ -68,6 +68,10 @@ connection.on("UpdateOrderStatus", function (orderID, html) {
     document.getElementById('order-status2-' + orderID).innerHTML = html;
 });
 
+connection.on("Reload", function () {
+    window.location.reload();
+});
+
 function scrollMessages() {
     var chatboxes = document.getElementsByClassName("scroll");
     for (var i = 0; i < chatboxes.length; i++) {
@@ -120,9 +124,7 @@ function createAccount() {
     var email = document.getElementById('email').value;
     var password = document.getElementById('password').value;
     var confirmpassword = document.getElementById('confirmpassword').value;
-    var addressline1 = document.getElementById('addressline1').value;
-    var addressline2 = document.getElementById('addressline2').value;
-    var postcode = document.getElementById('postcode').value;
+    var addressline1 = document.getElementById('addressline1').value
     var phonenumber = document.getElementById('phonenumber').value;
 
     var rtc = false;
@@ -130,7 +132,7 @@ function createAccount() {
         rtc = true;
     }
 
-    connection.invoke("createUserAccount", rtc, getSessionID(), forename, surname, email, password, confirmpassword, addressline1, addressline2, postcode, phonenumber);
+    connection.invoke("createUserAccount", rtc, getSessionID(), forename, surname, email, password, confirmpassword, addressline1, phonenumber);
 }
 
 function login() {
@@ -223,22 +225,22 @@ function openChat() {
     connection.invoke("openChat", getSessionID(), recipient);
     scrollMessages();
     ToggleChatButton();
-    setTimeout(function () { 
-    if ($('#chatbox').length > 0) {
-        $("#chatbox").draggable({ handle: "#chatbox-header" });
+    setTimeout(function () {
+        if ($('#chatbox').length > 0) {
+            $("#chatbox").draggable({ handle: "#chatbox-header" });
 
-        $('#message-messageinput').on('keypress', function (event) {
-            if (event.which === 13) {
-                sendMessage();
-                return false;
-            }
-        });
+            $('#message-messageinput').on('keypress', function (event) {
+                if (event.which === 13) {
+                    sendMessage();
+                    return false;
+                }
+            });
         }
     }, 300);
 }
 
 function hideChat() {
-    document.getElementById('chatbox-placeholder').innerHTML = "";   
+    document.getElementById('chatbox-placeholder').innerHTML = "";
 }
 
 function ToggleChatButton() {
@@ -254,7 +256,7 @@ function markAsSettled(user) {
 
 function SendConfirmEmail() {
     var Email = document.getElementById('UserEmail').value;
-    
+
     connection.invoke("confirmOrderEmail", getSessionID(), Email);
 }
 
@@ -278,5 +280,9 @@ function updateOrderStatus(id) {
     var status = document.getElementById('order-status-select-' + id).value;
     console.log(status);
     connection.invoke("updateOrderStatus", getSessionID(), id, status);
+}
+
+function promoteUser(id) {
+    connection.invoke("promoteUser", getSessionID(), id);
 }
 

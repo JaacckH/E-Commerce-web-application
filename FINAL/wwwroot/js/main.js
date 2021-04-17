@@ -1045,15 +1045,18 @@ $(document).ready(function () {
 
 function hideAlert() {
     //document.getElementById('alert-box').style.visibility = 'hidden';
+    var slideSource = document.getElementById('alert-box');
     slideSource.classList.toggle('fade');
 }
 
 function hideSuccess() {
     //document.getElementById('success-box').style.visibility = 'hidden';
+    var slideSource = document.getElementById('success-box');
     slideSource.classList.toggle('fade');
 }
 
 function hideAcknowledge() {
     //document.getElementById('acknowledge-box').style.visibility = 'hidden';
+    var slideSource = document.getElementById('acknowledge-box');
     slideSource.classList.toggle('fade');
 }

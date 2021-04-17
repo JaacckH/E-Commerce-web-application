@@ -56,8 +56,8 @@ namespace FINAL.Classes
             }
             else
             {
+                Console.WriteLine("Alert Sent");
                 sendAlert(Context.ConnectionId, LoginCreateAccount.getLoginError(email, password));
-                Console.WriteLine("No login");
             }
         }
 
@@ -72,12 +72,14 @@ namespace FINAL.Classes
             String userID = UserFunctions.getUserID(sessionID);
             if (Basket.containsItem(userID, stockID))
             {
-                int newQuantity = Basket.getItemQuantity(userID, stockID) + 1;
-                DBFunctions.sendQuery("UPDATE Basket SET Quantity='" + newQuantity + "' WHERE UserID='" + userID + "' AND StockID='" + stockID + "';");
+                //int newQuantity = Basket.getItemQuantity(userID, stockID) + 1;
+                //DBFunctions.sendQuery("UPDATE Basket SET Quantity='" + newQuantity + "' WHERE UserID='" + userID + "' AND StockID='" + stockID + "';");
+                sendAlert(Context.ConnectionId, "This item is already in your Basket. <u onclick=\"removeFromBasket('" + stockID + "');\">Would you like to Remove it?</u>");
             }
             else
             {
                 DBFunctions.sendQuery("INSERT INTO Basket (UserID, StockID, Quantity) VALUES('" + userID + "', '" + stockID + "', '" + quantity + "');");
+                sendSuccessAlert(Context.ConnectionId, "You Successfully added a Product to your Basket. <u onclick=\"window.location.href='/Basket';\">Click to see your Basket.</u>");
             }
 
             await Clients.Client(Context.ConnectionId).SendAsync("updateBasket", Basket.getNumOfItems(sessionID).ToString());
@@ -87,18 +89,23 @@ namespace FINAL.Classes
         {
             String userID = UserFunctions.getUserID(sessionID);
             DBFunctions.sendQuery("DELETE FROM Basket WHERE UserID='" + userID + "' AND StockID='" + stockID + "';");
-            await Clients.Client(Context.ConnectionId).SendAsync("removeContainer", stockID);
             await sendContent(Context.ConnectionId, Basket.getNumOfItems(sessionID).ToString(), "basket-counter");
+            await Clients.Client(Context.ConnectionId).SendAsync("removeContainer", stockID);
         }
 
         public void sendAlert(String connectionID, String message)
         {
-            Clients.Client(connectionID).SendAsync("sendAlert", message);
+            Clients.Client(connectionID).SendAsync("ShowError", message);
         }
 
         public void sendSuccessAlert(String connectionID, String message)
         {
-            Clients.Client(connectionID).SendAsync("sendSuccessAlert", message);
+            Clients.Client(connectionID).SendAsync("ShowSuccess", message);
+        }
+
+        public void sendAcknowledgeAlert(String connectionID, String message)
+        {
+            Clients.Client(connectionID).SendAsync("ShowAcknowledge", message);
         }
 
         public async Task sendContent(String connectionID, String content, String container)

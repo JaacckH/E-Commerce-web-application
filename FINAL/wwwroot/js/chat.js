@@ -12,14 +12,6 @@ connection.on("Redirect", function (path) {
     window.location.href = path;
 });
 
-connection.on("sendAlert", function (message) {
-    alert(message);
-});
-
-connection.on("sendSuccessAlert", function (message) {
-    alert(message);
-});
-
 connection.on("ContentDelivery", function (content, div) {
     document.getElementById(div).innerHTML = content;
     scrollMessages();
@@ -48,21 +40,24 @@ connection.on("setCheckoutCookie", function () {
 });
 
 connection.on("ShowError", function (message) {
-    //document.getElementById('alert-box').style.visibility = 'visible';
+    document.getElementById('alert-box').style.visibility = 'visible';
+    var slideSource = document.getElementById('alert-box');
     slideSource.classList.toggle('fade');
     document.getElementById('alert-message').innerHTML = message;
     setTimeout(hideAlert, 2500);
 });
 
 connection.on("ShowSuccess", function (message) {
-    //document.getElementById('success-box').style.visibility = 'visible';
+    document.getElementById('success-box').style.visibility = 'visible';
+    var slideSource = document.getElementById('success-box');
     slideSource.classList.toggle('fade');
     document.getElementById('success-message').innerHTML = message;
     setTimeout(hideSuccess, 2500);
 });
 
 connection.on("ShowAcknowledge", function (message) {
-    //document.getElementById('acknowledge-box').style.visibility = 'visible';
+    var slideSource = document.getElementById('acknowledge-box');
+    document.getElementById('acknowledge-box').style.visibility = 'visible';
     slideSource.classList.toggle('fade');
     document.getElementById('acknowledge-message').innerHTML = message;
     setTimeout(hideAcknowledge, 1000);

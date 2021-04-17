@@ -20,20 +20,18 @@
         <div class="row">
             <div class="col-8">
                 <h1>LOGIN</h1>
-                <form>
-                    <div class="form-group">
-                        <input type="email" placeholder="EMAIL" class="form-control" id="useremail" aria-describedby="emailHelp" value="Jack@Jack.com">
-                    </div>
-                    <div class="form-group">
+                <div class="form-group">
+                    <input type="email" placeholder="EMAIL" class="form-control" id="useremail" aria-describedby="emailHelp" value="Jack@Jack.com">
+                </div>
+                <div class="form-group">
 
-                        <input type="password" placeholder="PASSWORD" class="form-control" id="userpassword" value="JackPass">
-                        <small id="passwordHelp" onclick="ToggleForgotten()" class="form-text text-muted forgotten">FORGOTTEN PASSWORD?</small>
-                    </div>
-                    <div id="action-buttons" class="row col-12 mb-3">
-                        <button type="submit" class="btn btn-ouioui" onclick="login();">Login</button>
-                        <button type="button" id="create-btn" class="btn btn-ouioui-secondary margin-left-5px" onclick="window.location.href = '/CreateAccount'">SIGN UP</button>
-                    </div>
-                </form>
+                    <input type="password" placeholder="PASSWORD" class="form-control" id="userpassword" value="JackPass">
+                    <small id="passwordHelp" onclick="ToggleForgotten()" class="form-text text-muted forgotten">FORGOTTEN PASSWORD?</small>
+                </div>
+                <div id="action-buttons" class="row col-12 mb-3">
+                    <button type="submit" class="btn btn-ouioui" onclick="login();">Login</button>
+                    <button type="button" id="create-btn" class="btn btn-ouioui-secondary margin-left-5px" onclick="window.location.href = '/CreateAccount'">SIGN UP</button>
+                </div>
             </div>
             <div class="col-12">
                 <p style="margin: -1px;">LOGIN WITH:</p>

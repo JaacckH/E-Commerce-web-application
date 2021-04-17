@@ -69,12 +69,15 @@
     <div id="chatbox-placeholder">
     </div>
 
-    <div id="comm-btn" class="communication-button">
-        <div class="hover-comm"><p>CHAT WITH US</p></div>
-        <div>
-            <i class="fas fa-comments"></i>
+    @if (!Classes.UserFunctions.isAdmin(Classes.UserFunctions.getUserID(SessionID)))
+    {
+        <div id="comm-btn" class="communication-button">
+            <div class="hover-comm"><p>CHAT WITH US</p></div>
+            <div>
+                <i class="fas fa-comments"></i>
+            </div>
         </div>
-    </div>
+    }
 
 
     @if (Classes.UserFunctions.isAdmin(Classes.UserFunctions.getUserID(SessionID))
@@ -90,6 +93,12 @@
                         </div>
 
                     </div>
+                    <a href="/">
+                        <div class="row admin-menu-item">
+                            <div class="col-2 menu-icons"><i class="fas fa-undo fa-2x"></i></div>
+                            <div class="col-10 menu-header"><h6>Back to Shop</h6></div>
+                        </div>
+                    </a>
                     <a href="/Admin/Dashboard">
                         <div class="row admin-menu-item">
                             <div class="col-2 menu-icons"><i class="fas fa-chart-line fa-2x"></i></div>
@@ -154,10 +163,12 @@
                             <div class="col-10 menu-header"><h6>Settings</h6></div>
                         </div>
                     </a>
-                    <div class="row admin-menu-item">
-                        <div class="col-2 menu-icons"><i class="fas fa-power-off fa-2x"></i></div>
-                        <div class="col-10 menu-header"><h6>Log Out</h6></div>
-                    </div>
+                    <a href="/Logout">
+                        <div class="row admin-menu-item">
+                            <div class="col-2 menu-icons"><i class="fas fa-power-off fa-2x"></i></div>
+                            <div class="col-10 menu-header"><h6>Logout</h6></div>
+                        </div>
+                    </a>
                 </div>
             </div>
             <div id="admin-page" class="col-12 d-md-block col-md-9 col-xl-10">
@@ -195,7 +206,7 @@
                                 <div class="col-8 stats-label">
                                     <div class="">
                                         <h6>New Users (Today)</h6>
-                                        <p>10</p>
+                                        <p>@Classes.UserFunctions.getNumOfUsersForDay(day)</p>
                                     </div>
                                 </div>
                                 <div class="col-4">
@@ -220,7 +231,7 @@
                                 <div class="col-8 stats-label">
                                     <div class="">
                                         <h6>Active Sessions</h6>
-                                        <p>6</p>
+                                        <p>3</p>
                                     </div>
                                 </div>
                                 <div class="col-4">

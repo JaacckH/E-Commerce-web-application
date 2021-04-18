@@ -3,20 +3,20 @@
     <!-- User Starts -->
     <li id="data-row-{ID}" class="admin-list shadow" style="border:none; margin-bottom: 15px;">
         <div id="summary-panel-{ID}" class="row summary-panel-header" onclick="OpenDetails('{ID}');">
-            <div class="col-2 col-md-2 col-xl-3">
+            <div class="col-12 col-xl-3">
                 <b>#{ID}</b>
             </div>
-            <div class="col-5 col-md-4 col-xl-3">
+            <div class="col-6 col-xl-2">
                 {NAME}
             </div>
-            <div class="col-5 col-md-1 col-xl-2">
+            <div class="col-6 col-xl-3">
                 <div id="account-type1-{ID}">{ACCOUNTTYPE}</div>
             </div>
-            <div class="col-5 col-md-3 col-xl-2">
+            <div class="col-6 col-xl-2">
                 <p onclick="window.location.href = '/Admin/Orders?user={ID}'" style="cursor:pointer;"><b>View Orders</b></p>
             </div>
-            <div class="col-2 d-md-none"></div>
-            <div class="col-5 col-md-3 col-xl-2">
+            
+            <div class="col-6 col-xl-2">
                 <p onclick="window.location.href = '/Admin/Messages?user={ID}'" style="cursor:pointer;"><b>View Messages</b></p>
             </div>
         </div>

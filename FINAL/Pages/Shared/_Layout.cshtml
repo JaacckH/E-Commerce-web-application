@@ -71,10 +71,10 @@
         <div id="admin-page-layout" class="row">
             <div id="admin-menu" class="d-none d-md-block col-12 col-md-3 col-xl-2" style="background-color:#f8f9fa">
                 <div class="menu-fixed col-12 col-md-3 col-xl-2 no-style">
-                    <div class="row no-style">
+                    <div class="row no-style mb-3">
                         <div class="col-12 d-md-none menu-close" onclick="ToggleMenu()"><i class="fas fa-times fa-1-5x"></i></div>
                         <div class="col-12 verticle-align">
-                            <img src="~/admin.png" style="width:60%; padding-left: 25px;">
+                            <img src="~/admin.png" style="width:60%; ">
                         </div>
 
                     </div>
@@ -161,16 +161,16 @@
                 <div class="admin-pages">
                     <div class="menu-toggle d-md-none d-block" onclick="ToggleMenu()"><i class="fas fa-bars fa-1-5x"></i></div>
 
-                    <div class="row">
-                        <div class="col-4 no-margin">
-                            <div class="row shadow p-3 mb-5 bg-white rounded no-margin">
-                                <div class="col-8 stats-label">
+                    <div class="row mb-5">
+                        <div class="col-4 align-items-stretch">
+                            <div class="row shadow bg-white rounded no-margin stat-card p-3 p-md-0">
+                                <div class="col-12 col-lg-8 stats-label">
                                     <div class="">
-                                        <h6>New Orders (Today)</h6>
-                                        <p>@Classes.Orders.getNumOfOrdersForDay(day)</p>
+                                        <h6>New Orders</h6>
+                                        <p class="d-none d-md-block">@Classes.Orders.getNumOfOrdersForDay(day)</p>
                                     </div>
                                 </div>
-                                <div class="col-4 ">
+                                <div class="col-12 col-lg-4 stat-container">
                                     <div class="chart-svg">
                                         <svg id="percentage-1-svg" viewBox="0 0 36 36" class="circular-chart">
                                             <path class="circle-bg" d="M18 2.0845
@@ -186,15 +186,15 @@
                             </div>
                         </div>
                         <!-- new order end -->
-                        <div class="col-4">
-                            <div class="row shadow p-3 mb-5 bg-white rounded no-margin">
-                                <div class="col-8 stats-label">
+                        <div class="col-4 align-items-stretch">
+                            <div class="row shadow bg-white rounded no-margin  stat-card  p-3 p-md-0">
+                                <div class="col-12 col-lg-8 stats-label">
                                     <div class="">
-                                        <h6>New Users (Today)</h6>
-                                        <p>@Classes.UserFunctions.getNumOfUsersForDay(day)</p>
+                                        <h6>New Users</h6>
+                                        <p class="d-none d-md-block">@Classes.UserFunctions.getNumOfUsersForDay(day)</p>
                                     </div>
                                 </div>
-                                <div class="col-4">
+                                <div class="col-12 col-lg-4 stat-container">
                                     <div class="chart-svg">
                                         <svg id="percentage-2-svg" viewBox="0 0 36 36" class="circular-chart">
                                             <path class="circle-bg" d="M18 2.0845
@@ -211,15 +211,15 @@
                         </div>
 
                         <!-- Start active sessions -->
-                        <div class="col-4 ">
-                            <div class="row shadow p-3 mb-5 bg-white rounded no-margin">
-                                <div class="col-8 stats-label">
+                        <div class="col-4 align-items-stretch ">
+                            <div class="row shadow bg-white rounded no-margin stat-card  p-3 p-md-0">
+                                <div class="col-12 col-lg-8 stats-label">
                                     <div class="">
                                         <h6>Active Sessions</h6>
-                                        <p>3</p>
+                                        <p class="d-none d-md-block">3</p>
                                     </div>
                                 </div>
-                                <div class="col-4">
+                                <div class="col-12 col-lg-4 stat-container">
                                     <div class="chart-svg">
                                         <svg id="percentage-3-svg" viewBox="0 0 36 36" class="circular-chart">
                                             <path class="circle-bg" d="M18 2.0845

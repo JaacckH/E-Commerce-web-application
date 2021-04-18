@@ -21,8 +21,12 @@
 }
 
 .menu-fixed {
-    position: fixed;
+
     left: -10px;
+}
+
+.menu-logo{
+    width: 25%;
 }
 
 /* ----------------- admin Product page Start -------------------*/
@@ -1064,6 +1068,16 @@ p {
         padding-top: 0;
         padding-bottom: 0;
     }
+
+    .menu-fixed {
+        position: fixed;
+        left: -10px;
+    }
+
+    .menu-logo{
+        width: 60%;
+    }
+
 }
 
 /* LG size and above unless over ridden in bigger sizes */

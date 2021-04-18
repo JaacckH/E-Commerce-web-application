@@ -2,17 +2,18 @@
     <!-- order starts -->
     <li id="data-row-{ID}" class="admin-list shadow" style="border:none; margin-bottom:20px;">
         <div id="summary-panel-{ID}" class="row" onclick="OpenDetails('{ID}');">
-            <div class="col-2 col-md-2 col-xl-2">
+            <div class="col-4 col-md-3 col-xl-2">
                 <b>#{ID}</b>
             </div>
-            <div class="col-5 col-md-4 col-xl-3">
+            <div class="col-8 col-md-3 col-xl-3">
                 {DATE}
             </div>
-            <div class="col-5 col-md-3 col-xl-3">
+            <div class="col-4 d-md-none"></div>
+            <div class="col-4 col-md-3 col-xl-3">
                 Rs {PRICE}
             </div>
-            <div class="col-2 d-md-none"></div>
-            <div class="col-5 col-md-3 col-xl-3">
+
+            <div class="col-4 col-md-3 col-xl-3">
                 <div id="order-status1-{ID}">{STATUS}</div>
             </div>
 

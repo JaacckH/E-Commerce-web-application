@@ -15,13 +15,13 @@ namespace FINAL.Classes
             conn.ConnectionString = DBFunctions.connectionString;
             conn.Open();
             SqlCommand query = conn.CreateCommand();
-            query.CommandText = "SELECT * FROM Promotions ORDER BY Id DESC";
+            query.CommandText = "SELECT StockID FROM Basket WHERE UserID='" + UserFunctions.getUserID(sessionID) + "';";
             SqlDataReader reader = query.ExecuteReader();
 
             int i = 0;
             while (reader.Read())
             {
-                
+                i++;
             }
 
             conn.Close();

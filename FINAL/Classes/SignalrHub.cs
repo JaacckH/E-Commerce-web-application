@@ -15,7 +15,7 @@ namespace FINAL.Classes
         {
             try
             {
-                String response = LoginCreateAccount.createSuccessful(sessionID, forename, surname, email, password, confirmpassword, addressline1, int.Parse(phonenumber));
+                String response = LoginCreateAccount.createSuccessful(sessionID, forename, surname, email, password, confirmpassword, addressline1, phonenumber);
                 if (response == "DONE")
                 {
                     if (returnToCheckout == true)
@@ -364,16 +364,21 @@ namespace FINAL.Classes
             }
         }
 
-        public async Task checkout(String sessionID, String email, String forename, String surname, String name,
-            String addressline1, String postcode, String phonenumber, String promocode, String cardnum, String expiry,
+        public async Task redirect(String connectionID, String path)
+        {
+            await Clients.Client(connectionID).SendAsync("Redirect", path);
+        }
+
+        public async Task checkout(String sessionID, String email, String forename, String surname,
+            String addressline1, String phonenumber, String promocode, String cardnum, String expiry,
             String cv2, String userPassword, String userConfirmPassword)
         {
 
             String userID = UserFunctions.getUserID(sessionID);
             int price = Basket.getTotalPrice(userID, promocode);
+            String name = forename + " " + surname;
 
-            if (!String.IsNullOrEmpty(name) && !String.IsNullOrEmpty(addressline1) &&
-                !String.IsNullOrEmpty(postcode) && phonenumber != null)
+            if (!String.IsNullOrEmpty(addressline1) && phonenumber != null)
             {
 
                 if (Payment.isSuccessful(price, cardnum, cv2, expiry))
@@ -382,40 +387,38 @@ namespace FINAL.Classes
                     {
                         if (userPassword != userConfirmPassword)
                         {
+                            Console.WriteLine(userPassword + "," + userConfirmPassword);
                             sendAlert(Context.ConnectionId, "Your passwords don't match");
                             return;
                         }
-                        else if (UserFunctions.getUserDetails(UserFunctions.getUserID(HttpContext.Request.Cookies["SessionID"]), email) == null)
+                        else if (UserFunctions.getUserDetails(UserFunctions.getUserID(sessionID), email) == null)
                         {
-                            String response = LoginCreateAccount.createSuccessful(sessionID, forename, surname, email, UserPassword, UserConfirmPassword, addressline1, phonenumber);
+                            String response = LoginCreateAccount.createSuccessful(sessionID, forename, surname, email, userPassword, userConfirmPassword, addressline1, phonenumber);
                             if (response == "DONE")
                             {
                                 // account has been created
-                                Orders.processOrder(Basket.getStockIDs(userID), userID, promocode, price, cardnum, cv2, expiry, name, addressline1, postcode, phonenumber.ToString());
-                                Response.Redirect("/CheckoutSuccess");
-                                return null;
-
+                                Orders.processOrder(Basket.getStockIDs(userID), userID, promocode, price, cardnum, cv2, expiry, name, addressline1, phonenumber.ToString());
+                                await redirect(Context.ConnectionId, "/CheckoutSuccess");
+                                return;
                             }
                             else
                             {
-                                TempData["checkoutError"] = response;
+                                sendAlert(Context.ConnectionId, response);
                             }
                         }
-
                     }
                     else
                     {
-                        // no password entered place order as guest
-                        Orders.processOrder(Basket.getStockIDs(userID), userID, promocode, price, cardnum, cv2, expiry, name, addressline1, postcode, phonenumber.ToString());
-                        Response.Redirect("/CheckoutSuccess");
-                        return null;
+                        Orders.processOrder(Basket.getStockIDs(userID), userID, promocode, price, cardnum, cv2, expiry, name, addressline1, phonenumber.ToString());
+                        await redirect(Context.ConnectionId, "/CheckoutSuccess");
+                        return;
                     }
 
 
                 }
                 else
                 {
-                    TempData["checkoutError"] = "Payment failed";
+                    sendAlert(Context.ConnectionId, "Payment Failed");
                 }
 
             }

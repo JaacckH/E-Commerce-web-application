@@ -11,7 +11,7 @@ namespace FINAL.Classes
     {
         //userID, price, cardnum, cv2, expiry, name, addressline1, postcode, phonenumber
         public static void processOrder(List<int> stockItems, String userID, String promoCode, int price, String cardNum, String cv2,
-            String expiry, String name, String addressLine1, String postcode, String phoneNumber)
+            String expiry, String name, String addressLine1, String phoneNumber)
         {
             GC.Collect();
 
@@ -43,7 +43,7 @@ namespace FINAL.Classes
             }
 
             DBFunctions.sendQuery("INSERT INTO Orders (OrderID, UserID, Name, AddressLine1, Postcode, PhoneNumber, Price, CardNumber, CV2, Expiry, DateTime, PromoCode, Status) " +
-                "VALUES('" + orderReference + "', '" + userID + "', '" + name + "', '" + addressLine1 + "', '" + postcode + "', '"
+                "VALUES('" + orderReference + "', '" + userID + "', '" + name + "', '" + addressLine1 + "', 'N/A', '"
                 + phoneNumber + "', '" + price + "', '" + cardNum + "', '" + cv2 + "', '" + expiry + "', '" + DateTime.Now.DayOfYear + "', '" + promoCode + "', '1');");
 
         }

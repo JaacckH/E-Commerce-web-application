@@ -1033,13 +1033,13 @@ function ActivatePassword() {
     var passwordFields = '<div class="col-12">';
     passwordFields += '  <div class="form-group">';
     passwordFields += '    <label for="UserEmail">Create Password</label>';
-    passwordFields += '    <input type="Password" class="form-control" id="UserPassword" name="UserPassword"   required>';
+    passwordFields += '    <input type="Password" class="form-control" id="userpassword" name="UserPassword"   required>';
     passwordFields += '  </div>';
     passwordFields += '</div>';
     passwordFields += '<div class="col-12">';
     passwordFields += '  <div class="form-group">';
     passwordFields += '    <label for="UserEmail">Confirm Password</label>';
-    passwordFields += '    <input type="Password" class="form-control" id="UserConfirmPassword" name="UserConfirmPassword"  required>';
+    passwordFields += '    <input type="Password" class="form-control" id="userpasswordconfirm" name="UserConfirmPassword"  required>';
     passwordFields += '  </div>';
     passwordFields += '</div>';
 

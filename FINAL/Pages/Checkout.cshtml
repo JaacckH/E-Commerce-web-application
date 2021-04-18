@@ -3,12 +3,31 @@
 @model Group_Project.Models.CheckoutModel
 @{
     HttpContext.Response.Cookies.Delete("rtc");
+
+    String FirstName, Surname, Email, AddressLine1, PhoneNumber, CardNumber, Expiry;
+    String UserID = Classes.UserFunctions.getUserID(HttpContext.Request.Cookies["SessionID"]);
+    FirstName = Classes.UserFunctions.getUserDetails(UserID, "Forename");
+    Surname = Classes.UserFunctions.getUserDetails(UserID, "Surname");
+    Email = Classes.UserFunctions.getUserDetails(UserID, "Email");
+    AddressLine1 = Classes.UserFunctions.getUserDetails(UserID, "AddressLine1");
+    PhoneNumber = Classes.UserFunctions.getUserDetails(UserID, "PhoneNumber");
+
+    CardNumber = Classes.UserFunctions.getUserDetails(UserID, "CardNumber");
+    String cardNumber1 = CardNumber.Substring(0, 3);
+    String cardNumber2 = CardNumber.Substring(4, 7);
+    String cardNumber3 = CardNumber.Substring(8, 11);
+    String cardNumber4 = CardNumber.Substring(12, 15);
+
+    Expiry = Classes.UserFunctions.getUserDetails(UserID, "Expiry");
+    String expiryMonth = Expiry.Split('/')[0];
+    String expiryYear = Expiry.Split('/')[1];
+
 }
 
 
-@if (!Classes.UserFunctions.userLoggedIn(HttpContext.Request.Cookies["SessionID"]))
+@if (Classes.Basket.getNumOfItems(HttpContext.Request.Cookies["SessionID"]) == 0)
 {
-
+    Response.Redirect("/Basket");
 }
 
 
@@ -19,225 +38,207 @@
     </div>
 </div>
 
-<form asp-action="@Model.checkout()">
-    <div id="checkout-page" class="container">
-        <div class="row">
-            <div class="col-12 col-md-6">
-                <div class="row pl-3 pr-3">
-                    <div class="col-12 delivery_container shadow">
-                        <a onclick="ToggleCheckoutMenu('delivery-menu');"><p class="checkout-header mb-3" style="cursor: pointer;">DELIVERY DETAILS</p></a>
-                        <div id="delivery-menu">
-                            <div class="col-12 spacing_top">
-                                <div class="row">
-                                    <div class="col-6">
-                                        <div class="form-group">
-                                            <label for="UserName">First name</label>
-                                            <input type="text" class="form-control" id="UserName" name="name" value="nate" required>
-                                        </div>
+<div id="checkout-page" class="container">
+    <div class="row">
+        <div class="col-12 col-md-6">
+            <div class="row pl-3 pr-3">
+                <div class="col-12 delivery_container shadow">
+                    <a onclick="ToggleCheckoutMenu('delivery-menu');"><p class="checkout-header mb-3" style="cursor: pointer;">DELIVERY DETAILS</p></a>
+                    <div id="delivery-menu">
+                        <div class="col-12 spacing_top">
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="UserName">First name</label>
+                                        <input type="text" class="form-control" id="forename" name="name" value="@FirstName" required>
                                     </div>
-                                    <div class="col-6">
-                                        <div class="form-group">
-                                            <label for="UserLastName">Last name</label>
-                                            <input type="text" class="form-control" id="UserLastName" name="surname" value="tester" required>
-                                        </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="UserLastName">Last name</label>
+                                        <input type="text" class="form-control" id="surname" name="surname" value="@Surname" required>
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="col-12">
-                                <div class="form-group">
-                                    <label for="Useraddress">Street address</label>
-                                    <input type="text" class="form-control" id="Useraddress" name="addressline1" placeholder="Address Line 1" value="1 test lane" required>
-                                    <p></p>
-                                    <input type="text" class="form-control" id="Useraddress" name="addressline2" placeholder="Apartament, suite, unit etc. (optional)">
-                                </div>
-                            </div>
-
-                            <div class="col-12">
-                                <div class="form-group">
-                                    <label for="Useraddress2" >Town / City</label>
-                                    <input type="text" class="form-control" id="Useraddress2" value="Mauritius" required>
-                                </div>
-                            </div>
-
-                            <div class="col-12">
-                                <div class="form-group">
-                                    <label for="UserPostCode">Postcode</label>
-                                    <input type="text" class="form-control" id="UserPostCode" name="postcode" value="zpcd5" required>
-                                </div>
-                            </div>
-
-                            <div class="col-12">
-                                <div class="form-group">
-                                    <label for="UserNo">Phone number</label>
-                                    <input type="number" class="form-control" id="UserNo" name="phonenumber" value="794" required>
-                                </div>
-                            </div>
-
-                            <div class="col-12">
-                                <div class="form-group">
-                                    <label for="UserEmail">Email address</label>
-                                    <input type="email" class="form-control" id="UserEmail" name="email" value="nate@test.com" required>
-                                </div>
-                            </div>
-
-                            @if (Classes.UserFunctions.userLoggedIn(HttpContext.Request.Cookies["SessionID"]) == false)
-                            {
-                                
-                                    <div class="col-12">
-                                        <div class="form-check mb-3">
-                                            <input Style="display:block;" class="form-check-input" type="checkbox" value="" id="password-activate" onclick="ActivatePassword()">
-                                            <label class="form-check-label" for="password-activate">I want to create account</label>
-                                        </div>
-                                    </div>
-                                    <div id="create-account-inputs">
-
-                                    </div>
-                                
-                            }
-
-
                         </div>
 
-                        <a onclick="ToggleCheckoutMenu('payment-menu');"><p class="checkout-header mb-3" style="cursor: pointer;">PAYMENT DETAILS</p></a>
-
-
-                        <div id="payment-menu" class="d-none">
-                            <br>
-                            <div class="col-12">
-                                <div class="row">
-
-                                    <div class="col-8">
-                                        <div class="form-group">
-                                            <label for="UserCardNo">Credit card number:</label>
-                                            <div class="">
-                                                <div class="row card_date">
-                                                    <input type="num" style="width:20%" class="form-control" maxlength="4" name="cardnumber1" value="0384" required />
-                                                    <input type="num" style="width:20%" class="form-control" maxlength="4" name="cardnumber2" value="0384" required />
-                                                    <input type="num" style="width:20%" class="form-control" maxlength="4" name="cardnumber3" value="0384" required />
-                                                    <input type="num" style="width:20%" class="form-control" maxlength="4" name="cardnumber4" value="0384" required />
-                                                </div>
-                                            </div>
-                                        </div>
-
-
-                                    </div>
-                                    <div class="col-1"></div>
-                                    <div class="col-3">
-                                        <div class="form-group">
-                                            <label for="UserCardMonth">Expires:</label>
-                                            <div class="col-12">
-                                                <div class="row card_date">
-                                                    <input type="num" placeholder="MM" class="form-control" id="UserCardMonth" name="expiry1" style="width:45%" value="02" required>
-                                                    <input type="num" placeholder="YY" class="form-control" id="UserCardYear" name="expiry2" style="width:45%" value="22" required>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-                                </div>
-                            </div>
-
-                            <br>
-
-                            <div class="col-12">
-                                <div class="row">
-                                    <div class="col-8">
-                                        <div class="form-group ">
-                                            <label for="UserCardNo">Name on Card:</label>
-                                            <input type="text" class="form-control" id="UserCardNo" style="width: 100%" value="Nate Tester" required>
-                                        </div>
-                                    </div>
-                                    <div class="col-1"></div>
-                                    <div class="col-3">
-                                        <div class="form-group">
-                                            <label for="UserCardNo">CVC:</label>
-                                            <input type="number" class="form-control" id="UserCardNo" name="cv2" value="028" required>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                        <a onclick="ToggleCheckoutMenu('notes-menu');"><p class="checkout-header mb-3" style="cursor: pointer;">ORDER NOTES</p></a>
-                        <div id="notes-menu" class="d-none">
-                            <p>Order notes (optional)</p>
+                        <div class="col-12">
                             <div class="form-group">
-                                <textarea name="" id="" class="form-control" style="width:100%;" rows="2"></textarea>
+                                <label for="Useraddress">Street address</label>
+                                <input type="text" class="form-control" id="addressline1" placeholder="Address Line 1" value="@AddressLine1" required>
                             </div>
                         </div>
 
-                        <a onclick="ToggleCheckoutMenu('promotion-menu');"><p class="checkout-header mb-3" style="cursor: pointer;">PROMOTION CODE</p></a>
-                        <div id="promotion-menu" class="d-none">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="UserNo">Phone number</label>
+                                <input type="number" class="form-control" id="phonenumber" name="phonenumber" value="@PhoneNumber" required>
+                            </div>
+                        </div>
 
-                            <div class="card-body mb-3">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" id="promoCode" placeholder="e.g. SUMMERVIBE" name="promoCode">
-                                    <p style="padding-top: 5px;"></p>
-                                    <button id="promo-btn" class="btn btn-order-page" style="float: right;" onclick="addPromoCode();">ADD</button>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="UserEmail">Email address</label>
+                                <input type="email" class="form-control" id="email" name="email" value="@Email" required>
+                            </div>
+                        </div>
+
+                        @if (Classes.UserFunctions.userLoggedIn(HttpContext.Request.Cookies["SessionID"]) == false)
+                        {
+
+                            <div class="col-12">
+                                <div class="form-check mb-3">
+                                    <input Style="display:block;" class="form-check-input" type="checkbox" value="" id="password-activate" onclick="ActivatePassword()">
+                                    <label class="form-check-label" for="password-activate">I want to create an account</label>
                                 </div>
                             </div>
+                            <div id="create-account-inputs">
+
+                            </div>
+
+                        }
 
 
-                        </div>
                     </div>
-                </div>
-            </div>
+
+                    <a onclick="ToggleCheckoutMenu('payment-menu');"><p class="checkout-header mb-3" style="cursor: pointer;">PAYMENT DETAILS</p></a>
 
 
-
-            <div class="col-12 col-md-6">
-                <div class="row pl-3 pr-3">
-
-                    <div class="col-12 order_details shadow">
-
-                        <h4 class="mt-2">Your order</h4>
-                        <div class="row">
-                            <div class="col-12">
-                                <p style="float: left;">PRODUCT</p>
-                                <p style="float: right;">TOTAL</p>
-                            </div>
-                        </div>
-                        <hr>
-                        <div style="overflow-y:scroll; height:40vh;">
-                            @Html.Raw(Model.getCheckoutItemsHtml(HttpContext.Request.Cookies["SessionID"]))
-                        </div>
-
-                        <hr>
-
-                        <div class="row">
-
-                            <div class="col-12">
-                                <p style="float: left;" id="promotion-display">Promotions: None</p>
-                                <p style="float: right;" id="promotion-amount">Rs -0</p>
-                            </div>
-
-                            <div class="col-12">
-                                <p style="float: left;">Total:</p>
-                                <p style="float: right;" id="checkout-total">Rs @Html.Raw(Classes.Utility.formatPrice(Classes.Basket.getTotalPrice(Classes.UserFunctions.getUserID(HttpContext.Request.Cookies["SessionID"]), null).ToString()))</p>
-                            </div>
-                        </div>
-                        <hr>
-                        <div>
-                            <p>Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our <a href="">privacy policy</a>.</p>
-                        </div>
+                    <div id="payment-menu" class="d-none">
                         <br>
                         <div class="col-12">
-                            <button id="create-btn" class="btn btn-order-page margin-left-5px" type="submit">PLACE ORDER</button>
+                            <div class="row">
+
+                                <div class="col-8">
+                                    <div class="form-group">
+                                        <label for="UserCardNo">Credit card number:</label>
+                                        <div class="">
+                                            <div class="row card_date">
+                                                <input type="num" style="width:20%" class="form-control" maxlength="4" id="cardnumber1" value="@cardNumber1" required />
+                                                <input type="num" style="width:20%" class="form-control" maxlength="4" id="cardnumber2" value="@cardNumber1" required />
+                                                <input type="num" style="width:20%" class="form-control" maxlength="4" id="cardnumber3" value="@cardNumber1" required />
+                                                <input type="num" style="width:20%" class="form-control" maxlength="4" id="cardnumber4" value="@cardNumber1" required />
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                                <div class="col-1"></div>
+                                <div class="col-3">
+                                    <div class="form-group">
+                                        <label for="UserCardMonth">Expires:</label>
+                                        <div class="col-12">
+                                            <div class="row card_date">
+                                                <input type="num" placeholder="MM" class="form-control" id="expirymonth" name="expiry1" style="width:45%" value="@expiryMonth" required>
+                                                <input type="num" placeholder="YY" class="form-control" id="expiryyear" name="expiry2" style="width:45%" value="@expiryYear" required>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
                         </div>
+
                         <br>
+
+                        <div class="col-12">
+                            <div class="row">
+                                <div class="col-8">
+                                    <div class="form-group ">
+                                        <label for="UserCardNo">Name on Card:</label>
+                                        <input type="text" class="form-control" id="UserCardNo" style="width: 100%" value="@FirstName @Surname" required>
+                                    </div>
+                                </div>
+                                <div class="col-1"></div>
+                                <div class="col-3">
+                                    <div class="form-group">
+                                        <label for="UserCardNo">CVC:</label>
+                                        <input type="number" class="form-control" id="cv2" name="cv2" value="" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
-                    <br>
-                    <div class="col-12"></div>
-                    <div class="col-12"></div>
+                    <a onclick="ToggleCheckoutMenu('notes-menu');"><p class="checkout-header mb-3" style="cursor: pointer;">ORDER NOTES</p></a>
+                    <div id="notes-menu" class="d-none">
+                        <p>Order notes (optional)</p>
+                        <div class="form-group">
+                            <textarea name="" id="" class="form-control" style="width:100%;" rows="2"></textarea>
+                        </div>
+                    </div>
+
+                    <a onclick="ToggleCheckoutMenu('promotion-menu');"><p class="checkout-header mb-3" style="cursor: pointer;">PROMOTION CODE</p></a>
+                    <div id="promotion-menu" class="d-none">
+
+                        <div class="card-body mb-3">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="promocode" placeholder="e.g. SUMMERVIBE" name="promoCode">
+                                <p style="padding-top: 5px;"></p>
+                                <button id="promo-btn" class="btn btn-order-page" style="float: right;" onclick="addPromoCode();">ADD</button>
+                            </div>
+                        </div>
+
+
+                    </div>
                 </div>
             </div>
-
         </div>
+
+
+
+        <div class="col-12 col-md-6">
+            <div class="row pl-3 pr-3">
+
+                <div class="col-12 order_details shadow">
+
+                    <h4 class="mt-2">Your order</h4>
+                    <div class="row">
+                        <div class="col-12">
+                            <p style="float: left;">PRODUCT</p>
+                            <p style="float: right;">TOTAL</p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div style="overflow-y:scroll; height:40vh;">
+                        @Html.Raw(Model.getCheckoutItemsHtml(HttpContext.Request.Cookies["SessionID"]))
+                    </div>
+
+                    <hr>
+
+                    <div class="row">
+
+                        <div class="col-12">
+                            <p style="float: left;" id="promotion-display">Promotions: None</p>
+                            <p style="float: right;" id="promotion-amount">Rs -0</p>
+                        </div>
+
+                        <div class="col-12">
+                            <p style="float: left;">Total:</p>
+                            <p style="float: right;" id="checkout-total">Rs @Html.Raw(Classes.Utility.formatPrice(Classes.Basket.getTotalPrice(Classes.UserFunctions.getUserID(HttpContext.Request.Cookies["SessionID"]), null).ToString()))</p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div>
+                        <p>Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our <a href="">privacy policy</a>.</p>
+                    </div>
+                    <br>
+                    <div class="col-12">
+                        <button id="create-btn" class="btn btn-order-page margin-left-5px" onclick="checkout();">PLACE ORDER</button>
+                    </div>
+                    <br>
+                </div>
+                <br>
+                <div class="col-12"></div>
+                <div class="col-12"></div>
+            </div>
+        </div>
+
     </div>
-</form>
+</div>
 
 
 

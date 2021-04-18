@@ -13,18 +13,6 @@ namespace Group_Project.Models
     {
         public String name, addressline1, postcode, promocode, cardnum, expiry, cv2, email, UserPassword, UserConfirmPassword, forename, surname, sessionID;
         public int phonenumber;
-        public IActionResult checkout()
-        {
-            try
-            {
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-                TempData["checkoutError"] = e.Message;
-            }
-            return null;
-        }
 
         public String getCheckoutItemsHtml(String SessionID)
         {
@@ -45,6 +33,7 @@ namespace Group_Project.Models
                 }
             }
 
+            conn.Close();
             return html;
         }
 

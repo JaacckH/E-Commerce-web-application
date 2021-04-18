@@ -276,7 +276,7 @@ function getUrlVariable(variable) {
 }
 
 function addPromoCode() {
-    var promoCode = document.getElementById('promoCode').value;
+    var promoCode = document.getElementById('promocode').value;
     connection.invoke("addPromoCode", getSessionID(), promoCode);
 }
 
@@ -293,5 +293,35 @@ function promoteUser(id) {
 function deletePromoCode(promoCode) {
     closeDetails(promoCode);
     connection.invoke("deletePromoCode", getSessionID(), promoCode);
+}
+
+function checkout() {
+    //String sessionID, String email, String forename, String surname,
+    //String addressline1, String phonenumber, String promocode, String cardnum, String expiry,
+    //String cv2, String userPassword, String userConfirmPassword
+
+    var email = document.getElementById('email').value;
+    var forename = document.getElementById('forename').value;
+    var surname = document.getElementById('surname').value;
+    var addressline1 = document.getElementById('addressline1').value;
+    var phonenumber = document.getElementById('phonenumber').value;
+    var promocode = document.getElementById('promocode').value;
+    var cardnum = document.getElementById('cardnumber1').value + document.getElementById('cardnumber2').value
+        + document.getElementById('cardnumber3').value + document.getElementById('cardnumber4').value;
+    var expiry = document.getElementById('expirymonth').value + "/" + document.getElementById('expiryyear').value;
+    var cv2 = document.getElementById('cv2').value;
+
+    var password = "";
+    var confirmpassword = "";
+
+    try {
+        password = document.getElementById('userpassword').value;
+        confirmpassword = document.getElementById('userpasswordconfirm').value;
+    } catch {
+    }
+
+    connection.invoke("Checkout", getSessionID(), email, forename, surname, addressline1,
+        phonenumber, promocode, cardnum, expiry, cv2, password, confirmpassword);
+
 }
 

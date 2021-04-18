@@ -661,9 +661,12 @@ $(document).ready(function () {
     }
     /* ---------- End Dounut ----------- */
 
-    StatsPercent('percentage-1', newOrdersPercentage);
-    StatsPercent('percentage-2', newUsersPercentage);
-    StatsPercent('percentage-3', 19);
+
+    if ($('#percentage-1').length > 0) {
+        StatsPercent('percentage-1', newOrdersPercentage);
+        StatsPercent('percentage-2', newUsersPercentage);
+        StatsPercent('percentage-3', 19);
+    }
 
     function StatsPercent(stat, percent) {
         if (percent < 0) {

@@ -52,5 +52,27 @@ namespace FINAL.Classes
             conn.Close();
             return stock;
         }
+
+        public static String getStockIDsFromProductID(String productID, String size)
+        {
+            SqlConnection conn = new SqlConnection();
+            conn.ConnectionString = DBFunctions.connectionString;
+            conn.Open();
+            SqlCommand query = conn.CreateCommand();
+            query.CommandText = "SELECT * FROM Stock WHERE ProductID='" + productID + "';";
+            SqlDataReader reader = query.ExecuteReader();
+
+            String id = "";
+            while (reader.Read())
+            {
+                if (reader["SizeID"].ToString() == size)
+                {
+                    id = reader["StockID"].ToString();
+                }
+            }
+
+            conn.Close();
+            return id;
+        }
     }
 }

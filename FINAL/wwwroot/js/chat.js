@@ -330,13 +330,21 @@ function updateProduct(productID) {
     var sizes = "";
     var quantities = "";
 
-    for (var i = 1; i < 20; i++) {
+    var lasts;
+    var lastq;
+    var lastid;
+
+    for (var i = 1; i < 50; i++) {
         try {
             sizes += document.getElementById(productID + 'sizecol-' + i + '-size').value + ",";
             quantities += document.getElementById(productID + 'input-quantity-' + i).value + ",";
         }
         catch { }
     }
+
+    console.log(lasts);
+    console.log(lastq);
+    console.log(lastid);
 
     var name = document.getElementById('ep-name-' + productID).value;
     var description = document.getElementById('ep-description-' + productID).value;

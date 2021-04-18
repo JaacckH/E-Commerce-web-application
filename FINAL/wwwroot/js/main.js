@@ -164,31 +164,31 @@ function AddSizeCol(n) {
     sizeColAmount++;
     var $size_type = '                            <div class="size-column" name="sizecol-' + sizeColAmount + '">';
     $size_type += '                              <select class="form-control" id="' + pid + 'sizecol-' + sizeColAmount + '-size" name="' + pid + 'sizecol-' + sizeColAmount + '-size">';
-    $size_type += '                                <option>6</option>';
-    $size_type += '                                <option>8</option>';
-    $size_type += '                                <option>10</option>';
-    $size_type += '                                <option>12</option>';
-    $size_type += '                                <option>14</option>';
-    $size_type += '                                <option>16</option>';
-    $size_type += '                                <option>18</option>';
-    $size_type += '                                <option>20</option>';
-    $size_type += '                                <option>22</option>';
+    $size_type += '                                <option value="6">6</option>';
+    $size_type += '                                <option value="8">8</option>';
+    $size_type += '                                <option value="10">10</option>';
+    $size_type += '                                <option value="12">12</option>';
+    $size_type += '                                <option value="14">14</option>';
+    $size_type += '                                <option value="16">16</option>';
+    $size_type += '                                <option value="18">18</option>';
+    $size_type += '                                <option value="20">20</option>';
+    $size_type += '                                <option value="22">22</option>';
     $size_type += '                                <option disabled><b>MENS SIZE</b></option>';
-    $size_type += '                                <option>XS</option>';
-    $size_type += '                                <option>S</option>';
-    $size_type += '                                <option>M</option>';
-    $size_type += '                                <option>L</option>';
-    $size_type += '                                <option>XL</option>';
-    $size_type += '                                <option>XXL</option>';
+    $size_type += '                                <option value="XS">XS</option>';
+    $size_type += '                                <option value="S">S</option>';
+    $size_type += '                                <option value="M">M</option>';
+    $size_type += '                                <option value="L">L</option>';
+    $size_type += '                                <option value="XL">XL</option>';
+    $size_type += '                                <option value="XXL">XXL</option>';
     $size_type += '                                <option disabled><b>EU SIZE</b></option>';
-    $size_type += '                                <option>35</option>';
-    $size_type += '                                <option>36</option>';
-    $size_type += '                                <option>37</option>';
-    $size_type += '                                <option>38</option>';
-    $size_type += '                                <option>39</option>';
-    $size_type += '                                <option>40</option>';
-    $size_type += '                                <option>41</option>';
-    $size_type += '                                <option>42</option>';
+    $size_type += '                                <option value="35">35</option>';
+    $size_type += '                                <option value="36">36</option>';
+    $size_type += '                                <option value="37">37</option>';
+    $size_type += '                                <option value="38">38</option>';
+    $size_type += '                                <option value="39">39</option>';
+    $size_type += '                                <option value="40">40</option>';
+    $size_type += '                                <option value="41">41</option>';
+    $size_type += '                                <option value="42">42</option>';
     $size_type += '                              </select>';
     $size_type += '                              <input class="size-input" name="' + pid + 'input-quantity-' + sizeColAmount + '" id="' + pid + 'input-quantity-' + sizeColAmount + '" type="text" value="1"/>';
     $size_type += '                            </div>';
@@ -197,6 +197,45 @@ function AddSizeCol(n) {
     $($size_type).insertBefore($('.add-size-type'));
 
 }
+
+function AddSizeColEdit(n) {
+    sizeColAmount++;
+    var $size_type = '                            <div class="size-column" name="sizecol-' + sizeColAmount + '">';
+    $size_type += '                              <select class="form-control" id="' + pid + 'sizecol-' + sizeColAmount + '-size" name="' + pid + 'sizecol-' + sizeColAmount + '-size">';
+    $size_type += '                                <option value="6">6</option>';
+    $size_type += '                                <option value="8">8</option>';
+    $size_type += '                                <option value="10">10</option>';
+    $size_type += '                                <option value="12">12</option>';
+    $size_type += '                                <option value="14">14</option>';
+    $size_type += '                                <option value="16">16</option>';
+    $size_type += '                                <option value="18">18</option>';
+    $size_type += '                                <option value="20">20</option>';
+    $size_type += '                                <option value="22">22</option>';
+    $size_type += '                                <option disabled><b>MENS SIZE</b></option>';
+    $size_type += '                                <option value="XS">XS</option>';
+    $size_type += '                                <option value="S">S</option>';
+    $size_type += '                                <option value="M">M</option>';
+    $size_type += '                                <option value="L">L</option>';
+    $size_type += '                                <option value="XL">XL</option>';
+    $size_type += '                                <option value="XXL">XXL</option>';
+    $size_type += '                                <option disabled><b>EU SIZE</b></option>';
+    $size_type += '                                <option value="35">35</option>';
+    $size_type += '                                <option value="36">36</option>';
+    $size_type += '                                <option value="37">37</option>';
+    $size_type += '                                <option value="38">38</option>';
+    $size_type += '                                <option value="39">39</option>';
+    $size_type += '                                <option value="40">40</option>';
+    $size_type += '                                <option value="41">41</option>';
+    $size_type += '                                <option value="42">42</option>';
+    $size_type += '                              </select>';
+    $size_type += '                              <input class="size-input" name="' + pid + 'input-quantity-' + sizeColAmount + '" id="' + pid + 'input-quantity-' + sizeColAmount + '" type="text" value="0"/>';
+    $size_type += '                            </div>';
+
+
+    $($size_type).insertBefore($('.' + pid + '-add-size-type'));
+
+}
+
 
 
 

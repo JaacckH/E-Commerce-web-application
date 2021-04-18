@@ -325,3 +325,27 @@ function checkout() {
 
 }
 
+function updateProduct(productID) {
+
+    var sizes = "";
+    var quantities = "";
+
+    for (var i = 1; i < 20; i++) {
+        try {
+            sizes += document.getElementById(productID + 'sizecol-' + i + '-size').value + ",";
+            quantities += document.getElementById(productID + 'input-quantity-' + i).value + ",";
+        }
+        catch { }
+    }
+
+    var name = document.getElementById('ep-name-' + productID).value;
+    var description = document.getElementById('ep-description-' + productID).value;
+    var price = document.getElementById('ep-price-' + productID).value;
+    var wasprice = document.getElementById('ep-wasprice-' + productID).value;
+    var category = document.getElementById('ep-category-' + productID).value;
+    var tags = document.getElementById('ep-tags-' + productID).value;
+    var material = document.getElementById('ep-material-' + productID).value;
+
+    connection.invoke("updateProduct", getSessionID(), productID, name, description, price, wasprice, category, tags, material, sizes, quantities)
+
+}

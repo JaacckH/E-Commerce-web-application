@@ -30,5 +30,27 @@ namespace FINAL.Classes
             conn.Close();
             return null;
         }
+
+        public static Boolean productInStock(String productID)
+        {
+            SqlConnection conn = new SqlConnection();
+            conn.ConnectionString = DBFunctions.connectionString;
+            conn.Open();
+            SqlCommand query = conn.CreateCommand();
+            query.CommandText = "SELECT * FROM Stock WHERE ProductID='" + productID + "';";
+            SqlDataReader reader = query.ExecuteReader();
+
+            Boolean stock = false;
+            while (reader.Read())
+            {
+                if (int.Parse(reader["Quantity"].ToString()) > 0)
+                {
+                    stock = true;
+                }
+            }
+
+            conn.Close();
+            return stock;
+        }
     }
 }

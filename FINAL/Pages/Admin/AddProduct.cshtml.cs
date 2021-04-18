@@ -39,8 +39,10 @@ namespace Group_Project.Models
             String description = HttpContext.Request.Form["input-description"];
             String price = HttpContext.Request.Form["input-price"];
             String tags = HttpContext.Request.Form["input-tags"];
+            String material = HttpContext.Request.Form["material"];
+            String category = "Womens";
 
-            if (String.IsNullOrEmpty(name) || String.IsNullOrEmpty(description) || String.IsNullOrEmpty(price))
+            if (String.IsNullOrEmpty(name) || String.IsNullOrEmpty(description) || String.IsNullOrEmpty(price) || String.IsNullOrEmpty(material))
             {
                 TempData["add-product-error"] = "Enter All Fields";
                 return null;
@@ -64,8 +66,8 @@ namespace Group_Project.Models
                 catch { }
             }
 
-            DBFunctions.sendQuery("INSERT INTO Products (ProductID, Name, Description, Price, ImagePath, Tags) " +
-                "VALUES('" + id + "', '" + name + "', '" + description + "', '" + price + "', '../ProductImages/" + path + "', '" + tags + "')");
+            DBFunctions.sendQuery("INSERT INTO Products (ProductID, Name, Description, Price, ImagePath, Tags, Materials, Category) " +
+                "VALUES('" + id + "', '" + name + "', '" + description + "', '" + price + "', '../ProductImages/" + path + "', '" + tags + "', '" + material + "', '" + category + "')");
 
 
             var FileToUpload = Path.Combine(_env.WebRootPath, Path2, path);
@@ -75,6 +77,7 @@ namespace Group_Project.Models
             }
 
             TempData["add-product-error"] = "Product Added Successfully";
+            Response.Redirect("/Admin/Products");
             return null;
         }
 

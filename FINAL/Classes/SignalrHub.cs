@@ -424,5 +424,66 @@ namespace FINAL.Classes
             }
         }
 
+        public void updateProduct(String sessionID, String productID, String name, String description, String price,
+            String wasprice, String category, String tags, String material, String sizeArray, String quantityArray)
+        {
+            if (UserFunctions.isAdmin(UserFunctions.getUserID(sessionID)))
+            {
+                price = price.Replace(",", "");
+                wasprice = wasprice.Replace(",", "");
+
+                if (String.IsNullOrEmpty(material))
+                {
+                    material = ProductFunctions.getProductDetails(productID, "Materials");
+                }
+
+                if (!String.IsNullOrEmpty(name) && !String.IsNullOrEmpty(description) && !String.IsNullOrEmpty(price) &&
+                    !String.IsNullOrEmpty(category) && !String.IsNullOrEmpty(sizeArray) && !String.IsNullOrEmpty(quantityArray)
+                    && !String.IsNullOrEmpty(material))
+                {
+                    String[] sizes = sizeArray.Split(",");
+                    String[] quantities = quantityArray.Split(",");
+
+                    if (sizes.Length != quantities.Length)
+                    {
+                        sendAlert(Context.ConnectionId, "Please check your product size fields");
+                        return;
+                    }
+
+                    int i = 0;
+                    foreach (String product in sizes)
+                    {
+                        String size = sizes[i];
+                        String quantity = quantities[i];
+
+                        if (quantity == "0" || String.IsNullOrEmpty(quantity))
+                        {
+                            DBFunctions.sendQuery("DELETE FROM Stock WHERE ProductID='" + productID + "' AND SizeID='" + size + "';");
+                        }
+                        else
+                        {
+                            DBFunctions.sendQuery("DELETE FROM Stock WHERE ProductID='" + productID + "' AND SizeID='" + size + "';");
+                            DBFunctions.sendQuery("INSERT INTO Stock (ProductID, SizeID, Quantity) VALUES('" + productID + "', '" + size + "', '" + quantity + "')");
+                        }
+                        i++;
+                    }
+
+                    DBFunctions.sendQuery("UPDATE Products SET Name='" + name + "', Description='" + description + "', " +
+                        "Price='" + price + "', WasPrice='" + wasprice + "', Category='" + category + "', Tags='" + tags + "', " +
+                        "Materials='" + material + "' WHERE ProductID='" + productID + "';");
+
+                    sendSuccessAlert(Context.ConnectionId, "Product Information Updated");
+
+                }
+                else
+                {
+                    sendAlert(Context.ConnectionId, "Please fill in all the fields");
+                    return;
+                }
+
+
+            }
+        }
+
     }
 }

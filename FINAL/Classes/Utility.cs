@@ -16,6 +16,10 @@ namespace FINAL.Classes
 
         public static String formatPrice(String price)
         {
+            if (String.IsNullOrEmpty(price))
+            {
+                return price;
+            }
             return int.Parse(price).ToString("N", new CultureInfo("en-US")).Replace(".00", "");
         }
 

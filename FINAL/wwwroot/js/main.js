@@ -158,11 +158,12 @@ function closeProductDetails(rowID) {
 }
 
 var sizeColAmount = 0;
+var pid = "";
 
 function AddSizeCol(n) {
     sizeColAmount++;
     var $size_type = '                            <div class="size-column" name="sizecol-' + sizeColAmount + '">';
-    $size_type += '                              <select class="form-control" name="sizecol-' + sizeColAmount + '-size">';
+    $size_type += '                              <select class="form-control" id="' + pid + 'sizecol-' + sizeColAmount + '-size" name="' + pid + 'sizecol-' + sizeColAmount + '-size">';
     $size_type += '                                <option>6</option>';
     $size_type += '                                <option>8</option>';
     $size_type += '                                <option>10</option>';
@@ -189,7 +190,7 @@ function AddSizeCol(n) {
     $size_type += '                                <option>41</option>';
     $size_type += '                                <option>42</option>';
     $size_type += '                              </select>';
-    $size_type += '                              <input class="size-input" name="input-quantity-' + sizeColAmount + '" type="text" value="1"/>';
+    $size_type += '                              <input class="size-input" name="' + pid + 'input-quantity-' + sizeColAmount + '" id="' + pid + 'input-quantity-' + sizeColAmount + '" type="text" value="1"/>';
     $size_type += '                            </div>';
 
 

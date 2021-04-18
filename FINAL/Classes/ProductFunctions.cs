@@ -36,7 +36,7 @@ namespace FINAL.Classes
         public static String getMainProductHtml(String productID)
         {
             String baseString = File.ReadAllText(Environment.CurrentDirectory + "/HTML/PRODUCTMAIN.html");
-            String price = "", imagePath = "", description = "", name = "", id = "", sizeHtml = "", maxQuantity = "", category = "";
+            String price = "", imagePath = "", description = "", name = "", id = "", sizeHtml = "", maxQuantity = "", category = "", wasPrice = "";
 
             SqlConnection connSize = new SqlConnection();
             connSize.ConnectionString = DBFunctions.connectionString;
@@ -75,6 +75,7 @@ namespace FINAL.Classes
                     imagePath = reader["ImagePath"].ToString();
                     id = reader["ProductID"].ToString();
                     category = reader["Category"].ToString();
+                    wasPrice = reader["WasPrice"].ToString();
                 }
             }
 
@@ -85,8 +86,15 @@ namespace FINAL.Classes
                 .Replace("{ID}", id.ToString())
                 .Replace("{SIZES}", sizeHtml)
                 .Replace("{MAXQUANTITY}", maxQuantity)
-                .Replace("{PRICE}".ToString(), price)
+                .Replace("{PRICE}", price)
                 .Replace("{CATEGORY}", category);
+
+            if (!String.IsNullOrEmpty(wasPrice) && int.Parse(price) < int.Parse(wasPrice))
+            {
+                baseString = baseString.Replace("{WASPRICE}", "<p style=\"font-size:12pt; color:red;\"><span>Was: Rs " + Utility.formatPrice(wasPrice) + "</span></p>");
+            }
+
+            baseString = baseString.Replace("{WASPRICE}", "");
 
             return baseString;
         }

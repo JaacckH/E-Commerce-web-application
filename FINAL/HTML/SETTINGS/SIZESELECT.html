@@ -1,5 +1,5 @@
 ﻿<div class="size-column">
-    <select class="form-control" name="input-size-{ID}" value="{SIZE}">
+    <select class="form-control" id="{PID}sizecol-{ID}-size">
         <option value="6" selected6>6</option>
         <option value="8" selected8>8</option>
         <option value="10" selected10>10</option>
@@ -26,10 +26,10 @@
         <option value="41" selected41>41</option>
         <option value="42" selected42>42</option>
     </select>
-    <input class="size-input" name="input-quantity-{ID}" type="text" value="{QUANTITY}">
+    <input class="size-input" id="{PID}input-quantity-{ID}" type="text" value="{QUANTITY}">
 
     <script>
-        sizeColAmount = {ID} + 1;
+        {SCRIPT}
     </script>
 
 </div>

@@ -11,13 +11,24 @@ namespace Group_Project.Models
 {
     public class CheckoutModel : PageModel
     {
-        public String name, addressline1, postcode, phonenumber, promocode, cardnum, expiry, cv2, email;
+        public String name, addressline1, postcode, phonenumber, promocode, cardnum, expiry, cv2, email, UserPassword, UserConfirmPassword, forename, surname;
 
         public IActionResult checkout()
         {
+
+            
+
             try
             {
-                name = HttpContext.Request.Form["name"] + " " + HttpContext.Request.Form["surname"];
+
+                email = HttpContext.Request.Form["email"];
+                UserPassword = HttpContext.Request.Form["UserPassword"];
+                UserConfirmPassword = HttpContext.Request.Form["UserConfirmPassword"];
+
+                forename = HttpContext.Request.Form["name"];
+                surname = HttpContext.Request.Form["surname"];
+
+                name = forename + surname;
                 addressline1 = HttpContext.Request.Form["addressline1"];
                 postcode = HttpContext.Request.Form["postcode"];
                 phonenumber = HttpContext.Request.Form["phonenumber"];
@@ -28,7 +39,7 @@ namespace Group_Project.Models
 
                 expiry = HttpContext.Request.Form["expiry1"] + "/" + HttpContext.Request.Form["expiry2"];
                 cv2 = HttpContext.Request.Form["cv2"];
-                email = HttpContext.Request.Form["email"];
+                
 
 
                 String userID = UserFunctions.getUserID(HttpContext.Request.Cookies["SessionID"]);
@@ -40,6 +51,19 @@ namespace Group_Project.Models
 
                     if (Payment.isSuccessful(price, cardnum, cv2, expiry))
                     {
+                        if (!String.IsNullOrEmpty(UserPassword))
+                        {
+                            if (UserPassword != UserConfirmPassword)
+                            {
+                                TempData["checkoutError"] = "Passwords don't match";
+                            }
+                            if (UserFunctions.getUserDetails(UserFunctions.getUserID(HttpContext.Request.Cookies["SessionID"]), email) == null)
+                            {
+                                // SignalrHub.createUserAccount(true, HttpContext.Request.Cookies["SessionID"], forename, surname, email, UserPassword, UserConfirmPassword, addressline1, phonenumber);
+                            }
+
+                        }
+
                         Orders.processOrder(Basket.getStockIDs(userID), userID, promocode, price, cardnum, cv2, expiry, name, addressline1, postcode, phonenumber);
                         Response.Redirect("/CheckoutSuccess");
                         return null;

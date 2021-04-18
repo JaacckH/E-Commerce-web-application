@@ -16,14 +16,20 @@
     try
     {
         CardNumber = Classes.UserFunctions.getUserDetails(UserID, "CardNumber");
-        cardNumber1 = CardNumber.Substring(1, 4);
-        cardNumber2 = CardNumber.Substring(5, 6);
-        cardNumber3 = CardNumber.Substring(7, 12);
-        cardNumber4 = CardNumber.Substring(13, 16);
+        if (CardNumber != null)
+        {
+            cardNumber1 = CardNumber.Substring(1, 4);
+            cardNumber2 = CardNumber.Substring(5, 6);
+            cardNumber3 = CardNumber.Substring(7, 12);
+            cardNumber4 = CardNumber.Substring(13, 16);
+        }
 
         Expiry = Classes.UserFunctions.getUserDetails(UserID, "Expiry");
-        expiryMonth = Expiry.Split('/')[0];
-        expiryYear = Expiry.Split('/')[1];
+        if (Expiry != null)
+        {
+            expiryMonth = Expiry.Split('/')[0];
+            expiryYear = Expiry.Split('/')[1];
+        }
     }
     catch
     {

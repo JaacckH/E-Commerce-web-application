@@ -1029,7 +1029,7 @@ function menuSelection(id) {
 
 
 $(document).ready(function () {
-    $('#checkBoxID').click(function () {
+    $('input[type="checkbox"]').click(function () {
 
         const element = document.querySelector("#create-account-inputs");
 

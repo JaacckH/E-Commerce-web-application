@@ -81,6 +81,38 @@
                                 </div>
                             </div>
 
+                            @if (Classes.UserFunctions.userLoggedIn(HttpContext.Request.Cookies["SessionID"]) == false)
+                            {
+                                <div class="col-12">
+                                    <div class="form-check">
+                                        <input Style="display:block;" class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                            I want to create account
+                                        </label>
+                                    </div>
+                                </div>
+                            }
+
+
+                            <br>
+                            <div id="create-account-inputs" class="d-none">
+
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="UserEmail">Create Password</label>
+                                        <input type="Password" class="form-control" id="UserPassword" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="UserEmail">Confirm Password</label>
+                                        <input type="Password" class="form-control" id="UserConfirmPassword" required>
+                                    </div>
+                                </div>
+
+                            </div>
+
                         </div>
 
                         <a onclick="ToggleCheckoutMenu('payment-menu');"><p class="checkout-header mb-3" style="cursor: pointer;">PAYMENT DETAILS</p></a>

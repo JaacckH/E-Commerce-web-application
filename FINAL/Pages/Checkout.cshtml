@@ -4,7 +4,8 @@
 @{
     HttpContext.Response.Cookies.Delete("rtc");
 
-    String FirstName, Surname, Email, AddressLine1, PhoneNumber, CardNumber, Expiry;
+    String FirstName, Surname, Email, AddressLine1, PhoneNumber, CardNumber, Expiry,
+        cardNumber1 = "", cardNumber2 = "", cardNumber3 = "", cardNumber4 = "", expiryMonth = "", expiryYear = "";
     String UserID = Classes.UserFunctions.getUserID(HttpContext.Request.Cookies["SessionID"]);
     FirstName = Classes.UserFunctions.getUserDetails(UserID, "Forename");
     Surname = Classes.UserFunctions.getUserDetails(UserID, "Surname");
@@ -12,15 +13,22 @@
     AddressLine1 = Classes.UserFunctions.getUserDetails(UserID, "AddressLine1");
     PhoneNumber = Classes.UserFunctions.getUserDetails(UserID, "PhoneNumber");
 
-    CardNumber = Classes.UserFunctions.getUserDetails(UserID, "CardNumber");
-    String cardNumber1 = CardNumber.Substring(0, 3);
-    String cardNumber2 = CardNumber.Substring(4, 7);
-    String cardNumber3 = CardNumber.Substring(8, 11);
-    String cardNumber4 = CardNumber.Substring(12, 15);
+    try
+    {
+        CardNumber = Classes.UserFunctions.getUserDetails(UserID, "CardNumber");
+        cardNumber1 = CardNumber.Substring(1, 4);
+        cardNumber2 = CardNumber.Substring(5, 6);
+        cardNumber3 = CardNumber.Substring(7, 12);
+        cardNumber4 = CardNumber.Substring(13, 16);
 
-    Expiry = Classes.UserFunctions.getUserDetails(UserID, "Expiry");
-    String expiryMonth = Expiry.Split('/')[0];
-    String expiryYear = Expiry.Split('/')[1];
+        Expiry = Classes.UserFunctions.getUserDetails(UserID, "Expiry");
+        expiryMonth = Expiry.Split('/')[0];
+        expiryYear = Expiry.Split('/')[1];
+    }
+    catch
+    {
+
+    }
 
 }
 

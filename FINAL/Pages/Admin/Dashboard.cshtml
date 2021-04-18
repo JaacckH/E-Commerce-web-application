@@ -10,9 +10,8 @@
         <h1>Dashboard</h1>
         <hr />
 
-        <div class="row">
+        <div id="admin-dash" class="row">
             <!-- new order start -->
-            
             <!-- End active sessions -->
             <div class="col-12 shadow mb-5 bg-white rounded">
                 <div class="col-12">
@@ -20,12 +19,56 @@
                     <canvas id="myChart" width="400" height="100"></canvas>
                 </div>
             </div>
-            <div class="col-6 shadow p-3 mb-5 bg-white rounded no-margin">
-                <p>Device Type Used in pie chart</p>
-                <canvas id="device-chart" width="100px" height="200px"></canvas>
+           
+        </div>
+
+        <div class="row mb-5">
+            <div class="col-12 col-lg-6 chart-height mb-3">
+                <div class="row shadow bg-white rounded p-3 p-md-0 split-stat-rows stat-row-margin">
+                    <div class="col-12 p-3 dash-stat-center-left">
+                        <h6>TAKE</h6>
+                        <p>statistics row 1</p>
+                    </div>
+                </div>
+                <div class="row shadow bg-white rounded p-3 p-md-0 split-stat-rows stat-row-margin">
+                    <div class="col-12 p-3 dash-stat-center">
+                        <h6>YOUR</h6>
+                        <p>statistics row 2</p>
+                    </div>
+                </div>
+                <div class="row shadow bg-white rounded p-3 p-md-0 split-stat-rows stat-row-margin">
+                    <div class="col-12 p-3">
+                        <h6>PICK</h6>
+                        <p>statistics row 3</p>
+                    </div>
+                </div>
             </div>
-            <div class="col-6 shadow p-3 mb-5 bg-white rounded">
-                <p>Where orders are from pinpointed on a map</p>
+            <div class="col-12 col-lg-6 chart-height">
+                <div class="row shadow bg-white rounded p-3 p-md-0 full-height stat-row-margin">
+                    <div class="col-12">
+                        <p>space for chart</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row mb-5">
+            <div class="col-12 col-lg-6 mb-3">
+                <div class="row shadow bg-white rounded no-margin p-3 p-md-0 full-height">
+                    <div class="col-12 device-chart-cont p-3">
+                        <p>Device Type Used in pie chart</p>
+                        <canvas id="device-chart" ></canvas>
+                    </div>
+                </div>
+               
+            </div>
+            <div class="col-12 col-lg-6">
+                <div class="row shadow bg-white rounded no-margin p-3 p-md-0 full-height">
+                    <div class="col-12 ">
+                        <p>space for chart</p>
+                    </div>
+                </div>
             </div>
         </div>
 

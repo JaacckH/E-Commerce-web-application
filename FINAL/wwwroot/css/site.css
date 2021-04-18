@@ -1470,10 +1470,60 @@ p {
 
 /* ----------------- Start Dashboard  ------------- */
 
-#device-chart {
+
+.dash-stat-center {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
+.dash-stat-center-left {
+    text-align: left;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    flex-wrap: wrap;
+}
 
+div[class*=dash-stat-center] p, div[class*=dash-stat-center] h6 {
+    width: 100%;
+}
+
+.chart-height {
+    height: 400px;
+}
+
+.full-height {
+    height: 100%;
+}
+
+.stat-row-margin{
+    margin:0px;
+    margin-bottom:10px;
+}
+
+.split-stat-rows {
+    height: calc((380px)/3);
+}
+
+#device-chart {
+    height: unset !important;
+    width: 60% !important;
+}
+
+.device-chart-cont {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+#admin-dash {
+    margin: 0px;
+}
 
 .stats-label {
     text-align: center;

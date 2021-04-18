@@ -79,6 +79,12 @@ namespace FINAL.Classes
                 }
             }
 
+            String stock = System.IO.File.ReadAllText(Environment.CurrentDirectory + "/HTML/PRODUCTSTATUS/2.html");
+            if (Stock.productInStock(id))
+            {
+                stock = "";
+            }
+
             conn.Close();
             baseString = baseString.Replace("{PRICE}", Utility.formatPrice(price))
                 .Replace("{NAME}", name).Replace("{DESCRIPTION}", description)
@@ -87,7 +93,8 @@ namespace FINAL.Classes
                 .Replace("{SIZES}", sizeHtml)
                 .Replace("{MAXQUANTITY}", maxQuantity)
                 .Replace("{PRICE}", price)
-                .Replace("{CATEGORY}", category);
+                .Replace("{CATEGORY}", category)
+                .Replace("{STOCK}", stock);
 
             if (!String.IsNullOrEmpty(wasPrice) && int.Parse(price) < int.Parse(wasPrice))
             {
@@ -148,6 +155,13 @@ namespace FINAL.Classes
 
             connSize.Close();
 
+            String stock = "outofstock,";
+            if (Stock.productInStock(id))
+            {
+                stock = "";
+            }
+
+            tags += stock;
             baseString = baseString.Replace("{PRICE}", Utility.formatPrice(price))
                 .Replace("{NAME}", name).Replace("{DESCRIPTION}", description)
                 .Replace("{IMAGE}", imagePath)

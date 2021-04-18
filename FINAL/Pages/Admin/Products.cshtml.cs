@@ -28,7 +28,6 @@ namespace FINAL.Pages.Admin
             List<String> users = new List<String>();
             while (reader.Read())
             {
-
                 String stock = System.IO.File.ReadAllText(Environment.CurrentDirectory + "/HTML/PRODUCTSTATUS/2.html");
                 if (Stock.productInStock(reader["ProductID"].ToString()))
                 {

@@ -207,7 +207,7 @@
                 </div>
 
                 <div class="col-12">
-                    <h5 style="margin-bottom: 5px; margin-top:5px; font-weight:600;">Details</h5>
+                    <h5 style="margin-bottom: 3px; margin-top:0px; font-weight:600;">Details</h5>
                 </div>
 
                 <div id="product-info-container">
@@ -218,20 +218,20 @@
 
                 <div id="product-info-container">
                     <div class="col-12">
-                        <h5 style="margin-bottom: 5px; margin-top:5px; font-weight:600;">Materials</h5>
+                        <h5 style="margin-bottom: 3px; margin-top:0px; font-weight:600;">Materials</h5>
                     </div>
                     <div class="col-12" id="product-desc"><p style="font-size:14pt;">100% Cotton</p></div>
                 </div>
 
                 <div id="product-info-container">
                     <div class="col-12">
-                        <h5 style="margin-bottom: 5px; margin-top:5px;  font-weight:600;">Product ID</h5>
+                        <h5 style="margin-bottom: 3px; margin-top:0px;  font-weight:600;">Product ID</h5>
                     </div>
                     <div class="col-12" id="product-desc"><p style="font-size:14pt;">#{ID}</p></div>
                 </div>
 
                 <div class="col-12">
-                    <h5 style="margin-bottom: 5px; margin-top:5px; font-weight:600;">Quantity</h5>
+                    <h5 style="margin-bottom: 10px; margin-top:0px; font-weight:600;">Quantity</h5>
                 </div>
 
                 <div class="col-12">
@@ -249,14 +249,14 @@
 
                 <div class="col-12">
 
-                    <label for="input-size"><h5 style="margin-bottom: 5px; margin-top:12px;  font-weight:600;">Size</h5></label>
+                    <label for="input-size"><h5 style="margin-bottom: 2px; margin-top:7px;  font-weight:600;">Size</h5></label>
                     <select class="form-control" id="input-size" onchange="updateQuantity();">
                         {SIZES}
                     </select>
                 </div>
-
-                <div class="col-12" style="padding-top: 20px">
-                    <button id="create-btn" class="btn btn-ouioui-secondary margin-left-5px" onclick="addToBasket();">Add to Basket</button>
+                <div style="margin:15px;">{STOCK}</div>
+                <div class="col-12" style="padding-top: 0px">
+                    <button id="create-btn" class="btn btn-ouioui-secondary" onclick="addToBasket();">Add to Basket</button>
                 </div>
 
                 <script>

@@ -343,9 +343,8 @@ function updateProduct(productID) {
     var price = document.getElementById('ep-price-' + productID).value;
     var wasprice = document.getElementById('ep-wasprice-' + productID).value;
     var category = document.getElementById('ep-category-' + productID).value;
-    var tags = document.getElementById('ep-tags-' + productID).value;
     var material = document.getElementById('ep-material-' + productID).value;
 
-    connection.invoke("updateProduct", getSessionID(), productID, name, description, price, wasprice, category, tags, material, sizes, quantities)
+    connection.invoke("updateProduct", getSessionID(), productID, name, description, price, wasprice, category, material, sizes, quantities)
 
 }

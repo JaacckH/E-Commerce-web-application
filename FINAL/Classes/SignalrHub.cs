@@ -425,7 +425,7 @@ namespace FINAL.Classes
         }
 
         public void updateProduct(String sessionID, String productID, String name, String description, String price,
-            String wasprice, String category, String tags, String material, String sizeArray, String quantityArray)
+            String wasprice, String category, String material, String sizeArray, String quantityArray)
         {
             if (UserFunctions.isAdmin(UserFunctions.getUserID(sessionID)))
             {
@@ -469,7 +469,7 @@ namespace FINAL.Classes
                     }
 
                     DBFunctions.sendQuery("UPDATE Products SET Name='" + name + "', Description='" + description + "', " +
-                        "Price='" + price + "', WasPrice='" + wasprice + "', Category='" + category + "', Tags='" + tags + "', " +
+                        "Price='" + price + "', WasPrice='" + wasprice + "', Category='" + category + "', " +
                         "Materials='" + material + "' WHERE ProductID='" + productID + "';");
 
                     sendSuccessAlert(Context.ConnectionId, "Product Information Updated");

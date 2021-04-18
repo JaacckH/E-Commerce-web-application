@@ -952,6 +952,12 @@ $(document).ready(function () {
             $("#" + element).append(featureTags);
             //<div class="feature-tag new"><p>NEW</p></div>
         }
+        if ($("#" + element + " .product-tags-hidden").text().toLowerCase().indexOf('outofstock') > -1) {
+
+            var featureTags = '<div class="feature-tag feature" style="background-color:#ff0024;"><p>OUT OF STOCK</p></div>';
+            $("#" + element).append(featureTags);
+            //<div class="feature-tag new"><p>NEW</p></div>
+        }
 
         var TagValue = false;
         var value = $("#product-search-rows").val().toLowerCase();

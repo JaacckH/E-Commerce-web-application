@@ -15,6 +15,7 @@ namespace FINAL.Classes
         {
             try
             {
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
                 Console.WriteLine("(SQL) ATTEMPTING: " + input);
                 SqlConnection conn = new SqlConnection();
                 conn.ConnectionString = DBFunctions.connectionString;
@@ -23,12 +24,16 @@ namespace FINAL.Classes
                 query.CommandText = input;
                 query.ExecuteReader();
                 conn.Close();
+                Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine("(SQL) COMPLETED:  " + input);
             }
             catch(SqlException ex)
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("(SQL) ERROR: " + ex.Message);
             }
+
+            Console.ForegroundColor = ConsoleColor.White;
 
         }
 

@@ -14,21 +14,21 @@
                         <tbody>
                             <tr class="row">
                                 <th class="col">
-                                    <small>8</small>
+                                    <small>10</small>
                                 </th>
-                                <th class="col"><small class="text-muted">10</small></th>
-                                <th class="col"><small>12</small></th>
+                                <th class="col"><small class="text-muted">12</small></th>
+                                <th class="col"><small>14</small></th>
                                 <th class="col"><small class="text-muted">16</small></th>
                                 <th class="col"><small class="text-muted">18</small></th>
                                 <th class="col"><small>20</small></th>
                             </tr>
                             <tr class="row">
-                                <td class="col"><small>1</small></td>
-                                <td class="col"><small class="text-muted">0</small></td>
-                                <td class="col"><small>2</small></td>
-                                <td class="col"><small class="text-muted">0</small></td>
-                                <td class="col"><small class="text-muted">0</small></td>
-                                <td class="col"><small>1</small></td>
+                                <td class="col"><small>{SIZE10}</small></td>
+                                <td class="col"><small class="text-muted">{SIZE12}</small></td>
+                                <td class="col"><small>{SIZE14}</small></td>
+                                <td class="col"><small class="text-muted">{SIZE16}</small></td>
+                                <td class="col"><small class="text-muted">{SIZE18}</small></td>
+                                <td class="col"><small>{SIZE20}</small></td>
                             </tr>
                         </tbody>
                     </table>
@@ -89,52 +89,16 @@
                         <div class="col-12 size-table margin-5-px row">
 
                             <div class="row col-12">
-                                <div class="size-column">
-                                    <select class="form-control" name="input-size-0">
-                                        <option>6</option>
-                                        <option>8</option>
-                                        <option>10</option>
-                                        <option>12</option>
-                                        <option>14</option>
-                                        <option>16</option>
-                                        <option>18</option>
-                                        <option>20</option>
-                                        <option>22</option>
-                                        <option disabled="">MENS SIZE</option>
-                                        <option>XS</option>
-                                        <option>S</option>
-                                        <option>M</option>
-                                        <option>L</option>
-                                        <option>XL</option>
-                                        <option>XXL</option>
-                                        <option disabled="">EU SIZE</option>
-                                        <option>35</option>
-                                        <option>36</option>
-                                        <option>37</option>
-                                        <option>38</option>
-                                        <option>39</option>
-                                        <option>40</option>
-                                        <option>41</option>
-                                        <option>42</option>
-                                    </select>
-                                    <input class="size-input" name="input-quantity-0" type="text" value="1">
-                                </div>
+                                {SIZES}
 
                                 <div class="size-column add-size-type">
                                     <button class="btn add-size-btn" onclick="AddSizeCol('{ID}')">
                                         <i class="fas fa-plus"></i>
                                     </button>
                                 </div>
-
-
                             </div>
-
-
                         </div>
                     </div>
-
-
-
 
                     <div class="row">
                         <div class="form-group col-12 col-lg-6">
@@ -160,7 +124,7 @@
                             <textarea id="material-info" class="form-control" rows="3"></textarea>
                         </div>
                         <div class="form-group col-12">
-                            <label for="additional-images">Additional Images:</label>
+                            <label for="additional-images">Product Images:</label>
                             <div class="imges-row row col-12">
 
                                 <div id="existing-image-12" class="img-column contains" onclick="RemoveUpload(12,0)">
@@ -174,10 +138,8 @@
                                     <label for="image-upload" class="image-upload btn add-img-btn"></label>
                                     <input hidden="" type="file" id="image-upload" onchange="AddImageUpload(this)" name="filename" accept="image/*">
                                 </div>
-
-
                             </div>
-                            <button class="btn btn-secondary update-btn">Update</button>
+                            <button class="btn btn-secondary update-btn" onclick="updateProduct('{ID}');">Update</button>
                         </div>
                     </div>
 

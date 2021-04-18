@@ -11,7 +11,7 @@
         <nav>
             <div class="nav nav-tabs" id="nav-tab" role="tablist">
                 <a class="nav-link active" id="nav-general-tab" data-toggle="tab" href="#nav-general" role="tab" aria-controls="nav-general" aria-selected="true">General</a>
-                <a class="nav-link" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="false">Home Page</a>
+                <a class="nav-link" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="false">Site Pages</a>
                 <a class="nav-link" id="nav-shop-tab" data-toggle="tab" href="#nav-shop" role="tab" aria-controls="nav-shop" aria-selected="false">Shop</a>
                 <a class="nav-link" id="nav-emails-tab" data-toggle="tab" href="#nav-emails" role="tab" aria-controls="nav-emails" aria-selected="false">Emails</a>
             </div>
@@ -50,9 +50,81 @@
                 <p>To be confirmed</p>
                 <button type="submit" class="btn btn-primary" onclick="updateSettings();">Update</button>
             </div>
-            <div class="tab-pane fade" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                <h5>Home Page Settings</h5>
-                <p>Change images, Change text areas, Change icons</p>
+            <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                <h5>Home Page:</h5>
+
+                <div class="form-group">
+                    <label for="home-header">Header:</label>
+                    <textarea type="textarea" class="form-control" id="home-header" placeholder="header">EUROPEAN 
+FASHION</textarea>
+                </div>
+                <div class="form-group">
+                    <label for="home-header-txt">Header Text:</label>
+                    <textarea type="textarea" class="form-control" id="home-header-txt" placeholder="header">Trendy and Unique clothes, shoes and accessories from Europe available at Harbour Front Building in Port Louis, at Royal Road in Rose Hill and on-line. 95% of our products are one only to make you feel unique</textarea>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-md-6">
+                        <p>Header Image:</p>
+                        <div class="input-group mb-3">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="header-img">
+                                <label class="custom-file-label" for="header-img" aria-describedby="header-img">Choose file</label>
+                            </div>
+                            <div class="input-group-append">
+                                <span class="input-group-text" id="header-img">Upload</span>
+                            </div>
+                        </div>
+                        <div class="card img-demo"><img src="https://raw.githubusercontent.com/nateainsworth/Group-24/master/Group-24/wwwroot/images/Header-Img.png" /></div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <p>Footer Image:</p>
+                        <div class="input-group mb-3">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="footer-img">
+                                <label class="custom-file-label" for="footer-img" aria-describedby="footer-img">Choose file</label>
+                            </div>
+                            <div class="input-group-append">
+                                <span class="input-group-text" id="footer-img">Upload</span>
+                            </div>
+                        </div>
+                        <div class="card img-demo"><img src="https://github.com/nateainsworth/Group-24/blob/master/Group-24/wwwroot/images/shop-picture.png?raw=true" /></div>
+                    </div>
+                </div>
+                <h5 class="mt-3">About Us Page:</h5>
+                <div class="form-group">
+                    <label for="home-header">About Us Header:</label>
+                    <textarea type="textarea" class="form-control" id="home-header" placeholder="header">ABOUT
+US</textarea>
+                </div>
+                <div class="form-group">
+                    <label for="about-header-txt">About Us Text:</label>
+                    <textarea type="textarea" class="form-control" id="about-header-txt" placeholder="header">Founded in 2017 by two Entrepreneurs, Sam from Mauritius and Rafal from Poland. Oui Oui Fashion brings unique fashion and latest trends from Europe to Mauritius. Having over 31000 followers on Facebook and over 11000 followers on Instagram Oui Oui Fashion has a well established on-line presence. Our mission is to deliver an outstanding customer service and quality fashion in Mauritius.</textarea>
+                </div>
+
+                <h5 class="mt-3">Site Colours:</h5>
+                <p>Primary:</p>
+                <div id="cp5a" class="input-group" title="Using format option">
+                    <input type="text" class="form-control input-lg" value="#A3CCC8" />
+                    <span class="input-group-append">
+                        <span class="input-group-text colorpicker-input-addon"><i></i></span>
+                    </span>
+                </div>
+                <p>Secondary:</p>
+                <div id="cp5b" class="input-group" title="Using format option">
+                    <input type="text" class="form-control input-lg" value="#E3E3E3" />
+                    <span class="input-group-append">
+                        <span class="input-group-text colorpicker-input-addon"><i></i></span>
+                    </span>
+                </div>
+                <p>Font:</p>
+                <div id="cp5c" class="input-group" title="Using format option">
+                    <input type="text" class="form-control input-lg" value="#000000" />
+                    <span class="input-group-append">
+                        <span class="input-group-text colorpicker-input-addon"><i></i></span>
+                    </span>
+                </div>
+
+
             </div>
             <div class="tab-pane fade" id="nav-shop" role="tabpanel" aria-labelledby="nav-shop-tab">
                 <h4>Shop Settings</h4>
@@ -122,43 +194,43 @@
                         </div>
                     </div>
                     <!--
-                    <div class="card">
-                        <div class="card-header" id="headingThree">
-                            <h2 class="mb-0">
-                                <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                    Add New Shipping Class
-                                </button>
-                            </h2>
-                        </div>
-                        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-                            <div class="card-body">
-                                <form>
-                                    <div class="form-row">
-                                        <div class="form-group col-md-6">
-                                            <label for="input-class-2">Class Name</label>
-                                            <input type="text" class="form-control" id="input-class-2" value="" placeholder="e.g. Large Parcel">
-                                        </div>
-                                        <div class="form-group col-md-6">
+            <div class="card">
+                <div class="card-header" id="headingThree">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            Add New Shipping Class
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                    <div class="card-body">
+                        <form>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="input-class-2">Class Name</label>
+                                    <input type="text" class="form-control" id="input-class-2" value="" placeholder="e.g. Large Parcel">
+                                </div>
+                                <div class="form-group col-md-6">
 
-                                            <label for="input-cost-2">Cost Rs</label>
-                                            <input type="text" class="form-control" id="input-cost-2" value="" placeholder="e.g. 1000">
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <label for="input-type-2">Calculation Type</label>
-                                            <select class="custom-select" id="input-type-2">
-                                                <option selected>Charge Shipping Per Item</option>
-                                                <option value="1">Charge Shipping Using The Highest Class</option>
-                                                <option value="2">Add shipping Class Once & Apply Higher Class If Applicable</option>
-                                            </select>
-                                        </div>
+                                    <label for="input-cost-2">Cost Rs</label>
+                                    <input type="text" class="form-control" id="input-cost-2" value="" placeholder="e.g. 1000">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="input-type-2">Calculation Type</label>
+                                    <select class="custom-select" id="input-type-2">
+                                        <option selected>Charge Shipping Per Item</option>
+                                        <option value="1">Charge Shipping Using The Highest Class</option>
+                                        <option value="2">Add shipping Class Once & Apply Higher Class If Applicable</option>
+                                    </select>
+                                </div>
 
-                                    </div>
-                                    <button type="submit" class="btn btn-primary">Add Shipping Class</button>
-                                </form>
                             </div>
-                        </div>
+                            <button type="submit" class="btn btn-primary">Add Shipping Class</button>
+                        </form>
                     </div>
-                        -->
+                </div>
+            </div>
+                -->
                 </div>
 
                 <div class="row">

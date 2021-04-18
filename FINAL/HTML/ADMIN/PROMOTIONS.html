@@ -1,19 +1,22 @@
 ﻿<li id="data-row-{ID}" class="admin-list shadow" style="border:none; margin-bottom: 20px;">
     <div id="summary-panel-{ID}" class="row" onclick="OpenDetails('{ID}');">
-        <div class="col-2 col-md-2 col-xl-2">
+        <div class="col-6 col-md-4 col-xl-2 order-0 order-md-0 order-xl-0">
             <b>{CODE}</b>
         </div>
-        <div class="col-5 col-md-4 col-xl-3">
+        <div class="col-6 col-md-4 col-xl-2 order-2 order-md-3 order-xl-1">
+            <p>{PERCENTAGE}%</p>
+        </div>
+        <div class="col-6 col-md-4 col-xl-2 order-1 order-md-1 order-xl-2">
             {USAGE}
         </div>
-        <div class="col-5 col-md-3 col-xl-3">
+        <div class="col-6 col-md-4 col-xl-2 order-3 order-md-2 order-xl-3">
             {STATUS}
         </div>
-        <div class="col-2 d-md-none"></div>
-        <div class="col-5 col-5 col-md-1 col-xl-2">
+
+        <div class="col-6 col-md-4 col-xl-2 order-4 order-md-4 order-xl-4">
             {START}
         </div>
-        <div class="col-5 col-5 col-md-1 col-xl-2">
+        <div class="col-6 col-md-4 col-xl-2 order-5 order-md-5 order-xl-5">
             {END}
         </div>
     </div>

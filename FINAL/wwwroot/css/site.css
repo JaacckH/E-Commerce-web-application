@@ -1828,8 +1828,19 @@ svg:not(:root) {
 
 
 .img-demo {
-    height: 300px;
+    height: 300px !important;
     width: 100%;
 }
 
 /* ------------------------ admin settings panel end ------------------------------*/
+
+.stat-container {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+.stat-card{
+    height:100%;
+
+}

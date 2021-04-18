@@ -427,6 +427,8 @@ namespace FINAL.Classes
         public void updateProduct(String sessionID, String productID, String name, String description, String price,
             String wasprice, String category, String material, String sizeArray, String quantityArray)
         {
+            Console.WriteLine(sizeArray);
+            Console.WriteLine(quantityArray);
             if (UserFunctions.isAdmin(UserFunctions.getUserID(sessionID)))
             {
                 price = price.Replace(",", "");
@@ -458,6 +460,8 @@ namespace FINAL.Classes
 
                         if (quantity == "0" || String.IsNullOrEmpty(quantity))
                         {
+                            //Console.WriteLine("ret:" + Stock.getStockIDsFromProductID(productID, size));
+                            DBFunctions.sendQuery("DELETE FROM Basket WHERE StockID='" + Stock.getStockIDsFromProductID(productID, size) + "';");
                             DBFunctions.sendQuery("DELETE FROM Stock WHERE ProductID='" + productID + "' AND SizeID='" + size + "';");
                         }
                         else

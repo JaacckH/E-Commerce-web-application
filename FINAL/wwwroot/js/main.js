@@ -1026,22 +1026,31 @@ function menuSelection(id) {
 
 /* end of user settigns */
 
+window.ActivatePassword = ActivatePassword;
+function ActivatePassword() {
 
 
-$(document).ready(function () {
-    $('input[type="checkbox"]').click(function () {
+    var passwordFields = '<div class="col-12">';
+    passwordFields += '  <div class="form-group">';
+    passwordFields += '    <label for="UserEmail">Create Password</label>';
+    passwordFields += '    <input type="Password" class="form-control" id="UserPassword" name="UserPassword"   required>';
+    passwordFields += '  </div>';
+    passwordFields += '</div>';
+    passwordFields += '<div class="col-12">';
+    passwordFields += '  <div class="form-group">';
+    passwordFields += '    <label for="UserEmail">Confirm Password</label>';
+    passwordFields += '    <input type="Password" class="form-control" id="UserConfirmPassword" name="UserConfirmPassword"  required>';
+    passwordFields += '  </div>';
+    passwordFields += '</div>';
 
-        const element = document.querySelector("#create-account-inputs");
+    if ($('#password-activate').is(":checked")) {
+        $("#create-account-inputs").append(passwordFields);
+    }
+    else if ($('#password-activate').is(":not(:checked)")) {
+        $("#create-account-inputs").empty();
+    }
+}
 
-
-        if ($(this).is(":checked")) {
-            element.classList.toggle("d-none");
-        }
-        else if ($(this).is(":not(:checked)")) {
-            element.classList.toggle("d-none");
-        }
-    });
-});
 
 function hideAlert() {
     //document.getElementById('alert-box').style.visibility = 'hidden';

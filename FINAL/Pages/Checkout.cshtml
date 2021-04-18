@@ -32,13 +32,13 @@
                                     <div class="col-6">
                                         <div class="form-group">
                                             <label for="UserName">First name</label>
-                                            <input type="text" class="form-control" id="UserName" name="name" required>
+                                            <input type="text" class="form-control" id="UserName" name="name" value="nate" required>
                                         </div>
                                     </div>
                                     <div class="col-6">
                                         <div class="form-group">
                                             <label for="UserLastName">Last name</label>
-                                            <input type="text" class="form-control" id="UserLastName" name="surname" required>
+                                            <input type="text" class="form-control" id="UserLastName" name="surname" value="tester" required>
                                         </div>
                                     </div>
                                 </div>
@@ -47,71 +47,55 @@
                             <div class="col-12">
                                 <div class="form-group">
                                     <label for="Useraddress">Street address</label>
-                                    <input type="text" class="form-control" id="Useraddress" name="addressline1" placeholder="Address Line 1" required>
+                                    <input type="text" class="form-control" id="Useraddress" name="addressline1" placeholder="Address Line 1" value="1 test lane" required>
                                     <p></p>
-                                    <input type="text" class="form-control" id="Useraddress" name="addressline2" placeholder="Apartament, suite, unit etc. (optional)" required>
+                                    <input type="text" class="form-control" id="Useraddress" name="addressline2" placeholder="Apartament, suite, unit etc. (optional)">
                                 </div>
                             </div>
 
                             <div class="col-12">
                                 <div class="form-group">
-                                    <label for="Useraddress2">Town / City</label>
-                                    <input type="text" class="form-control" id="Useraddress2" required>
+                                    <label for="Useraddress2" >Town / City</label>
+                                    <input type="text" class="form-control" id="Useraddress2" value="Mauritius" required>
                                 </div>
                             </div>
 
                             <div class="col-12">
                                 <div class="form-group">
                                     <label for="UserPostCode">Postcode</label>
-                                    <input type="text" class="form-control" id="UserPostCode" name="postcode" required>
+                                    <input type="text" class="form-control" id="UserPostCode" name="postcode" value="zpcd5" required>
                                 </div>
                             </div>
 
                             <div class="col-12">
                                 <div class="form-group">
                                     <label for="UserNo">Phone number</label>
-                                    <input type="number" class="form-control" id="UserNo" name="phonenumber" required>
+                                    <input type="number" class="form-control" id="UserNo" name="phonenumber" value="794" required>
                                 </div>
                             </div>
 
                             <div class="col-12">
                                 <div class="form-group">
                                     <label for="UserEmail">Email address</label>
-                                    <input type="email" class="form-control" id="UserEmail" name="email" required>
+                                    <input type="email" class="form-control" id="UserEmail" name="email" value="nate@test.com" required>
                                 </div>
                             </div>
 
                             @if (Classes.UserFunctions.userLoggedIn(HttpContext.Request.Cookies["SessionID"]) == false)
                             {
-                                <div class="col-12">
-                                    <div class="form-check">
-                                        <input Style="display:block;" class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                        <label class="form-check-label" for="flexCheckDefault">
-                                            I want to create account
-                                        </label>
+                                
+                                    <div class="col-12">
+                                        <div class="form-check mb-3">
+                                            <input Style="display:block;" class="form-check-input" type="checkbox" value="" id="password-activate" onclick="ActivatePassword()">
+                                            <label class="form-check-label" for="password-activate">I want to create account</label>
+                                        </div>
                                     </div>
-                                </div>
+                                    <div id="create-account-inputs">
+
+                                    </div>
+                                
                             }
 
-
-                            <br>
-                            <div id="create-account-inputs" class="d-none">
-
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <label for="UserEmail">Create Password</label>
-                                        <input type="Password" class="form-control" id="UserPassword" name="UserPassword" required>
-                                    </div>
-                                </div>
-
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <label for="UserEmail">Confirm Password</label>
-                                        <input type="Password" class="form-control" id="UserConfirmPassword" name="UserConfirmPassword" required>
-                                    </div>
-                                </div>
-
-                            </div>
 
                         </div>
 
@@ -128,10 +112,10 @@
                                             <label for="UserCardNo">Credit card number:</label>
                                             <div class="">
                                                 <div class="row card_date">
-                                                    <input type="num" style="width:20%" class="form-control" maxlength="4" name="cardnumber1" required />
-                                                    <input type="num" style="width:20%" class="form-control" maxlength="4" name="cardnumber2" required />
-                                                    <input type="num" style="width:20%" class="form-control" maxlength="4" name="cardnumber3" required />
-                                                    <input type="num" style="width:20%" class="form-control" maxlength="4" name="cardnumber4" required />
+                                                    <input type="num" style="width:20%" class="form-control" maxlength="4" name="cardnumber1" value="0384" required />
+                                                    <input type="num" style="width:20%" class="form-control" maxlength="4" name="cardnumber2" value="0384" required />
+                                                    <input type="num" style="width:20%" class="form-control" maxlength="4" name="cardnumber3" value="0384" required />
+                                                    <input type="num" style="width:20%" class="form-control" maxlength="4" name="cardnumber4" value="0384" required />
                                                 </div>
                                             </div>
                                         </div>
@@ -144,8 +128,8 @@
                                             <label for="UserCardMonth">Expires:</label>
                                             <div class="col-12">
                                                 <div class="row card_date">
-                                                    <input type="num" placeholder="MM" class="form-control" id="UserCardMonth" name="expiry1" style="width:45%" required>
-                                                    <input type="num" placeholder="YY" class="form-control" id="UserCardYear" name="expiry2" style="width:45%" required>
+                                                    <input type="num" placeholder="MM" class="form-control" id="UserCardMonth" name="expiry1" style="width:45%" value="02" required>
+                                                    <input type="num" placeholder="YY" class="form-control" id="UserCardYear" name="expiry2" style="width:45%" value="22" required>
                                                 </div>
 
                                             </div>
@@ -163,14 +147,14 @@
                                     <div class="col-8">
                                         <div class="form-group ">
                                             <label for="UserCardNo">Name on Card:</label>
-                                            <input type="text" class="form-control" id="UserCardNo" style="width: 100%" required>
+                                            <input type="text" class="form-control" id="UserCardNo" style="width: 100%" value="Nate Tester" required>
                                         </div>
                                     </div>
                                     <div class="col-1"></div>
                                     <div class="col-3">
                                         <div class="form-group">
                                             <label for="UserCardNo">CVC:</label>
-                                            <input type="number" class="form-control" id="UserCardNo" name="cv2" required>
+                                            <input type="number" class="form-control" id="UserCardNo" name="cv2" value="028" required>
                                         </div>
                                     </div>
                                 </div>

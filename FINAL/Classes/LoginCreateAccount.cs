@@ -11,9 +11,9 @@ namespace FINAL.Classes
 {
     public class LoginCreateAccount
     {
-        public static String createSuccessful(String sessionID, String forename, String surname, String email, String password, String confirmpassword, String addressline1, int phonenumber)
+        public static String createSuccessful(String sessionID, String forename, String surname, String email, String password, String confirmpassword, String addressline1, String phonenumber)
         {
-            if (String.IsNullOrEmpty(forename) || String.IsNullOrEmpty(surname) || String.IsNullOrEmpty(email) || String.IsNullOrEmpty(password) || String.IsNullOrEmpty(addressline1) || String.IsNullOrEmpty(phonenumber.ToString()))
+            if (String.IsNullOrEmpty(forename) || String.IsNullOrEmpty(surname) || String.IsNullOrEmpty(email) || String.IsNullOrEmpty(password) || String.IsNullOrEmpty(addressline1))
             {
                 return "You left an empty field";
             }

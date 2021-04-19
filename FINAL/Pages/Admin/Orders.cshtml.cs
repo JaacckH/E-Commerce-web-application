@@ -27,6 +27,18 @@ namespace FINAL.Pages.Admin
             {
                 try
                 {
+                    String promoCode = reader["PromoCode"].ToString() + " (-" + Promotions.getPercentage(reader["PromoCode"].ToString()) + "%)";
+                    if (String.IsNullOrEmpty(promoCode))
+                    {
+                        promoCode = "N/A";
+                    }
+
+                    String loyaltyPoints = reader["LoyaltyPoints"].ToString() + " (-Rs " + ((int.Parse(reader["LoyaltyPoints"].ToString())) * 50) + ")";
+                    if (String.IsNullOrEmpty(loyaltyPoints))
+                    {
+                        loyaltyPoints = "0";
+                    }
+
                     String baseString = System.IO.File.ReadAllText(Environment.CurrentDirectory + "/HTML/ORDERS/ORDER.html");
                     String status = System.IO.File.ReadAllText(Environment.CurrentDirectory
                                 + "/HTML/ORDERS/STATUS/" + Orders.getOrderStatus(reader["OrderID"].ToString()) + ".html");
@@ -34,7 +46,9 @@ namespace FINAL.Pages.Admin
                         .Replace("{DATE}", Utility.getDateFromDay(int.Parse(reader["DateTime"].ToString())))
                         .Replace("{PRICE}", Utility.formatPrice(reader["Price"].ToString())).Replace("{STATUS}", status)
                         .Replace("{NAME}", reader["Name"].ToString())
-                        .Replace("{USERID}", Orders.getWhoOrdered(reader["OrderID"].ToString()));
+                        .Replace("{USERID}", Orders.getWhoOrdered(reader["OrderID"].ToString()))
+                        .Replace("{PROMOCODE}", promoCode)
+                        .Replace("{LOYALTYPOINT}", loyaltyPoints);
 
                     String address = reader["Name"] + "<br/>" + reader["AddressLine1"] + "<br/>" + reader["Postcode"];
                     baseString = baseString.Replace("{ADDRESS}", address).Replace("{PRODUCTS}", getOrderProducts(reader["OrderID"].ToString()));

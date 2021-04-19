@@ -15,6 +15,13 @@ namespace FINAL.Classes
         {
             GC.Collect();
 
+            double loyaltyPoints = Int32.Parse(UserFunctions.getUserDetails(userID, "Points"));
+
+
+            int numbeOfPointsAllowed = (int)Math.Floor(price / 1000.0);
+
+
+            
             if (Promotions.codeExists(promoCode))
             {
                 int percent = Promotions.getPercentage(promoCode);
@@ -25,6 +32,17 @@ namespace FINAL.Classes
                 promoCode = null;
             }
 
+
+            int deductedPrice = 0;
+            for (int i = 0; i < numbeOfPointsAllowed; i++)
+            {
+                if (loyaltyPoints > 9)
+                {
+                    deductedPrice += 500;
+                    loyaltyPoints -= 10;
+                    price -= 500;
+                }
+            }
             String orderReference = UserFunctions.generateSessionID();
 
             foreach (int item in stockItems)
@@ -42,14 +60,17 @@ namespace FINAL.Classes
                 userID += " (GUEST)";
             }
 
-            double loyaltyPoints = int.Parse(UserFunctions.getUserDetails(userID, "Points"));
+
+
             loyaltyPoints += Math.Floor(price / 500.0);
             DBFunctions.sendQuery("UPDATE Users SET Points='" + loyaltyPoints + "' WHERE UserID='" + userID + "';");
 
 
-            DBFunctions.sendQuery("INSERT INTO Orders (OrderID, UserID, Name, AddressLine1, Postcode, PhoneNumber, Price, CardNumber, CV2, Expiry, DateTime, PromoCode, Status) " +
+            
+
+            DBFunctions.sendQuery("INSERT INTO Orders (OrderID, UserID, Name, AddressLine1, Postcode, PhoneNumber, Price, CardNumber, CV2, Expiry, DateTime, PromoCode, Status, LoyaltyPoints) " +
                 "VALUES('" + orderReference + "', '" + userID + "', '" + name + "', '" + addressLine1 + "', 'N/A', '"
-                + phoneNumber + "', '" + price + "', '" + cardNum + "', '" + cv2 + "', '" + expiry + "', '" + DateTime.Now.DayOfYear + "', '" + promoCode + "', '1');");
+                + phoneNumber + "', '" + price + "', '" + cardNum + "', '" + cv2 + "', '" + expiry + "', '" + DateTime.Now.DayOfYear + "', '" + promoCode + "', '1', '"+ deductedPrice + "');");
 
         }
 

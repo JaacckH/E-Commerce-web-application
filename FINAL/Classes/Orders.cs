@@ -42,8 +42,8 @@ namespace FINAL.Classes
                 userID += " (GUEST)";
             }
 
-            double loyaltyPoints = Int32.Parse(UserFunctions.getUserDetails(userID, "Points"));
-            loyaltyPoints += Math.Round(price / 500.0);
+            double loyaltyPoints = int.Parse(UserFunctions.getUserDetails(userID, "Points"));
+            loyaltyPoints += Math.Floor(price / 500.0);
             DBFunctions.sendQuery("UPDATE Users SET Points='" + loyaltyPoints + "' WHERE UserID='" + userID + "';");
 
 

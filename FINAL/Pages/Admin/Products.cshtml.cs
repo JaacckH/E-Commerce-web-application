@@ -41,6 +41,7 @@ namespace FINAL.Pages.Admin
                     .Replace("{IMAGE}", reader["ImagePath"].ToString()).Replace("{DESCRIPTION}", reader["Description"].ToString())
                     .Replace("{MATERIALS}", reader["Materials"].ToString())
                     .Replace("{STOCK}", stock)
+                    .Replace("{FEATURED}", "Featured: " + ProductFunctions.featuredProduct(reader["ProductID"].ToString()))
 
                     .Replace("{SIZE10}", getQuantityOfSize(reader["ProductID"].ToString(), "10").ToString())
                     .Replace("{SIZE12}", getQuantityOfSize(reader["ProductID"].ToString(), "12").ToString())

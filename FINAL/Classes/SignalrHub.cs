@@ -424,7 +424,7 @@ namespace FINAL.Classes
             }
         }
 
-        public async Task UpdateHomePageSettings(String sessionID, String homePageHeader, String homePageText)
+        public void UpdateHomePageSettings(String sessionID, String homePageHeader, String homePageText)
         {
             if (UserFunctions.isAdmin(UserFunctions.getUserID(sessionID)))
             {
@@ -493,8 +493,26 @@ namespace FINAL.Classes
                     sendAlert(Context.ConnectionId, "Please fill in all the fields");
                     return;
                 }
+            }
+        }
 
+        public async Task featureProduct(String sessionID, String productID)
+        {
+            if (ProductFunctions.toggleFeatured(productID) == true)
+            {
+                String featured = System.IO.File.ReadAllText(Environment.CurrentDirectory + "/HTML/FEATUREDSTATUS/2.html");
+                if (ProductFunctions.featuredProduct(productID))
+                {
+                    featured = System.IO.File.ReadAllText(Environment.CurrentDirectory + "/HTML/FEATUREDSTATUS/1.html");
+                }
 
+                sendSuccessAlert(Context.ConnectionId, "Featured Products Updated");
+                await sendContent(Context.ConnectionId, featured, "product-featured-1-" + productID);
+                await sendContent(Context.ConnectionId, featured, "product-featured-2-" + productID);
+            }
+            else
+            {
+                sendAlert(Context.ConnectionId, "You already have the max amount of Featured Products set");
             }
         }
 

@@ -34,6 +34,12 @@ namespace FINAL.Pages.Admin
                     stock = System.IO.File.ReadAllText(Environment.CurrentDirectory + "/HTML/PRODUCTSTATUS/1.html");
                 }
 
+                String featured = System.IO.File.ReadAllText(Environment.CurrentDirectory + "/HTML/FEATUREDSTATUS/2.html");
+                if (ProductFunctions.featuredProduct(reader["ProductID"].ToString()))
+                {
+                    featured = System.IO.File.ReadAllText(Environment.CurrentDirectory + "/HTML/FEATUREDSTATUS/1.html");
+                }
+
                 String baseString = System.IO.File.ReadAllText(Environment.CurrentDirectory + "/HTML/SETTINGS/EDITPRODUCT.html")
                     .Replace("{ID}", reader["ProductID"].ToString()).Replace("{NAME}", reader["Name"].ToString())
                     .Replace("{DESCRIPTION}", reader["Description"].ToString()).Replace("{CATEGORY}", reader["Category"].ToString())
@@ -41,7 +47,7 @@ namespace FINAL.Pages.Admin
                     .Replace("{IMAGE}", reader["ImagePath"].ToString()).Replace("{DESCRIPTION}", reader["Description"].ToString())
                     .Replace("{MATERIALS}", reader["Materials"].ToString())
                     .Replace("{STOCK}", stock)
-                    .Replace("{FEATURED}", "Featured: " + ProductFunctions.featuredProduct(reader["ProductID"].ToString()))
+                    .Replace("{FEATURED}", featured)
 
                     .Replace("{SIZE10}", getQuantityOfSize(reader["ProductID"].ToString(), "10").ToString())
                     .Replace("{SIZE12}", getQuantityOfSize(reader["ProductID"].ToString(), "12").ToString())

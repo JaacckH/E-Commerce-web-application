@@ -6,7 +6,7 @@
             </div>
             <div id="card-sml-detail-{ID}" class="col-md-8">
                 <div class="card-body" style="padding-bottom:5px;">
-                    <h5 class="card-title">{NAME} #{ID}</h5>
+                    <h5 class="card-title">{NAME} (#{ID})</h5>
                     <p class="card-text margin-5-px"><b>Category:</b> {CATEGORY}</p>
                     <p class="card-text margin-5-px"><b>Rs {PRICE}</b></p>
                     <p class="card-text margin-5-px"><b>Stock:</b></p>
@@ -32,8 +32,17 @@
                             </tr>
                         </tbody>
                     </table>
-                    <p style="margin-top:30px;">{STOCK}</p>
-                    <p style="margin-top:20px;">{FEATURED}</p>
+
+                    <div class="row">
+                        <div class="col-6">
+                            <p style="margin-top:20px;">{STOCK}</p>
+                        </div>
+                        <div class="col-6" style="padding-right:0px;">
+                            <div id="product-featured-1-{ID}" style="margin-top:20px;">{FEATURED}</div>
+                        </div>
+                    </div>
+
+
                     <button class="btn btn-ouioui-primary update-btn" onclick="OpenProductDetails('{ID}'); pid = '{ID}';" style="">Edit</button>
 
                 </div>
@@ -135,7 +144,10 @@
                                     <input hidden="" type="file" id="image-upload" onchange="AddImageUpload(this)" name="filename" accept="image/*">
                                 </div>
                             </div>
+                            <div id="product-featured-2-{ID}" style="margin-top:20px;">{FEATURED}</div>
+                            <button class="btn btn-ouioui-primary update-btn" onclick="setFeatureProduct('{ID}');">Toggle Featured</button>
                             <button class="btn btn-ouioui-primary update-btn" onclick="updateProduct('{ID}');">Update</button>
+
                         </div>
                     </div>
 

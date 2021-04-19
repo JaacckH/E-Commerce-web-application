@@ -1,180 +1,180 @@
 ﻿<style>
-       /* Write page CSS here*/
-       .smaller-image {
-           padding: 10px;
-           transition: 1s;
-       }
+    /* Write page CSS here*/
+    .smaller-image {
+        padding: 10px;
+        transition: 1s;
+    }
 
-           .smaller-image:hover {
-               padding: 7px;
-               transition: 1s;
-           }
+        .smaller-image:hover {
+            padding: 7px;
+            transition: 1s;
+        }
 
-       #product-info-container {
-           padding-bottom: 20px;
-       }
+    #product-info-container {
+        padding-bottom: 20px;
+    }
 
-       #product-page {
-           color: var(--text-1);
-       }
+    #product-page {
+        color: var(--text-1);
+    }
 
-       #Product-description {
-           padding-top: 10vh;
-       }
+    #Product-description {
+        padding-top: 10vh;
+    }
 
-           #Product-description h2 {
-               font-size: var(--text-size-reg);
-               font-weight: bold;
-           }
+        #Product-description h2 {
+            font-size: var(--text-size-reg);
+            font-weight: bold;
+        }
 
-           #Product-description a {
-               text-decoration: none;
-               color: var(--text-1);
-           }
+        #Product-description a {
+            text-decoration: none;
+            color: var(--text-1);
+        }
 
-       #product-desc {
-           font-size: var(--text-size-sml);
-       }
+    #product-desc {
+        font-size: var(--text-size-sml);
+    }
 
-       .color-checkbox {
-           width: 25px;
-           height: 25px;
-           cursor: pointer;
-       }
+    .color-checkbox {
+        width: 25px;
+        height: 25px;
+        cursor: pointer;
+    }
 
-           .color-checkbox .checkmark {
-               width: 100%;
-               height: 100%;
-               border: 2px solid #222;
-               display: inline-block;
-               border-radius: 2px;
-           }
+        .color-checkbox .checkmark {
+            width: 100%;
+            height: 100%;
+            border: 2px solid #222;
+            display: inline-block;
+            border-radius: 2px;
+        }
 
-       #green {
-           background: #a1c995;
-       }
+    #green {
+        background: #a1c995;
+    }
 
-       #blue {
-           background: #95bbc9;
-       }
+    #blue {
+        background: #95bbc9;
+    }
 
-       .color-checkbox input:checked + #green {
-           background: #a1c995 url(https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/White_check.svg/1200px-White_check.svg.png) center/70% no-repeat;
-       }
+    .color-checkbox input:checked + #green {
+        background: #a1c995 url(https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/White_check.svg/1200px-White_check.svg.png) center/70% no-repeat;
+    }
 
-       .color-checkbox input:checked + #blue {
-           background: #95bbc9 url(https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/White_check.svg/1200px-White_check.svg.png) center/70% no-repeat;
-       }
+    .color-checkbox input:checked + #blue {
+        background: #95bbc9 url(https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/White_check.svg/1200px-White_check.svg.png) center/70% no-repeat;
+    }
 
-       [type*='checkbox'] {
-           display: none;
-       }
+    [type*='checkbox'] {
+        display: none;
+    }
 
-       #other-products h6 {
-           padding-top: 20px;
-           margin-bottom: -4px;
-       }
+    #other-products h6 {
+        padding-top: 20px;
+        margin-bottom: -4px;
+    }
 
-       :root {
-           --bootstrap-border: #ced4da;
-       }
+    :root {
+        --bootstrap-border: #ced4da;
+    }
 
 
-       .quantity-input-group {
-           width: 150px;
-       }
+    .quantity-input-group {
+        width: 150px;
+    }
 
-           .quantity-input-group input {
-               text-align: center;
-           }
+        .quantity-input-group input {
+            text-align: center;
+        }
 
-           .quantity-input-group .btn {
-               border: 1px solid var(--bootstrap-border);
-           }
+        .quantity-input-group .btn {
+            border: 1px solid var(--bootstrap-border);
+        }
 
-               .quantity-input-group .btn:hover {
-                   background-color: var(--background-3);
-                   color: var(--text-2);
-               }
+            .quantity-input-group .btn:hover {
+                background-color: var(--background-3);
+                color: var(--text-2);
+            }
 
-       .btn:focus {
-           outline: none;
-           box-shadow: none;
-       }
+    .btn:focus {
+        outline: none;
+        box-shadow: none;
+    }
 
-       /* --------------- site wide START ----------------- */
-       .main {
-           width: 80vw;
-           margin: 0 10vw;
-           height: 50vh;
-           overflow: hidden;
-       }
+    /* --------------- site wide START ----------------- */
+    .main {
+        width: 80vw;
+        margin: 0 10vw;
+        height: 50vh;
+        overflow: hidden;
+    }
 
-       .text-1 {
-           color: var(--text-1);
-       }
+    .text-1 {
+        color: var(--text-1);
+    }
 
-       .text-2 {
-           color: var(--text-2);
-       }
+    .text-2 {
+        color: var(--text-2);
+    }
 
-       .background-1 {
-           background-color: var();
-       }
+    .background-1 {
+        background-color: var();
+    }
 
-       body {
-           font-family: 'Montserrat', sans-serif;
-       }
+    body {
+        font-family: 'Montserrat', sans-serif;
+    }
 
-       /*
+    /*
     * Setting the site variables, example of how to use
     * color:var(--text-1);
     *
     */
 
-       :root {
-           --background-1: #ffffff;
-           --background-2: #E3E3E3;
-           --background-3: #A3CCC8;
-           --text-1: #000000;
-           --text-2: #ffffff;
-           --text-size-reg: calc(20px + (20 - 18) * ((100vw - 300px) / (1600 - 300)));
-           --text-size-sml: calc(10px + (10 - 8) * ((100vw - 300px) / (1600 - 300)));
-       }
+    :root {
+        --background-1: #ffffff;
+        --background-2: #E3E3E3;
+        --background-3: #A3CCC8;
+        --text-1: #000000;
+        --text-2: #ffffff;
+        --text-size-reg: calc(20px + (20 - 18) * ((100vw - 300px) / (1600 - 300)));
+        --text-size-sml: calc(10px + (10 - 8) * ((100vw - 300px) / (1600 - 300)));
+    }
 
-       .verticle-align {
-           text-align: center;
-           display: flex;
-           align-items: center;
-           justify-content: center;
-       }
+    .verticle-align {
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 
-       .no-style {
-           padding: 0;
-           margin: 0;
-       }
+    .no-style {
+        padding: 0;
+        margin: 0;
+    }
 
 
-       /* ------------------ site wide END ----------------- */
+    /* ------------------ site wide END ----------------- */
 
-       /* ----- RESPONSIVE OPTIONS MUST STAY AT BOTTOM ----- */
+    /* ----- RESPONSIVE OPTIONS MUST STAY AT BOTTOM ----- */
 
-       /* SM size and above unless over ridden in bigger sizes */
-       @media (min-width: 576px) { /* sm size */
+    /* SM size and above unless over ridden in bigger sizes */
+    @media (min-width: 576px) { /* sm size */
 
-       }
+    }
 
-       /* MD size and above unless over ridden in bigger sizes */
-       @media (min-width: 768px) {
-       }
+    /* MD size and above unless over ridden in bigger sizes */
+    @media (min-width: 768px) {
+    }
 
-       /* LG size and above unless over ridden in bigger sizes */
-       @media (min-width: 992px) {
-       }
+    /* LG size and above unless over ridden in bigger sizes */
+    @media (min-width: 992px) {
+    }
 
-       /* XL size and above */
-       @media (min-width: 1200px) {
-       }
+    /* XL size and above */
+    @media (min-width: 1200px) {
+    }
 </style>
 
 
@@ -260,7 +260,7 @@
                 </div>
 
                 <script>
-                    maxQuantity = {MAXQUANTITY};
+                    maxQuantity = { MAXQUANTITY };
                 </script>
 
             </div>
@@ -270,24 +270,9 @@
         <div class="col-12 ">
             <h6>POPULAR PRODUCTS</h6>
             <div class="row">
-
-                <div class="col-12 col-md-6 col-xl-3 smaller-image">
-                    <img ] src="https://images.asos-media.com/products/asos-design-floral-drape-sleeve-midi-dress/13339918-1-purplefloral?$XXL$&wid=513&fit=constrain" alt="" style="width: 100%">
-                </div>
-                <div class="col-12 col-md-6 col-xl-3 smaller-image">
-                    <img src="https://images.asos-media.com/products/asos-design-one-shoulder-tuck-detail-midi-dress/11982354-1-blush?$XXL$&wid=513&fit=constrain" alt="" style="width: 100%">
-                </div>
-                <div class="col-12 col-md-6 col-xl-3 smaller-image">
-                    <img src="https://images.asos-media.com/products/asos-design-midi-tiered-smock-dress-in-floral-print/14832906-1-floralprint?$XXL$&wid=513&fit=constrain" alt="" style="width: 100%">
-                </div>
-                <div class="col-12 col-md-6 col-xl-3 smaller-image">
-                    <img src="https://images.asos-media.com/products/asos-design-cord-midi-smock-dress-in-bright-pink/13022133-4?$XXL$&wid=513&fit=constrain" alt="" style="width: 100%">
-                </div>
+                {FEATUREDPRODUCTS}
             </div>
-
-
         </div>
-
     </div>
 
 

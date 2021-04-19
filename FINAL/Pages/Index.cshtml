@@ -1,7 +1,7 @@
 ﻿@page
 @model Group_Project.Models.IndexModel
 @{
-    if(HttpContext.Request.Cookies["rtc"] == "True")
+    if (HttpContext.Request.Cookies["rtc"] == "True")
     {
         Response.Redirect("/Checkout");
     }
@@ -21,7 +21,7 @@
                 </div>
                 <div class="row col-12 social-header">
                     <div class="col-4 col-xl-3">
-                        <a href="https://www.facebook.com/OuiOuiFashionMauritius" target="_blank" >
+                        <a href="https://www.facebook.com/OuiOuiFashionMauritius" target="_blank">
                             <img class="social-icons" src="https://raw.githubusercontent.com/nateainsworth/Group-24/master/Group-24/wwwroot/images/Facebook.png" />
                         </a>
                     </div>
@@ -60,7 +60,7 @@
                     </div>
                 </div>
                 <div class="col-12 col-md-4 mb-3">
-                    <div class="card shadow"  onclick="window.location.href = '/Shop?category=clothing'">
+                    <div class="card shadow" onclick="window.location.href = '/Shop?category=clothing'">
                         <img src="https://images.asos-media.com/products/asos-design-smock-mini-shirt-dress-in-black/22368589-1-black?$n_640w$&wid=634&fit=constrain" class="card-img-top" alt="Clothing">
                         <div class="card-body">
                             <h2 class="card-title">CLOTHING</h2>
@@ -84,11 +84,20 @@
         </div>
     </div>
     <div class="page-3">
-        <h1 class="section-header">SHOP</h1>
+        <h1 class="section-header" >FEATURED</h1>
         <div class="container">
             <!-- Working Version Start-->
             <div id="product-rows" class="row product-rows productShowcase">
-                @Html.Raw(Model.getProductShowcase())
+
+
+                <div class="row" id="other-products">
+                    <div class="col-12 ">
+                        <div class="row">
+                            @Html.Raw(Classes.ProductFunctions.getFeaturedProductsHTML())
+                        </div>
+                    </div>
+                </div>
+
 
             </div>
 

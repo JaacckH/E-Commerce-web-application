@@ -1123,7 +1123,7 @@ p {
     }
 
     .settings-accordion .btn-link:hover, .settings-accordion .btn-link.focus {
-        text-decoration: none;
+        text-decoration: none !important;
     }
 
 *:focus {

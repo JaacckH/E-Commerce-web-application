@@ -1007,8 +1007,10 @@ $(document).ready(function () {
         }
         if ($("#" + element + " .product-tags-hidden").text().toLowerCase().indexOf('outofstock') > -1) {
 
-            var featureTags = '<div class="feature-tag feature" style="background-color:#ff0024;"><p>OUT OF STOCK</p></div>';
-            $("#" + element).append(featureTags);
+            /*var featureTags = '<div class="feature-tag feature" style="background-color:#ff0024;"><p>OUT OF STOCK</p></div>';
+            $("#" + element).append(featureTags);*/
+
+            $("#" + element).addClass('stock-0');
             //<div class="feature-tag new"><p>NEW</p></div>
         }
 

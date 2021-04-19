@@ -31,8 +31,9 @@
 
 /* ----------------- admin Product page Start -------------------*/
 
-.Admin-Header{
+.Admin-Header {
     text-transform: uppercase;
+    font-weight: 700;
 }
 
 .update-btn {

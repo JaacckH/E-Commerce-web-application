@@ -15,8 +15,14 @@
 
 
     String TotalPrice = Classes.Utility.formatPrice(Classes.Basket.getTotalPrice(Classes.UserFunctions.getUserID(HttpContext.Request.Cookies["SessionID"]), null).ToString());
-    double loyaltyPoints = Int32.Parse(Classes.UserFunctions.getUserDetails(UserID, "Points"));
-    double Newprice = double.Parse(TotalPrice) ;
+    double loyaltyPoints = 0;
+    double Newprice = 0;
+
+    if (!String.IsNullOrEmpty(Classes.UserFunctions.getUserDetails(UserID, "Points")))
+    {
+        Int32.Parse(Classes.UserFunctions.getUserDetails(UserID, "Points"));
+        Newprice = double.Parse(TotalPrice);
+    }
 
 
     int numbeOfPointsAllowed = (int)Math.Floor(Newprice / 1000.0);

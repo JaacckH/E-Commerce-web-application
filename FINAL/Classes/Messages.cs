@@ -110,7 +110,7 @@ namespace FINAL.Classes
             DBFunctions.sendQuery("UPDATE Messages SET Status='" + status + "' WHERE UserID='" + userID + "';");
         }
 
-        public static List<String> adminGetUsers()
+        public static List<String> adminGetUsers(Boolean loggedin)
         {
             SqlConnection conn = new SqlConnection();
             conn.ConnectionString = DBFunctions.connectionString;
@@ -122,11 +122,17 @@ namespace FINAL.Classes
             List<String> users = new List<String>();
             while (reader.Read())
             {
-                if (!arrayContains(users, reader["UserID"].ToString()))
+
+                if (UserFunctions.userLoggedIn(UserFunctions.getSessionID(reader["UserID"].ToString())) == loggedin)
                 {
-                    users.Add(reader["UserID"].ToString());
+                    if (!arrayContains(users, reader["UserID"].ToString()))
+                    {
+                        users.Add(reader["UserID"].ToString());
+                    }
                 }
             }
+
+
 
             conn.Close();
             return users;

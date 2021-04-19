@@ -14,28 +14,9 @@
         <div class="col-12 col-md-6 col-lg-4 col-xl-3"><input class="form-control d-none" id="refine-search" type="text" placeholder="refined.."></div>
     </div>
     <div class="col-12 col-lg-6 order-2 order-lg-1">
-        <!--
-        <div id="data-header" class="row d-none">
-            <div class="col-4 col-md-2 col-xl-2">
-                <b>UserID ID</b>
-            </div>
-            <div class="d-none d-md-block col-5 col-md-3 col-xl-3">
-                From
-            </div>
-            <div class="d-none d-md-block col-5 col-md-3 col-xl-2">
-                Sent Via
-            </div>
-            <div class="d-none d-md-block col-5 col-md-3 col-xl-3">
-                Date
-            </div>
-            <div class="d-none d-md-block col-5 col-md-2 col-xl-2">
-                Status
-            </div>
-        </div>
-            -->
         <h5 class="mt-3">Registered User Queries</h5>
 
-        @foreach (String user in Classes.Messages.adminGetUsers())
+        @foreach (String user in Classes.Messages.adminGetUsers(true))
         {
             <ul class="list-group" id="data-list">
                 <!-- message starts -->
@@ -124,7 +105,7 @@
 
         <h5 class="mt-3">Guest User Queries</h5>
 
-        @foreach (String user in Classes.Messages.adminGetUsers())
+        @foreach (String user in Classes.Messages.adminGetUsers(false))
         {
             <ul class="list-group" id="data-list">
                 <!-- message starts -->

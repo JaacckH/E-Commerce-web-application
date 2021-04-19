@@ -301,18 +301,22 @@ namespace FINAL.Classes
                 int price = Basket.getTotalPrice(userID, promoCode);
                 await sendContent(Context.ConnectionId, "Promotions: (CODE: " + promoCode + ")", "promotion-display");
                 await sendContent(Context.ConnectionId, "Rs -" + Utility.formatPrice((prePrice - price).ToString()) + " (-" + Promotions.getPercentage(promoCode) + "%)", "promotion-amount");
-                // loyalty points
-                double loyaltyPoints = Int32.Parse(UserFunctions.getUserDetails(userID, "Points"));
+
+                double loyaltyPoints = 0;
+
+                if (!String.IsNullOrEmpty(UserFunctions.getUserDetails(userID, "Points")))
+                {
+                    loyaltyPoints = double.Parse(UserFunctions.getUserDetails(userID, "Points"));
+                }
 
                 int num = (int)Math.Floor(prePrice / 1000.0);
 
-
                 for (int i = 0; i < num; i++)
                 {
-                   if(loyaltyPoints > 9)
-                   {
-                       price -= 500;
-                   }
+                    if (loyaltyPoints > 9)
+                    {
+                        price -= 500;
+                    }
                 }
 
                 await sendContent(Context.ConnectionId, "Rs " + Utility.formatPrice(price.ToString()), "checkout-total");

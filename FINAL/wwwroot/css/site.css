@@ -494,7 +494,7 @@ a, a:hover {
     border-color: var(--background-3);
 }
 
-.btn-ouioui-primary {
+.btn-ouioui-primary:hover {
     background-color: var(--background-3-hover);
     border-color: var(--background-3-hover);
 }
@@ -1110,6 +1110,21 @@ p {
 
 /* ----------------- Admin Settings Page Start------------- */
 
+.settings-accordion .card-header {
+    background-color: var(--background-3);
+}
+    .settings-accordion .card-header:hover {
+        background-color: var(--background-3-hover);
+    }
+
+    .settings-accordion .card-header .btn-link {
+        color: var(--background-4);
+        font-weight: bold;
+    }
+
+    .settings-accordion .btn-link:hover, .settings-accordion .btn-link.focus {
+        text-decoration: none;
+    }
 
 *:focus {
     outline: none;

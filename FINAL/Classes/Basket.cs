@@ -146,7 +146,7 @@ namespace FINAL.Classes
                 //price = (1 - (percent / 100)) * price;
                 //Console.WriteLine("PRICE1.5:" + (1 - (percent / 100)));
                 //Console.WriteLine("PRICE2:" + price + ".");
-                price = (int)Math.Round((double)(price * (1- (decimal.Parse(Settings.getSetting("VAT")) / 100))));
+                price = (int)Math.Round((double)(price * (1- (decimal.Parse(percent.ToString()) / 100))));
             }
 
             conn.Close();

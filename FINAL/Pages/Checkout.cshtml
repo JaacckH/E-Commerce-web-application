@@ -13,6 +13,28 @@
     AddressLine1 = Classes.UserFunctions.getUserDetails(UserID, "AddressLine1");
     PhoneNumber = Classes.UserFunctions.getUserDetails(UserID, "PhoneNumber");
 
+
+    String TotalPrice = Classes.Utility.formatPrice(Classes.Basket.getTotalPrice(Classes.UserFunctions.getUserID(HttpContext.Request.Cookies["SessionID"]), null).ToString());
+    double loyaltyPoints = Int32.Parse(Classes.UserFunctions.getUserDetails(UserID, "Points"));
+    double Newprice = double.Parse(TotalPrice) ;
+
+
+    int numbeOfPointsAllowed = (int)Math.Floor(Newprice / 1000.0);
+
+
+    int loyaltyDeducted = 0;
+    int pointsUsed = 0;
+
+    for (int i = 0; i < numbeOfPointsAllowed; i++)
+    {
+        if (loyaltyPoints > 9)
+        {
+            Newprice -= 500;
+            loyaltyDeducted += 500;
+            pointsUsed += 10;
+        }
+    }
+
     try
     {
         CardNumber = Classes.UserFunctions.getUserDetails(UserID, "CardNumber");
@@ -230,10 +252,27 @@
                             <p style="float: right;" id="promotion-amount">Rs -0</p>
                         </div>
 
-                        <div class="col-12">
-                            <p style="float: left;">Total:</p>
-                            <p style="float: right;" id="checkout-total">Rs @Html.Raw(Classes.Utility.formatPrice(Classes.Basket.getTotalPrice(Classes.UserFunctions.getUserID(HttpContext.Request.Cookies["SessionID"]), null).ToString()))</p>
-                        </div>
+                        @if (double.Parse(TotalPrice) > 999 && loyaltyPoints > 9)
+                        {
+                            <div class="col-12">
+                                <p style="float: left;" id="loyalty-display">Loyalty Points Used: -<span class="used-points">@pointsUsed</span> Points</p>
+                                <p style="float: right;" id="loyalty-amount">Rs -@loyaltyDeducted</p>
+                            </div>
+
+                            <div class="col-12">
+                                <p style="float: left;">Total:</p>
+                                <p style="float: right;" id="checkout-total">Rs @Newprice</p>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="col-12">
+                                <p style="float: left;">Total:</p>
+                                <p style="float: right;" id="checkout-total">Rs @Html.Raw(Classes.Utility.formatPrice(Classes.Basket.getTotalPrice(Classes.UserFunctions.getUserID(HttpContext.Request.Cookies["SessionID"]), null).ToString()))</p>
+                            </div>
+                        }
+
+
 
                         <div class="col-12" style="margin-top:20px;">
                             <p style="float: left;">Delivery Charge:</p>

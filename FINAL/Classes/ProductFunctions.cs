@@ -33,6 +33,34 @@ namespace FINAL.Classes
             return null;
         }
 
+        public static Boolean featuredProduct(String productID)
+        {
+            if (getProductDetails(productID, "Featured") == "True")
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public static int getNumOfFeaturedProducts()
+        {
+            SqlConnection conn = new SqlConnection();
+            conn.ConnectionString = DBFunctions.connectionString;
+            conn.Open();
+            SqlCommand query = conn.CreateCommand();
+            query.CommandText = "SELECT * FROM Products WHERE Featured='True';";
+            SqlDataReader reader = query.ExecuteReader();
+
+            int i = 0;
+            while (reader.Read())
+            {
+                i++;
+            }
+
+            conn.Close();
+            return i;
+        }
+
         public static String getMainProductHtml(String productID)
         {
             String baseString = File.ReadAllText(Environment.CurrentDirectory + "/HTML/PRODUCTMAIN.html");

@@ -234,6 +234,11 @@
                             <p style="float: left;">Total:</p>
                             <p style="float: right;" id="checkout-total">Rs @Html.Raw(Classes.Utility.formatPrice(Classes.Basket.getTotalPrice(Classes.UserFunctions.getUserID(HttpContext.Request.Cookies["SessionID"]), null).ToString()))</p>
                         </div>
+
+                        <div class="col-12" style="margin-top:20px;">
+                            <p style="float: left;">Delivery Charge:</p>
+                            <p style="float: right;" id="checkout-total">FREE</p>
+                        </div>
                     </div>
                     <hr>
                     <div>

@@ -30,6 +30,11 @@
 }
 
 /* ----------------- admin Product page Start -------------------*/
+
+.Admin-Header{
+    text-transform: uppercase;
+}
+
 .update-btn {
     margin-top: 20px;
 }
@@ -351,11 +356,12 @@ table tbody tr th {
 }
 
 #admin-menu {
-    background-color: var(--background-2);
+    background-color: var(--background-3);
     overflow: hidden;
     padding-right: 0px;
     min-height: 100%;
     transition: all .5s;
+
 }
 
 .menu-stats {
@@ -436,12 +442,14 @@ body {
     --background-2: #E3E3E3;
     --background-3: #A3CCC8;
     --background-4: #000000;
+    --background-3-hover: #96b9b6;
     --text-1: #000000;
     --text-2: #ffffff;
     --text-size-reg: calc(20px + (20 - 18) * ((100vw - 300px) / (1600 - 300)));
     --text-size-sml: calc(10px + (10 - 8) * ((100vw - 300px) / (1600 - 300)));
     --text-size-large: calc(35px + (35 - 20) * ((100vw - 300px) / (1600 - 300)));
     --text-size-xlarge: calc(60px + (60 - 20) * ((100vw - 300px) / (1600 - 300)));
+    --primary: #A3CCC8;
 }
 
 a, a:hover {
@@ -481,9 +489,18 @@ a, a:hover {
 }
 
 
-/* -------------- FOR PRODUCT DETAIL PAGE --------------- */
+.btn-ouioui-primary{
+    background-color: var(--background-3);
+    border-color: var(--background-3);
+}
 
-.smaller-image {
+.btn-ouioui-primary {
+    background-color: var(--background-3-hover);
+    border-color: var(--background-3-hover);
+}
+
+/* -------------- FOR PRODUCT DETAIL PAGE --------------- */
+    .smaller-image {
     padding: 10px;
     transition: 1s;
 }

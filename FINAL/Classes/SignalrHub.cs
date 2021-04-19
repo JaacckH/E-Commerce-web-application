@@ -424,6 +424,15 @@ namespace FINAL.Classes
             }
         }
 
+        public async Task UpdateHomePageSettings(String sessionID, String homePageHeader, String homePageText)
+        {
+            if (UserFunctions.isAdmin(UserFunctions.getUserID(sessionID)))
+            {
+                DBFunctions.sendQuery("UPDATE Settings SET Value='" + homePageHeader + "' WHERE Setting='HomeHeader';");
+                DBFunctions.sendQuery("UPDATE Settings SET Value='" + homePageText + "' WHERE Setting='HomeHeaderText';");
+            }
+        }
+
         public void updateProduct(String sessionID, String productID, String name, String description, String price,
             String wasprice, String category, String material, String sizeArray, String quantityArray)
         {

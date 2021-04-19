@@ -171,6 +171,12 @@ function updateSettings() {
     connection.invoke("UpdateSettings", getSessionID(), email, addressLine1, addressLine2, zip);
 }
 
+function updateHomeSettings() {
+    var homeHeader = document.getElementById('home-header').value;
+    var homeHeaderText = document.getElementById('home-header-txt').value;
+    conneciton.invoke("UpdateHomePageSettings", getSessionID(), homeHeader, homeHeaderText);
+}
+
 function updateSmallParcel() {
     var price = document.getElementById('input-cost-small').value;
     connection.invoke("updateParcel", getSessionID(), price, 1);

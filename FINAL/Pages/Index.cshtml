@@ -5,6 +5,9 @@
     {
         Response.Redirect("/Checkout");
     }
+
+    String HomeHeader = Classes.Settings.getSetting("HomeHeader");
+    String HomeHeaderText = Classes.Settings.getSetting("HomeHeaderText");
 }
 
 <div class="main-index-page page-name">
@@ -12,8 +15,8 @@
         <div id="main-header-panel" class="order-2 order-xl-1 col-12 col-md-9 col-xl-6 verticle-align-left">
             <div class="row">
                 <div class="col-12 col-xl-8 main-header">
-                    <h1 class="title">EUROPEAN<br />FASHION</h1>
-                    <p class="">Trendy and Unique clothes, shoes and accessories from Europe available at Harbour Front Building in Port Louis, at Royal Road in Rose Hill and on-line. 95% of our products are one only to make you feel unique</p>
+                    <h1 class="title" style="white-space: pre-line">@HomeHeader</h1>
+                    <p class="">@HomeHeaderText</p>
 
                 </div>
                 <div class="row col-12 social-header">

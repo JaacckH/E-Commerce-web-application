@@ -62,18 +62,17 @@ namespace FINAL.Classes
             query.CommandText = "SELECT * FROM Orders WHERE UserID = '" + UserID + "';";
             SqlDataReader reader = query.ExecuteReader();
 
+            String id = null;
             while (reader.Read())
             {
                 if (!String.IsNullOrEmpty(reader["OrderID"].ToString()))
                 {
-                    String id = reader["OrderID"].ToString();
-                    conn.Close();
-                    return id;
+                    id = reader["OrderID"].ToString();
                 }
             }
 
             conn.Close();
-            return null;
+            return id;
         }
 
         public static int getNumOfOrdersForDay(int day)

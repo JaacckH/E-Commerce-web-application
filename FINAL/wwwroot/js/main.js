@@ -615,7 +615,7 @@ $(document).ready(function () {
         var ctx = document.getElementById('myChart').getContext('2d');
 
         var myChart = new Chart(ctx, {
-            type: 'line',
+            type: 'bar',
             data: {
                 labels: [day1Date, day2Date, day3Date, day4Date, day5Date, day6Date, day7Date],
                 datasets: [{

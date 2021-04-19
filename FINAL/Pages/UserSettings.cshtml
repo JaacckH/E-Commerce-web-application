@@ -10,21 +10,24 @@
 </style>
 
 <div class="container">
-    <br><br>
+    <h1 class="page-title mt-5">USER SETTINGS</h1>
+    <p style="text-transform: uppercase;">WELCOME @Model.FirstName</p>
+    <p>YOU HAVE @Model.LoyaltyPoints LOYALTY POINTS</p>
+    <hr />
     <div class="row">
-        <div class="col-12 row">
-            <p class=" col collapsed settings-text" type="button" onclick="menuSelection(1)" style="color: red" id="1" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">Personal information</p>
-            <p class=" col collapsed settings-text" type="button" onclick="menuSelection(2)" id="2" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">Billing information</p>
+        <div class="col-12 row margin-0">
+            <p class=" col collapsed user-settings-text active" type="button" onclick="menuSelection(1)" id="1" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">Personal information</p>
+            <p class=" col collapsed user-settings-text" type="button" onclick="menuSelection(2)" id="2" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">Billing information</p>
 
-            <p class="col collapsed settings-text" type="button" onclick="menuSelection(3)" id="3" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">Email subscribtion</p>
+            <p class="col collapsed user-settings-text" type="button" onclick="menuSelection(3)" id="3" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">Email subscribtion</p>
 
-            <p class="col collapsed settings-text" type="button" onclick="menuSelection(4)" id="4" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">Purchase history</p>
+            <p class="col collapsed user-settings-text" type="button" onclick="menuSelection(4)" id="4" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">Purchase history</p>
 
 
         </div>
-        <div class="col-12">
-            <div class="accordion" id="accordionExample">
-                <div class="card">
+        <div class="col-12" style="min-height: 70vh;">
+            <div class="accordion shadow user-settings-accord" id="accordionExample">
+                <div class="card no-border">
 
                     <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
                         <div class="card-body">
@@ -33,7 +36,7 @@
                                     <div class="col-6">
                                         <div class="form-group">
                                             <label for="UserName">First name</label>
-                                            <input type="text" class="form-control" id="UserName" placeholder="@Model.FirstName" required >
+                                            <input type="text" class="form-control" id="UserName" placeholder="@Model.FirstName" required>
                                         </div>
                                     </div>
                                     <div class="col-6">
@@ -54,16 +57,16 @@
                             <div class="col-12">
                                 <div class="form-group">
                                     <label for="UserEmail">Email address</label>
-                                    <input type="email" class="form-control" id="UserEmail" placeholder="@Model.Email"  required>
+                                    <input type="email" class="form-control" id="UserEmail" placeholder="@Model.Email" required>
                                 </div>
                             </div>
                             <div class="col-12">
-                                <button id="create-btn" class="btn btn-ouioui-secondary margin-left-5px">SAVE CHANGES</button>
+                                <button id="create-btn" class="btn btn-ouioui-primary ">SAVE CHANGES</button>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="card">
+                <div class="card no-border">
                     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
                         <div class="card-body">
 
@@ -91,25 +94,29 @@
                             </div>
 
                             <div class="col-12">
-                                <button id="create-btn" class="btn btn-ouioui-secondary margin-left-5px">SAVE CHANGES</button>
+                                <button id="create-btn" class="btn btn-ouioui-primary ">SAVE CHANGES</button>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="card">
+                <div class="card no-border">
                     <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
                         <div class="card-body">
-                            You are subscribed <div class="col-12">
-                                <button id="create-btn" class="btn btn-ouioui-secondary margin-left-5px">Unsubscribe</button>
-                            </div>
+                            <p>You are subscribed</p>
                             <hr>
-                            <div class="col-12">
-                                <button id="create-btn" class="btn btn-ouioui-secondary margin-left-5px">Subscribe</button>
+                            <div class="row">
+                                <div class="col-6" style="text-align: center;">
+                                    <button id="create-btn" class="btn btn-ouioui-primary">Unsubscribe</button>
+                                </div>
+
+                                <div class="col-6" style="text-align: center;">
+                                    <button id="create-btn" class="btn btn-ouioui-primary">Subscribe</button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="card">
+                <div class="card no-border">
                     <div id="collapseFour" class="collapse" aria-labelledby="collapseFour" data-parent="#accordionExample">
                         <div class="card-body">
 
@@ -226,5 +233,44 @@
             </div>
         </div>
     </div>
+
+</div>
+
+<div class="page-footer">
+    <div class="row page-footer-container">
+        <div class="col-12 col-md-6 col-xl-3 order-4 order-xl-1">
+            <p>
+                <a>Terms & Conditions</a><br />
+                <a>Returns Policy</a><br />
+                <a>Privacy Policy</a><br />
+                <a>Delivery Information</a>
+            </p>
+
+            <p>Phone: +230 5988 0400</p>
+        </div>
+        <div class="col-12 col-md-6 col-xl-3 order-3 order-xl-2">
+            <p>
+                Address:<br />
+                Harbour Front Building,<br />
+                President John Kennedy St,<br />
+                Port Louis,<br />
+                Mauritius
+            </p>
+        </div>
+        <div class="col-12 col-md-6=12 col-xl-3 row order-2 order-xl-3">
+            <div class="col-12"><p>Opening Hours:</p></div>
+            <div class="col-6"><p>Mon - Fri<br />Saturday<br />Sunday</p></div>
+            <div class="col-6 px-4"><p>10am - 5pm<br />10am - 5pm<br />10am - 1pm</p></div>
+        </div>
+        <div class="col-12 col-md-8 px-4 col-xl-3 row subscribe-row order-1 order-xl-4">
+            <h3>BE UP TO DATE WITH OUR NEWS!</h3>
+            <form class="form-group">
+                <input type="email" class="form-control mb-3" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="EMAIL">
+                <button class="btn btn-ouioui-secondary">SUBSCRIBE</button>
+            </form>
+        </div>
+    </div>
+
+
 
 </div>

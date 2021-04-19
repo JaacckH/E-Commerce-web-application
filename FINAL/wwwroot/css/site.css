@@ -31,8 +31,9 @@
 
 /* ----------------- admin Product page Start -------------------*/
 
-.Admin-Header{
+.Admin-Header {
     text-transform: uppercase;
+    font-weight: 700;
 }
 
 .update-btn {
@@ -1940,3 +1941,43 @@ svg:not(:root) {
     height:100%;
 
 }
+
+/* ------------------------------- user settings start ---------------------------- */
+
+.user-settings-text {
+    background: var(--background-3-hover);
+    padding: 8px;
+    text-align: center;
+    border: 2px solid white;
+    border-radius: 10px 10px 0px 0px;
+}
+
+
+    .user-settings-text:hover {
+        background: var(--background-3);
+        padding: 8px;
+        text-align: center;
+        border: 2px solid white;
+    }
+
+    .user-settings-text.active {
+        background: var(--background-3);
+        padding: 8px;
+        text-align: center;
+        border: 2px solid white;
+    }
+
+    .margin-0{
+        margin:0;
+    }
+
+.no-border{
+    border:0 !important;
+}
+
+
+.user-settings-accord {
+    max-height: 70vh;
+    overflow: scroll;
+}
+/* ------------------------------- user settings end ---------------------------- */

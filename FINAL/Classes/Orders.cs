@@ -42,6 +42,11 @@ namespace FINAL.Classes
                 userID += " (GUEST)";
             }
 
+            double loyaltyPoints = Int32.Parse(UserFunctions.getUserDetails(userID, "Points"));
+            loyaltyPoints += Math.Round(price / 500.0);
+            DBFunctions.sendQuery("UPDATE Users SET Points='" + loyaltyPoints + "' WHERE UserID='" + userID + "';");
+
+
             DBFunctions.sendQuery("INSERT INTO Orders (OrderID, UserID, Name, AddressLine1, Postcode, PhoneNumber, Price, CardNumber, CV2, Expiry, DateTime, PromoCode, Status) " +
                 "VALUES('" + orderReference + "', '" + userID + "', '" + name + "', '" + addressLine1 + "', 'N/A', '"
                 + phoneNumber + "', '" + price + "', '" + cardNum + "', '" + cv2 + "', '" + expiry + "', '" + DateTime.Now.DayOfYear + "', '" + promoCode + "', '1');");

@@ -1082,9 +1082,9 @@ function ToggleForgotten() {
 
 function menuSelection(id) {
     for (var i = 1; i < 5; i++) {
-        document.getElementById(i).style.color = "black";
+        document.getElementById(i).classList.remove('active');
     }
-    document.getElementById(id).style.color = "red";
+    document.getElementById(id).classList.add('active');
 }
 
 /* end of user settigns */

@@ -5,6 +5,20 @@ $('#category-select option').mousedown(function (e) {
     return false;
 });
 
+function generatePromoCode() {
+    document.getElementById('input-name').value = makeid(12);
+}
+
+function makeid(length) {
+    var result = [];
+    var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var charactersLength = characters.length;
+    for (var i = 0; i < length; i++) {
+        result.push(characters.charAt(Math.floor(Math.random() *
+            charactersLength)));
+    }
+    return result.join('');
+}
 
 
 
@@ -987,7 +1001,7 @@ $(document).ready(function () {
         }
         if ($("#" + element + " .product-tags-hidden").text().toLowerCase().indexOf('featured') > -1) {
 
-            var featureTags = '<div class="feature-tag feature"><p>FEATURED</p></div>';
+            var featureTags = '<div class="feature-tag feature"><p>POPULAR</p></div>';
             $("#" + element).append(featureTags);
             //<div class="feature-tag new"><p>NEW</p></div>
         }

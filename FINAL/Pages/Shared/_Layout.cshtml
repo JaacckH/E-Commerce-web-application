@@ -339,7 +339,7 @@
 
 
     @if (Classes.UserFunctions.isAdmin(Classes.UserFunctions.getUserID(SessionID))
- && (HttpContextAccessor.HttpContext.Request.Path.ToString().ToLower().Contains("/admin")))
+&& (HttpContextAccessor.HttpContext.Request.Path.ToString().ToLower().Contains("/admin")))
     {
         <div id="admin-page-layout" class="row">
             <div id="admin-menu" class="d-none d-md-block col-12 col-md-3 col-xl-2">
@@ -630,14 +630,14 @@
 </div>
 
 
-<div class="alert" id="alert-box" style="visibility:hidden;">
+<div class="alert shadow" id="alert-box" style="visibility:hidden;">
     <strong>UH-OH</strong> <p id="alert-message"></p>
 </div>
 
-<div class="success" id="success-box" style="visibility:hidden;">
+<div class="success shadow" id="success-box" style="visibility:hidden;">
     <strong>SUCCESS</strong> <p id="success-message"></p>
 </div>
 
-<div class="acknowledge" id="acknowledge-box" style="visibility:hidden;">
+<div class="acknowledge shadow" id="acknowledge-box" style="visibility:hidden;">
     <strong>DONE</strong> <p id="acknowledge-message"></p>
 </div>

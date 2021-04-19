@@ -38,22 +38,8 @@
             <div class="col-12 ">
                 <h6>POPULAR PRODUCTS</h6>
                 <div class="row">
-
-                    <div class="col-12 col-md-6 col-xl-3 smaller-image">
-                        <img ] src="https://images.asos-media.com/products/asos-design-floral-drape-sleeve-midi-dress/13339918-1-purplefloral?$XXL$&wid=513&fit=constrain" alt="" style="width: 100%">
-                    </div>
-                    <div class="col-12 col-md-6 col-xl-3 smaller-image">
-                        <img src="https://images.asos-media.com/products/asos-design-one-shoulder-tuck-detail-midi-dress/11982354-1-blush?$XXL$&wid=513&fit=constrain" alt="" style="width: 100%">
-                    </div>
-                    <div class="col-12 col-md-6 col-xl-3 smaller-image">
-                        <img src="https://images.asos-media.com/products/asos-design-midi-tiered-smock-dress-in-floral-print/14832906-1-floralprint?$XXL$&wid=513&fit=constrain" alt="" style="width: 100%">
-                    </div>
-                    <div class="col-12 col-md-6 col-xl-3 smaller-image">
-                        <img src="https://images.asos-media.com/products/asos-design-cord-midi-smock-dress-in-bright-pink/13022133-4?$XXL$&wid=513&fit=constrain" alt="" style="width: 100%">
-                    </div>
+                    @Html.Raw(Classes.ProductFunctions.getFeaturedProductsHTML())
                 </div>
-
-
             </div>
 
         </div>

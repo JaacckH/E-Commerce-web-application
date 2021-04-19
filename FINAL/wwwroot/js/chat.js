@@ -18,7 +18,7 @@ connection.on("ContentDelivery", function (content, div) {
 });
 
 connection.on("updateBasket", function (content) {
-    document.getElementById('basket-counter').innerHTML = '<i class="bi bi - bag - fill"></i> ' + content;
+    document.getElementById('basket-counter').innerHTML = '<i class="bi bi-bag-fill"></i>' + content;
 });
 
 connection.on("AppendDelivery", function (content, div) {
@@ -361,4 +361,9 @@ function updateProduct(productID) {
 
     connection.invoke("updateProduct", getSessionID(), productID, name, description, price, wasprice, category, material, sizes, quantities)
 
+}
+
+
+function setFeatureProduct(productID) {
+    connection.invoke("featureProduct", getSessionID(), productID);
 }

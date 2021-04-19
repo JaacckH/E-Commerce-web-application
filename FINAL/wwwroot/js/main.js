@@ -615,7 +615,7 @@ $(document).ready(function () {
         var ctx = document.getElementById('myChart').getContext('2d');
 
         var myChart = new Chart(ctx, {
-            type: 'line',
+            type: 'bar',
             data: {
                 labels: [day1Date, day2Date, day3Date, day4Date, day5Date, day6Date, day7Date],
                 datasets: [{
@@ -1082,9 +1082,9 @@ function ToggleForgotten() {
 
 function menuSelection(id) {
     for (var i = 1; i < 5; i++) {
-        document.getElementById(i).style.color = "black";
+        document.getElementById(i).classList.remove('active');
     }
-    document.getElementById(id).style.color = "red";
+    document.getElementById(id).classList.add('active');
 }
 
 /* end of user settigns */

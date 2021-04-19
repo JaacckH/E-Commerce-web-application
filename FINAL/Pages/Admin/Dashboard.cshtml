@@ -21,31 +21,70 @@
             </div>
         </div>
 
+        <h1 class="Admin-Header">PRODUCTS & REVENUE</h1>
+        <hr />
         <div class="row mb-5">
             <div class="col-12 col-lg-6 chart-height mb-3">
                 <div class="row shadow bg-white rounded p-3 p-md-0 split-stat-rows stat-row-margin">
-                    <div class="col-12 p-3 dash-stat-center-left">
-                        <h6>TAKE</h6>
-                        <p>statistics row 1</p>
+                    <div class="col-12 p-3 dash-stat-center">
+                        <h1 class="Admin-Header">$@Classes.Statistics.getTotalRevenue()</h1>
+                        <p style="font-size:14pt;">TOTAL REVENUE</p>
                     </div>
                 </div>
                 <div class="row shadow bg-white rounded p-3 p-md-0 split-stat-rows stat-row-margin">
                     <div class="col-12 p-3 dash-stat-center">
-                        <h6>YOUR</h6>
-                        <p>statistics row 2</p>
+                        <h1 class="Admin-Header">@Classes.Statistics.getNumOfOrders()</h1>
+                        <p style="font-size:14pt;">TOTAL ORDERS</p>
                     </div>
                 </div>
                 <div class="row shadow bg-white rounded p-3 p-md-0 split-stat-rows stat-row-margin">
-                    <div class="col-12 p-3">
-                        <h6>PICK</h6>
-                        <p>statistics row 3</p>
+                    <div class="col-12 p-3 dash-stat-center">
+                        <h1 class="Admin-Header">@Classes.Statistics.getNumOfUnitsSold()</h1>
+                        <p style="font-size:14pt;">UNITS SOLD</p>
                     </div>
                 </div>
             </div>
             <div class="col-12 col-lg-6 chart-height">
                 <div class="row shadow bg-white rounded p-3 p-md-0 full-height stat-row-margin">
                     <div class="col-12">
-                        <p>space for chart</p>
+                        <canvas id="myChart2" width="400" height="215"></canvas>
+                        <script>
+                            var ctx = document.getElementById('myChart2').getContext('2d');
+                            var myChart = new Chart(ctx, {
+                                type: 'scatter',
+                                data: {
+                                    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                                    datasets: [{
+                                        label: '# of Votes',
+                                        data: [12, 19, 3, 5, 2, 3],
+                                        backgroundColor: [
+                                            'rgba(255, 99, 132, 0.2)',
+                                            'rgba(54, 162, 235, 0.2)',
+                                            'rgba(255, 206, 86, 0.2)',
+                                            'rgba(75, 192, 192, 0.2)',
+                                            'rgba(153, 102, 255, 0.2)',
+                                            'rgba(255, 159, 64, 0.2)'
+                                        ],
+                                        borderColor: [
+                                            'rgba(255, 99, 132, 1)',
+                                            'rgba(54, 162, 235, 1)',
+                                            'rgba(255, 206, 86, 1)',
+                                            'rgba(75, 192, 192, 1)',
+                                            'rgba(153, 102, 255, 1)',
+                                            'rgba(255, 159, 64, 1)'
+                                        ],
+                                        borderWidth: 1
+                                    }]
+                                },
+                                options: {
+                                    scales: {
+                                        y: {
+                                            beginAtZero: true
+                                        }
+                                    }
+                                }
+                            });
+                        </script>
                     </div>
                 </div>
             </div>

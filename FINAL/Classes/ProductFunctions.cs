@@ -61,6 +61,21 @@ namespace FINAL.Classes
             return i;
         }
 
+        public static Boolean toggleFeatured(String productID)
+        {
+            if (featuredProduct(productID))
+            {
+                DBFunctions.sendQuery("UPDATE Products SET Featured='False' WHERE ProductID='" + productID + "';");
+                return true;
+            }
+            if (getNumOfFeaturedProducts() < 4)
+            {
+                DBFunctions.sendQuery("UPDATE Products SET Featured='True' WHERE ProductID='" + productID + "';");
+                return true;
+            }
+            return false;
+        }
+
         public static String getMainProductHtml(String productID)
         {
             String baseString = File.ReadAllText(Environment.CurrentDirectory + "/HTML/PRODUCTMAIN.html");
@@ -122,7 +137,8 @@ namespace FINAL.Classes
                 .Replace("{MAXQUANTITY}", maxQuantity)
                 .Replace("{PRICE}", price)
                 .Replace("{CATEGORY}", category)
-                .Replace("{STOCK}", stock);
+                .Replace("{STOCK}", stock)
+                .Replace("{FEATUREDPRODUCTS}", getFeaturedProductsHTML());
 
             if (!String.IsNullOrEmpty(wasPrice) && int.Parse(price) < int.Parse(wasPrice))
             {
@@ -132,6 +148,26 @@ namespace FINAL.Classes
             baseString = baseString.Replace("{WASPRICE}", "");
 
             return baseString;
+        }
+
+        public static String getFeaturedProductsHTML()
+        {
+            String baseString = File.ReadAllText(Environment.CurrentDirectory + "/HTML/FEATUREDPRODUCTS.html");
+            SqlConnection conn = new SqlConnection();
+            conn.ConnectionString = DBFunctions.connectionString;
+            conn.Open();
+            SqlCommand query = conn.CreateCommand();
+            query.CommandText = "SELECT * FROM Products WHERE Featured='True';";
+            SqlDataReader reader = query.ExecuteReader();
+
+            String html = "";
+            while (reader.Read())
+            {
+                html += baseString.Replace("{IMAGE}", reader["ImagePath"].ToString()).Replace("{ID}", reader["ProductID"].ToString());
+            }
+
+            conn.Close();
+            return html;
         }
 
         // return raw html template of a single product

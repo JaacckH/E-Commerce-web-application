@@ -41,8 +41,8 @@ namespace FINAL.Classes
             String userID = UserFunctions.getUserID(sessionID);
             String hashedpassword = UserFunctions.hashSingleValue(password);
 
-            DBFunctions.sendQuery("INSERT INTO Users (UserID, Forename, Surname, Email, Password, AddressLine1, PhoneNumber, DateCreated) " +
-                "VALUES ('" + userID + "', '" + forename + "', '" + surname + "', '" + email + "', '" + hashedpassword + "', '" + addressline1 + "', '" + phonenumber + "', '" + DateTime.Now.DayOfYear + "')");
+            DBFunctions.sendQuery("INSERT INTO Users (UserID, Forename, Surname, Email, Password, AddressLine1, PhoneNumber, DateCreated, Points) " +
+                "VALUES ('" + userID + "', '" + forename + "', '" + surname + "', '" + email + "', '" + hashedpassword + "', '" + addressline1 + "', '" + phonenumber + "', '" + DateTime.Now.DayOfYear + "', '0')");
             return "DONE";
         }
 

@@ -30,6 +30,11 @@
 }
 
 /* ----------------- admin Product page Start -------------------*/
+
+.Admin-Header{
+    text-transform: uppercase;
+}
+
 .update-btn {
     margin-top: 20px;
 }

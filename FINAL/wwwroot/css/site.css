@@ -520,7 +520,7 @@ a, a:hover {
 }
 
 #Product-description {
-    padding-top: 10vh;
+    /*padding-top: 10vh;*/
 }
 
     #Product-description h2 {
@@ -573,7 +573,7 @@ a, a:hover {
 
 #other-products h6 {
     padding-top: 20px;
-    margin-bottom: -4px;
+    margin-left: -6px;
 }
 
 :root {
@@ -640,8 +640,47 @@ a, a:hover {
         background-color: #dc0000;
     }
 
-/* Write page CSS here*/
+.stock-0{
+    position:relative;
+    z-index:5;
+}
 
+
+    .stock-0::before {
+        content: '';
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: calc(100% - 30px);
+        height: calc(100% - 48px);
+        background-color: rgba(0,0,0,0.5);
+        z-index: 10;
+        margin-right: 15px;
+        margin-left: 15px;
+    }
+
+    .stock-0::after {
+        content: 'OUT OF STOCK';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: calc(100% - 30px);
+        height: calc(100% - 48px);
+        /* transform: translate(-50%,-50%); */
+        color: white;
+        z-index: 15;
+        font-weight: bold;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        white-space: pre-wrap;
+        font-size: var(--text-size-reg);
+        margin-right: 15px;
+        margin-left: 15px;
+        padding:10px;
+    }
+
+/* Write page CSS here*/
 li {
     text-decoration: none;
     list-style: none;

@@ -1949,6 +1949,7 @@ svg:not(:root) {
     padding: 8px;
     text-align: center;
     border: 2px solid white;
+    border-radius: 10px 10px 0px 0px;
 }
 
 

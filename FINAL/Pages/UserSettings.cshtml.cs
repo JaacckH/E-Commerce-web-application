@@ -9,7 +9,7 @@ namespace FINAL.Pages
 {
     public class UserSettingsModel : PageModel
     {
-        public String FirstName, Surname, Email, AddressLine1, AddressLine2, Postcode, PhoneNumber, CardNumber, Expiry;
+        public String FirstName, Surname, Email, AddressLine1, AddressLine2, Postcode, PhoneNumber, CardNumber, Expiry, LoyaltyPoints;
         public void OnGet()
         {
             String UserID = Classes.UserFunctions.getUserID(HttpContext.Request.Cookies["SessionID"]);
@@ -20,6 +20,7 @@ namespace FINAL.Pages
              AddressLine2 = Classes.UserFunctions.getUserDetails(UserID, "AddressLine2");
              Postcode = Classes.UserFunctions.getUserDetails(UserID, "Postcode");
              PhoneNumber = Classes.UserFunctions.getUserDetails(UserID, "PhoneNumber");
+             LoyaltyPoints = Classes.UserFunctions.getUserDetails(UserID, "Points");
 
              CardNumber = Classes.UserFunctions.getUserDetails(UserID, "CardNumber");
              Expiry = Classes.UserFunctions.getUserDetails(UserID, "Expiry");

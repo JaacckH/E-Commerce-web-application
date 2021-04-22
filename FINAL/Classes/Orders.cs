@@ -15,13 +15,16 @@ namespace FINAL.Classes
         {
             GC.Collect();
 
-            double loyaltyPoints = Int32.Parse(UserFunctions.getUserDetails(userID, "Points"));
+            double loyaltyPoints = 0;
+            int numbeOfPointsAllowed = 0;
 
+            try
+            {
+                loyaltyPoints = Int32.Parse(UserFunctions.getUserDetails(userID, "Points"));
+                numbeOfPointsAllowed = (int)Math.Floor(price / 1000.0);
+            }
+            catch { }
 
-            int numbeOfPointsAllowed = (int)Math.Floor(price / 1000.0);
-
-
-            
             if (Promotions.codeExists(promoCode))
             {
                 int percent = Promotions.getPercentage(promoCode);
@@ -66,11 +69,11 @@ namespace FINAL.Classes
             DBFunctions.sendQuery("UPDATE Users SET Points='" + loyaltyPoints + "' WHERE UserID='" + userID + "';");
 
 
-            
+
 
             DBFunctions.sendQuery("INSERT INTO Orders (OrderID, UserID, Name, AddressLine1, Postcode, PhoneNumber, Price, CardNumber, CV2, Expiry, DateTime, PromoCode, Status, LoyaltyPoints) " +
                 "VALUES('" + orderReference + "', '" + userID + "', '" + name + "', '" + addressLine1 + "', 'N/A', '"
-                + phoneNumber + "', '" + price + "', '" + cardNum + "', '" + cv2 + "', '" + expiry + "', '" + DateTime.Now.DayOfYear + "', '" + promoCode + "', '1', '"+ deductedPrice + "');");
+                + phoneNumber + "', '" + price + "', '" + cardNum + "', '" + cv2 + "', '" + expiry + "', '" + DateTime.Now.DayOfYear + "', '" + promoCode + "', '1', '" + deductedPrice + "');");
 
         }
 

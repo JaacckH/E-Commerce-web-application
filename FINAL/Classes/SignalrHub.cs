@@ -294,8 +294,7 @@ namespace FINAL.Classes
         public async Task addPromoCode(String sessionID, String promoCode)
         {
             String userID = UserFunctions.getUserID(sessionID);
-            if (UserFunctions.isAdmin(UserFunctions.getUserID(sessionID)) &&
-                Promotions.codeExists(promoCode) && Promotions.getPromoStatus(promoCode) == 1)
+            if (Promotions.codeExists(promoCode) && Promotions.getPromoStatus(promoCode) == 1)
             {
                 int prePrice = Basket.getTotalPrice(userID, null);
                 int price = Basket.getTotalPrice(userID, promoCode);

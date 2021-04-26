@@ -287,7 +287,6 @@ namespace FINAL.Classes
         {
             String UserID = UserFunctions.getUserID(sessionID);
             String OrderId = Orders.lastUserOrderID(UserID);
-
             EmailManagement.SendEmail(email, "Order " + OrderId + " Confirmation", "Thanks for choosing Oui Oui fashion! Your order has been placed! order ID: " + OrderId + ".");
         }
 

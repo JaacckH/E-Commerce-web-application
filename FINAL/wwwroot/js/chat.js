@@ -174,7 +174,7 @@ function updateSettings() {
 function updateHomeSettings() {
     var homeHeader = document.getElementById('home-header').value;
     var homeHeaderText = document.getElementById('home-header-txt').value;
-    conneciton.invoke("UpdateHomePageSettings", getSessionID(), homeHeader, homeHeaderText);
+    connection.invoke("UpdateHomePageSettings", getSessionID(), homeHeader, homeHeaderText);
 }
 
 function updateSmallParcel() {

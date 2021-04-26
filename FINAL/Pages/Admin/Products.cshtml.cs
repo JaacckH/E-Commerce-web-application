@@ -17,9 +17,15 @@ namespace FINAL.Pages.Admin
 
         public String getProducts()
         {
+            String pretags = "";
+
             SqlConnection conn = new SqlConnection();
             conn.ConnectionString = DBFunctions.connectionString;
+
+            pretags = Settings.getSetting("Tags");
+
             conn.Open();
+
             SqlCommand query = conn.CreateCommand();
             query.CommandText = "SELECT * FROM Products ORDER BY ID DESC";
             SqlDataReader reader = query.ExecuteReader();
@@ -48,6 +54,8 @@ namespace FINAL.Pages.Admin
                     .Replace("{MATERIALS}", reader["Materials"].ToString())
                     .Replace("{STOCK}", stock)
                     .Replace("{FEATURED}", featured)
+                    .Replace("{TAGS}", reader["Tags"].ToString())
+                    .Replace("{PRETAGS}", pretags)
 
                     .Replace("{SIZE10}", getQuantityOfSize(reader["ProductID"].ToString(), "10").ToString())
                     .Replace("{SIZE12}", getQuantityOfSize(reader["ProductID"].ToString(), "12").ToString())

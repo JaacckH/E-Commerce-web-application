@@ -450,7 +450,7 @@ namespace FINAL.Classes
         }
 
         public void updateProduct(String sessionID, String productID, String name, String description, String price,
-            String wasprice, String category, String material, String sizeArray, String quantityArray)
+            String wasprice, String category, String material, String sizeArray, String quantityArray, String tags)
         {
             Console.WriteLine(sizeArray);
             Console.WriteLine(quantityArray);
@@ -499,7 +499,7 @@ namespace FINAL.Classes
 
                     DBFunctions.sendQuery("UPDATE Products SET Name='" + name + "', Description='" + description + "', " +
                         "Price='" + price + "', WasPrice='" + wasprice + "', Category='" + category + "', " +
-                        "Materials='" + material + "' WHERE ProductID='" + productID + "';");
+                        "Materials='" + material + "', Tags='" + tags + "' WHERE ProductID='" + productID + "';");
 
                     sendSuccessAlert(Context.ConnectionId, "Product Information Updated");
 

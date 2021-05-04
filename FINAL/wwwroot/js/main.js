@@ -52,7 +52,18 @@ $(document).ready(function () {
         $('#datetimepicker7').datetimepicker();
     }
 
-    ProductTags('product-tags', false);
+    var seperateTagSelector = document.querySelectorAll('input[id^=product-tags]');
+
+    // get each product tags selector
+    for (var i = 0; i < seperateTagSelector.length; i++) {
+
+	    var j = this.id.lastIndexOf('-');
+	    var n = this.id.substring(j + 1);
+
+	    ProductTags('product-tags-' + n, false);
+
+    }
+
     ProductTags('admin-product-tags', true);
 
 });

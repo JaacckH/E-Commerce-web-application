@@ -63,13 +63,8 @@ namespace FINAL.Classes
                 userID += " (GUEST)";
             }
 
-
-
             loyaltyPoints += Math.Floor(price / 500.0);
             DBFunctions.sendQuery("UPDATE Users SET Points='" + loyaltyPoints + "' WHERE UserID='" + userID + "';");
-
-
-
 
             DBFunctions.sendQuery("INSERT INTO Orders (OrderID, UserID, Name, AddressLine1, Postcode, PhoneNumber, Price, CardNumber, CV2, Expiry, DateTime, PromoCode, Status, LoyaltyPoints) " +
                 "VALUES('" + orderReference + "', '" + userID + "', '" + name + "', '" + addressLine1 + "', 'N/A', '"

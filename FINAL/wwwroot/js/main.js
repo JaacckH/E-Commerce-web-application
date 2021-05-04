@@ -52,13 +52,13 @@ $(document).ready(function () {
         $('#datetimepicker7').datetimepicker();
     }
 
-    var seperateTagSelector = document.querySelectorAll('input[id^=product-tags]');
+    var seperateTagSelector = document.querySelectorAll('input[id*=product-tags]');
 
     // get each product tags selector
     for (var i = 0; i < seperateTagSelector.length; i++) {
 
-	    var j = this.id.lastIndexOf('-');
-	    var n = this.id.substring(j + 1);
+        var j = seperateTagSelector[i].id.lastIndexOf('-');
+        var n = seperateTagSelector[i].id.substring(j + 1);
 
 	    ProductTags('product-tags-' + n, false);
 

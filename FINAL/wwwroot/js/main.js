@@ -279,6 +279,7 @@ function ToggleTabs(n, o, i) {
 
 
 function ToggleMenu() {
+   
     const element = document.querySelector("#admin-menu");
     element.classList.toggle("d-none");
 

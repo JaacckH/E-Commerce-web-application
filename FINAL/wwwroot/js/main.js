@@ -340,62 +340,63 @@ $(document).ready(function () {
     }
 //checks if the URL has specific parameters, used on the orders panel to refine results by a Order number
     if (window.location.href.indexOf("user") > -1) {
-    if (window.location.href.indexOf("order") > -1) {
+        if (window.location.href.indexOf("order") > -1) {
 
-        var urlParams = new URLSearchParams(window.location.search);
-        userParam = urlParams.get('order');
+            var urlParams = new URLSearchParams(window.location.search);
+            userParam = urlParams.get('order');
 
-        $("#search-rows").val(userParam);
-        $("#refine-search").val('');
-        $("#search-rows").keyup();
+            $("#search-rows").val(userParam);
+            $("#refine-search").val('');
+            $("#search-rows").keyup();
 
-    }
-// used to refine the search on the admin panel after the search has been used
-    $("#refine-search").on("keyup", function () {
-        var value = $(this).val().toLowerCase();
-        var value2 = $("#search-rows").val().toLowerCase();
-        $("#data-list li").filter(function () {
-            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1 && $(this).text().toLowerCase().indexOf(value2) > -1)
-        });
-    });
-
-    window.calculateprice = calculateprice;
-// used to calculate the price within the basket
-    function calculateprice(id) {
-        var quantity = parseFloat(document.getElementById("input-" + id).value, 1);
-        var price = document.getElementById("current-price-" + id).innerHTML;
-        document.getElementById("total-" + id).innerHTML = price * quantity;
-        document.getElementById("mob-total-" + id).innerHTML = price * quantity;
-
-
-        UpdateBasket();
-    }
-// updates the basket when changes take place
-    function UpdateBasket() {
-
-        var orderTotal = 0;
-        document.querySelectorAll('.item-total-main').forEach(function (element, index) {
-            orderTotal = parseInt(orderTotal) + parseInt(element.innerHTML);
+        }
+        // used to refine the search on the admin panel after the search has been used
+        $("#refine-search").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            var value2 = $("#search-rows").val().toLowerCase();
+            $("#data-list li").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1 && $(this).text().toLowerCase().indexOf(value2) > -1)
+            });
         });
 
-        document.getElementById("order-total").innerHTML = orderTotal;
-        var vat = 15;
-        var vatAmount = orderTotal * (vat / 100);
-        document.getElementById("vat-amount").innerHTML = vatAmount;
-        document.getElementById("vat-total").innerHTML = orderTotal + vatAmount;
-    }
+        window.calculateprice = calculateprice;
+        // used to calculate the price within the basket
+        function calculateprice(id) {
+            var quantity = parseFloat(document.getElementById("input-" + id).value, 1);
+            var price = document.getElementById("current-price-" + id).innerHTML;
+            document.getElementById("total-" + id).innerHTML = price * quantity;
+            document.getElementById("mob-total-" + id).innerHTML = price * quantity;
 
-    if ($('#basket-page').length > 0) {
-        OnLoadBasket();
-    }
 
-    function OnLoadBasket() {
-        document.querySelectorAll('.item-id').forEach(function (element, index) {
-            calculateprice(element.innerHTML);
-            console.log(element.id)
-        });
+            UpdateBasket();
+        }
+        // updates the basket when changes take place
+        function UpdateBasket() {
 
-        UpdateBasket();
+            var orderTotal = 0;
+            document.querySelectorAll('.item-total-main').forEach(function (element, index) {
+                orderTotal = parseInt(orderTotal) + parseInt(element.innerHTML);
+            });
+
+            document.getElementById("order-total").innerHTML = orderTotal;
+            var vat = 15;
+            var vatAmount = orderTotal * (vat / 100);
+            document.getElementById("vat-amount").innerHTML = vatAmount;
+            document.getElementById("vat-total").innerHTML = orderTotal + vatAmount;
+        }
+
+        if ($('#basket-page').length > 0) {
+            OnLoadBasket();
+        }
+
+        function OnLoadBasket() {
+            document.querySelectorAll('.item-id').forEach(function (element, index) {
+                calculateprice(element.innerHTML);
+                console.log(element.id)
+            });
+
+            UpdateBasket();
+        }
     }
 });
 	

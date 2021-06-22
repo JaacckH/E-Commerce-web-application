@@ -174,7 +174,7 @@ function updateSettings() {
 function updateHomeSettings() {
     var homeHeader = document.getElementById('home-header').value;
     var homeHeaderText = document.getElementById('home-header-txt').value;
-    conneciton.invoke("UpdateHomePageSettings", getSessionID(), homeHeader, homeHeaderText);
+    connection.invoke("UpdateHomePageSettings", getSessionID(), homeHeader, homeHeaderText);
 }
 
 function updateSmallParcel() {
@@ -358,7 +358,7 @@ function updateProduct(productID) {
     var wasprice = document.getElementById('ep-wasprice-' + productID).value;
     var category = document.getElementById('ep-category-' + productID).value;
     var material = document.getElementById('ep-material-' + productID).value;
-    
+
     var tags = document.querySelector('.product-tags-' + productID).value;
 
     connection.invoke("updateProduct", getSessionID(), productID, name, description, price, wasprice, category, material, sizes, quantities, tags);

@@ -1,14 +1,16 @@
-﻿
+// Selection of categories on the product pages of the admin panel
 $('#category-select option').mousedown(function (e) {
     e.preventDefault();
     $(this).prop('selected', !$(this).prop('selected'));
     return false;
 });
 
+// Generates a random promocode
 function generatePromoCode() {
     document.getElementById('input-name').value = makeid(12);
 }
 
+//used to create a mixture of characters to be used as a promocode
 function makeid(length) {
     var result = [];
     var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -21,14 +23,16 @@ function makeid(length) {
 }
 
 
-
+// functions to run after the page contents have loaded.
 $(document).ready(function () {
-
+	
+    // Allowsing the chat box not to open the chat upon dragging it. If the chat box isn't being dragged then it will activate
     $('#comm-btn').bind('click', function () {
         if ($(this).data('dragging')) return;
         openChat();
     });
     
+    // Set-up of the ability to drag the chat icon
     $("#comm-btn").draggable({
         scroll: false,
         start: function (event, ui) {
@@ -41,24 +45,37 @@ $(document).ready(function () {
             }, 1);
         }
     });
-
+    // this stops the chat box from disapearing off the page due to scrolling
     $("#comm-btn").draggable({
         scroll: false
     })
 
-
+    // setting up the date and time pickers for the admin panel when selecting promotion start dates
     if ($('#datetimepicker6').length > 0) {
         $('#datetimepicker6').datetimepicker();
         $('#datetimepicker7').datetimepicker();
     }
+	
+    // sorts out the product tags of each product on the admin product page
+    var seperateTagSelector = document.querySelectorAll('input[id*=product-tags]');
 
-    ProductTags('product-tags', false);
+    // get each product tags selector
+    for (var i = 0; i < seperateTagSelector.length; i++) {
+
+        var j = seperateTagSelector[i].id.lastIndexOf('-');
+        var n = seperateTagSelector[i].id.substring(j + 1);
+
+	    ProductTags('product-tags-' + n, false);
+
+    }
+
     ProductTags('admin-product-tags', true);
 
 });
 
 
 
+// creates the interactive tags of products on the admin panel  Retrieving predefined values set-up within settings.
 
 function ProductTags(tagsid, freeinput) {
     if ($('#predefined-tags').length > 0) {
@@ -108,7 +125,7 @@ function ProductTags(tagsid, freeinput) {
     }
 }
 
-
+// futher development oportunity - if we decide to implement the option to add more than one image to products within the admin panel
 var imageUploadCount = 0;
 window.AddImageUpload = AddImageUpload;
 function AddImageUpload(input) {
@@ -128,6 +145,7 @@ function AddImageUpload(input) {
     imageUploadCount++;
 }
 
+// the function that works with the adding or additional images above, to remove images that have been uploaded
 function RemoveUpload(imageID, n) {
     //existing image
     if (n == 0) {
@@ -143,6 +161,7 @@ function RemoveUpload(imageID, n) {
 
 }
 
+// used on product pages to open the product details
 function OpenProductDetails(rowID) {
     if ($("#card-lrg-detail-" + rowID).hasClass("d-none")) {
         $("#search-rows").val(rowID)
@@ -157,6 +176,7 @@ function OpenProductDetails(rowID) {
     }
 }
 
+// used to close product details
 window.closeProductDetails = closeProductDetails;
 function closeProductDetails(rowID) {
 
@@ -173,7 +193,7 @@ function closeProductDetails(rowID) {
 
 var sizeColAmount = 0;
 var pid = "";
-
+// this function generates a size column if the admin wants to add additional sizes when adding products
 function AddSizeCol(n) {
     sizeColAmount++;
     var $size_type = '                            <div class="size-column" name="sizecol-' + sizeColAmount + '">';
@@ -212,6 +232,7 @@ function AddSizeCol(n) {
 
 }
 
+// this function generates a size column if the admin wants to add additional sizes when editing products
 function AddSizeColEdit(n) {
     sizeColAmount++;
     var $size_type = '                            <div class="size-column" name="sizecol-' + sizeColAmount + '">';
@@ -253,7 +274,7 @@ function AddSizeColEdit(n) {
 
 
 
-
+// opens the file pannel for uploading images to the site.
 function readURL(input) {
     var reader = new FileReader();
     reader.onload = function (e) {
@@ -262,7 +283,7 @@ function readURL(input) {
     reader.readAsDataURL(input.files[0]);
 }
 
-
+//toggles tabs on the settings panel
 window.ToggleTabs = ToggleTabs;
 function ToggleTabs(n, o, i) {
     const tab_1 = document.querySelector("#panel-tab-" + o + "-" + i);
@@ -277,7 +298,7 @@ function ToggleTabs(n, o, i) {
 
 }
 
-
+//toggles mens on the admin panel 
 function ToggleMenu() {
    
     const element = document.querySelector("#admin-menu");
@@ -289,6 +310,7 @@ function ToggleMenu() {
 }
 
 $(document).ready(function () {
+    // Used to search on most of the admin pages cutting down the amount of results
     $("#search-rows").on("keyup", function () {
         var value = $(this).val().toLowerCase();
         if (value.length == 0) {
@@ -305,7 +327,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
 
-
+//checks if the URL has specific parameters, used on the user panel to refine results by a username
     if (window.location.href.indexOf("user") > -1) {
 
         var urlParams = new URLSearchParams(window.location.search);
@@ -316,7 +338,8 @@ $(document).ready(function () {
         $("#search-rows").keyup();
         
     }
-
+//checks if the URL has specific parameters, used on the orders panel to refine results by a Order number
+    if (window.location.href.indexOf("user") > -1) {
     if (window.location.href.indexOf("order") > -1) {
 
         var urlParams = new URLSearchParams(window.location.search);
@@ -327,7 +350,7 @@ $(document).ready(function () {
         $("#search-rows").keyup();
 
     }
-
+// used to refine the search on the admin panel after the search has been used
     $("#refine-search").on("keyup", function () {
         var value = $(this).val().toLowerCase();
         var value2 = $("#search-rows").val().toLowerCase();
@@ -337,7 +360,7 @@ $(document).ready(function () {
     });
 
     window.calculateprice = calculateprice;
-
+// used to calculate the price within the basket
     function calculateprice(id) {
         var quantity = parseFloat(document.getElementById("input-" + id).value, 1);
         var price = document.getElementById("current-price-" + id).innerHTML;
@@ -347,7 +370,7 @@ $(document).ready(function () {
 
         UpdateBasket();
     }
-
+// updates the basket when changes take place
     function UpdateBasket() {
 
         var orderTotal = 0;
@@ -375,7 +398,8 @@ $(document).ready(function () {
         UpdateBasket();
     }
 });
-
+	
+// opens details on the pages within the admin panel where there are lists
 window.OpenDetails = OpenDetails;
 function OpenDetails(rowID) {
     $("#search-rows").val(rowID)
@@ -388,6 +412,7 @@ function OpenDetails(rowID) {
 
 }
 
+// closes details on the pages within the admin panel where there are lists	
 function closeDetails(rowID) {
     $('#summary-panel-' + rowID).removeClass('d-none');
     $('#search-area').removeClass('invisible');
@@ -403,7 +428,7 @@ function closeDetails(rowID) {
 
 
 /* -------- admin settings page Start --------- */
-
+// Upon selection of different categories on a list selection, changing the visual look of the line clicked
 function loadNewCheckboxes() {
     var newCategoryCheckboxes = document.querySelectorAll('input[id^=new-cat]');
 
@@ -454,6 +479,7 @@ function CategoryCheckChange(n, i) {
 
 var categoryNumber = 1;
 
+// depreciated function for adding categories
 function AddCategoryOLD() {
     const textArea = document.querySelector("#input-category");
     var newCategory = textArea.value;
@@ -481,12 +507,13 @@ function AddCategoryOLD() {
 $('#admin-settings-page .twitter-typeahead').addClass('sticky-top');
 
 
-
+// toggling the visability of the filter box on the admin panel
 function ToggleFilter() {
     const element = document.querySelector("#filter-menu");
     element.classList.toggle("d-none");
 }
 
+// the following functions working with dropdowns run the filtering of the shop page on the public facing side of the site
 $(".def_op_size").click(function () {
     $(".dropdown_size ul").addClass("active");
 });
@@ -533,6 +560,7 @@ $(".dropdown_material ul li").click(function () {
 /* END OF SHOP */
 
 /* START OF CHECKOUT PAGE */
+	// toggles between the different sections of the billing page
 window.ToggleCheckoutMenu = ToggleCheckoutMenu;
 function ToggleCheckoutMenu(menu) {
     if (menu == "delivery-menu") {
@@ -580,13 +608,14 @@ function ToggleCheckoutMenu(menu) {
 
 }
 
+// closes the covid notice on the shop page
 function RemoveMessage() {
     const element = document.querySelector("#covid-notification");
     element.classList.toggle("d-none");
 }
 
 /* END OF CHECKOUT PAGE */
-
+/* Analysis on the dashboard page setting up the grids */
 var day1 = 0;
 var day2 = 0;
 var day3 = 0;
@@ -652,6 +681,7 @@ $(document).ready(function () {
 
 
         /* ---------- Start Dounut ------------- */
+	    // secont graph displaying device type
         var ctx = document.getElementById("device-chart").getContext('2d');
         var myChart = new Chart(ctx, {
             type: 'pie',
@@ -716,7 +746,7 @@ $(document).ready(function () {
     }
     /* ---------- End Dounut ----------- */
 
-
+// setup of the dashboard widgets these are circles on the top of each page in the admin panel
     if ($('#percentage-1').length > 0) {
         StatsPercent('percentage-1', newOrdersPercentage);
         StatsPercent('percentage-2', newUsersPercentage);
@@ -728,6 +758,7 @@ $(document).ready(function () {
             var path = $('#' + stat).get(0);
             var pathLen = path.getTotalLength();
             var adjustedLen = 100 + percent;
+		// check if it's below -50% as the way the SVG circles fills will break
             if (percent < -50) {
                 var adjustedLen2 = 100 - adjustedLen;
                 path.setAttribute('stroke-dasharray', '0,' + adjustedLen + ',' + adjustedLen2 + ',' + pathLen);
@@ -748,7 +779,7 @@ $(document).ready(function () {
         CheckRemoveClass(parent_element, "color-amber");
         CheckRemoveClass(parent_element, "color-green");
 
-
+        // changing the colour dependant on the statistic
         if (percent < 20 && percent > 0) {
             parent_element.classList.add("color-amber");
         }
@@ -784,7 +815,7 @@ $(document).ready(function () {
     }
 
 });
-
+// increment and decrement the quantities to add to the basket on the product pages
 function lowerQuantity() {
     var currentquantity = document.getElementById("quantityvalue").value;
     if (currentquantity > 1) {
@@ -861,7 +892,7 @@ $(".dropdown_material ul li").click(function () {
 */
 
 $(document).ready(function () {
-
+// further filtering of the shop page
 
     $("#product-search-rows").on("keyup", function () {
         $(".product-container").filter(function (index, element) {
@@ -924,7 +955,7 @@ $(document).ready(function () {
             });
 
             console.log(productArray);
-
+// saving the order of the images do be assigned bootstrap classes reordering the products
             var newProductOrder = [];
             var inserted;
 
@@ -945,6 +976,7 @@ $(document).ready(function () {
 
             console.log(newProductOrder);
         }
+	    // reordering the products by low to high on the shop page
         if (selection == 'low to high') {
 
             for (var i = 1; i < newProductOrder.length; i++) {
@@ -955,7 +987,7 @@ $(document).ready(function () {
                 element.classList.toggle(("order-" + i));
             }
         }
-
+// reordering the products by high to low on the shop page
         if (selection == 'high to low') {
             console.log('high to low called');
             for (var i = 1; i < newProductOrder.length; i++) {
@@ -973,7 +1005,7 @@ $(document).ready(function () {
     });
 
 
-
+// removing the order so a new filter can be used 
     var arrClasses = [];
 
     function RemoveOrder(id) {
@@ -987,7 +1019,7 @@ $(document).ready(function () {
     }
 
 
-
+// display visible tags on products if certain tags have been assigned to them.
     function CheckTags(element, a, value5) {
         if ($("#" + element + " .product-tags-hidden").text().toLowerCase().indexOf('sale') > -1) {
 
@@ -1044,7 +1076,7 @@ $(document).ready(function () {
 
         return TagValue;
     }
-
+	// get the url if it has a category within it then filter the shop page accordingly.
     if (window.location.href.indexOf("category") > -1) {
 
         var urlParams = new URLSearchParams(window.location.search);
@@ -1060,7 +1092,7 @@ $(document).ready(function () {
             $(this).toggle(CheckTags(element.id));
         }
     });
-
+	// add to the end of the URL on the shop page to filter by category used on the home page on the category buttons
     //&category=dresses
 
 });
@@ -1071,6 +1103,7 @@ $(document).ready(function () {
 /* ------ shop page end ------- */
 
 /* LOGIN PAGE */
+	// toggles the forgotten password fields
 
 function ToggleForgotten() {
     const element = document.querySelector("#main-header-panel-create-account");
@@ -1117,7 +1150,7 @@ function ActivatePassword() {
     }
 }
 
-
+// displays errors alert and success messages
 function hideAlert() {
     //document.getElementById('alert-box').style.visibility = 'hidden';
     var slideSource = document.getElementById('alert-box');

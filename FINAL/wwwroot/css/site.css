@@ -1,4 +1,6 @@
-﻿.navbar-nav.justify-content-center {
+/* --------  NEEDS MOVING Start -------- */﻿
+
+.navbar-nav.justify-content-center {
     width: 100%;
 }
 
@@ -29,6 +31,7 @@
     width: 25%;
 }
 
+/* --------  NEEDS MOVING End -------- */﻿
 /* ----------------- admin Product page Start -------------------*/
 
 .Admin-Header {

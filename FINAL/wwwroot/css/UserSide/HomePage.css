@@ -102,15 +102,6 @@
     padding-right: 6%;
 }
 
-
-
-/* XL size and above */
-@media (min-width: 1200px) {
-    .subscribe-row {
-        margin-top: -60px;
-    }
-}
-
 .header-img {
     margin-top: -100px;
     width: 100%;
@@ -132,24 +123,6 @@
 }
 
 
-/* SM size and above unless over ridden in bigger sizes */
-@media (min-width: 576px) {
-    .page-2-container {
-        padding-right: 15%;
-        padding-left: 15%;
-    }
-}
-
-/* LG size and above unless over ridden in bigger sizes */
-@media (min-width: 992px) {
-    .page-2-container {
-        width: 100%;
-        padding-right: 15px;
-        padding-left: 15px;
-        margin-right: auto;
-        margin-left: auto;
-    }
-}
 
 #carousel {
     margin: 5% 0;
@@ -234,3 +207,39 @@
 .page-5-container .card-deck {
     margin: 5% 0;
 }
+
+
+/* ******************************************* Responsive Sizing  ******************************************** */
+@media (min-width: 576px) { /* sm size */
+    .page-2-container {
+        padding-right: 15%;
+        padding-left: 15%;
+    }
+}
+
+/* MD size and above unless over ridden in bigger sizes */
+@media (min-width: 768px) {
+}
+
+/* LG size and above unless over ridden in bigger sizes */
+@media (min-width: 992px) {
+    .page-2-container {
+        width: 100%;
+        padding-right: 15px;
+        padding-left: 15px;
+        margin-right: auto;
+        margin-left: auto;
+    }
+}
+
+/* XL size and above */
+@media (min-width: 1200px) {
+    .subscribe-row {
+        margin-top: -60px;
+    }
+}
+/* ******************************************* Responsive Sizing END  ******************************************** */
+
+/* *************************************************************************************************************** */
+/* *************************************** NO CSS BELOW RESPONSIVE SIZING. *************************************** */
+/* *************************************************************************************************************** */

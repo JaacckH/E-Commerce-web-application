@@ -1,0 +1,62 @@
+﻿#basket-page .card {
+    border-width: 0;
+}
+
+.remove-item {
+    position: absolute;
+    top: 7px;
+    right: 7px;
+    font-size: var(--text-size-reg);
+}
+
+.card-total {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+
+    .card-total p {
+        margin: 0;
+    }
+
+.page-title {
+    font-weight: bold;
+    font-size: var(--text-size-large);
+}
+
+#basket-page, #shop-page, #checkout-page {
+    margin-top: 3%;
+}
+
+
+
+/* Write page CSS here*/
+
+#order-summary-text {
+    padding-top: 15px;
+}
+
+.order-summary {
+    width: 100%;
+    background: #ffffff;
+}
+
+::-webkit-scrollbar {
+    width: 0px;
+    border-radius: 1px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 1px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: transparent;
+    border-radius: 1px;
+}
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: #137f79;
+    }

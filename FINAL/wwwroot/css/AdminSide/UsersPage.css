@@ -1,0 +1,58 @@
+﻿.user-settings-text {
+    background: var(--background-3-hover);
+    padding: 8px;
+    text-align: center;
+    border: 2px solid white;
+    border-radius: 10px 10px 0px 0px;
+}
+
+
+    .user-settings-text:hover {
+        background: var(--background-3);
+        padding: 8px;
+        text-align: center;
+        border: 2px solid white;
+    }
+
+    .user-settings-text.active {
+        background: var(--background-3);
+        padding: 8px;
+        text-align: center;
+        border: 2px solid white;
+    }
+
+.margin-0 {
+    margin: 0;
+}
+
+.no-border {
+    border: 0 !important;
+}
+
+
+.user-settings-accord {
+    max-height: 70vh;
+    overflow: scroll;
+}
+
+/* ******************************************* Responsive Sizing  ******************************************** */
+@media (min-width: 576px) { /* sm size */
+
+}
+
+/* MD size and above unless over ridden in bigger sizes */
+@media (min-width: 768px) {
+}
+
+/* LG size and above unless over ridden in bigger sizes */
+@media (min-width: 992px) {
+}
+
+/* XL size and above */
+@media (min-width: 1200px) {
+}
+/* ******************************************* Responsive Sizing END  ******************************************** */
+
+/* *************************************************************************************************************** */
+/* *************************************** NO CSS BELOW RESPONSIVE SIZING. *************************************** */
+/* *************************************************************************************************************** */

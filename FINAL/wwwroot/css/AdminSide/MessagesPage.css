@@ -1,0 +1,28 @@
+﻿
+.replies-section {
+    background-color: var(--background-2);
+    padding: 15px !important;
+    border-radius: 5px;
+}
+
+/* ******************************************* Responsive Sizing  ******************************************** */
+@media (min-width: 576px) { /* sm size */
+
+}
+
+/* MD size and above unless over ridden in bigger sizes */
+@media (min-width: 768px) {
+}
+
+/* LG size and above unless over ridden in bigger sizes */
+@media (min-width: 992px) {
+}
+
+/* XL size and above */
+@media (min-width: 1200px) {
+}
+/* ******************************************* Responsive Sizing END  ******************************************** */
+
+/* *************************************************************************************************************** */
+/* *************************************** NO CSS BELOW RESPONSIVE SIZING. *************************************** */
+/* *************************************************************************************************************** */

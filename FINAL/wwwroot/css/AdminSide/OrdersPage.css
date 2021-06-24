@@ -1,0 +1,110 @@
+﻿
+[id*="status-input-"] {
+    margin-bottom: 20px;
+}
+
+#send-message-btn {
+    margin-bottom: 20px;
+}
+
+.panel-tabs .panel-link {
+    border: 1px solid transparent;
+    border-top-left-radius: .25rem;
+    border-top-right-radius: .25rem;
+}
+
+.panel-link {
+    display: block;
+    padding: .5rem 1rem;
+}
+
+.tab-pane {
+    padding: 20px;
+}
+
+.panel-tabs {
+    border-bottom: 1px solid #dee2e6;
+}
+
+.panel {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+}
+
+.panel-link.active {
+    color: #495057;
+    background-color: #fff;
+    border-color: #dee2e6 #dee2e6 #fff;
+}
+
+.admin-close-view {
+    text-align: right;
+}
+
+table tbody tr th {
+    font-weight: 500;
+}
+
+.order-date {
+    margin-bottom: 20px;
+}
+
+.modal textarea {
+    width: 100%;
+    border: 1px solid rgb(0 0 0 / 4%);
+}
+
+.table-total {
+    text-align: right;
+}
+
+#data-header {
+    padding: .75rem 1.25rem;
+}
+
+.admin-list [class*="col-"] {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+
+.admin-list {
+    position: relative;
+    display: block;
+    padding: .75rem 1.25rem;
+    background-color: #fff;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: 5px;
+    -webkit-box-shadow: 0 1px 1px rgb(0 0 0 / 5%);
+    box-shadow: 0 1px 1px rgb(0 0 0 / 5%);
+    margin-bottom: 15px;
+}
+
+
+/* ******************************************* Responsive Sizing  ******************************************** */
+@media (min-width: 576px) { /* sm size */
+
+}
+
+/* MD size and above unless over ridden in bigger sizes */
+@media (min-width: 768px) {
+}
+
+/* LG size and above unless over ridden in bigger sizes */
+@media (min-width: 992px) {
+
+}
+
+/* XL size and above */
+@media (min-width: 1200px) {
+}
+/* ******************************************* Responsive Sizing END  ******************************************** */
+
+/* *************************************************************************************************************** */
+/* *************************************** NO CSS BELOW RESPONSIVE SIZING. *************************************** */
+/* *************************************************************************************************************** */

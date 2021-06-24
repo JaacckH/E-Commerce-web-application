@@ -1,0 +1,49 @@
+﻿
+#main-header-panel-create-account {
+    padding-left: 6%;
+    padding-right: 6%;
+}
+
+#main-header-panel-create-account-reset-password {
+    padding-left: 6%;
+    padding-right: 6%;
+}
+
+.forgotten:hover {
+    cursor: pointer;
+}
+
+.margin-left-5px {
+    margin-left: 5px;
+}
+
+#login-panel {
+    padding-left: 6%;
+}
+
+    #login-panel [class*="row"] {
+        padding-bottom: 20px;
+    }
+
+    #login-panel h1 {
+        font-size: var(--text-size-large);
+    }
+
+
+#social-btn {
+    transition: 1s;
+    background-color: white;
+    color: black;
+    padding: 10px;
+    border: 1px solid grey;
+}
+
+    #social-btn:hover {
+        transition: 1s;
+        background-color: black;
+        color: white;
+    }
+
+#login-form {
+    text-align: left;
+}

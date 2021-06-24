@@ -1,0 +1,139 @@
+﻿
+.menu-stats {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.menu-toggle {
+    margin-bottom: 10px;
+}
+
+.menu-close {
+    text-align: right;
+    padding: 10px 30px 10px 0;
+}
+
+.admin-pages {
+    padding: 2%;
+}
+
+#admin-page {
+    transition: all .5s;
+}
+
+#admin-page-layout {
+    min-height: 100vh;
+}
+
+#admin-menu {
+    background-color: var(--background-3);
+    overflow: hidden;
+    padding-right: 0px;
+    min-height: 100%;
+    transition: all .5s;
+}
+
+.menu-stats {
+    height: 100px;
+}
+
+.admin-menu-item {
+    position: relative;
+    padding: 6px 5px;
+    margin: 0;
+}
+
+    .admin-menu-item:hover::before, .admin-drop-menu:hover::before {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-color: var(--background-4);
+        top: 0;
+        left: 0;
+        opacity: 0.2;
+    }
+
+.menu-icons {
+    text-align: right;
+    padding: 10px 15px;
+}
+
+.menu-header {
+    /*padding-top:10px;*/
+    display: flex;
+    align-items: center;
+}
+
+    .menu-header h6 {
+        margin: 0;
+        padding: 0;
+    }
+
+.admin-drop-hidden {
+    display: none;
+}
+
+
+.admin-drop-menu:hover .admin-drop-hidden {
+    display: block !important;
+}
+
+.admin-drop-menu {
+    position: relative;
+}
+
+/*
+.menu-fixed {
+    left: -10px;
+}
+    */
+
+.menu-logo {
+    width: 20%;
+}
+
+
+/* ******************************************* Responsive Sizing  ******************************************** */
+@media (min-width: 576px) { /* sm size */
+
+}
+
+/* MD size and above unless over ridden in bigger sizes */
+@media (min-width: 768px) {
+
+    .menu-icons {
+        text-align: center;
+        padding: 10px 0;
+    }
+
+    .admin-list [class*="col-"] {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+
+    /*
+    .menu-fixed {
+        position: fixed;
+        left: -10px;
+    }
+        */
+
+    .menu-logo {
+        width: 60%;
+    }
+
+}
+
+/* LG size and above unless over ridden in bigger sizes */
+@media (min-width: 992px) {
+}
+
+/* XL size and above */
+@media (min-width: 1200px) {
+}
+/* ******************************************* Responsive Sizing END  ******************************************** */
+
+/* *************************************************************************************************************** */
+/* *************************************** NO CSS BELOW RESPONSIVE SIZING. *************************************** */
+/* *************************************************************************************************************** */

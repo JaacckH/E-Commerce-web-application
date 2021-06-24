@@ -1,0 +1,153 @@
+﻿
+.dash-stat-center {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.dash-stat-center-left {
+    text-align: left;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    flex-wrap: wrap;
+}
+
+div[class*=dash-stat-center] p, div[class*=dash-stat-center] h6 {
+    width: 100%;
+}
+
+.chart-height {
+    height: 400px;
+}
+
+.full-height {
+    height: 100%;
+}
+
+.stat-row-margin {
+    margin: 0px;
+    margin-bottom: 10px;
+}
+
+.split-stat-rows {
+    height: calc((380px)/3);
+}
+
+#device-chart {
+    height: unset !important;
+    width: 60% !important;
+}
+
+.device-chart-cont {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+#admin-dash {
+    margin: 0px;
+}
+
+.stats-label {
+    text-align: center;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+}
+
+    .stats-label p {
+        margin: 0;
+    }
+
+.chart-svg {
+    position: relative;
+    max-width: 90px;
+    min-width: 40px;
+    flex: 1;
+}
+
+svg:not(:root) {
+    overflow: hidden;
+}
+
+.circular-chart.color-red .circle {
+    stroke: #ff002a;
+}
+
+.circular-chart.color-amber .circle {
+    stroke: #ffc90b;
+}
+
+.circular-chart.color-green .circle {
+    stroke: #11df47;
+}
+
+.Montserrat {
+    font-family: 'Montserrat';
+    font-weight: 600;
+}
+
+.circle-bg {
+    stroke: #ddefed;
+    fill: none;
+    stroke-width: 1.2;
+}
+
+.circle {
+    fill: none;
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    -webkit-animation: progress 1s ease-out forwards;
+    animation: progress 1s ease-out forwards;
+    /*stroke-dasharray: 60 60 100;*/
+}
+
+.percentage {
+    fill: #000000;
+    font-size: 0.5em;
+    text-anchor: middle;
+    font-weight: 400;
+}
+
+.no-margin {
+    margin: 0 !important;
+    margin-bottom: 1.5rem !important;
+}
+
+
+.stat-container {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+.stat-card {
+    height: 100%;
+}
+
+/* ******************************************* Responsive Sizing  ******************************************** */
+@media (min-width: 576px) { /* sm size */
+
+}
+
+/* MD size and above unless over ridden in bigger sizes */
+@media (min-width: 768px) {
+}
+
+/* LG size and above unless over ridden in bigger sizes */
+@media (min-width: 992px) {
+}
+
+/* XL size and above */
+@media (min-width: 1200px) {
+}
+/* ******************************************* Responsive Sizing END  ******************************************** */
+
+/* *************************************************************************************************************** */
+/* *************************************** NO CSS BELOW RESPONSIVE SIZING. *************************************** */
+/* *************************************************************************************************************** */

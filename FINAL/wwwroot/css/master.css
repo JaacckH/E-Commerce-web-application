@@ -1,0 +1,269 @@
+﻿
+/* ----- User Pages ------*/
+@import url(UserSide/ShopPage.css);
+@import url(UserSide/ProductPage.css);
+@import url(UserSide/LoginPage.css);
+@import url(UserSide/CheckoutPage.css);
+@import url(UserSide/HomePage.css);
+@import url(UserSide/BasketPage.css);
+@import url(UserSide/OrderSuccess.css);
+@import url(UserSide/ChatBox.css);
+
+/* ----- Admin Pages ------*/
+
+@import url(AdminSide/ProductPage.css);
+@import url(AdminSide/CreateOrderPage.css);
+@import url(AdminSide/OrdersPage.css);
+@import url(AdminSide/SettingsPage.css);
+@import url(AdminSide/MessagesPage.css);
+@import url(AdminSide/PromoPage.css);
+@import url(AdminSide/DashboardPage.css);
+@import url(AdminSide/UsersPage.css);
+@import url(AdminSide/Menu.css);
+
+
+
+
+
+
+
+
+/*
+
+    CSS IN THIS FILE IS GLOBAL FOR ALL PAGES
+
+*/
+
+.main {
+    width: 80vw;
+    margin: 0 10vw;
+    height: 50vh;
+    overflow: hidden;
+}
+
+.status {
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    width: 100vw;
+    overflow-x: hidden !important;
+}
+
+/* 
+ * Setting the site variables, example of how to use
+ * color:var(--text-1);
+ *
+ */
+
+:root {
+    --background-1: #ffffff;
+    --background-2: #E3E3E3;
+    --background-3: #A3CCC8;
+    --background-4: #000000;
+    --background-3-hover: #96b9b6;
+    --text-1: #000000;
+    --text-2: #ffffff;
+    --text-size-reg: calc(20px + (20 - 18) * ((100vw - 300px) / (1600 - 300)));
+    --text-size-sml: calc(10px + (10 - 8) * ((100vw - 300px) / (1600 - 300)));
+    --text-size-large: calc(35px + (35 - 20) * ((100vw - 300px) / (1600 - 300)));
+    --text-size-xlarge: calc(60px + (60 - 20) * ((100vw - 300px) / (1600 - 300)));
+    --primary: #A3CCC8;
+    --bootstrap-border: #ced4da;
+}
+
+[type*='checkbox'] {
+    display: none;
+}
+
+a, a:hover {
+    color: #000000 !important;
+    text-decoration: none;
+}
+
+.nav-link, .navbar-brand {
+    font-weight: bold;
+    color: black !important;
+}
+
+.page-name {
+    width: 100vw;
+    overflow: hidden;
+}
+
+.verticle-align {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.verticle-align-left {
+    display: flex;
+    align-items: center;
+}
+
+.no-style {
+    padding: 0;
+    margin: 0;
+}
+
+#action-buttons .btn {
+    margin-top: 5px;
+}
+
+
+.btn-ouioui-primary {
+    background-color: var(--background-3);
+    border-color: var(--background-3);
+}
+
+.btn-ouioui-primary:hover {
+    background-color: var(--background-3-hover);
+    border-color: var(--background-3-hover);
+}
+
+.fa-1-5x {
+    font-size: 1.5em;
+}
+
+
+
+.btn-ouioui {
+    transition: 0.3s;
+    background-color: var(--text-1);
+    color: var(--text-2);
+    border-radius: 10px;
+    padding: 2px 20px 2px 20px;
+    font-size: var(--text-size-reg);
+    font-weight: bold;
+    border: 2px solid var(--text-1);
+}
+
+    .btn-ouioui:hover {
+        background-color: var(--text-2);
+        color: var(--text-1);
+    }
+
+.btn-ouioui-secondary {
+    transition: 0.3s;
+    background-color: var(--text-2);
+    color: var(--text-1);
+    border-radius: 10px;
+    padding: 2px 20px 2px 20px;
+    font-size: var(--text-size-reg);
+    font-weight: bold;
+    border: 2px solid var(--text-1);
+}
+
+    .btn-ouioui-secondary:hover {
+        background-color: var(--text-1);
+        color: var(--text-2);
+    }
+
+.alert {
+    padding: 20px;
+    background-color: #f44336;
+    color: white;
+    z-index: 6900;
+    position: fixed;
+    max-width: 400px;
+    width: 100%;
+    left: calc(50% - 200px);
+    top: 100px;
+    border-radius: 20px;
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+.success {
+    padding: 20px;
+    background-color: #00ff72;
+    color: #181a1e;
+    z-index: 6899;
+    position: fixed;
+    max-width: 400px;
+    width: 100%;
+    left: calc(50% - 200px);
+    top: 100px;
+    border-radius: 20px;
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+.acknowledge {
+    padding: 10px 20px;
+    background-color: var(--background-3);
+    color: var(--text);
+    z-index: 6898;
+    position: fixed;
+    max-width: 300px;
+    width: 100%;
+    left: calc(50% - 150px);
+    top: 100px;
+    border-radius: 20px;
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+    .acknowledge.fade {
+        opacity: 1;
+    }
+
+.success.fade {
+    opacity: 1;
+}
+
+.alert.fade {
+    opacity: 1;
+}
+
+
+
+/* --------- Menu Section -------- */
+
+.navbar-nav.justify-content-center {
+    width: 100%;
+}
+
+.page-footer-container a {
+    color: white !important;
+}
+
+.empty-basket {
+    width: 100%;
+    text-align: center;
+    margin: 50px 0px;
+}
+
+.checkout-header {
+    cursor: pointer;
+    background-color: var(--background-3);
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+
+/* ******************************************* Responsive Sizing  ******************************************** */
+@media (min-width: 576px) { /* sm size */
+
+}
+
+/* MD size and above unless over ridden in bigger sizes */
+@media (min-width: 768px) {
+}
+
+/* LG size and above unless over ridden in bigger sizes */
+@media (min-width: 992px) {
+}
+
+/* XL size and above */
+@media (min-width: 1200px) {
+}
+/* ******************************************* Responsive Sizing END  ******************************************** */
+
+/* *************************************************************************************************************** */
+/* *************************************** NO CSS BELOW RESPONSIVE SIZING. *************************************** */
+/* *************************************************************************************************************** */

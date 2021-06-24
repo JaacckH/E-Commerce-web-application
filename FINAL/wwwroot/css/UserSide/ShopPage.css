@@ -1,0 +1,150 @@
+﻿#filter-menu {
+    padding: 10px 0;
+}
+
+.feature-tag {
+    position: absolute;
+    top: 20px;
+    right: 15px;
+    padding: 5px;
+    color: white;
+    border-radius: 10px 0px 0px 10px;
+    padding-left: 10px;
+}
+
+    .feature-tag p {
+        margin: 0;
+        line-height: normal;
+        font-weight: bold;
+    }
+
+    .feature-tag.feature {
+        background-color: var(--background-3);
+    }
+
+    .feature-tag.new {
+        background-color: black;
+    }
+
+    .feature-tag.sale {
+        background-color: #dc0000;
+    }
+
+.stock-0 {
+    position: relative;
+    z-index: 5;
+}
+
+
+    .stock-0::before {
+        content: '';
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: calc(100% - 30px);
+        height: calc(100% - 48px);
+        background-color: rgba(0,0,0,0.5);
+        z-index: 10;
+        margin-right: 15px;
+        margin-left: 15px;
+    }
+
+    .stock-0::after {
+        content: 'OUT OF STOCK';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: calc(100% - 30px);
+        height: calc(100% - 48px);
+        /* transform: translate(-50%,-50%); */
+        color: white;
+        z-index: 15;
+        font-weight: bold;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        white-space: pre-wrap;
+        font-size: var(--text-size-reg);
+        margin-right: 15px;
+        margin-left: 15px;
+        padding: 10px;
+    }
+
+/* Write page CSS here*/
+li {
+    text-decoration: none;
+    list-style: none;
+}
+
+.dropdown {
+    width: 150px;
+    color: #9fa3b1;
+    position: relative;
+    cursor: pointer;
+}
+
+    .dropdown .def_op {
+        text-transform: uppercase;
+        padding: 13px 15px;
+        font-size: 14px;
+    }
+
+    .dropdown ul {
+        position: absolute;
+        top: 70px;
+        left: -10px;
+        background: #fff;
+        width: 150px;
+        border-radius: 5px;
+        padding: 20px;
+        display: none;
+        z-index: 12;
+        box-shadow: 8px 8px 6px -10px black;
+    }
+
+        .dropdown ul.active {
+            display: block;
+        }
+
+        .dropdown ul li {
+            padding-bottom: 20px;
+        }
+
+            .dropdown ul li:last-child {
+                padding-bottom: 0;
+            }
+
+            .dropdown ul li:hover {
+                color: #6f768d;
+            }
+
+    .dropdown:before {
+        content: "";
+        position: absolute;
+        top: 18px;
+        right: 20px;
+        border: 8px solid;
+        border-color: black transparent transparent transparent;
+    }
+
+.product-container {
+    cursor: pointer;
+}
+
+#Shop-text {
+    text-align: center;
+    padding-top: 15vh;
+}
+
+#shop-picture {
+    width: 100%;
+}
+
+#product-container {
+    padding: 10px;
+}
+
+#pagination {
+    display: flex;
+    align-item: center;
+}
